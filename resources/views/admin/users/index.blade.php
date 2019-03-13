@@ -58,7 +58,7 @@
             </div>
         </div>
     </header>
-
+    @include('includes.form_error')
     <!-- SEARCH -->
     <section id="search" class="py-4 mb-4 bg-light">
         <div class="container">
@@ -95,7 +95,7 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Role</th>
+                                <th>Status</th>
                                 <th>Active</th>
                                 <th>Created</th>
                                 <th>Updated</th>
@@ -144,8 +144,28 @@
                 <div class="modal-body">
                     {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store']) !!}
                         <div class="form-group">
-                            {!! Form::label('title', 'Title:') !!}
-                            {!! Form::text('title', null, ['class'=>'form-control']) !!}
+                            {!! Form::label('name', 'Name:') !!}
+                            {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('email', 'Email:') !!}
+                            {!! Form::email('email', null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('password', 'Password:') !!}
+                            {!! Form::password('password', ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('role_id', 'Role:') !!}
+                            {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('is_active', 'Status:') !!}
+                            {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'form-control']) !!}
                         </div>
 
 
@@ -156,6 +176,7 @@
                     </div>
                     {!! Form::close() !!}
                     {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}
+
                 </div>
             </div>
         </div>

@@ -288,27 +288,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="password2">Confirm Password</label>
-                            <input type="password" class="form-control">
-                        </div>
-                    </form>
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store']) !!}
+                    <div class="form-group">
+                        {!! Form::label('title', 'Title:') !!}
+                        {!! Form::text('title', null, ['class'=>'form-control']) !!}
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal">Save Changes</button>
+                    <div class="form-group">
+                        {!! Form::submit('Create User', ['class'=>'btn btn-warning']) !!}
+                    </div>
+                    {!! Form::close() !!}
+                    {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}
                 </div>
             </div>
         </div>
