@@ -20,7 +20,7 @@
                         <a href="categories.html" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="/admin/users" class="nav-link">Users</a>
+                        <a href="{{route('users.index')}}" class="nav-link">Users</a>
                     </li>
                 </ul>
 

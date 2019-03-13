@@ -20,7 +20,7 @@
                         <a href="categories.html" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="/admin/users" class="nav-link active">Users</a>
+                        <a href="{{route('users.index')}}" class="nav-link active">Users</a>
                     </li>
                 </ul>
 
@@ -169,8 +169,8 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('file', 'File:') !!}
-                            {!! Form::file('file', null, ['class'=>'form-control']) !!}
+                            {!! Form::label('photo_id', 'Photo:') !!}
+                            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                         </div>
 
 
