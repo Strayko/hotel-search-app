@@ -4,7 +4,7 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="index.html" class="navbar-brand">Admin</a>
+            <a href="/admin" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -89,14 +89,14 @@
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Latest Posts</h4>
+                            <h4>Latest Hotels</h4>
                         </div>
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Title</th>
-                                <th>Category</th>
+                                <th>Hotels</th>
+                                <th>Packages</th>
                                 <th>Date</th>
                                 <th></th>
                             </tr>
@@ -177,7 +177,7 @@
                         <div class="card-body">
                             <h3>Hotels</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-pencil-alt"></i> 6
+                                <i class="fas fa-building"></i> 6
                             </h4>
                             <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
                         </div>
@@ -186,7 +186,7 @@
                         <div class="card-body">
                             <h3>Packages</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-folder"></i> 4
+                                <i class="fas fa-box"></i> 4
                             </h4>
                             <a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
                         </div>
@@ -197,7 +197,7 @@
                             <h4 class="display-4">
                                 <i class="fas fa-users"></i> {{$users->count()}}
                             </h4>
-                            <a href="/admin/users" class="btn btn-outline-light btn-sm">View</a>
+                            <a href="{{route('users.index')}}" class="btn btn-outline-light btn-sm">View</a>
                         </div>
                     </div>
                 </div>
@@ -288,10 +288,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store']) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
                     <div class="form-group">
-                        {!! Form::label('title', 'Title:') !!}
-                        {!! Form::text('title', null, ['class'=>'form-control']) !!}
+                        {!! Form::label('name', 'Name:') !!}
+                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('email', 'Email:') !!}
+                        {!! Form::email('email', null, ['class'=>'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('password', 'Password:') !!}
+                        {!! Form::password('password', ['class'=>'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('role_id', 'Role:') !!}
+                        {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('is_active', 'Status:') !!}
+                        {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('photo_id', 'Photo:') !!}
+                        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                     </div>
 
 

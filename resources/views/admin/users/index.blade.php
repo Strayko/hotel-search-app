@@ -93,6 +93,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
+                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
@@ -108,6 +109,7 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{$user->id}}</td>
+                                        <td><img height="50" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->role->name}}</td>
@@ -115,8 +117,8 @@
                                         <td>{{$user->created_at->diffForHumans()}}</td>
                                         <td>{{$user->updated_at->diffForHumans()}}</td>
                                         <td>
-                                            <a href="details.html" class="btn btn-secondary">
-                                                <i class="fas fa-angle-double-right"></i> Details
+                                            <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-angle-double-right"></i> Edit
                                             </a>
                                         </td>
                                     </tr>
