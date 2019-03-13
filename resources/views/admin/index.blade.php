@@ -14,7 +14,7 @@
                         <a href="/admin" class="nav-link active">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="posts.html" class="nav-link">Hotels</a>
+                        <a href="posts.html" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="categories.html" class="nav-link">Packages</a>
@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
-                        <i class="fas fa-plus"></i> Add Hotel
+                        <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
                 <div class="col-md-3">
@@ -89,13 +89,13 @@
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Latest Hotels</h4>
+                            <h4>Latest Restaurants</h4>
                         </div>
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Hotels</th>
+                                <th>Restaurants</th>
                                 <th>Packages</th>
                                 <th>Date</th>
                                 <th></th>
@@ -175,9 +175,9 @@
                 <div class="col-md-3">
                     <div class="card text-center bg-primary text-white mb-3">
                         <div class="card-body">
-                            <h3>Hotels</h3>
+                            <h3>Restaurants</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-building"></i> 6
+                                <i class="fas fa-utensils"></i> 6
                             </h4>
                             <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
                         </div>
@@ -211,7 +211,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title">Add Hotel</h5>
+                    <h5 class="modal-title">Add Restaurant</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
