@@ -142,7 +142,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store']) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Name:') !!}
                             {!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -166,6 +166,11 @@
                         <div class="form-group">
                             {!! Form::label('is_active', 'Status:') !!}
                             {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('file', 'File:') !!}
+                            {!! Form::file('file', null, ['class'=>'form-control']) !!}
                         </div>
 
 
