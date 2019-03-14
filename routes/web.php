@@ -22,15 +22,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', function() {
-
-	$users = User::all();
-	$roles = Role::pluck('name', 'id')->all();
-	return view('admin.index', compact('users', 'roles'));
-});
-
-Route::resource('admin/users', 'AdminUsersController');
 
 Route::group(['middleware'=>'admin'], function() {
+	Route::get('/admin', function() {
 
+		$users = User::all();
+		$roles = Role::pluck('name', 'id')->all();
+		return view('admin.index', compact('users', 'roles'));
+	});
+
+	Route::resource('admin/users', 'AdminUsersController');
+	Route::resource('admin/restaurants', 'AdminRestaurantsController');
 });

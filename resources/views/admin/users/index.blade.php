@@ -4,7 +4,7 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="index.html" class="navbar-brand">Admin</a>
+            <a href="/admin" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -14,7 +14,7 @@
                         <a href="/admin" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="posts.html" class="nav-link">Hotels</a>
+                        <a href="{{route('restaurants.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="categories.html" class="nav-link">Packages</a>
@@ -27,7 +27,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown mr-3">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                            <i class="fas fa-user"></i> Welcome Moamer
+                            <i class="fas fa-user"></i> {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu">
                             <a href="profile.html" class="dropdown-item">
@@ -39,9 +39,13 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="login.html" class="nav-link">
-                            <i class="fas fa-user-times"></i> Logout
+                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();" class="nav-link">
+                            <i class="fas fa-user-times"></i> {{ __('Logout') }}
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -87,6 +91,9 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
+                            @if(Session::has('deleted_user'))
+                                <p class="alert alert-danger">{{session('deleted_user')}}</p>
+                            @endif
                             <h4>Latest Users</h4>
                         </div>
                         <table class="table table-striped">
@@ -118,7 +125,13 @@
                                         <td>{{$user->updated_at->diffForHumans()}}</td>
                                         <td>
                                             <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-angle-double-right"></i> Edit
+                                                <i class="fas fa-user-edit"></i> Edit
+                                            </a>
+                                            <a href="{{route('users.edit', $user->id)}}" class="d-inline-block">
+                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
+                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
+                                                {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
+                                                {!! Form::close() !!}
                                             </a>
                                         </td>
                                     </tr>

@@ -11,10 +11,10 @@
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/admin" class="nav-link active">Dashboard</a>
+                        <a href="/admin" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('restaurants.index')}}" class="nav-link">Restaurants</a>
+                        <a href="{{route('restaurants.index')}}" class="nav-link active">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="categories.html" class="nav-link">Packages</a>
@@ -53,34 +53,32 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-light text-black">
+    <header id="main-header" class="py-2 bg-primary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-cog"></i> Dashboard</h1>
+                    <h1><i class="fas fa-utensils"></i> Restaurants</h1>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- ACTIONS -->
-    <section id="actions" class="py-4 mb-4 bg-light">
+    <!-- SEARCH -->
+    <section id="search" class="py-4 mb-4 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addRestaurantModal">
                         <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
-                        <i class="fas fa-plus"></i> Add Package
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
-                        <i class="fas fa-plus"></i> Add User
-                    </a>
+                <div class="col-md-6 ml-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Restaurants...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,7 +88,7 @@
     <section id="posts">
         <div class="container">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col">
                     <div class="card">
                         <div class="card-header">
                             <h4>Latest Restaurants</h4>
@@ -99,8 +97,8 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Restaurants</th>
-                                <th>Packages</th>
+                                <th>Title</th>
+                                <th>Category</th>
                                 <th>Date</th>
                                 <th></th>
                             </tr>
@@ -174,44 +172,34 @@
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center bg-primary text-white mb-3">
-                        <div class="card-body">
-                            <h3>Restaurants</h3>
-                            <h4 class="display-4">
-                                <i class="fas fa-utensils"></i> 6
-                            </h4>
-                            <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
-                        </div>
-                    </div>
-                    <div class="card text-center bg-success text-white mb-3">
-                        <div class="card-body">
-                            <h3>Packages</h3>
-                            <h4 class="display-4">
-                                <i class="fas fa-box"></i> 4
-                            </h4>
-                            <a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
-                        </div>
-                    </div>
-                    <div class="card text-center bg-warning text-white mb-3">
-                        <div class="card-body">
-                            <h3>Users</h3>
-                            <h4 class="display-4">
-                                <i class="fas fa-users"></i> {{$users->count()}}
-                            </h4>
-                            <a href="{{route('users.index')}}" class="btn btn-outline-light btn-sm">View</a>
-                        </div>
+                        <!-- PAGINATION -->
+                        <nav class="ml-4">
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a href="#" class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a href="#" class="page-link">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MODALS -->
-    <!-- ADD RESTAURANTS MODAL -->
-    <div class="modal fade" id="addPostModal">
+
+    <div class="modal fade" id="addRestaurantModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
@@ -256,85 +244,6 @@
         </div>
     </div>
 
-    <!-- ADD PACKAGE MODAL -->
-    <div class="modal fade" id="addCategoryModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title">Add Package</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="category">Category</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ADD USER MODAL -->
-    <div class="modal fade" id="addUserModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title">Add User</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
-                    <div class="form-group">
-                        {!! Form::label('name', 'Name:') !!}
-                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('email', 'Email:') !!}
-                        {!! Form::email('email', null, ['class'=>'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('password', 'Password:') !!}
-                        {!! Form::password('password', ['class'=>'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('role_id', 'Role:') !!}
-                        {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('is_active', 'Status:') !!}
-                        {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('photo_id', 'Photo:') !!}
-                        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group">
-                        {!! Form::submit('Create User', ['class'=>'btn btn-warning']) !!}
-                    </div>
-                    {!! Form::close() !!}
-                    {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('footer')
