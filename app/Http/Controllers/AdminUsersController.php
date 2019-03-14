@@ -19,6 +19,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
+
 		$users = User::all();
 	    $roles = Role::pluck('name', 'id')->all();
 

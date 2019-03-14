@@ -30,7 +30,7 @@
                             <i class="fas fa-user"></i> {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu">
-                            <a href="profile.html" class="dropdown-item">
+                            <a href="{{route('users.edit', Auth::user()->id)}}" class="dropdown-item">
                                 <i class="fas fa-user-circle"></i> Profile
                             </a>
                             <a href="settings.html" class="dropdown-item">

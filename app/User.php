@@ -58,5 +58,9 @@ class User extends Authenticatable
 	    return false;
 	}
 
+	public function restaurants() {
+    	return $this->hasMany('App\Restaurant');
+	}
+
 
 }

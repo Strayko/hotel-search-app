@@ -30,7 +30,7 @@
                             <i class="fas fa-user"></i> {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu">
-                            <a href="profile.html" class="dropdown-item">
+                            <a href="{{route('users.edit', Auth::user()->id)}}" class="dropdown-item">
                                 <i class="fas fa-user-circle"></i> Profile
                             </a>
                             <a href="settings.html" class="dropdown-item">
@@ -96,80 +96,37 @@
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
-                                <th>#</th>
+                                <th>Id</th>
+                                <th>Owner</th>
+                                <th>Package</th>
+                                <th>Photo</th>
                                 <th>Title</th>
-                                <th>Category</th>
-                                <th>Date</th>
+                                <th>Body</th>
+                                <th>Created</th>
+                                <th>Updated</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Post One</td>
-                                <td>Web Development</td>
-                                <td>May 10 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Post Two</td>
-                                <td>Tech Gadgets</td>
-                                <td>May 11 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Post Three</td>
-                                <td>Web Development</td>
-                                <td>June 13 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Post Four</td>
-                                <td>Business</td>
-                                <td>June 15 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Post Five</td>
-                                <td>Web Development</td>
-                                <td>July 17 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Post Six</td>
-                                <td>Health & Wellness</td>
-                                <td>August 20 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
+                            @if($restaurants)
+                               @foreach($restaurants as $restaurant)
+                                   <tr>
+                                       <td>{{$restaurant->id}}</td>
+                                       <td>{{$restaurant->user->name}}</td>
+                                       <td>{{$restaurant->package_id}}</td>
+                                       <td>{{$restaurant->photo_id}}</td>
+                                       <td>{{$restaurant->title}}</td>
+                                       <td>{{$restaurant->body}}</td>
+                                       <td>{{$restaurant->created_at->diffForHumans()}}</td>
+                                       <td>{{$restaurant->updated_at->diffForHumans()}}</td>
+                                       <td>
+                                           <a href="details.html" class="btn btn-secondary">
+                                               <i class="fas fa-angle-double-right"></i> Details
+                                           </a>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                            @endif
                             </tbody>
                         </table>
                         <!-- PAGINATION -->
@@ -198,7 +155,7 @@
         </div>
     </section>
 
-
+    {{--MODAL--}}
     <div class="modal fade" id="addRestaurantModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -210,35 +167,32 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="category">Category</label>
-                            <select class="form-control">
-                                <option value="">Web Development</option>
-                                <option value="">Tech Gadgets</option>
-                                <option value="">Business</option>
-                                <option value="">Health & Wellnes</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Upload Image</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image">
-                                <label class="custom-file-label" for="image">Choose File</label>
+                        {!! Form::open(['method'=>'POST', 'action'=>'AdminRestaurantsController@store', 'files'=>true]) !!}
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                {!! Form::label('title', 'Title:') !!}
+                                {!! Form::text('title', null, ['class'=>'form-control']) !!}
                             </div>
-                            <small class="form-text text-muted">Max Size 3mb</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="body">Body</label>
-                            <textarea name="editor1" class="form-control"></textarea>
-                        </div>
+                            <div class="form-group">
+                                {!! Form::label('package_id', 'Package:') !!}
+                                {!! Form::select('package_id', array(''=>'options'), null, ['class'=>'form-control']) !!}
+                            </div>
+
+                            <div class="form-group">
+                                {!! Form::label('body', 'Description:') !!}
+                                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('photo_id', 'Photo:') !!}
+                                {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+                            </div>
+
+
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+                    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-primary']) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
