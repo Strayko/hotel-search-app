@@ -129,7 +129,7 @@
                                             <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-user-edit"></i> Edit
                                             </a>
-                                            <a href="{{route('users.edit', $user->id)}}" class="d-inline-block">
+                                            <a href="#" class="d-inline-block">
                                                 {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
                                                 <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}

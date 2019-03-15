@@ -11,6 +11,8 @@
 |
 */
 
+use App\Package;
+use App\Restaurant;
 use App\Role;
 use App\User;
 
@@ -27,8 +29,10 @@ Route::group(['middleware'=>'admin'], function() {
 	Route::get('/admin', function() {
 
 		$users = User::all();
+		$restaurants = Restaurant::all();
+		$packages = Package::pluck('name', 'id')->all();
 		$roles = Role::pluck('name', 'id')->all();
-		return view('admin.index', compact('users', 'roles'));
+		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants'));
 	});
 
 	Route::resource('admin/users', 'AdminUsersController');

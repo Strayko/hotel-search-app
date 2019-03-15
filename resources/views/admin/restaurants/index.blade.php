@@ -84,6 +84,7 @@
         </div>
     </section>
     @include('includes.form_error')
+
     <!-- RESTAURANTS -->
     <section id="posts">
         <div class="container">
@@ -91,8 +92,12 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
+                            @if(Session::has('deleted_restaurant'))
+                                <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
+                            @endif
                             <h4>Latest Restaurants</h4>
                         </div>
+
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
@@ -114,14 +119,20 @@
                                        <td>{{$restaurant->id}}</td>
                                        <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                        <td>{{$restaurant->user->name}}</td>
-                                       <td>{{$restaurant->package_id}}</td>
+                                       <td>{{$restaurant->package ? $restaurant->package->name : 'Uncategorized'}}</td>
                                        <td>{{$restaurant->title}}</td>
-                                       <td>{{$restaurant->body}}</td>
+                                       <td>{{str_limit($restaurant->body, 20)}}</td>
                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                        <td>{{$restaurant->updated_at->diffForHumans()}}</td>
                                        <td>
-                                           <a href="details.html" class="btn btn-secondary">
-                                               <i class="fas fa-angle-double-right"></i> Details
+                                           <a href="{{route('restaurants.edit', $restaurant->id)}}" class="btn btn-secondary">
+                                               <i class="fas fa-utensils"></i> Edit
+                                           </a>
+                                           <a href="#" class="d-inline-block">
+                                               {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRestaurantsController@destroy', $restaurant->id]]) !!}
+                                               <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
+                                               {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
+                                               {!! Form::close() !!}
                                            </a>
                                        </td>
                                    </tr>
@@ -175,7 +186,7 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('package_id', 'Package:') !!}
-                                {!! Form::select('package_id', array(1=>'Gold', 2=>'Silver'), null, ['class'=>'form-control']) !!}
+                                {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'form-control']) !!}
                             </div>
 
                             <div class="form-group">

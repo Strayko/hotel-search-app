@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UsersRequest;
+use App\Package;
 use App\Photo;
 use App\Restaurant;
 use App\Role;
@@ -22,10 +23,9 @@ class AdminUsersController extends Controller
     {
 
 		$users = User::all();
-		$restaurants = Restaurant::all();
 	    $roles = Role::pluck('name', 'id')->all();
 
-        return view('admin.users.index', compact('users', 'roles', 'restaurants'));
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -135,7 +135,7 @@ class AdminUsersController extends Controller
 
 		$user->delete();
 
-		Session::flash('deleted_user', 'The user has been deleted');
+		Session::flash('deleted_user', 'The User has been deleted');
 
 		return redirect('/admin/users');
     }

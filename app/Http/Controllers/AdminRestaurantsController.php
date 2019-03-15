@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RestaurantCreateRequest;
+use App\Package;
 use App\Photo;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminRestaurantsController extends Controller
 {
@@ -18,8 +20,9 @@ class AdminRestaurantsController extends Controller
     public function index()
     {
     	$restaurants = Restaurant::all();
+    	$packages = Package::pluck('name', 'id')->all();
 
-        return view('admin.restaurants.index', compact('restaurants'));
+        return view('admin.restaurants.index', compact('restaurants', 'packages'));
     }
 
     /**
@@ -73,7 +76,9 @@ class AdminRestaurantsController extends Controller
      */
     public function edit($id)
     {
-        //
+	    $restaurants = Restaurant::findOrFail($id);
+		$packages = Package::pluck('name', 'id')->all();
+        return view('admin.restaurants.edit', compact('restaurants', 'packages'));
     }
 
     /**
@@ -85,7 +90,16 @@ class AdminRestaurantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        if($file = $request->file('photo_id')) {
+			$name = time() . $file->getClientOriginalName();
+			$file->move('images', $name);
+			$photo = Photo::create(['file'=>$name]);
+			$input['photo_id'] = $photo->id;
+        }
+
+        Auth::user()->restaurants()->whereId($id)->first()->update($input);
+        return redirect('/admin/restaurants');
     }
 
     /**
@@ -96,6 +110,10 @@ class AdminRestaurantsController extends Controller
      */
     public function destroy($id)
     {
-        //
+	    $restaurant = Restaurant::findOrFail($id);
+	    unlink(public_path() . $restaurant->photo->file);
+	    $restaurant->delete();
+	    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
+	    return redirect('/admin/restaurants');
     }
 }

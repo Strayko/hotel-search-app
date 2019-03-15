@@ -181,7 +181,7 @@
                         <div class="card-body">
                             <h3>Restaurants</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-utensils"></i> {{$users->count()}}
+                                <i class="fas fa-utensils"></i> {{$restaurants->count()}}
                             </h4>
                             <a href="{{route('restaurants.index')}}" class="btn btn-outline-light btn-sm">View</a>
                         </div>
@@ -221,37 +221,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+
+                        {!! Form::open(['method'=>'POST', 'action'=>'AdminRestaurantsController@store', 'files'=>true]) !!}
+                        {{csrf_field()}}
                         <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control">
+                            {!! Form::label('title', 'Title:') !!}
+                            {!! Form::text('title', null, ['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="category">Category</label>
-                            <select class="form-control">
-                                <option value="">Web Development</option>
-                                <option value="">Tech Gadgets</option>
-                                <option value="">Business</option>
-                                <option value="">Health & Wellnes</option>
-                            </select>
+                            {!! Form::label('package_id', 'Package:') !!}
+                            {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('body', 'Description:') !!}
+                            {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
                         </div>
                         <div class="form-group">
-                            <label for="image">Upload Image</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image">
-                                <label class="custom-file-label" for="image">Choose File</label>
-                            </div>
-                            <small class="form-text text-muted">Max Size 3mb</small>
+                            {!! Form::label('photo_id', 'Photo:') !!}
+                            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                         </div>
-                        <div class="form-group">
-                            <label for="body">Body</label>
-                            <textarea name="editor1" class="form-control"></textarea>
-                        </div>
-                    </form>
+
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+                    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-primary']) !!}
+                    {!! Form::close() !!}
                 </div>
+
+                </div>
+
             </div>
         </div>
     </div>

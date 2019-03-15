@@ -22,6 +22,6 @@ class Restaurant extends Model
     }
 
     public function package() {
-    	return $this->belongTo('App\Package');
+    	return $this->belongsTo('App\Package');
     }
 }
