@@ -83,8 +83,8 @@
             </div>
         </div>
     </section>
-
-    <!-- POSTS -->
+    @include('includes.form_error')
+    <!-- RESTAURANTS -->
     <section id="posts">
         <div class="container">
             <div class="row">
@@ -97,9 +97,9 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
+                                <th>Photo</th>
                                 <th>Owner</th>
                                 <th>Package</th>
-                                <th>Photo</th>
                                 <th>Title</th>
                                 <th>Body</th>
                                 <th>Created</th>
@@ -112,9 +112,9 @@
                                @foreach($restaurants as $restaurant)
                                    <tr>
                                        <td>{{$restaurant->id}}</td>
+                                       <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                        <td>{{$restaurant->user->name}}</td>
                                        <td>{{$restaurant->package_id}}</td>
-                                       <td>{{$restaurant->photo_id}}</td>
                                        <td>{{$restaurant->title}}</td>
                                        <td>{{$restaurant->body}}</td>
                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
@@ -166,7 +166,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+
                         {!! Form::open(['method'=>'POST', 'action'=>'AdminRestaurantsController@store', 'files'=>true]) !!}
                             {{csrf_field()}}
                             <div class="form-group">
@@ -175,7 +175,7 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('package_id', 'Package:') !!}
-                                {!! Form::select('package_id', array(''=>'options'), null, ['class'=>'form-control']) !!}
+                                {!! Form::select('package_id', array(1=>'Gold', 2=>'Silver'), null, ['class'=>'form-control']) !!}
                             </div>
 
                             <div class="form-group">
@@ -187,8 +187,6 @@
                                 {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                             </div>
 
-
-                    </form>
                 </div>
                 <div class="modal-footer">
                     {!! Form::submit('Create Restaurant', ['class'=>'btn btn-primary']) !!}

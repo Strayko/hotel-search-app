@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Photo;
+use App\Restaurant;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,9 +22,10 @@ class AdminUsersController extends Controller
     {
 
 		$users = User::all();
+		$restaurants = Restaurant::all();
 	    $roles = Role::pluck('name', 'id')->all();
 
-        return view('admin.users.index', compact('users', 'roles'));
+        return view('admin.users.index', compact('users', 'roles', 'restaurants'));
     }
 
     /**

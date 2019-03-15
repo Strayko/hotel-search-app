@@ -64,7 +64,7 @@
             </div>
         </div>
     </header>
-    @include('includes.form_error')
+
     <!-- SEARCH -->
     <section id="search" class="py-4 mb-4 bg-light">
         <div class="container">
@@ -85,7 +85,7 @@
             </div>
         </div>
     </section>
-
+    @include('includes.form_error')
     <!-- USERS -->
     <section id="posts">
         <div class="container">

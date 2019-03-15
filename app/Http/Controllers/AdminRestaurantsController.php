@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RestaurantCreateRequest;
+use App\Photo;
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminRestaurantsController extends Controller
 {
@@ -35,9 +38,20 @@ class AdminRestaurantsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RestaurantCreateRequest $request)
     {
-        //
+	    $input = $request->all();
+	    $user = Auth::user();
+	    if($file = $request->file('photo_id')) {
+		    $name = time() . $file->getClientOriginalName();
+		    $file->move('images', $name);
+		    $photo = Photo::create(['file'=>$name]);
+		    $input['photo_id'] = $photo->id;
+	    }
+
+	    $user->restaurants()->create($input);
+	    return redirect('/admin/restaurants');
+
     }
 
     /**
@@ -48,7 +62,7 @@ class AdminRestaurantsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

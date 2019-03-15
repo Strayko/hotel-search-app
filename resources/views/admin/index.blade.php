@@ -181,16 +181,16 @@
                         <div class="card-body">
                             <h3>Restaurants</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-utensils"></i> 6
+                                <i class="fas fa-utensils"></i> {{$users->count()}}
                             </h4>
-                            <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
+                            <a href="{{route('restaurants.index')}}" class="btn btn-outline-light btn-sm">View</a>
                         </div>
                     </div>
                     <div class="card text-center bg-success text-white mb-3">
                         <div class="card-body">
                             <h3>Packages</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-box"></i> 4
+                                <i class="fas fa-box"></i>
                             </h4>
                             <a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
                         </div>
