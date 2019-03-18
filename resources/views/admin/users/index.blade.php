@@ -17,7 +17,7 @@
                         <a href="{{route('restaurants.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="categories.html" class="nav-link">Packages</a>
+                        <a href="{{route('packages.index')}}" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link active">Users</a>

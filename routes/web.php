@@ -31,10 +31,12 @@ Route::group(['middleware'=>'admin'], function() {
 		$users = User::all();
 		$restaurants = Restaurant::all();
 		$packages = Package::pluck('name', 'id')->all();
+		$package = Package::all();
 		$roles = Role::pluck('name', 'id')->all();
-		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants'));
+		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package'));
 	});
 
 	Route::resource('admin/users', 'AdminUsersController');
 	Route::resource('admin/restaurants', 'AdminRestaurantsController');
+	Route::resource('admin/packages', 'AdminPackagesController');
 });

@@ -17,7 +17,7 @@
                         <a href="{{route('restaurants.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="categories.html" class="nav-link">Packages</a>
+                        <a href="{{route('packages.index')}}" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link">Users</a>
@@ -98,11 +98,11 @@
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
-                                <th>#</th>
-                                <th>Restaurants</th>
-                                <th>Packages</th>
-                                <th>Date</th>
-                                <th></th>
+                                <th>Id</th>
+                                <th>User</th>
+                                <th>Restaurant</th>
+                                <th>Package</th>
+                                <th>Created</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -190,9 +190,9 @@
                         <div class="card-body">
                             <h3>Packages</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-box"></i>
+                                <i class="fas fa-box"></i> {{$package->count()}}
                             </h4>
-                            <a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
+                            <a href="{{route('packages.index')}}" class="btn btn-outline-light btn-sm">View</a>
                         </div>
                     </div>
                     <div class="card text-center bg-warning text-white mb-3">
@@ -265,15 +265,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="category">Category</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </form>
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminPackagesController@store']) !!}
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        {!! Form::label('name', 'Name:') !!}
+                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
+                    {!! Form::submit('Create Package', ['class'=>'btn btn-success']) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

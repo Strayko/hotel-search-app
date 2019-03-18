@@ -14,7 +14,7 @@ class CreateRestaurantsTable extends Migration
     public function up()
     {
         Schema::create('restaurants', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('package_id')->unsigned()->index();
             $table->integer('photo_id')->unsigned()->index();
@@ -29,7 +29,7 @@ class CreateRestaurantsTable extends Migration
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return void<
      */
     public function down()
     {

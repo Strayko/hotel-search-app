@@ -17,7 +17,7 @@
                         <a href="{{route('restaurants.index')}}" class="nav-link active">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="categories.html" class="nav-link">Packages</a>
+                        <a href="{{route('packages.index')}}" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link">Users</a>
@@ -131,7 +131,6 @@
                                            <a href="#" class="d-inline-block">
                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRestaurantsController@destroy', $restaurant->id]]) !!}
                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
-                                               {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
                                                {!! Form::close() !!}
                                            </a>
                                        </td>
