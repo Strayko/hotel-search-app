@@ -21,6 +21,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link">Users</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('media.index')}}" class="nav-link">Media</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

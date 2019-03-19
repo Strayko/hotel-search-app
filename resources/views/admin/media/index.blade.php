@@ -1,6 +1,7 @@
 @extends('layouts.admin')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
 @section('content')
+
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
             <a href="/admin" class="navbar-brand">Admin</a>
@@ -16,13 +17,13 @@
                         <a href="{{route('restaurants.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('packages.index')}}" class="nav-link active">Packages</a>
+                        <a href="{{route('packages.index')}}" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link">Users</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('media.index')}}" class="nav-link">Media</a>
+                        <a href="{{route('media.index')}}" class="nav-link active">Media</a>
                     </li>
                 </ul>
 
@@ -32,11 +33,9 @@
                             <i class="fas fa-user"></i> {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu">
-
                             <a href="{{route('users.edit', Auth::user()->id)}}" class="dropdown-item">
                                 <i class="fas fa-user-circle"></i> Profile
                             </a>
-
                             <a href="settings.html" class="dropdown-item">
                                 <i class="fas fa-cog"></i> Settings
                             </a>
@@ -57,11 +56,11 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-success text-white">
+    <header id="main-header" class="py-2 bg-info text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-box"></i> Packages</h1>
+                    <h1><i class="fas fa-image"></i> Media</h1>
                 </div>
             </div>
         </div>
@@ -72,15 +71,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addPackageModal">
-                        <i class="fas fa-plus"></i> Add Package
+                    <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#addMediaModal">
+                        <i class="fas fa-plus"></i> Upload
                     </a>
                 </div>
                 <div class="col-md-6 ml-auto">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Packages...">
+                        <input type="text" class="form-control" placeholder="Search Media...">
                         <div class="input-group-append">
-                            <button class="btn btn-success">Search</button>
+                            <button class="btn btn-info">Search</button>
                         </div>
                     </div>
                 </div>
@@ -94,10 +93,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            @if(Session::has('deleted_package'))
-                                <p class="alert alert-danger">{{session('deleted_package')}}</p>
-                            @endif
-                            <h4>Latest Packages</h4>
+                            <h4>Latest Media</h4>
                         </div>
                         <table class="table table-striped">
                             <thead class="thead-dark">
@@ -105,31 +101,22 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Created</th>
-                                <th>Updated</th>
                                 <th></th>
-
                             </tr>
                             </thead>
                             <tbody>
-                            @if($packages)
-                                @foreach($packages as $package)
-                                <tr>
-                                    <td>{{$package->id}}</td>
-                                    <td>{{$package->name}}</td>
-                                    <td>{{$package->created_at->diffForHumans()}}</td>
-                                    <td>{{$package->updated_at->diffForHumans()}}</td>
-
-                                    <td class="d-flex justify-content-end">
-                                        <a href="{{route('packages.edit', $package->id)}}" class="btn btn-secondary">
-                                            <i class="fas fa-box"></i> Edit
-                                        </a>
-                                        <a href="#" class="d-inline-block ml-1">
-                                            {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPackagesController@destroy', $package->id]]) !!}
+                            @if($photos)
+                                @foreach($photos as $photo)
+                                    <tr>
+                                        <td>{{$photo->id}}</td>
+                                        <td><img height="50" src="{{$photo->file}}" alt=""></td>
+                                        <td>{{$photo->created_at ? $photo->created_at : 'no data'}}</td>
+                                        <td class="d-flex justify-content-end">
+                                            {!! Form::open(['method'=>'DELETE', 'action'=>['AdminMediaController@destroy', $photo->id]]) !!}
                                             <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
                                             {!! Form::close() !!}
-                                        </a>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             @endif
                             </tbody>
@@ -140,29 +127,26 @@
         </div>
     </section>
 
-
-    <!-- ADD PACKAGE MODAL -->
-    <div class="modal fade" id="addPackageModal">
+    <!-- ADD MEDIA MODAL -->
+    <div class="modal fade" id="addMediaModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title">Add Package</h5>
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">Upload</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminPackagesController@store']) !!}
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                        </div>
 
+                {!! Form::open(['method'=>'POST', 'action'=>'AdminMediaController@store', 'class'=>'dropzone']) !!}
+
+                {!! Form::close() !!}
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit('Create Package', ['class'=>'btn btn-success']) !!}
-                    {!! Form::close() !!}
+                    <div class="form-group">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -171,5 +155,7 @@
 @endsection
 
 @section('footer')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
 
 @endsection

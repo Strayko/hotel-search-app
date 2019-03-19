@@ -22,6 +22,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link">Users</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('media.index')}}" class="nav-link">Media</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -121,7 +124,7 @@
                                        <td>{{$restaurant->user->name}}</td>
                                        <td>{{$restaurant->package ? $restaurant->package->name : 'Uncategorized'}}</td>
                                        <td>{{$restaurant->title}}</td>
-                                       <td>{{str_limit($restaurant->body, 20)}}</td>
+                                       <td>{{str_limit($restaurant->body, 10)}}</td>
                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                        <td>{{$restaurant->updated_at->diffForHumans()}}</td>
                                        <td>

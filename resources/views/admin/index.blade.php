@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
@@ -21,6 +21,9 @@
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link">Users</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('media.index')}}" class="nav-link">Media</a>
                     </li>
                 </ul>
 
@@ -82,6 +85,11 @@
                         <i class="fas fa-plus"></i> Add User
                     </a>
                 </div>
+                <div class="col-md-3">
+                    <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#addMediaModal">
+                        <i class="fas fa-plus"></i> Upload
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -99,79 +107,37 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
+                                <th>Photo</th>
                                 <th>User</th>
                                 <th>Restaurant</th>
                                 <th>Package</th>
+                                {{--<th>Body</th>--}}
                                 <th>Created</th>
+
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Post One</td>
-                                <td>Web Development</td>
-                                <td>May 10 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Post Two</td>
-                                <td>Tech Gadgets</td>
-                                <td>May 11 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Post Three</td>
-                                <td>Web Development</td>
-                                <td>June 13 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Post Four</td>
-                                <td>Business</td>
-                                <td>June 15 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Post Five</td>
-                                <td>Web Development</td>
-                                <td>July 17 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Post Six</td>
-                                <td>Health & Wellness</td>
-                                <td>August 20 2019</td>
-                                <td>
-                                    <a href="details.html" class="btn btn-secondary">
-                                        <i class="fas fa-angle-double-right"></i> Details
-                                    </a>
-                                </td>
-                            </tr>
+                            @if($restaurants)
+                                @foreach($restaurants as $restaurant)
+                                    <tr>
+                                        <td>{{$restaurant->id}}</td>
+                                        <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                                        <td>{{$restaurant->user->name}}</td>
+                                        <td>{{$restaurant->title}}</td>
+                                        <td>{{$restaurant->package ? $restaurant->package->name : 'Uncategorized'}}</td>
+                                        {{--<td>{{str_limit($restaurant->body, 20)}}</td>--}}
+                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
+
+                                        <td>
+                                            <a href="{{route('restaurants.edit', $restaurant->id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-utensils"></i> Details
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
                             </tbody>
                         </table>
                     </div>
@@ -254,6 +220,31 @@
         </div>
     </div>
 
+    <!-- ADD MEDIA MODAL -->
+    <div class="modal fade" id="addMediaModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">Upload</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminMediaController@store', 'class'=>'dropzone']) !!}
+
+                    {!! Form::close() !!}
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ADD PACKAGE MODAL -->
     <div class="modal fade" id="addCategoryModal">
         <div class="modal-dialog modal-lg">
@@ -276,6 +267,32 @@
                 <div class="modal-footer">
                     {!! Form::submit('Create Package', ['class'=>'btn btn-success']) !!}
                     {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD MEDIA MODAL -->
+    <div class="modal fade" id="addMediaModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">Upload</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        {{--{!! Form::submit('Create User', ['class'=>'btn btn-warning']) !!}--}}
+                    </div>
+                    {{--{!! Form::close() !!}--}}
+                    {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}
+
                 </div>
             </div>
         </div>
@@ -338,5 +355,5 @@
 @endsection
 
 @section('footer')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
 @endsection
