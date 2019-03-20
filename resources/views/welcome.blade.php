@@ -164,7 +164,7 @@
                                             <a href="{{ route('login') }}" class="aa-login">Login</a>
                                     <p class="white-pipe">|</p>
                                             @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="aa-register">Register</a>
+                                                <a href="{{ route('register.index') }}" class="aa-register">Register</a>
                                             @endif
                                         @endauth
                                     {{--</div>--}}

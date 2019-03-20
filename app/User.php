@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'is_active', 'photo_id'
+        'name', 'email', 'password', 'role_id', 'is_active', 'photo_id', 'package_id'
     ];
 
     /**
@@ -58,8 +58,19 @@ class User extends Authenticatable
 	    return false;
 	}
 
+	public function isSilver() {
+    	if($this->package->name == "Silver" && $this->is_active == 1) {
+    		return true;
+	    }
+	    return false;
+	}
+
 	public function restaurants() {
     	return $this->hasMany('App\Restaurant');
+	}
+
+	public function package() {
+		return $this->belongsTo('App\Package');
 	}
 
 

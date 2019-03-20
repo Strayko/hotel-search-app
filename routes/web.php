@@ -19,11 +19,13 @@ use App\User;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Route::get('/register', 'AuthorUsersController@register');
+//Route::post('register', 'Auth\RegisterController@register');
+//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
 Route::group(['middleware'=>'admin'], function() {
 	Route::get('/admin', function() {
@@ -36,8 +38,23 @@ Route::group(['middleware'=>'admin'], function() {
 		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package'));
 	});
 
+
+
 	Route::resource('admin/users', 'AdminUsersController');
 	Route::resource('admin/restaurants', 'AdminRestaurantsController');
 	Route::resource('admin/packages', 'AdminPackagesController');
 	Route::resource('admin/media', 'AdminMediaController');
+});
+
+Route::resource('user/register', 'AuthorUsersController');
+
+Route::group(['middleware'=>'silver'], function() {
+
+	Route::get('/silver', function() {
+		return view('silver.index');
+	});
+
+
+	Route::resource('silver/user', 'SilverUserController');
+	Route::resource('silver/restaurant', 'SilverRestaurantController');
 });

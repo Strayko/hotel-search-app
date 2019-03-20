@@ -109,6 +109,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
+                                <th>Package</th>
                                 <th>Active</th>
                                 <th>Created</th>
                                 <th>Updated</th>
@@ -125,6 +126,7 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->role->name}}</td>
+                                        <td>{{$user->package ? $user->package->name : 'Uncategorized'}}</td>
                                         <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
                                         <td>{{$user->created_at->diffForHumans()}}</td>
                                         <td>{{$user->updated_at->diffForHumans()}}</td>
@@ -132,7 +134,7 @@
                                             <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-user-edit"></i> Edit
                                             </a>
-                                            <a href="#" class="d-inline-block">
+                                            <a href="#" class="d-inline-block mt-1">
                                                 {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
                                                 <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
@@ -181,6 +183,11 @@
                         <div class="form-group">
                             {!! Form::label('role_id', 'Role:') !!}
                             {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('package_id', 'Package:') !!}
+                            {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group">

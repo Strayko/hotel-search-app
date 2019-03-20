@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Restaurant extends Model
 {
@@ -24,4 +25,7 @@ class Restaurant extends Model
     public function package() {
     	return $this->belongsTo('App\Package');
     }
+
+
+
 }
