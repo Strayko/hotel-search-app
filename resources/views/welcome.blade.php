@@ -159,7 +159,9 @@
                                 @if (Route::has('login'))
                                     {{--<div class="top-right links">--}}
                                         @auth
-                                            <a href="{{ url('/home') }}" class="aa-login">Home</a>
+
+                                        <a href="{{ url('/home') }}" class="aa-login">Home</a>
+
                                         @else
                                             <a href="{{ route('login') }}" class="aa-login">Login</a>
                                     <p class="white-pipe">|</p>

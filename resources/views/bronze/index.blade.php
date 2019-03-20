@@ -4,17 +4,17 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/silver" class="navbar-brand">Admin</a>
+            <a href="/bronze" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/silver" class="nav-link active">Dashboard</a>
+                        <a href="/bronze" class="nav-link active">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('restaurant.index')}}" class="nav-link">Restaurant</a>
+                        <a href="{{route('restaurant-bronze.index')}}" class="nav-link">Restaurant</a>
                     </li>
 
                 </ul>
@@ -25,7 +25,7 @@
                             <i class="fas fa-user"></i> {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{{route('user.edit', Auth::user()->id)}}" class="dropdown-item">
+                            <a href="{{route('user-bronze.edit', Auth::user()->id)}}" class="dropdown-item">
                                 <i class="fas fa-user-circle"></i> Profile
                             </a>
                             <a href="settings.html" class="dropdown-item">

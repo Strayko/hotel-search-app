@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 //Route::get('/register', 'AuthorUsersController@register');
 //Route::post('register', 'Auth\RegisterController@register');
@@ -38,7 +38,7 @@ Route::group(['middleware'=>'admin'], function() {
 		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package'));
 	});
 
-
+	Route::get('/home', 'HomeController@index')->name('home');
 
 	Route::resource('admin/users', 'AdminUsersController');
 	Route::resource('admin/restaurants', 'AdminRestaurantsController');
@@ -51,10 +51,21 @@ Route::resource('user/register', 'AuthorUsersController');
 Route::group(['middleware'=>'silver'], function() {
 
 	Route::get('/silver', function() {
+//		$restaurants = Restaurant::all();
 		return view('silver.index');
 	});
 
 
 	Route::resource('silver/user', 'SilverUserController');
 	Route::resource('silver/restaurant', 'SilverRestaurantController');
+});
+
+Route::group(['middleware'=>'bronze'], function() {
+	Route::get('/bronze', function() {
+		return view('bronze.index');
+	});
+
+
+	Route::resource('bronze/user-bronze', 'BronzeUserController');
+	Route::resource('bronze/restaurant-bronze', 'BronzeRestaurantController');
 });

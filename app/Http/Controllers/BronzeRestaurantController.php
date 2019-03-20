@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Package;
 use App\Photo;
 use App\Restaurant;
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AuthorUsersController extends Controller
+class BronzeRestaurantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,10 @@ class AuthorUsersController extends Controller
      */
     public function index()
     {
-
-	    $users = User::all();
+	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
 	    $packages = Package::pluck('name', 'id')->all();
 
-        return view('author.index', compact('users', 'packages', 'restaurants'));
+	    return view('bronze.restaurant.index', compact('restaurants', 'packages'));
     }
 
     /**
@@ -42,13 +41,8 @@ class AuthorUsersController extends Controller
      */
     public function store(Request $request)
     {
-	    if(trim($request->password) == '') {
-		    $input = $request->except('password');
-	    } else {
-		    $input = $request->all();
-		    $input['password'] = bcrypt($request->password);
-	    }
-
+	    $input = $request->all();
+	    $user = Auth::user();
 	    if($file = $request->file('photo_id')) {
 		    $name = time() . $file->getClientOriginalName();
 		    $file->move('images', $name);
@@ -56,12 +50,8 @@ class AuthorUsersController extends Controller
 		    $input['photo_id'] = $photo->id;
 	    }
 
-
-	    User::create($input);
-
-	    return redirect('/home');
-
-	    //return $request->all();
+	    $user->restaurants()->create($input);
+	    return redirect('/bronze/restaurant-bronze');
     }
 
     /**
@@ -83,7 +73,10 @@ class AuthorUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+	    $restaurants = Restaurant::findOrFail($id);
+	    $packages = Package::pluck('name', 'id')->all();
+
+	    return view('bronze.restaurant.edit', compact('restaurants', 'packages'));
     }
 
     /**
@@ -95,7 +88,16 @@ class AuthorUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+	    $input = $request->all();
+	    if($file = $request->file('photo_id')) {
+		    $name = time() . $file->getClientOriginalName();
+		    $file->move('images', $name);
+		    $photo = Photo::create(['file'=>$name]);
+		    $input['photo_id'] = $photo->id;
+	    }
+
+	    Auth::user()->restaurants()->whereId($id)->first()->update($input);
+	    return redirect('/bronze/restaurant-bronze');
     }
 
     /**
@@ -106,6 +108,9 @@ class AuthorUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+	    $restaurant = Restaurant::findOrFail($id);
+	    unlink(public_path() . $restaurant->photo->file);
+	    $restaurant->delete();
+	    return redirect('/bronze/restaurant-bronze');
     }
 }

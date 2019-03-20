@@ -94,7 +94,7 @@
         </div>
     </section>
 
-    <!-- POSTS -->
+    <!-- RESTAURANTS -->
     <section id="posts">
         <div class="container">
             <div class="row">
@@ -125,7 +125,7 @@
                                         <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                         <td>{{$restaurant->user->name}}</td>
                                         <td>{{$restaurant->title}}</td>
-                                        <td>{{$restaurant->package ? $restaurant->package->name : 'Uncategorized'}}</td>
+                                        <td>{{$restaurant->user ? $restaurant->user->package->name : 'Uncategorized'}}</td>
                                         {{--<td>{{str_limit($restaurant->body, 20)}}</td>--}}
                                         <td>{{$restaurant->created_at->diffForHumans()}}</td>
 

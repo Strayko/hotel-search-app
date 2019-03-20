@@ -4,17 +4,17 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/silver" class="navbar-brand">Admin</a>
+            <a href="/bronze" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/silver" class="nav-link">Dashboard</a>
+                        <a href="/bronze" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurant</a>
+                        <a href="{{route('restaurant-bronze.index')}}" class="nav-link active">Restaurant</a>
                     </li>
                 </ul>
 
@@ -24,7 +24,7 @@
                             <i class="fas fa-user"></i> {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{{route('user.edit', Auth::user()->id)}}" class="dropdown-item">
+                            <a href="{{route('user-bronze.edit', Auth::user()->id)}}" class="dropdown-item">
                                 <i class="fas fa-user-circle"></i> Profile
                             </a>
                             <a href="settings.html" class="dropdown-item">
@@ -119,11 +119,11 @@
                                         <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                         <td>{{$restaurant->updated_at->diffForHumans()}}</td>
                                         <td>
-                                            <a href="{{route('restaurant.edit', $restaurant->id)}}" class="btn btn-secondary">
+                                            <a href="{{route('restaurant-bronze.edit', $restaurant->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-utensils"></i> Edit
                                             </a>
                                             <a href="#" class="d-inline-block">
-                                                {!! Form::open(['method'=>'DELETE', 'action'=>['SilverRestaurantController@destroy', $restaurant->id]]) !!}
+                                                {!! Form::open(['method'=>'DELETE', 'action'=>['BronzeRestaurantController@destroy', $restaurant->id]]) !!}
                                                 <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 {!! Form::close() !!}
                                             </a>
@@ -171,7 +171,7 @@
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['method'=>'POST', 'action'=>'SilverRestaurantController@store', 'files'=>true]) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=>'BronzeRestaurantController@store', 'files'=>true]) !!}
                     {{csrf_field()}}
                     <div class="form-group">
                         {!! Form::label('title', 'Title:') !!}

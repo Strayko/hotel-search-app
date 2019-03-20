@@ -1,21 +1,22 @@
 @extends('layouts.admin')
-<title>Restaurant</title>
+<title>Users</title>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/silver" class="navbar-brand">Admin</a>
+            <a href="/bronze" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/silver" class="nav-link">Dashboard</a>
+                        <a href="/bronze" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurants</a>
+                        <a href="{{route('restaurant-bronze.index')}}" class="nav-link">Restaurant</a>
                     </li>
+
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -24,7 +25,7 @@
                             <i class="fas fa-user"></i> {{Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{{route('user.edit', Auth::user()->id)}}" class="dropdown-item">
+                            <a href="{{route('user-bronze.edit', Auth::user()->id)}}" class="dropdown-item">
                                 <i class="fas fa-user-circle"></i> Profile
                             </a>
                             <a href="settings.html" class="dropdown-item">
@@ -51,7 +52,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-user"></i> Edit Restaurant</h1>
+                    <h1><i class="fas fa-user"></i> Edit Profile</h1>
                 </div>
             </div>
         </div>
@@ -62,13 +63,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="/silver" class="btn btn-primary btn-block">
+                    <a href="/bronze" class="btn btn-primary btn-block">
                         <i class="fas fa-arrow-left"></i> Back To Dashboard
                     </a>
                 </div>
                 <div class="col-md-3">
-                    {!! Form::open(['method'=>'DELETE', 'action'=>['SilverRestaurantController@destroy', $restaurants->id]]) !!}
-                    <button type="submit" class="btn btn-danger btn-block"><i class="fas fa-trash-alt"></i> Delete Restaurant</button>
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['BronzeUserController@destroy', $user->id]]) !!}
+                    <button type="submit" class="btn btn-danger btn-block"><i class="fas fa-trash-alt"></i> Delete Account</button>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -82,44 +83,56 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Restaurant</h4>
+                        <h4>Profile</h4>
                     </div>
 
                     <div class="card-body">
+                        {!! Form::model($user, ['method'=>'PATCH', 'action'=>['BronzeUserController@update', $user->id], 'files'=>true]) !!}
+                        <div class="form-group">
+                            {!! Form::label('name', 'Name:') !!}
+                            {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                        </div>
 
-                        @if($silver)
-                            {!! Form::model($restaurants, ['method'=>'PATCH', 'action'=>['SilverRestaurantController@update', $restaurants->id], 'files'=>true]) !!}
-                            {{csrf_field()}}
-                            <div class="form-group">
-                                {!! Form::label('title', 'Title:') !!}
-                                {!! Form::text('title', null, ['class'=>'form-control']) !!}
-                            </div>
+                        <div class="form-group">
+                            {!! Form::label('email', 'Email:') !!}
+                            {!! Form::email('email', null, ['class'=>'form-control']) !!}
+                        </div>
 
-                            <div class="form-group">
-                                {!! Form::label('body', 'Description:') !!}
-                                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('photo_id', 'Photo:') !!}
-                                {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                            </div>
-                        @endif
+                        <div class="form-group">
+                            {!! Form::label('password', 'Password:') !!}
+                            {!! Form::password('password', ['class'=>'form-control']) !!}
+                        </div>
 
+                        <div class="form-group">
+                            {!! Form::label('package_id', 'Package:') !!}
+                            {!! Form::select('package_id', $packages, null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('is_active', 'Status:') !!}
+                            {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('photo_id', 'Photo:') !!}
+                            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+                        </div>
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-utensils"></i> Update Restaurant</button>
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-user-edit"></i> Update Profile</button>
                                     {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
             <div class="col-md-6">
-                <img width="300" height="300" src="{{$restaurants->photo ? $restaurants->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
+                <img width="300" height="300" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
             </div>
 
         </div>

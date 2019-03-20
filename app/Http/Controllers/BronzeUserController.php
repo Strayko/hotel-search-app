@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Package;
 use App\Photo;
-use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
 
-class AuthorUsersController extends Controller
+class BronzeUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,7 @@ class AuthorUsersController extends Controller
      */
     public function index()
     {
-
-	    $users = User::all();
-	    $packages = Package::pluck('name', 'id')->all();
-
-        return view('author.index', compact('users', 'packages', 'restaurants'));
+        //
     }
 
     /**
@@ -42,26 +37,7 @@ class AuthorUsersController extends Controller
      */
     public function store(Request $request)
     {
-	    if(trim($request->password) == '') {
-		    $input = $request->except('password');
-	    } else {
-		    $input = $request->all();
-		    $input['password'] = bcrypt($request->password);
-	    }
-
-	    if($file = $request->file('photo_id')) {
-		    $name = time() . $file->getClientOriginalName();
-		    $file->move('images', $name);
-		    $photo = Photo::create(['file'=>$name]);
-		    $input['photo_id'] = $photo->id;
-	    }
-
-
-	    User::create($input);
-
-	    return redirect('/home');
-
-	    //return $request->all();
+        //
     }
 
     /**
@@ -83,7 +59,9 @@ class AuthorUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+	    $user = User::findOrFail($id);
+	    $packages = Package::pluck('name', 'id')->all();
+	    return view('bronze.user.edit', compact ('user', 'packages'));
     }
 
     /**
@@ -95,7 +73,22 @@ class AuthorUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+	    $user = User::findOrFail($id);
+	    if(trim($request->password) == '') {
+		    $input = $request->except('password');
+	    } else {
+		    $input = $request->all();
+		    $input['password'] = bcrypt($request->password);
+	    }
+
+	    if($file = $request->file('photo_id')) {
+		    $name = time() . $file->getClientOriginalName();
+		    $file->move('images', $name);
+		    $photo = Photo::create(['file' => $name]);
+		    $input['photo_id'] = $photo->id;
+	    }
+	    $user->update($input);
+	    return redirect('/bronze');
     }
 
     /**
@@ -106,6 +99,9 @@ class AuthorUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+	    $user = User::findOrFail($id);
+	    unlink(public_path() . $user->photo->file);
+	    $user->delete();
+	    return redirect('/bronze');
     }
 }
