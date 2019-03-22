@@ -39,7 +39,7 @@ class AdminPackagesController extends Controller
     public function store(Request $request)
     {
         Package::create($request->all());
-        return redirect('/admin/packages');
+        return redirect('/admin2/packages');
     }
 
     /**
@@ -76,7 +76,7 @@ class AdminPackagesController extends Controller
     {
         $package = Package::findOrFail($id);
         $package->update($request->all());
-        return redirect('/admin/packages');
+        return redirect('/admin2/packages');
     }
 
     /**
@@ -90,6 +90,6 @@ class AdminPackagesController extends Controller
         $package = Package::findOrFail($id);
         $package->delete();
         Session::flash('deleted_package', 'The Package has ben deleted');
-        return redirect('/admin/packages');
+        return redirect('/admin2/packages');
     }
 }

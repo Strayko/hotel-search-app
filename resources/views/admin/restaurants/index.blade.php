@@ -4,14 +4,14 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/admin" class="navbar-brand">Admin</a>
+            <a href="/admin2" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/admin" class="nav-link">Dashboard</a>
+                        <a href="/admin2" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('restaurants.index')}}" class="nav-link active">Restaurants</a>
@@ -122,7 +122,7 @@
                                        <td>{{$restaurant->id}}</td>
                                        <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                        <td>{{$restaurant->user->name}}</td>
-                                       <td>{{$restaurant->package ? $restaurant->package->name : 'Uncategorized'}}</td>
+                                       <td>{{$restaurant->user->package ? $restaurant->user->package->name : 'Uncategorized'}}</td>
                                        <td>{{$restaurant->title}}</td>
                                        <td>{{str_limit($restaurant->body, 10)}}</td>
                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>

@@ -90,7 +90,7 @@ class SilverUserController extends Controller
 		    $input['photo_id'] = $photo->id;
 	    }
 	    $user->update($input);
-	    return redirect('/silver');
+	    return redirect('/admin');
     }
 
     /**
@@ -104,6 +104,6 @@ class SilverUserController extends Controller
 	    $user = User::findOrFail($id);
 	    unlink(public_path() . $user->photo->file);
 	    $user->delete();
-	    return redirect('/silver');
+	    return redirect('/');
     }
 }

@@ -3,14 +3,14 @@
 @section('content')
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/admin" class="navbar-brand">Admin</a>
+            <a href="/admin2" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/admin" class="nav-link">Dashboard</a>
+                        <a href="/admin2" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('restaurants.index')}}" class="nav-link">Restaurants</a>
@@ -72,7 +72,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="/admin" class="btn btn-primary btn-block">
+                    <a href="/admin2" class="btn btn-primary btn-block">
                         <i class="fas fa-arrow-left"></i> Back To Dashboard
                     </a>
                 </div>

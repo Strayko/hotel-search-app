@@ -19,10 +19,14 @@ class SilverRestaurantController extends Controller
      */
     public function index()
     {
+	    $bronze = User::where('package_id', Auth::user()->isBronze())->first();
+	    $gold = User::where('package_id', Auth::user()->isGold())->first();
+	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
+
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
 	    $packages = Package::pluck('name', 'id')->all();
 
-        return view('silver.restaurant.index', compact('restaurants', 'packages'));
+        return view('silver.restaurant.index', compact('restaurants', 'packages', 'bronze', 'gold', 'silver'));
     }
 
     /**
@@ -53,7 +57,7 @@ class SilverRestaurantController extends Controller
 	    }
 
 	    $user->restaurants()->create($input);
-	    return redirect('/silver/restaurant');
+	    return redirect('/admin/restaurant');
     }
 
     /**
@@ -77,8 +81,13 @@ class SilverRestaurantController extends Controller
     {
 	    $restaurants = Restaurant::findOrFail($id);
 	    $packages = Package::pluck('name', 'id')->all();
-	    $silver = DB::table('users')->whereId('1')->value('package_id');
-	    return view('silver.restaurant.edit', compact('restaurants', 'packages', 'silver'));
+
+	    $bronze = User::where('package_id', Auth::user()->isBronze())->first();
+	    $gold = User::where('package_id', Auth::user()->isGold())->first();
+	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
+
+//	    $silver = DB::table('users')->where('package_id', '=', '3')->value('package_id');
+	    return view('silver.restaurant.edit', compact('restaurants', 'packages', 'silver', 'bronze', 'gold'));
     }
 
     /**
@@ -99,7 +108,7 @@ class SilverRestaurantController extends Controller
 	    }
 
 	    Auth::user()->restaurants()->whereId($id)->first()->update($input);
-	    return redirect('/silver/restaurant');
+	    return redirect('/admin/restaurant');
     }
 
     /**
@@ -113,6 +122,6 @@ class SilverRestaurantController extends Controller
 	    $restaurant = Restaurant::findOrFail($id);
 	    unlink(public_path() . $restaurant->photo->file);
 	    $restaurant->delete();
-	    return redirect('/silver/restaurant');
+	    return redirect('/admin/restaurant');
     }
 }

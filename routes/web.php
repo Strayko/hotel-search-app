@@ -28,7 +28,7 @@ Auth::routes();
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
 Route::group(['middleware'=>'admin'], function() {
-	Route::get('/admin', function() {
+	Route::get('/admin2', function() {
 
 		$users = User::all();
 		$restaurants = Restaurant::all();
@@ -40,32 +40,26 @@ Route::group(['middleware'=>'admin'], function() {
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::resource('admin/users', 'AdminUsersController');
-	Route::resource('admin/restaurants', 'AdminRestaurantsController');
-	Route::resource('admin/packages', 'AdminPackagesController');
-	Route::resource('admin/media', 'AdminMediaController');
+	Route::resource('admin2/users', 'AdminUsersController');
+	Route::resource('admin2/restaurants', 'AdminRestaurantsController');
+	Route::resource('admin2/packages', 'AdminPackagesController');
+	Route::resource('admin2/media', 'AdminMediaController');
 });
-
 Route::resource('user/register', 'AuthorUsersController');
 
-Route::group(['middleware'=>'silver'], function() {
 
-	Route::get('/silver', function() {
+
+Route::group(['middleware'=>'author'], function() {
+
+	Route::get('/admin', function() {
 //		$restaurants = Restaurant::all();
 		return view('silver.index');
 	});
 
 
-	Route::resource('silver/user', 'SilverUserController');
-	Route::resource('silver/restaurant', 'SilverRestaurantController');
+	Route::resource('admin/user', 'SilverUserController');
+	Route::resource('admin/restaurant', 'SilverRestaurantController');
 });
 
-Route::group(['middleware'=>'bronze'], function() {
-	Route::get('/bronze', function() {
-		return view('bronze.index');
-	});
 
 
-	Route::resource('bronze/user-bronze', 'BronzeUserController');
-	Route::resource('bronze/restaurant-bronze', 'BronzeRestaurantController');
-});
