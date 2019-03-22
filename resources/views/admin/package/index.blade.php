@@ -24,6 +24,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('media.index')}}" class="nav-link">Media</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('comments.index')}}" class="nav-link">Comments</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
