@@ -37,8 +37,8 @@ Route::group(['middleware'=>'admin'], function() {
 		$roles = Role::pluck('name', 'id')->all();
 		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package'));
 	});
-
 	Route::get('/home', 'HomeController@index')->name('home');
+
 
 	Route::resource('admin2/users', 'AdminUsersController');
 	Route::resource('admin2/restaurants', 'AdminRestaurantsController');
