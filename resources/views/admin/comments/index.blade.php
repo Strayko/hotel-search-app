@@ -102,39 +102,46 @@
                             @endif
                             <h4>Latest Comments</h4>
                         </div>
+                        @if(count($comments) > 0)
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Created</th>
-                                <th>Updated</th>
+                                <th>Author</th>
+                                <th>Email</th>
+                                <th>Body</th>
                                 <th></th>
+
 
                             </tr>
                             </thead>
                             <tbody>
-                            {{--@if($packages)--}}
-                                {{--@foreach($packages as $package)--}}
-                                    {{--<tr>--}}
-                                        {{--<td>{{$package->id}}</td>--}}
-                                        {{--<td>{{$package->name}}</td>--}}
-                                        {{--<td>{{$package->created_at->diffForHumans()}}</td>--}}
-                                        {{--<td>{{$package->updated_at->diffForHumans()}}</td>--}}
+                                    @foreach($comments as $comment)
+                                    <tr>
+                                        <td>{{$comment->id}}</td>
+                                        <td>{{$comment->author}}</td>
+                                        <td>{{$comment->email}}</td>
+                                        <td>{{$comment->body}}</td>
+                                        <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->id)}}">View Restaurant</a></td>
+
 
                                         {{--<td class="d-flex justify-content-end">--}}
-                                            {{--<a href="{{route('packages.edit', $package->id)}}" class="btn btn-secondary">--}}
+                                            {{--<a href="{{route('packages.edit', $comment->id)}}" class="btn btn-secondary">--}}
                                                 {{--<i class="fas fa-box"></i> Edit--}}
                                             {{--</a>--}}
                                             {{--<a href="#" class="d-inline-block ml-1">--}}
-                                                {{--{!! Form::open(['method'=>'DELETE', 'action'=>['AdminPackagesController@destroy', $package->id]]) !!}--}}
+                                                {{--{!! Form::open(['method'=>'POST', 'action'=>['RestaurantCommentController@index', $comment->id]]) !!}--}}
                                                 {{--<button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>--}}
                                                 {{--{!! Form::close() !!}--}}
                                             {{--</a>--}}
                                         {{--</td>--}}
-                                    {{--</tr>--}}
-                                {{--@endforeach--}}
-                            {{--@endif--}}
+                                    </tr>
+                                    @endforeach
+
+                                 @else
+                                    <h1 class="text-center">No Comments</h1>
+
+                            @endif
                             </tbody>
                         </table>
                     </div>

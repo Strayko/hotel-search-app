@@ -15,7 +15,9 @@ class RestaurantCommentController extends Controller
      */
     public function index()
     {
-        return view('admin.comments.index');
+    	$comments = Comment::all();
+
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
