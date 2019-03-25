@@ -18,6 +18,7 @@
     {{--<link href="{{ asset('css/style.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
     <!-- Google Font -->
@@ -162,18 +163,21 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <article class="aa-blog-single aa-blog-details">
+                                            @if(Session::has('comment_message'))
+                                                {{session('comment_message')}}
+                                            @endif
                                             <figure class="aa-blog-img">
-                                                <a href="#"><img alt="img" src="img/slider/1.jpg"></a>
-                                                <span class="aa-date-tag">15 April, 16</span>
+                                                <a href="#"><img alt="img" src="{{$restaurant->photo->file}}"></a>
+                                                <span class="aa-date-tag">{{$restaurant->created_at->diffForHumans()}}</span>
                                             </figure>
                                             <div class="aa-blog-single-content">
                                                 <h2>{{$restaurant->title}}</h2>
                                                 <div class="aa-blog-single-bottom">
-                                                    <a class="aa-blog-author" href="#"><i class="fa fa-user"></i> Admin</a>
-                                                    <a class="aa-blog-comments" href="#"><i class="fa fa-comment-o"></i>6</a>
+                                                    <a class="aa-blog-author" href="#"><i class="fa fa-user"></i> {{$restaurant->user->name}}</a>
+                                                    <a class="aa-blog-comments" href="#"><i class="fas fa-comments"></i>6</a>
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum molestias eligendi quidem vero alias ea. Accusantium quas soluta recusandae, ducimus voluptates aut, assumenda earum velit, dignissimos repellendus delectus voluptate, labore.</p>
+                                                <p>{{$restaurant->body}}</p>
+                                                <p>{{$restaurant->body}}</p>
                                                 <blockquote>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate explicabo consequuntur, impedit aut similique cum.</p>
                                                     <cite>- Mr. josep</cite>
@@ -209,10 +213,10 @@
                                         <div class="aa-properties-social">
                                             <ul>
                                                 <li>Share</li>
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-google-plus-square"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-pinterest-square"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -384,33 +388,22 @@
                                     <div class="col-md-12">
                                         <div id="respond">
                                             <h3 class="reply-title">Leave a Comment</h3>
-                                            <form id="commentform">
+                                            {!! Form::open(['method'=>'POST', 'action'=>'RestaurantCommentController@store']) !!}
+                                            <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                                                 <p class="comment-notes">
-                                                    Your email address will not be published. Required fields are marked <span class="required">*</span>
+                                                    Lorem ipsum st dolor amet. <span class="required">*</span>
                                                 </p>
-                                                <p class="comment-form-author">
-                                                    <label for="author">Name <span class="required">*</span></label>
-                                                    <input type="text" required="required" size="30" value="" name="author">
-                                                </p>
-                                                <p class="comment-form-email">
-                                                    <label for="email">Email <span class="required">*</span></label>
-                                                    <input type="email" required="required" aria-required="true" value="" name="email">
-                                                </p>
-                                                <p class="comment-form-url">
-                                                    <label for="url">Website</label>
-                                                    <input type="url" value="" name="url">
-                                                </p>
+
                                                 <p class="comment-form-comment">
-                                                    <label for="comment">Comment</label>
-                                                    <textarea required="required" aria-required="true" rows="8" cols="45" name="comment"></textarea>
+                                                    <label for="body">Body:</label>
+                                                    <textarea id="body" required="required" aria-required="true" rows="8" cols="45" name="body"></textarea>
+
                                                 </p>
-                                                <p class="form-allowed-tags">
-                                                    You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code>
-                                                </p>
+
                                                 <p class="form-submit">
                                                     <input type="submit" value="Post Comment" class="aa-browse-btn" name="submit">
                                                 </p>
-                                            </form>
+                                            {!! Form::close() !!}
                                         </div>
                                     </div>
                                 </div>
