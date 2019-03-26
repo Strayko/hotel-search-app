@@ -60,7 +60,7 @@ class User extends Authenticatable
 
 	public function isSilver() {
     	if($this->package->name == "Silver" && $this->is_active == 1) {
-    		return true;
+			return true;
 	    }
 	    return false;
 	}
@@ -71,6 +71,34 @@ class User extends Authenticatable
 		}
 		return false;
 	}
+
+	public function isGold() {
+		if($this->package->name == "Gold" && $this->is_active == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public function isAuthor() {
+		if($this->role->name == "author" && $this->is_active == 1) {
+			return true;
+		}
+		return false;
+	}
+//
+//	public function isSilver() {
+//    	if($this->package->name == "Silver" && $this->is_active == 1) {
+//    		return true;
+//	    }
+//	    return false;
+//	}
+//
+//	public function isBronze() {
+//		if($this->package->name == "Bronze" && $this->is_active == 1) {
+//			return true;
+//		}
+//		return false;
+//	}
 
 	public function restaurants() {
     	return $this->hasMany('App\Restaurant');

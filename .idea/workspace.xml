@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/webapp.iml" afterPath="$PROJECT_DIR$/.idea/webapp.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/Comment.php" afterPath="$PROJECT_DIR$/app/Comment.php" />
+      <change beforePath="$PROJECT_DIR$/app/CommentReply.php" afterPath="$PROJECT_DIR$/app/CommentReply.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminMediaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminMediaController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminPackagesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminPackagesController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminRestaurantsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminRestaurantsController.php" />
@@ -15,14 +17,26 @@
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthorUsersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthorUsersController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BronzeRestaurantController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BronzeRestaurantController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BronzeUserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BronzeUserController.php" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthorRestaurantController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthorRestaurantController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthorUsersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthorUsersController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BronzeRestaurantController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BronzeRestaurantController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BronzeUserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BronzeUserController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RestaurantCommentController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RestaurantCommentController.php" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SilverRestaurantController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SilverRestaurantController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SilverUserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SilverUserController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Admin.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Admin.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Author.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Author.php" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
       <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Bronze.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Bronze.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Silver.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Silver.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/RestaurantCreateRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/RestaurantCreateRequest.php" />
@@ -44,6 +58,10 @@
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_14_141955_create_restaurants_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_14_141955_create_restaurants_table.php" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_15_084515_create_packages_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_15_084515_create_packages_table.php" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_19_123256_add_package_id_to_users.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_19_123256_add_package_id_to_users.php" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_22_123608_create_comments_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_22_123608_create_comments_table.php" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_22_123709_create_comment_replies_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_22_123709_create_comment_replies_table.php" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_25_140426_add_photo_column_to_comments.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_25_140426_add_photo_column_to_comments.php" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_25_140739_add_photo_column_to_comments_replies.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_25_140739_add_photo_column_to_comments_replies.php" />
       <change beforePath="$PROJECT_DIR$/public/css/404.css" afterPath="$PROJECT_DIR$/public/css/404.css" />
       <change beforePath="$PROJECT_DIR$/public/css/bootstrap.css" afterPath="$PROJECT_DIR$/public/css/bootstrap.css" />
       <change beforePath="$PROJECT_DIR$/public/css/custom.css" afterPath="$PROJECT_DIR$/public/css/custom.css" />
@@ -97,11 +115,36 @@
       <change beforePath="$PROJECT_DIR$/public/images/1553088671person.jpg" afterPath="$PROJECT_DIR$/public/images/1553088671person.jpg" />
       <change beforePath="$PROJECT_DIR$/public/images/1553089835Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553089835Restaurant-restaurant.jpg" />
       <change beforePath="$PROJECT_DIR$/public/images/1553090018person.jpg" afterPath="$PROJECT_DIR$/public/images/1553090018person.jpg" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/public/images/1553090159Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553090159Restaurant-restaurant.jpg" />
       <change beforePath="$PROJECT_DIR$/public/images/1553090764person.jpg" afterPath="$PROJECT_DIR$/public/images/1553090764person.jpg" />
       <change beforePath="$PROJECT_DIR$/public/images/1553093082person.jpg" afterPath="$PROJECT_DIR$/public/images/1553093082person.jpg" />
       <change beforePath="$PROJECT_DIR$/public/images/1553093605person.jpg" afterPath="$PROJECT_DIR$/public/images/1553093605person.jpg" />
       <change beforePath="$PROJECT_DIR$/public/images/1553094878Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553094878Restaurant-restaurant.jpg" />
+=======
+      <change beforePath="$PROJECT_DIR$/public/images/1553090764person.jpg" afterPath="$PROJECT_DIR$/public/images/1553090764person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553093082person.jpg" afterPath="$PROJECT_DIR$/public/images/1553093082person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553094878Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553094878Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553111244Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553111244Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553111509Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553111509Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553111602Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553111602Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553111708Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553111708Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553114688Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553114688Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553154370person.jpg" afterPath="$PROJECT_DIR$/public/images/1553154370person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553155110person.jpg" afterPath="$PROJECT_DIR$/public/images/1553155110person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553155236Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553155236Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553155393person.jpg" afterPath="$PROJECT_DIR$/public/images/1553155393person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553172598Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553172598Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553184208Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553184208Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553241968Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553241968Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553243272person.jpg" afterPath="$PROJECT_DIR$/public/images/1553243272person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553243347Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553243347Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553248134person.jpg" afterPath="$PROJECT_DIR$/public/images/1553248134person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553248186Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553248186Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553249115Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553249115Restaurant-restaurant.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553465089person.jpg" afterPath="$PROJECT_DIR$/public/images/1553465089person.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/images/1553519109Restaurant-restaurant.jpg" afterPath="$PROJECT_DIR$/public/images/1553519109Restaurant-restaurant.jpg" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
       <change beforePath="$PROJECT_DIR$/public/images/bg_1.jpg" afterPath="$PROJECT_DIR$/public/images/bg_1.jpg" />
       <change beforePath="$PROJECT_DIR$/public/images/text.png" afterPath="$PROJECT_DIR$/public/images/text.png" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
@@ -129,6 +172,8 @@
       <change beforePath="$PROJECT_DIR$/resources/lang/en/auth.php" afterPath="$PROJECT_DIR$/resources/lang/en/auth.php" />
       <change beforePath="$PROJECT_DIR$/resources/lang/en/passwords.php" afterPath="$PROJECT_DIR$/resources/lang/en/passwords.php" />
       <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" afterPath="$PROJECT_DIR$/resources/sass/app.scss" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/comments/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/comments/index.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/comments/replies/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/comments/replies/index.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/media/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/media/index.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/package/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/package/edit.blade.php" />
@@ -151,11 +196,18 @@
       <change beforePath="$PROJECT_DIR$/resources/views/includes/form_error.blade.php" afterPath="$PROJECT_DIR$/resources/views/includes/form_error.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/silver/includes/create/bronze_create_restaurant.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/includes/create/bronze_create_restaurant.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/silver/includes/create/gold_create_restaurant.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/includes/create/gold_create_restaurant.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/silver/includes/create/silver_create_restaurant.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/includes/create/silver_create_restaurant.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/silver/includes/edit/bronze_edit_restaurant.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/includes/edit/bronze_edit_restaurant.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/silver/includes/edit/gold_edit_restaurant.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/includes/edit/gold_edit_restaurant.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/silver/includes/edit/silver_edit_restaurant.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/includes/edit/silver_edit_restaurant.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/silver/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/index.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/silver/restaurant/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/restaurant/create.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/silver/restaurant/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/restaurant/edit.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/silver/restaurant/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/restaurant/index.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/silver/user/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/silver/user/edit.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/single_restaurant.blade.php" afterPath="$PROJECT_DIR$/resources/views/single_restaurant.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
       <change beforePath="$PROJECT_DIR$/routes/channels.php" afterPath="$PROJECT_DIR$/routes/channels.php" />
@@ -174,6 +226,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurants/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -198,17 +251,80 @@
                 <marker date="1553588698405" expanded="true" signature="10111:10176" ph="..." />
                 <marker date="1553588698405" expanded="true" signature="10203:10218" ph="..." />
                 <marker date="1553588698405" expanded="true" signature="10313:10321" ph="..." />
+=======
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/comments/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="112" column="36" lean-forward="false" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
+              <folding>
+                <marker date="1553527759532" expanded="true" signature="9:24" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="36:45" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="722:748" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="893:916" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="1058:1078" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="1217:1237" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="1376:1399" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="1744:1762" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="1886:1923" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="2369:2384" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="2578:2592" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="2681:2698" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="4340:4371" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="4437:4463" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="4617:4637" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5168:5189" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5278:5290" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5344:5354" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5344:5360" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5414:5429" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5483:5497" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5560:5606" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5560:5622" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5560:5623" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="5801:5837" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="6165:6260" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="6472:6487" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="7539:7614" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="7640:7652" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="7727:7760" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="7791:7844" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="7965:8029" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="8056:8071" ph="..." />
+                <marker date="1553527759532" expanded="true" signature="8166:8174" ph="..." />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Restaurant.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Restaurant.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="407">
               <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
+=======
+      <file leaf-file-name="Comment.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Comment.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="50" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestaurantCommentController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RestaurantCommentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding>
+                <element signature="e#40#56#0#PHP" expanded="true" />
+              </folding>
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
             </state>
           </provider>
         </entry>
@@ -226,61 +342,66 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="babe9410013cd090f18c9e6f2dcd4bf377a30b7a" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/admin/media/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminMediaController.php" />
-        <option value="$PROJECT_DIR$/../../bin/php/php7.1.16/php.ini" />
-        <option value="$PROJECT_DIR$/../../bin/php/php7.1.16/php.ini-development" />
-        <option value="$PROJECT_DIR$/../../bin/php/php7.1.16/php.ini-production" />
-        <option value="$USER_HOME$/Downloads/tasty/tasty/index.html" />
-        <option value="$PROJECT_DIR$/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/public/js/custom.js" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/custom.css" />
-        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/Author.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_03_19_123256_add_package_id_to_users.php" />
-        <option value="$PROJECT_DIR$/resources/views/author/index.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/libs.css" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/Admin.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/Silver.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/restaurants/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SilverUserController.php" />
-        <option value="$PROJECT_DIR$/app/Restaurant.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AuthorUsersController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/Gold.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/GoldUserController.php" />
-        <option value="$PROJECT_DIR$/resources/views/gold/restaurant/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/gold/restaurant/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/gold/restaurantg/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/gold/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/silver/user/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/GoldRestaurantController.php" />
-        <option value="$PROJECT_DIR$/resources/views/silver/restaurant/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/Bronze.php" />
-        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/resources/views/silver/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BronzeUserController.php" />
         <option value="$PROJECT_DIR$/resources/views/bronze/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bronze/user/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bronze/restaurant/index.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bronze/restaurant/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/errors/404.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/Author.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/Silver.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BronzeRestaurantController.php" />
-        <option value="$PROJECT_DIR$/resources/views/silver/restaurant/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SilverUserController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BronzeUserController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/index.blade.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/user/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminRestaurantsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminPackagesController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminMediaController.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/includes/silver_edit_restaurant.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/includes/bronze_edit_restaurant.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/includes/gold_edit_restaurant.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SilverRestaurantController.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/restaurant/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/includes/create/gold_create_restaurant.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/includes/create/silver_create_restaurant.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/includes/create/bronze_create_restaurant.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/silver/restaurant/index.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_03_22_123709_create_comment_replies_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_03_22_123608_create_comments_table.php" />
+        <option value="$PROJECT_DIR$/app/Restaurant.php" />
+        <option value="$PROJECT_DIR$/app/CommentReply.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/restaurants/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/restaurants/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/package/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/package/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/media/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AuthorRestaurantController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/single_restaurant.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_03_25_140426_add_photo_column_to_comments.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_03_25_140739_add_photo_column_to_comments_replies.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RestaurantCommentController.php" />
+        <option value="$PROJECT_DIR$/app/Comment.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/comments/index.blade.php" />
       </list>
     </option>
   </component>
@@ -377,9 +498,15 @@
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
     </include_path>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds">
     <option name="x" value="47" />
     <option name="y" value="59" />
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="13" />
+    <option name="y" value="25" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
     <option name="width" value="1341" />
     <option name="height" value="391" />
   </component>
@@ -401,7 +528,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+      <pane id="Scratches" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -499,7 +630,11 @@
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< HEAD
               <item name="restaurants" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
+              <item name="comments" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
             </path>
             <path>
               <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
@@ -525,13 +660,17 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+      <pane id="Scope" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="Router&#9;FILE&#9;file://C:/wamp/www/webapp/vendor/symfony/routing/Router.php&#10;web&#9;FILE&#9;file://C:/wamp/www/webapp/routes/web.php&#10;User&#9;FILE&#9;file://C:/wamp/www/webapp/app/User.php&#10;AdminUsersContro&#9;FILE&#9;file://C:/wamp/www/webapp/app/Http/Controllers/AdminUsersController.php&#10;home.blade&#9;FILE&#9;file://C:/wamp/www/webapp/resources/views/home.blade.php&#10;Admin.&#9;FILE&#9;file://C:/wamp/www/webapp/app/Http/Middleware/Admin.php" />
+    <property name="SearchEverywhereHistoryKey" value="404&#9;FILE&#9;file://C:/wamp/www/webapp/resources/views/errors/404.blade.php&#10;Router&#9;FILE&#9;file://C:/wamp/www/webapp/vendor/symfony/routing/Router.php&#10;web&#9;FILE&#9;file://C:/wamp/www/webapp/routes/web.php&#10;User&#9;FILE&#9;file://C:/wamp/www/webapp/app/User.php&#10;AdminUsersContro&#9;FILE&#9;file://C:/wamp/www/webapp/app/Http/Controllers/AdminUsersController.php&#10;home.blade&#9;FILE&#9;file://C:/wamp/www/webapp/resources/views/home.blade.php&#10;Admin.&#9;FILE&#9;file://C:/wamp/www/webapp/app/Http/Middleware/Admin.php" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
@@ -577,18 +716,33 @@
       <workItem from="1552947840371" duration="7662000" />
       <workItem from="1552979310746" duration="23643000" />
       <workItem from="1553065011858" duration="28918000" />
-      <workItem from="1553102208404" duration="3046000" />
+      <workItem from="1553102208404" duration="9588000" />
+      <workItem from="1553152863243" duration="24232000" />
+      <workItem from="1553191281674" duration="4591000" />
+      <workItem from="1553238646435" duration="9827000" />
+      <workItem from="1553255817161" duration="10049000" />
+      <workItem from="1553464525110" duration="3205000" />
+      <workItem from="1553496827302" duration="4888000" />
+      <workItem from="1553520984801" duration="3870000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="191297000" />
+=======
+    <option name="totallyTimeSpent" value="258473000" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27231467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2647504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -627,19 +781,19 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934132" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23676248" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24054463" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,15 +809,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/author/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="184" column="30" lean-forward="true" selection-start-line="184" selection-start-column="30" selection-end-line="184" selection-end-column="30" />
+        <state relative-caret-position="306">
+          <caret line="27" column="55" lean-forward="false" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurants/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/user/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="68">
           <caret line="127" column="92" lean-forward="false" selection-start-line="127" selection-start-column="92" selection-end-line="127" selection-end-column="92" />
           <folding>
@@ -686,255 +841,510 @@
             <marker date="1553588698405" expanded="true" signature="10203:10218" ph="..." />
             <marker date="1553588698405" expanded="true" signature="10313:10321" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="187" column="24" lean-forward="false" selection-start-line="187" selection-start-column="24" selection-end-line="190" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="120" column="50" lean-forward="false" selection-start-line="120" selection-start-column="50" selection-end-line="120" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurants/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminRestaurantsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="101" column="46" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="101" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/restaurant/create.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/user/edit.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/silver/restaurant/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/restaurant/edit.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/restaurant/index.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="175" column="14" lean-forward="false" selection-start-line="175" selection-start-column="14" selection-end-line="175" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/index.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/userg/edit.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/restaurantg/index.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/restaurantg/edit.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/gold/restaurantg/create.blade.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GoldUserController.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GoldRestaurantController.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Gold.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Silver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="24" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/restaurantb/index.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/restaurantb/edit.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/restaurantb/create.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/userb/edit.blade.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="64" column="55" lean-forward="false" selection-start-line="64" selection-start-column="55" selection-end-line="64" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/silver/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="58" lean-forward="false" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
+=======
+        <state relative-caret-position="1105">
+          <caret line="65" column="35" lean-forward="true" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Bronze.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BronzeUserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="104" column="32" lean-forward="false" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SilverUserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="106" column="35" lean-forward="true" selection-start-line="103" selection-start-column="8" selection-end-line="106" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/silver/user/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="55" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/user/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="65" column="36" lean-forward="false" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/restaurant/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-561">
-          <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="137" column="40" lean-forward="true" selection-start-line="137" selection-start-column="40" selection-end-line="137" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/silver/restaurant/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="29" column="74" lean-forward="true" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="40" column="62" lean-forward="false" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthorUsersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/bronze/restaurant/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="93" column="30" lean-forward="true" selection-start-line="93" selection-start-column="30" selection-end-line="93" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BronzeRestaurantController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="70" column="9" lean-forward="false" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="-409">
+          <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Restaurant.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminUsersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="1020">
+          <caret line="68" column="32" lean-forward="false" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminPackagesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+        <state relative-caret-position="663">
+          <caret line="41" column="32" lean-forward="false" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminMediaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/includes/silver_edit_restaurant.blade.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/includes/bronze_edit_restaurant.blade.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/includes/gold_edit_restaurant.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/silver/restaurant/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="104" column="34" lean-forward="false" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+        <state relative-caret-position="390">
+          <caret line="93" column="38" lean-forward="true" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SilverRestaurantController.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="77" lean-forward="true" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/restaurant/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="181" column="18" lean-forward="true" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/includes/create/gold_create_restaurant.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/includes/create/silver_create_restaurant.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/silver/includes/create/bronze_create_restaurant.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_22_123608_create_comments_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="24" column="42" lean-forward="false" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_22_123709_create_comment_replies_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_14_141955_create_restaurants_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_12_095029_create_roles_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/comments/replies/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Restaurant.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="29" column="48" lean-forward="false" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/CommentReply.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="47" lean-forward="false" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="29" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurants/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/package/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="177" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/package/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="25" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/media/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Home Property Free Website Template - Free-CSS.com/MarkUps-HomeProperty/Home Property/blog-single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="519" column="18" lean-forward="false" selection-start-line="147" selection-start-column="2" selection-end-line="519" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthorUsersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthorRestaurantController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="50" lean-forward="false" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminRestaurantsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="55" column="32" lean-forward="false" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurants/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <marker date="1553263106947" expanded="true" signature="9:24" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="56:65" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="743:769" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="921:944" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="1086:1106" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="1245:1265" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="1404:1427" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="1765:1783" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="1906:1943" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="2388:2403" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="2597:2611" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="2700:2717" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="3683:3785" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="3947:3962" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="4084:4105" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="4427:4557" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="4587:4599" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="4682:4714" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="4749:4803" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="4918:4957" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="4992:5064" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="5180:5217" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="5252:5320" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="5435:5470" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="5505:5562" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="5919:5934" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="6189:6268" ph="..." />
+            <marker date="1553263106947" expanded="true" signature="6389:6397" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="39" column="62" lean-forward="false" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../codehacking/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../codehacking/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="67" column="10" lean-forward="false" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3655">
+          <caret line="218" column="0" lean-forward="true" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+          <folding>
+            <marker date="1553263106728" expanded="true" signature="9:24" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="56:65" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="743:769" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="914:937" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="1079:1099" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="1245:1265" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="1404:1427" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="1765:1783" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="1907:1944" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="2390:2405" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="2599:2613" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="2702:2719" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="4105:4126" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="4389:4417" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="4483:4506" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5386:5392" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5435:5450" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5539:5548" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5624:5689" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5752:5763" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5817:5829" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5883:5900" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="5954:6009" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="6063:6110" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="6164:6198" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="6252:6286" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="6394:6424" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="6726:6815" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="7139:7154" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8053:8140" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8224:8254" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8289:8342" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8458:8490" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8525:8580" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8696:8734" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8769:8824" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="8940:8973" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="9008:9101" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="9217:9256" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="9291:9391" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="9507:9544" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="9579:9677" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="9793:9828" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="9863:9920" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="10095:10154" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="10208:10223" ph="..." />
+            <marker date="1553263106728" expanded="true" signature="10423:10431" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../codehacking/resources/views/layouts/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="184" column="27" lean-forward="false" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_19_123256_add_package_id_to_users.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="102">
+          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_25_140426_add_photo_column_to_comments.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_25_140739_add_photo_column_to_comments_replies.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="407">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+=======
+        <state relative-caret-position="442">
+          <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/single_restaurant.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="17">
+          <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+=======
+        <state relative-caret-position="51">
+          <caret line="167" column="50" lean-forward="false" selection-start-line="167" selection-start-column="50" selection-end-line="167" selection-end-column="50" />
+          <folding>
+            <marker date="1553522523960" expanded="true" signature="891:914" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="954:979" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="3175:3194" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="3364:3379" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="3504:3520" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="3664:3686" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="3743:3768" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="7771:7783" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="7771:7802" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="7854:7880" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="8089:8113" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="8198:8223" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="8198:8238" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="8437:8455" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="8663:8686" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="8927:8944" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="9004:9021" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="26963:27042" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="27141:27156" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="28079:28094" ph="..." />
+            <marker date="1553522523960" expanded="true" signature="37133:37154" ph="..." />
+          </folding>
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="374">
+          <caret line="104" column="34" lean-forward="false" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+=======
+        <state relative-caret-position="84">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <marker date="1553519185226" expanded="true" signature="672:692" ph="..." />
+            <marker date="1553519185226" expanded="true" signature="747:756" ph="..." />
+            <marker date="1553519185226" expanded="true" signature="1115:1123" ph="..." />
+          </folding>
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RestaurantCommentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="119">
           <caret line="79" column="48" lean-forward="false" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+=======
+        <state relative-caret-position="272">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Comment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="50" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+          <folding />
+>>>>>>> d4b773daf426ea29bca919654d923f9d32a1cba9
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/comments/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="112" column="36" lean-forward="false" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
+          <folding>
+            <marker date="1553527759532" expanded="true" signature="9:24" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="36:45" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="722:748" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="893:916" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="1058:1078" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="1217:1237" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="1376:1399" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="1744:1762" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="1886:1923" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="2369:2384" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="2578:2592" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="2681:2698" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="4340:4371" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="4437:4463" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="4617:4637" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5168:5189" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5278:5290" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5344:5354" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5344:5360" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5414:5429" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5483:5497" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5560:5606" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5560:5622" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5560:5623" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="5801:5837" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="6165:6260" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="6472:6487" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="7539:7614" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="7640:7652" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="7727:7760" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="7791:7844" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="7965:8029" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="8056:8071" ph="..." />
+            <marker date="1553527759532" expanded="true" signature="8166:8174" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

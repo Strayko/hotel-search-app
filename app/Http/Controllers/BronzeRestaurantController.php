@@ -51,7 +51,7 @@ class BronzeRestaurantController extends Controller
 	    }
 
 	    $user->restaurants()->create($input);
-	    return redirect('/bronze/restaurant-bronze');
+	    return redirect('/admin/restaurant-bronze');
     }
 
     /**
@@ -97,7 +97,7 @@ class BronzeRestaurantController extends Controller
 	    }
 
 	    Auth::user()->restaurants()->whereId($id)->first()->update($input);
-	    return redirect('/bronze/restaurant-bronze');
+	    return redirect('/admin/restaurant-bronze');
     }
 
     /**
@@ -111,6 +111,6 @@ class BronzeRestaurantController extends Controller
 	    $restaurant = Restaurant::findOrFail($id);
 	    unlink(public_path() . $restaurant->photo->file);
 	    $restaurant->delete();
-	    return redirect('/bronze/restaurant-bronze');
+	    return redirect('/admin/restaurant-bronze');
     }
 }

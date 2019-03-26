@@ -26,6 +26,9 @@ class Restaurant extends Model
     	return $this->belongsTo('App\Package');
     }
 
+    public function comments() {
+    	return $this->hasMany('App\Restaurant');
+    }
 
 
 }

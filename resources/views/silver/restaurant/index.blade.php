@@ -4,14 +4,14 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/silver" class="navbar-brand">Admin</a>
+            <a href="/admin" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/silver" class="nav-link">Dashboard</a>
+                        <a href="/admin" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurant</a>
@@ -171,27 +171,14 @@
                 </div>
                 <div class="modal-body">
 
-                    {!! Form::open(['method'=>'POST', 'action'=>'SilverRestaurantController@store', 'files'=>true]) !!}
-                    {{csrf_field()}}
-                    <div class="form-group">
-                        {!! Form::label('title', 'Title:') !!}
-                        {!! Form::text('title', null, ['class'=>'form-control']) !!}
-                    </div>
+                    @if($gold)
+                        @include('silver.includes.create.gold_create_restaurant')
+                    @elseif($silver)
+                        @include('silver.includes.create.silver_create_restaurant')
+                    @elseif($bronze)
+                        @include('silver.includes.create.bronze_create_restaurant')
+                    @endif
 
-                    <div class="form-group">
-                        {!! Form::label('body', 'Description:') !!}
-                        {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('photo_id', 'Photo:') !!}
-                        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-primary']) !!}
-                    {!! Form::close() !!}
-                </div>
             </div>
         </div>
     </div>

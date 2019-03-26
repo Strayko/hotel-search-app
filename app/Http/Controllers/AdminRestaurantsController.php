@@ -53,7 +53,7 @@ class AdminRestaurantsController extends Controller
 	    }
 
 	    $user->restaurants()->create($input);
-	    return redirect('/admin/restaurants');
+	    return redirect('/admin2/restaurants');
 
     }
 
@@ -99,7 +99,7 @@ class AdminRestaurantsController extends Controller
         }
 
         Auth::user()->restaurants()->whereId($id)->first()->update($input);
-        return redirect('/admin/restaurants');
+        return redirect('/admin2/restaurants');
     }
 
     /**
@@ -114,6 +114,6 @@ class AdminRestaurantsController extends Controller
 	    unlink(public_path() . $restaurant->photo->file);
 	    $restaurant->delete();
 	    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
-	    return redirect('/admin/restaurants');
+	    return redirect('/admin2/restaurants');
     }
 }

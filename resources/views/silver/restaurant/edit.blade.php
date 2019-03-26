@@ -4,14 +4,14 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/silver" class="navbar-brand">Admin</a>
+            <a href="/admin" class="navbar-brand">Admin</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collpase navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2">
-                        <a href="/silver" class="nav-link">Dashboard</a>
+                        <a href="/admin" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurants</a>
@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="/silver" class="btn btn-primary btn-block">
+                    <a href="/admin" class="btn btn-primary btn-block">
                         <i class="fas fa-arrow-left"></i> Back To Dashboard
                     </a>
                 </div>
@@ -88,32 +88,13 @@
                     <div class="card-body">
 
                         @if($silver)
-                            {!! Form::model($restaurants, ['method'=>'PATCH', 'action'=>['SilverRestaurantController@update', $restaurants->id], 'files'=>true]) !!}
-                            {{csrf_field()}}
-                            <div class="form-group">
-                                {!! Form::label('title', 'Title:') !!}
-                                {!! Form::text('title', null, ['class'=>'form-control']) !!}
-                            </div>
-
-                            <div class="form-group">
-                                {!! Form::label('body', 'Description:') !!}
-                                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('photo_id', 'Photo:') !!}
-                                {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                            </div>
+                            @include('silver.includes.edit.silver_edit_restaurant')
+                        @elseif($bronze)
+                            @include('silver.includes.edit.bronze_edit_restaurant')
+                        @elseif($gold)
+                            @include('silver.includes.edit.gold_edit_restaurant')
                         @endif
 
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-utensils"></i> Update Restaurant</button>
-                                    {!! Form::close() !!}
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

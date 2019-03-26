@@ -88,7 +88,7 @@ class BronzeUserController extends Controller
 		    $input['photo_id'] = $photo->id;
 	    }
 	    $user->update($input);
-	    return redirect('/bronze');
+	    return redirect('/admin');
     }
 
     /**
@@ -102,6 +102,6 @@ class BronzeUserController extends Controller
 	    $user = User::findOrFail($id);
 	    unlink(public_path() . $user->photo->file);
 	    $user->delete();
-	    return redirect('/bronze');
+	    return redirect('/');
     }
 }

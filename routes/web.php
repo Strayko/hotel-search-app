@@ -28,7 +28,7 @@ Auth::routes();
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
 Route::group(['middleware'=>'admin'], function() {
-	Route::get('/admin', function() {
+	Route::get('/admin2', function() {
 
 		$users = User::all();
 		$restaurants = Restaurant::all();
@@ -37,35 +37,31 @@ Route::group(['middleware'=>'admin'], function() {
 		$roles = Role::pluck('name', 'id')->all();
 		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package'));
 	});
-
 	Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::resource('admin/users', 'AdminUsersController');
-	Route::resource('admin/restaurants', 'AdminRestaurantsController');
-	Route::resource('admin/packages', 'AdminPackagesController');
-	Route::resource('admin/media', 'AdminMediaController');
+
+	Route::resource('admin2/users', 'AdminUsersController');
+	Route::resource('admin2/restaurants', 'AdminRestaurantsController');
+	Route::resource('admin2/packages', 'AdminPackagesController');
+	Route::resource('admin2/media', 'AdminMediaController');
+	Route::resource('admin2/comments', 'RestaurantCommentController');
+	Route::resource('admin2/comment/replies', 'CommentRepliesController');
 });
-
 Route::resource('user/register', 'AuthorUsersController');
+Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
 
-Route::group(['middleware'=>'silver'], function() {
 
-	Route::get('/silver', function() {
+Route::group(['middleware'=>'author'], function() {
+
+	Route::get('/admin', function() {
 //		$restaurants = Restaurant::all();
 		return view('silver.index');
 	});
 
 
-	Route::resource('silver/user', 'SilverUserController');
-	Route::resource('silver/restaurant', 'SilverRestaurantController');
+	Route::resource('admin/user', 'SilverUserController');
+	Route::resource('admin/restaurant', 'SilverRestaurantController');
 });
 
-Route::group(['middleware'=>'bronze'], function() {
-	Route::get('/bronze', function() {
-		return view('bronze.index');
-	});
 
 
-	Route::resource('bronze/user-bronze', 'BronzeUserController');
-	Route::resource('bronze/restaurant-bronze', 'BronzeRestaurantController');
-});
