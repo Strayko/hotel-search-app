@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-md-6 ml-auto">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Packages...">
+                        <input type="text" class="form-control" placeholder="Search Comments...">
                         <div class="input-group-append">
                             <button class="btn btn-secondary">Search</button>
                         </div>
