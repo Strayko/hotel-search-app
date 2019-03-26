@@ -64,6 +64,7 @@ Route::group(['middleware'=>'author'], function() {
 	Route::resource('admin/restaurant', 'SilverRestaurantController');
 });
 
+
 Route::group(['middleware'=>'auth'], function() {
 	Route::post('comment/reply', 'CommentRepliesController@createReply');
 });

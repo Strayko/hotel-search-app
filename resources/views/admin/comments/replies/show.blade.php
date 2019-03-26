@@ -100,59 +100,56 @@
                             @if(Session::has('deleted_package'))
                                 <p class="alert alert-danger">{{session('deleted_package')}}</p>
                             @endif
-                            <h4>Latest Comments</h4>
+                            <h4>Latest Replies</h4>
                         </div>
-                        @if(count($comments) > 0)
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Author</th>
-                                <th>Email</th>
-                                <th>Comment</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                    @foreach($comments as $comment)
+                        @if(count($replies) > 0)
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Author</th>
+                                    <th>Email</th>
+                                    <th>Replies</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($replies as $reply)
                                     <tr>
-                                        <td>{{$comment->id}}</td>
-                                        <td>{{$comment->author}}</td>
-                                        <td>{{$comment->email}}</td>
-                                        <td>{{Str::limit($comment->body, 15)}}</td>
-                                        <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->id)}}">View Restaurant</a></td>
-                                        <td><a href="{{route('replies.show', $comment->id)}}">View Replies</a></td>
-
+                                        <td>{{$reply->id}}</td>
+                                        <td>{{$reply->author}}</td>
+                                        <td>{{$reply->email}}</td>
+                                        <td>{{$reply->body}}</td>
+                                        <td><a href="{{route('single_restaurant.restaurant', $reply->comment->restaurant->id)}}">View Restaurant</a></td>
                                         <td>
-                                            @if($comment->is_active == 1)
-                                                {!! Form::open(['method'=>'PATCH', 'action'=>['RestaurantCommentController@update', $comment->id]]) !!}
-                                                    <input type="hidden" name="is_active" value="0">
-                                                    {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
+                                            @if($reply->is_active == 1)
+                                                {!! Form::open(['method'=>'PATCH', 'action'=>['CommentRepliesController@update', $reply->id]]) !!}
+                                                <input type="hidden" name="is_active" value="0">
+                                                {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
                                                 {!! Form::close() !!}
                                             @else
-                                                {!! Form::open(['method'=>'PATCH', 'action'=>['RestaurantCommentController@update', $comment->id]]) !!}
+                                                {!! Form::open(['method'=>'PATCH', 'action'=>['CommentRepliesController@update', $reply->id]]) !!}
                                                 <input type="hidden" name="is_active" value="1">
                                                 {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
                                                 {!! Form::close() !!}
                                             @endif
                                         </td>
                                         <td>
-                                            {!! Form::open(['method'=>'DELETE', 'action'=>['RestaurantCommentController@destroy', $comment->id]]) !!}
+                                            {!! Form::open(['method'=>'DELETE', 'action'=>['RestaurantCommentController@destroy', $reply->id]]) !!}
                                             {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>
-                                    @endforeach
+                                @endforeach
 
-                                 @else
-                                    <h1 class="text-center">No Comments</h1>
+                                @else
+                                    <h1 class="text-center">No Replies</h1>
 
-                            @endif
-                            </tbody>
-                        </table>
+                                @endif
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>

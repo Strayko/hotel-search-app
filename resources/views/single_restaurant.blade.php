@@ -303,7 +303,6 @@
                                                                 <h4 class="author-name">{{$comment->author}}</h4>
                                                                 <span class="comments-date"> {{$comment->created_at->diffForHumans()}}</span>
                                                                 <p>{{$comment->body}}</p>
-
                                                             </div>
                                                         </div>
                                                         <div class="comment-reply-container">
