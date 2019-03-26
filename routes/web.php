@@ -46,6 +46,7 @@ Route::group(['middleware'=>'admin'], function() {
 	Route::resource('admin2/media', 'AdminMediaController');
 	Route::resource('admin2/comments', 'RestaurantCommentController');
 	Route::resource('admin2/comment/replies', 'CommentRepliesController');
+
 });
 Route::resource('user/register', 'AuthorUsersController');
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
@@ -63,5 +64,6 @@ Route::group(['middleware'=>'author'], function() {
 	Route::resource('admin/restaurant', 'SilverRestaurantController');
 });
 
-
-
+Route::group(['middleware'=>'auth'], function() {
+	Route::post('comment/reply', 'CommentRepliesController@createReply');
+});
