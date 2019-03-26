@@ -284,38 +284,33 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- comment threats -->
+
+                                    <!-- comments -->
+
                                     <div class="col-md-12">
                                         <div class="aa-comments-area">
                                             <h3>5 Comments</h3>
                                             <div class="comments">
                                                 <ul class="commentlist">
+                                                    @if(count($comments) > 0)
+                                                        @foreach($comments as $comment)
                                                     <li>
                                                         <div class="media">
                                                             <div class="media-left">
-                                                                <img alt="img" src="img/testimonial-1.png" class="media-object news-img">
+                                                                <img alt="img" src="{{$comment->photo}}" class="media-object news-img">
                                                             </div>
                                                             <div class="media-body">
-                                                                <h4 class="author-name">Adam Barney</h4>
-                                                                <span class="comments-date"> 20th April, 2016</span>
-                                                                <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
+                                                                <h4 class="author-name">{{$comment->author}}</h4>
+                                                                <span class="comments-date"> {{$comment->created_at->diffForHumans()}}</span>
+                                                                <p>{{$comment->body}}</p>
                                                                 <a class="reply-btn" href="#">Reply</a>
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li>
-                                                        <div class="media">
-                                                            <div class="media-left">
-                                                                <img alt="img" src="img/testimonial-2.png" class="media-object news-img">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <h4 class="author-name">John Smith</h4>
-                                                                <span class="comments-date"> 20th April, 2016</span>
-                                                                <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                                                <a class="reply-btn" href="#">Reply</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                        @endforeach
+                                                    @endif
+
+                                                    {{--nested comments--}}
                                                     <ul class="children">
                                                         <li class="author-comments">
                                                             <div class="media">
@@ -331,35 +326,11 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <ul class="children">
-                                                            <li>
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <img alt="img" src="img/testimonial-1.png" class="media-object news-img">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h4 class="author-name">Adam Barney</h4>
-                                                                        <span class="comments-date"> 20th April, 2016</span>
-                                                                        <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                                                        <a class="reply-btn" href="#">Reply</a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
                                                     </ul>
-                                                    <li>
-                                                        <div class="media">
-                                                            <div class="media-left">
-                                                                <img alt="img" src="img/testimonial-2.png" class="media-object news-img">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <h4 class="author-name">Jhon Smith</h4>
-                                                                <span class="comments-date"> 20th April, 2016</span>
-                                                                <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                                                <a class="reply-btn" href="#">Reply</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+
+
+
+
                                                 </ul>
                                                 <!-- comments pagination -->
                                                 <nav>
@@ -387,6 +358,7 @@
                                     <!-- Respond box -->
                                     <div class="col-md-12">
                                         <div id="respond">
+                                            @if(Auth::check())
                                             <h3 class="reply-title">Leave a Comment</h3>
                                             {!! Form::open(['method'=>'POST', 'action'=>'RestaurantCommentController@store']) !!}
                                             <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
@@ -404,6 +376,10 @@
                                                     <input type="submit" value="Post Comment" class="aa-browse-btn" name="submit">
                                                 </p>
                                             {!! Form::close() !!}
+                                                @else
+                                                <h3 class="required">Login/Register to see form</h3>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
