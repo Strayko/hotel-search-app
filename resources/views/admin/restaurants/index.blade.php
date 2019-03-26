@@ -113,6 +113,8 @@
                                 <th>Package</th>
                                 <th>Title</th>
                                 <th>Body</th>
+                                <th>View</th>
+                                <th>Comment</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                                 <th></th>
@@ -127,7 +129,9 @@
                                        <td>{{$restaurant->user->name}}</td>
                                        <td>{{$restaurant->user->package ? $restaurant->user->package->name : 'Uncategorized'}}</td>
                                        <td>{{$restaurant->title}}</td>
-                                       <td>{{str_limit($restaurant->body, 10)}}</td>
+                                       <td>{{Str::limit($restaurant->body, 10)}}</td>
+                                       <td><a href="{{route('single_restaurant.restaurant', $restaurant->id)}}">Restaurant</a></td>
+                                       <td><a href="{{route('comments.show', $restaurant->id)}}">View</a></td>
                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                        <td>{{$restaurant->updated_at->diffForHumans()}}</td>
                                        <td>

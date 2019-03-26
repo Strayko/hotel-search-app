@@ -27,7 +27,7 @@ class Restaurant extends Model
     }
 
     public function comments() {
-    	return $this->hasMany('App\Restaurant');
+    	return $this->hasMany('App\Comment');
     }
 
 
