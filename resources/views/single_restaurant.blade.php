@@ -306,37 +306,41 @@
                                                                 <a class="reply-btn" href="#">Reply</a>
                                                             </div>
                                                         </div>
+                                                        {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@createReply']) !!}
+                                                        {{csrf_field()}}
+                                                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                                        <div class="form-group">
+                                                            {!! Form::label('body', 'Body:') !!}
+                                                            {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>1]) !!}
+                                                        </div>
+
+                                                        {!! Form::submit('Create', ['class'=>'btn btn-secondary']) !!}
+                                                        {!! Form::close() !!}
                                                     </li>
 
+                                                        @if(count($comment->replies) > 0)
+                                                            @foreach($comment->replies as $reply)
                                                             {{--nested comments--}}
                                                             <ul class="children">
                                                                 <li class="author-comments">
                                                                     <div class="media">
                                                                         <div class="media-left">
-                                                                            <img alt="img" src="img/testimonial-3.png" class="media-object news-img">
+                                                                            <img alt="img" src="{{$reply->photo}}" class="media-object news-img">
                                                                         </div>
                                                                         <div class="media-body">
-                                                                            <h4 class="author-name">Admin</h4>
-                                                                            <span class="comments-date"> 20th April, 2016</span>
+                                                                            <h4 class="author-name">{{$reply->author}}</h4>
+                                                                            <span class="comments-date">{{$reply->created_at->diffForHumans()}}</span>
                                                                             <span class="author-tag">Author</span>
-                                                                            <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                                                            <a class="reply-btn" href="#">Reply</a>
+                                                                            <p>{{$reply->body}}</p>
                                                                         </div>
                                                                     </div>
 
-                                                                    {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@createReply']) !!}
-                                                                        {{csrf_field()}}
-                                                                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                                                                        <div class="form-group">
-                                                                            {!! Form::label('body', 'Body:') !!}
-                                                                            {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>1]) !!}
-                                                                        </div>
 
-                                                                        {!! Form::submit('Create', ['class'=>'btn btn-success']) !!}
-                                                                    {!! Form::close() !!}
 
                                                                 </li>
                                                             </ul>
+                                                                @endforeach
+                                                            @endif
 
                                                         @endforeach
                                                     @endif
