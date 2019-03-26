@@ -102,7 +102,7 @@
                 </button>
                 <!-- LOGO -->
                 <!-- Text based logo -->
-                <a class="navbar-brand aa-logo" href="index.html"> Home <span>Property</span></a>
+                <a class="navbar-brand aa-logo" href="index.html"> Restaurant <span>Property</span></a>
                 <!-- Image based logo -->
                 <!-- <a class="navbar-brand aa-logo-img" href="index.html"><img src="img/logo.png" alt="logo"></a> -->
             </div>
@@ -139,10 +139,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="aa-property-header-inner">
-                    <h2>Blog Details</h2>
+                    <h2>Restaurant Details</h2>
                     <ol class="breadcrumb">
                         <li><a href="#">HOME</a></li>
-                        <li class="active">Blog Details</li>
+                        <li class="active">Restaurant Details</li>
                     </ol>
                 </div>
             </div>
@@ -303,19 +303,26 @@
                                                                 <h4 class="author-name">{{$comment->author}}</h4>
                                                                 <span class="comments-date"> {{$comment->created_at->diffForHumans()}}</span>
                                                                 <p>{{$comment->body}}</p>
-                                                                <a class="reply-btn" href="#">Reply</a>
+
                                                             </div>
                                                         </div>
-                                                        {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@createReply']) !!}
-                                                        {{csrf_field()}}
-                                                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                                                        <div class="form-group">
-                                                            {!! Form::label('body', 'Body:') !!}
-                                                            {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>1]) !!}
-                                                        </div>
+                                                        <div class="comment-reply-container">
 
-                                                        {!! Form::submit('Create', ['class'=>'btn btn-secondary']) !!}
-                                                        {!! Form::close() !!}
+                                                            <button class="toggle-reply btn btn-secondary pull-right">Reply</button>
+
+                                                            <div class="comment-reply" style="display: none; width: 90%;">
+                                                            {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@createReply']) !!}
+                                                            {{csrf_field()}}
+                                                            <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                                            <div class="form-group">
+                                                                {!! Form::label('body', 'Body:') !!}
+                                                                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>1]) !!}
+                                                            </div>
+
+                                                            {!! Form::submit('Create', ['class'=>'btn btn-secondary']) !!}
+                                                            {!! Form::close() !!}
+                                                            </div>
+                                                        </div>
                                                     </li>
 
                                                         @if(count($comment->replies) > 0)
@@ -334,9 +341,6 @@
                                                                             <p>{{$reply->body}}</p>
                                                                         </div>
                                                                     </div>
-
-
-
                                                                 </li>
                                                             </ul>
                                                                 @endforeach
@@ -557,11 +561,16 @@
 {{--<script src="{{ asset('js/bootstrap.js') }}"></script>--}}
 {{--<script src="{{ asset('js/custom.js') }}"></script>--}}
 {{--<script src="{{ asset('js/jquery.fancybox.pack.js') }}"></script>--}}
-{{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 {{--<script src="{{ asset('js/jquery.mixitup.js') }}"></script>--}}
 {{--<script src="{{ asset('js/nouislider.js') }}"></script>--}}
 {{--<script src="{{ asset('js/slick.js') }}"></script>--}}
 <script src="{{ asset('js/libs.js') }}"></script>
+<script>
+    $(".comment-reply-container .toggle-reply").click(function() {
+        $(this).next().slideToggle("slow");
+    });
+</script>
 
 </body>
 </html>
