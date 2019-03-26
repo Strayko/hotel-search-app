@@ -136,7 +136,7 @@
                                            </a>
                                            <a href="#" class="d-inline-block">
                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRestaurantsController@destroy', $restaurant->id]]) !!}
-                                               <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
+                                               <button type="submit" class="btn btn-secondary mt-1"><i class="fas fa-trash-alt"></i> Delete</button>
                                                {!! Form::close() !!}
                                            </a>
                                        </td>

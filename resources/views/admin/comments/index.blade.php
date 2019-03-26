@@ -111,8 +111,8 @@
                                 <th>Email</th>
                                 <th>Body</th>
                                 <th></th>
-
-
+                                <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -123,18 +123,24 @@
                                         <td>{{$comment->email}}</td>
                                         <td>{{$comment->body}}</td>
                                         <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->id)}}">View Restaurant</a></td>
-
-
-                                        {{--<td class="d-flex justify-content-end">--}}
-                                            {{--<a href="{{route('packages.edit', $comment->id)}}" class="btn btn-secondary">--}}
-                                                {{--<i class="fas fa-box"></i> Edit--}}
-                                            {{--</a>--}}
-                                            {{--<a href="#" class="d-inline-block ml-1">--}}
-                                                {{--{!! Form::open(['method'=>'POST', 'action'=>['RestaurantCommentController@index', $comment->id]]) !!}--}}
-                                                {{--<button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>--}}
-                                                {{--{!! Form::close() !!}--}}
-                                            {{--</a>--}}
-                                        {{--</td>--}}
+                                        <td>
+                                            @if($comment->is_active == 1)
+                                                {!! Form::open(['method'=>'PATCH', 'action'=>['RestaurantCommentController@update', $comment->id]]) !!}
+                                                    <input type="hidden" name="is_active" value="0">
+                                                    {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
+                                                {!! Form::close() !!}
+                                            @else
+                                                {!! Form::open(['method'=>'PATCH', 'action'=>['RestaurantCommentController@update', $comment->id]]) !!}
+                                                <input type="hidden" name="is_active" value="1">
+                                                {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
+                                                {!! Form::close() !!}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {!! Form::open(['method'=>'DELETE', 'action'=>['RestaurantCommentController@destroy', $comment->id]]) !!}
+                                            {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                                            {!! Form::close() !!}
+                                        </td>
                                     </tr>
                                     @endforeach
 
