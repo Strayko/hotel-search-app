@@ -326,6 +326,7 @@
 
                                                         @if(count($comment->replies) > 0)
                                                             @foreach($comment->replies as $reply)
+                                                                @if($reply->is_active == 1)
                                                             {{--nested comments--}}
                                                             <ul class="children">
                                                                 <li class="author-comments">
@@ -342,6 +343,7 @@
                                                                     </div>
                                                                 </li>
                                                             </ul>
+                                                                    @endif
                                                                 @endforeach
                                                             @endif
 

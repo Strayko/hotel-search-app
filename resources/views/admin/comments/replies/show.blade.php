@@ -137,7 +137,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {!! Form::open(['method'=>'DELETE', 'action'=>['RestaurantCommentController@destroy', $reply->id]]) !!}
+                                            {!! Form::open(['method'=>'DELETE', 'action'=>['CommentRepliesController@destroy', $reply->id]]) !!}
                                             {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </td>
