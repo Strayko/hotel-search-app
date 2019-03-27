@@ -150,25 +150,11 @@
                             </tbody>
                         </table>
                         <!-- PAGINATION -->
-                        <nav class="ml-4">
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <a href="#" class="page-link">Previous</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+                                {{$restaurants->render()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

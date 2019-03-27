@@ -19,10 +19,9 @@ class AdminRestaurantsController extends Controller
      */
     public function index()
     {
-    	$restaurants = Restaurant::all();
-    	$packages = Package::pluck('name', 'id')->all();
+    	$restaurants = Restaurant::paginate(5);
 
-        return view('admin.restaurants.index', compact('restaurants', 'packages'));
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**

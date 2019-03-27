@@ -98,6 +98,7 @@
                         <div class="card-header">
                             <h4>Latest Media</h4>
                         </div>
+                        
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
@@ -124,6 +125,11 @@
                             @endif
                             </tbody>
                         </table>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+                                {{$photos->onEachSide(1)->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

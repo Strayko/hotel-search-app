@@ -167,7 +167,7 @@
                                                 {{session('comment_message')}}
                                             @endif
                                             <figure class="aa-blog-img">
-                                                <a href="#"><img alt="img" src="{{$restaurant->photo->file}}"></a>
+                                                <a href="#"><img alt="img" src="{{$restaurant->photo ? $restaurant->photo->file : $restaurant->photoPlaceholder()}}"></a>
                                                 <span class="aa-date-tag">{{$restaurant->created_at->diffForHumans()}}</span>
                                             </figure>
                                             <div class="aa-blog-single-content">
