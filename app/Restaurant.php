@@ -2,11 +2,30 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Support\Facades\DB;
 
 class Restaurant extends Model
 {
+	use Sluggable;
+	use SluggableScopeHelpers;
+
+	/**
+	 * Return the sluggable configuration array for this model.
+	 *
+	 * @return array
+	 */
+	public function sluggable()
+	{
+		return [
+			'slug' => [
+				'source' => 'title'
+			]
+		];
+	}
+
     protected $fillable = [
         'package_id',
 	    'photo_id',

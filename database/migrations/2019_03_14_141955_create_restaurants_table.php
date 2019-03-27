@@ -16,7 +16,6 @@ class CreateRestaurantsTable extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('package_id')->unsigned()->index();
             $table->integer('photo_id')->unsigned()->index();
             $table->string('title');
             $table->text('body');

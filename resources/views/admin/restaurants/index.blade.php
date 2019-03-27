@@ -130,7 +130,7 @@
                                        <td>{{$restaurant->user->package ? $restaurant->user->package->name : 'Uncategorized'}}</td>
                                        <td>{{$restaurant->title}}</td>
                                        <td>{{Str::limit($restaurant->body, 10)}}</td>
-                                       <td><a href="{{route('single_restaurant.restaurant', $restaurant->id)}}">Restaurant</a></td>
+                                       <td><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
                                        <td><a href="{{route('comments.show', $restaurant->id)}}">View</a></td>
                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                        <td>{{$restaurant->updated_at->diffForHumans()}}</td>
@@ -192,10 +192,6 @@
                             <div class="form-group">
                                 {!! Form::label('title', 'Title:') !!}
                                 {!! Form::text('title', null, ['class'=>'form-control']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('package_id', 'Package:') !!}
-                                {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'form-control']) !!}
                             </div>
 
                             <div class="form-group">

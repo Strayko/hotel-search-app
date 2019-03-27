@@ -197,10 +197,6 @@
                             {!! Form::label('title', 'Title:') !!}
                             {!! Form::text('title', null, ['class'=>'form-control']) !!}
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('package_id', 'Package:') !!}
-                            {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'form-control']) !!}
-                        </div>
 
                         <div class="form-group">
                             {!! Form::label('body', 'Description:') !!}
