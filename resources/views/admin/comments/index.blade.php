@@ -123,7 +123,7 @@
                                         <td>{{$comment->author}}</td>
                                         <td>{{$comment->email}}</td>
                                         <td>{{Str::limit($comment->body, 15)}}</td>
-                                        <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->id)}}">View Restaurant</a></td>
+                                        <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->slug)}}">View Restaurant</a></td>
                                         <td><a href="{{route('replies.show', $comment->id)}}">View Replies</a></td>
 
                                         <td>

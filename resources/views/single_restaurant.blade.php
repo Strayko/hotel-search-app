@@ -306,7 +306,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="comment-reply-container">
-
+                                                            @if(Auth::check())
                                                             <button class="toggle-reply btn btn-secondary pull-right">Reply</button>
 
                                                             <div class="comment-reply" style="display: none; width: 90%;">
@@ -321,6 +321,9 @@
                                                             {!! Form::submit('Create', ['class'=>'btn btn-secondary']) !!}
                                                             {!! Form::close() !!}
                                                             </div>
+                                                            @else
+                                                                <h4 class="required" style="display: none;">Login/Register to reply</h4>
+                                                            @endif
                                                         </div>
                                                     </li>
 

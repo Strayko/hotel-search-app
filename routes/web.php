@@ -67,4 +67,5 @@ Route::group(['middleware'=>'author'], function() {
 
 Route::group(['middleware'=>'auth'], function() {
 	Route::post('comment/reply', 'CommentRepliesController@createReply');
+	Route::post('comment', 'RestaurantCommentController@store');
 });
