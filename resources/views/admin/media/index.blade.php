@@ -98,12 +98,23 @@
                         <div class="card-header">
                             <h4>Latest Media</h4>
                         </div>
-                        
+                        <form action="delete/media" method="post" class="form-inline">
+                        {{csrf_field()}}
+                            {{method_field('delete')}}
+                            <div class="form-group">
+                                <select name="checkBoxArray" id="" class="form-control">
+                                    <option value="">Delete</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="delete_all" class="btn btn-primary" value="Submit">
+                            </div>
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
+                                <th><input type="checkbox" id="options"></th>
                                 <th>Id</th>
-                                <th>Name</th>
+                                <th>Picture</th>
                                 <th>Created</th>
                                 <th></th>
                             </tr>
@@ -112,19 +123,19 @@
                             @if($photos)
                                 @foreach($photos as $photo)
                                     <tr>
+                                        <td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$photo->id}}"></td>
                                         <td>{{$photo->id}}</td>
                                         <td><img height="50" src="{{$photo->file}}" alt=""></td>
                                         <td>{{$photo->created_at ? $photo->created_at : 'no data'}}</td>
                                         <td class="d-flex justify-content-end">
-                                            {!! Form::open(['method'=>'DELETE', 'action'=>['AdminMediaController@destroy', $photo->id]]) !!}
-                                            <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
-                                            {!! Form::close() !!}
+
                                         </td>
                                     </tr>
                                 @endforeach
                             @endif
                             </tbody>
                         </table>
+                        </form>
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center">
                                 {{$photos->onEachSide(1)->links()}}
@@ -166,5 +177,21 @@
 @section('footer')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+           $('#options').click(function() {
+              if(this.checked) {
+                  $('.checkBoxes').each(function() {
+                      this.checked = true;
+                  })
+              } else {
+                  $('.checkBoxes').each(function() {
+                      this.checked = false;
+                  });
+              }
+           });
+        });
+    </script>
 
 @endsection
