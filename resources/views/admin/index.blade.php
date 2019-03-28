@@ -4,7 +4,7 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/admin2" class="navbar-brand">Admin</a>
+            <a href="/" class="navbar-brand">Home</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -125,7 +125,7 @@
                                 @foreach($restaurants as $restaurant)
                                     <tr>
                                         <td>{{$restaurant->id}}</td>
-                                        <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                                        <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                         <td>{{$restaurant->user->name}}</td>
                                         <td>{{$restaurant->title}}</td>
                                         <td>{{$restaurant->user ? $restaurant->user->package->name : 'Uncategorized'}}</td>
@@ -133,8 +133,8 @@
                                         <td>{{$restaurant->created_at->diffForHumans()}}</td>
 
                                         <td>
-                                            <a href="{{route('restaurants.edit', $restaurant->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-utensils"></i> Details
+                                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}" class="btn btn-secondary">
+                                                <i class="fas fa-utensils"></i> View
                                             </a>
                                         </td>
                                     </tr>

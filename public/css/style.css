@@ -186,7 +186,6 @@ img {
   text-align: right;
 }
 #aa-header .aa-header-area .aa-header-right .aa-register {
-  border-right: 1px solid #f8f8f8;
   color: #fff;
   margin-right: 5px;
   padding-right: 10px;
@@ -1325,7 +1324,7 @@ img {
 ====================*/
 
 #aa-property-header {
-  background-image: url("../img/property-header-bg.jpg");
+  background-image: url("../../public/images/slider1.jpg");
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;

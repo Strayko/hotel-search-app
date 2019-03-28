@@ -3,7 +3,7 @@
 @section('content')
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/admin2" class="navbar-brand">Admin</a>
+            <a href="/" class="navbar-brand">Home</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -74,11 +74,7 @@
     <section id="search" class="py-4 mb-4 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addPackageModal">
-                        <i class="fas fa-plus"></i> Add Comment
-                    </a>
-                </div>
+
                 <div class="col-md-6 ml-auto">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Replies...">

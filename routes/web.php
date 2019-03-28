@@ -17,7 +17,8 @@ use App\Role;
 use App\User;
 
 Route::get('/', function () {
-    return view('welcome');
+	$restaurants = Restaurant::all();
+    return view('welcome', compact('restaurants'));
 });
 Auth::routes();
 

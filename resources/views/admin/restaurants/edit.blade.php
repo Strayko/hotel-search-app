@@ -4,7 +4,7 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="/admin2" class="navbar-brand">Admin</a>
+            <a href="/" class="navbar-brand">Home</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -103,10 +103,6 @@
                         <div class="form-group">
                             {!! Form::label('title', 'Title:') !!}
                             {!! Form::text('title', null, ['class'=>'form-control']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('package_id', 'Package:') !!}
-                            {!! Form::select('package_id', $packages, null, ['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group">
