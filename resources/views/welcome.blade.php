@@ -158,7 +158,7 @@
                                             <img src="{{$restaurant->photo ? $restaurant->photo->file : $restaurant->photoHome()}}" alt="img">
                                         </a>
                                         <div class="aa-tag for-sale">
-                                            Active
+                                            {{$restaurant->created_at->diffForHumans()}}
                                         </div>
                                         <div class="aa-properties-item-content">
                                             <div class="aa-properties-info">

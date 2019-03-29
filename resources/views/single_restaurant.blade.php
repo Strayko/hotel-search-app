@@ -1,5 +1,10 @@
 @extends('layouts.frontend')
 <title>Restaurant</title>
+<style>
+    #aa-property-header {
+        background-image: url("{{asset('images/single_page_header.jpg')}}")!important;
+    }
+</style>
 @section('content')
 
     <!-- Start menu section -->
@@ -139,16 +144,14 @@
                                             <div class="aa-blog-navigation">
                                                 <div class="aa-blog-pagination-left">
                                                     <a href="#" class="aa-prev">
-                            <span class="fa fa-angle-double-left">
-                            </span>
+                                                        <span class="fa fa-angle-double-left"></span>
                                                         PREV
                                                     </a>
                                                 </div>
                                                 <div class="aa-blog-pagination-right">
                                                     <a href="#" class="aa-next">
                                                         NEXT
-                                                        <span class="fa fa-angle-double-right">
-                            </span>
+                                                        <span class="fa fa-angle-double-right"></span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -162,38 +165,27 @@
                                                 </div>
                                                 <div class="aa-blog-related-post-area">
                                                     <div class="row">
+                                                        @if($relateds)
+                                                            @foreach($relateds as $related)
                                                         <div class="col-md-6 col-sm-6">
                                                             <article class="aa-blog-single">
                                                                 <figure class="aa-blog-img">
-                                                                    <a href="#"><img src="img/blog-img-1.jpg" alt="img"></a>
-                                                                    <span class="aa-date-tag">15 April, 16</span>
+                                                                    <a href="{{route('single_restaurant.restaurant', $related->slug)}}"><img src="{{$related->photo ? $related->photo->file : $related->photoHome()}}" alt="img"></a>
+                                                                    <span class="aa-date-tag">{{$related->created_at->diffForHumans()}}</span>
                                                                 </figure>
                                                                 <div class="aa-blog-single-content">
-                                                                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></h3>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
+                                                                    <h3><a href="{{route('single_restaurant.restaurant', $related->slug)}}">{{$related->title}}</a></h3>
+                                                                    <p>{{Str::limit($related->body, 120)}}</p>
                                                                     <div class="aa-blog-single-bottom">
-                                                                        <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                                                        <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
+                                                                        <i class="fa fa-user"></i> {{$related->user->name}}
+                                                                        <i class="fas fa-comments"></i> {{$related->comments->count()}}
                                                                     </div>
                                                                 </div>
                                                             </article>
                                                         </div>
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <article class="aa-blog-single">
-                                                                <figure class="aa-blog-img">
-                                                                    <a href="#"><img src="img/blog-img-2.jpg" alt="img"></a>
-                                                                    <span class="aa-date-tag">15 April, 16</span>
-                                                                </figure>
-                                                                <div class="aa-blog-single-content">
-                                                                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></h3>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                                                                    <div class="aa-blog-single-bottom">
-                                                                        <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                                                        <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        </div>
+                                                            @endforeach
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,7 +195,11 @@
 
                                         <div class="col-md-12">
                                             <div class="aa-comments-area">
-                                                <h3>5 Comments</h3>
+                                                @if(count($comments) > 0)
+                                                <h3>{{$comments->count()}} Comments</h3>
+                                                @else
+                                                <h3>No Comments</h3>
+                                                @endif
                                                 <div class="comments">
                                                     <ul class="commentlist">
                                                         @if(count($comments) > 0)
@@ -216,6 +212,9 @@
                                                                         <div class="media-body">
                                                                             <h4 class="author-name">{{$comment->author}}</h4>
                                                                             <span class="comments-date"> {{$comment->created_at->diffForHumans()}}</span>
+
+                                                                            {{--<span class="author-tag">Author</span>--}}
+
                                                                             <p>{{$comment->body}}</p>
                                                                         </div>
                                                                     </div>
@@ -254,7 +253,7 @@
                                                                                         <div class="media-body">
                                                                                             <h4 class="author-name">{{$reply->author}}</h4>
                                                                                             <span class="comments-date">{{$reply->created_at->diffForHumans()}}</span>
-                                                                                            <span class="author-tag">Author</span>
+
                                                                                             <p>{{$reply->body}}</p>
                                                                                         </div>
                                                                                     </div>

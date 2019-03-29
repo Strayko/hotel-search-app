@@ -17,7 +17,7 @@ use App\Role;
 use App\User;
 
 Route::get('/', function () {
-	$restaurants = Restaurant::all();
+	$restaurants = Restaurant::orderBy('id', 'desc')->get();
     return view('welcome', compact('restaurants'));
 });
 Auth::routes();
