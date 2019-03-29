@@ -23,14 +23,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
                         <li class="active"><a href="/">HOME</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="properties.html">PROPERTIES</a></li>
-                                <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="gallery.html">GALLERY</a></li>
+                        <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">BLOG <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">

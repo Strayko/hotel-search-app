@@ -9,15 +9,15 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('images/dine-around-favicon1.png')}}" type="image/x-icon">
 
-    {{--<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">--}}
-    {{--<link href="{{ asset('css/default-theme.css') }}" rel="stylesheet">--}}
-    {{--<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">--}}
-    {{--<link href="{{ asset('css/jquery.fancybox.css') }}" rel="stylesheet">--}}
-    {{--<link href="{{ asset('css/nouislider.css') }}" rel="stylesheet">--}}
-    {{--<link href="{{ asset('css/slick.css') }}" rel="stylesheet">--}}
-    {{--<link href="{{ asset('css/style.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/default-theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.fancybox.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/nouislider.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/libs.css') }}" rel="stylesheet">--}}
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -144,15 +144,15 @@
 
 
 <!-- jQuery library -->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-{{--<script src="{{ asset('js/bootstrap.js') }}"></script>--}}
-{{--<script src="{{ asset('js/custom.js') }}"></script>--}}
-{{--<script src="{{ asset('js/jquery.fancybox.pack.js') }}"></script>--}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
+<script src="{{ asset('js/jquery.fancybox.pack.js') }}"></script>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-{{--<script src="{{ asset('js/jquery.mixitup.js') }}"></script>--}}
-{{--<script src="{{ asset('js/nouislider.js') }}"></script>--}}
-{{--<script src="{{ asset('js/slick.js') }}"></script>--}}
-<script src="{{ asset('js/libs.js') }}"></script>
+<script src="{{ asset('js/jquery.mixitup.js') }}"></script>
+<script src="{{ asset('js/nouislider.js') }}"></script>
+<script src="{{ asset('js/slick.js') }}"></script>
+{{--<script src="{{ asset('js/libs.js') }}"></script>--}}
 <script>
     $(".comment-reply-container .toggle-reply").click(function() {
         $(this).next().slideToggle("slow");

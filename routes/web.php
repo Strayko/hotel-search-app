@@ -16,6 +16,9 @@ use App\Restaurant;
 use App\Role;
 use App\User;
 
+/*-------------------------
+  ---> HOME PAGE <---
+--------------------------*/
 Route::get('/', function () {
 	$restaurants = Restaurant::orderBy('id', 'desc')->get();
     return view('welcome', compact('restaurants'));
@@ -28,6 +31,9 @@ Auth::routes();
 //Route::post('register', 'Auth\RegisterController@register');
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
+/*-------------------------
+  ---> MIDDLEWARE ADMIN <---
+--------------------------*/
 Route::group(['middleware'=>'admin'], function() {
 	Route::get('/admin2', function() {
 
@@ -51,10 +57,16 @@ Route::group(['middleware'=>'admin'], function() {
 	Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
 
 });
+
+
 Route::resource('user/register', 'AuthorUsersController');
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
+Route::get('/plan-and-price', ['as'=>'plan_and_price.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
 
 
+/*-------------------------
+  ---> MIDDLEWARE AUTHOR <---
+--------------------------*/
 Route::group(['middleware'=>'author'], function() {
 
 	Route::get('/admin', function() {
@@ -69,7 +81,9 @@ Route::group(['middleware'=>'author'], function() {
 
 
 
-
+/*-------------------------
+  ---> MIDDLEWARE AUTH <---
+--------------------------*/
 Route::group(['middleware'=>'auth'], function() {
 	Route::post('comment/reply', 'CommentRepliesController@createReply');
 	Route::post('comment', 'RestaurantCommentController@store');
