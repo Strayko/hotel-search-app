@@ -1,5 +1,10 @@
 @extends('layouts.frontend')
-<title>Home</title>
+<title>Show All</title>
+<style>
+    #aa-property-header {
+        background-image: url("{{asset('images/single_page_header.jpg')}}")!important;
+    }
+</style>
 @section('content')
 
     <!-- Start menu section -->
@@ -22,9 +27,10 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
-                        <li class="active"><a href="/">HOME</a></li>
+                        <li><a href="/">HOME</a></li>
+
                         <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
-                        <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
+                        <li class="active"><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
                         <li><a href="{{route('contact.contact')}}">CONTACT</a></li>
                         <li><a href="404.html">404 PAGE</a></li>
                     </ul>
@@ -34,104 +40,29 @@
     </section>
     <!-- End menu section -->
 
-    <!-- Start slider  -->
-    <section id="aa-slider">
-        <div class="aa-slider-area">
-            <!-- Top slider -->
-            <div class="aa-top-slider">
-                <!-- Top slider single slide -->
-                <div class="aa-top-slider-single">
-                    <img src="{{asset('images/slider1.jpg')}}" alt="">
-                    <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Duplex</span>
-                        <h2 class="aa-top-slider-title">1560 Square Feet</h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>South Beach, Miami (USA)</p>
-                        <span class="aa-top-slider-off">30% OFF</span>
-                        <p class="aa-top-slider-price">$460,000</p>
-                        <a href="#" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
-                    </div>
-                    <!-- / Top slider content -->
-                </div>
-                <!-- / Top slider single slide -->
-                <!-- Top slider single slide -->
-
-
-
-                <!-- / Top slider single slide -->
-                <!-- Top slider single slide -->
-
-            </div>
-        </div>
-    </section>
-    <!-- End slider  -->
-
-    <!-- Advance Search -->
-    <section id="aa-advance-search">
+    <!-- Start Proerty header  -->
+    <section id="aa-property-header">
         <div class="container">
-            <div class="aa-advance-search-area">
-                <div class="form">
-                    <div class="aa-advance-search-top">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="aa-single-advance-search">
-                                    <input type="text" placeholder="Type Your Location">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="aa-single-advance-search">
-                                    <select>
-                                        <option value="0" selected>Category</option>
-                                        <option value="1">Flat</option>
-                                        <option value="2">Land</option>
-                                        <option value="3">Plot</option>
-                                        <option value="4">Commercial</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="aa-single-advance-search">
-                                    <select>
-                                        <option value="0" selected>Type</option>
-                                        <option value="1">Flat</option>
-                                        <option value="2">Land</option>
-                                        <option value="3">Plot</option>
-                                        <option value="4">Commercial</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="aa-single-advance-search">
-                                    <select>
-                                        <option value="0" selected>Type</option>
-                                        <option value="1">Flat</option>
-                                        <option value="2">Land</option>
-                                        <option value="3">Plot</option>
-                                        <option value="4">Commercial</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="aa-single-advance-search">
-                                    <input class="aa-search-btn" type="submit" value="Search">
-                                </div>
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-property-header-inner">
+                        <h2>Show All</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="/">HOME</a></li>
+                            <li class="active">Show All</li>
+                        </ol>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
-    <!-- / Advance Search -->
+    <!-- End Proerty header  -->
 
-
-    <!-- Latest property -->
     <section id="aa-latest-property">
         <div class="container">
             <div class="aa-latest-property-area">
                 <div class="aa-title">
-                    <h2>Latest Restaurants</h2>
+                    <h2>All Restaurants</h2>
                     <span></span>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
                 </div>
@@ -169,10 +100,19 @@
                                 </div>
                             @endforeach
                         @endif
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            {{$restaurants->onEachSide(1)->links()}}
+                        </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </section>
     <!-- / Latest property -->
 

@@ -30,14 +30,8 @@
                         <li><a href="/">HOME</a></li>
 
                         <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">BLOG <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="blog-archive.html">BLOG</a></li>
-                                <li><a href="blog-single.html">BLOG DETAILS</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">CONTACT</a></li>
+                        <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
+                        <li><a href="{{route('contact.contact')}}">CONTACT</a></li>
                         <li><a href="404.html">404 PAGE</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Restaurant;
 use Illuminate\Http\Request;
 
 class SubscriberPlanController extends Controller
@@ -10,4 +11,13 @@ class SubscriberPlanController extends Controller
 
     	return view('plan_and_price');
     }
+
+    public function contact() {
+    	return view('contact');
+    }
+
+	public function showAll() {
+		$restaurants = Restaurant::orderBy('id', 'desc')->paginate(9);
+    	return view('show_all', compact('restaurants'));
+	}
 }

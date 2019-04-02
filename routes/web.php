@@ -20,7 +20,7 @@ use App\User;
   ---> HOME PAGE <---
 --------------------------*/
 Route::get('/', function () {
-	$restaurants = Restaurant::orderBy('id', 'desc')->get();
+	$restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
     return view('welcome', compact('restaurants'));
 });
 Auth::routes();
@@ -62,6 +62,8 @@ Route::group(['middleware'=>'admin'], function() {
 Route::resource('user/register', 'AuthorUsersController');
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
 Route::get('/plan-and-price', ['as'=>'plan_and_price.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
+Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contact']);
+Route::get('/show-all', ['as'=>'show_all.showAll', 'uses'=>'SubscriberPlanController@showAll']);
 
 
 /*-------------------------
