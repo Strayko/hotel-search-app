@@ -11,25 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+// mix.js('resources/js/app.js', 'public/js')
+//     .sass('resources/sass/app.scss', 'public/css');
 
 mix.styles([
-    'resources/css/bootstrap.css',
-    'resources/css/font-awesome.css',
-    'resources/css/jquery.fancybox.css',
-    'resources/css/nouislider.css',
-    'resources/css/slick.css',
-    'resources/css/style.css',
-    'resources/css/theme-color/default-theme.css'
-], 'public/css/libs.css');
+    'resources/css/planAndPrice.css'
+], 'public/css/planAndPrice.css');
 
-mix.scripts([
-    'resources/js/bootstrap.js',
-    'resources/js/custom.js',
-    'resources/js/jquery.fancybox.pack.js',
-    'resources/js/jquery.min.js',
-    'resources/js/jquery.mixitup.js',
-    'resources/js/nouislider.js',
-    'resources/js/slick.js'
-], 'public/js/libs.js');
+// mix.scripts([
+//     'resources/js/bootstrap.js',
+//     'resources/js/custom.js',
+//     'resources/js/jquery.fancybox.pack.js',
+//     'resources/js/jquery.min.js',
+//     'resources/js/jquery.mixitup.js',
+//     'resources/js/nouislider.js',
+//     'resources/js/slick.js'
+// ], 'public/js/libs.js');
