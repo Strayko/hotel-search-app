@@ -31,8 +31,9 @@
 
                         <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
                         <li class="active"><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
+                        <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>
                         <li><a href="{{route('contact.contact')}}">CONTACT</a></li>
-                        <li><a href="404.html">404 PAGE</a></li>
+
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

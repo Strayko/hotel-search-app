@@ -31,8 +31,9 @@
 
                         <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
                         <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
+                        <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>
                         <li><a href="{{route('contact.contact')}}">CONTACT</a></li>
-                        <li><a href="404.html">404 PAGE</a></li>
+
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -158,7 +159,7 @@
                                                         <div class="col-md-6 col-sm-6">
                                                             <article class="aa-blog-single">
                                                                 <figure class="aa-blog-img">
-                                                                    <a href="{{route('single_restaurant.restaurant', $related->slug)}}"><img src="{{$related->photo ? $related->photo->file : $related->photoHome()}}" alt="img"></a>
+                                                                    <a width="360" height="199" href="{{route('single_restaurant.restaurant', $related->slug)}}"><img src="{{$related->photo ? $related->photo->file : $related->photoHome()}}" alt="img"></a>
                                                                     <span class="aa-date-tag">{{$related->created_at->diffForHumans()}}</span>
                                                                 </figure>
                                                                 <div class="aa-blog-single-content">

@@ -20,4 +20,8 @@ class SubscriberPlanController extends Controller
 		$restaurants = Restaurant::orderBy('id', 'desc')->paginate(9);
     	return view('show_all', compact('restaurants'));
 	}
+
+	public function locations() {
+    	return view('locations');
+	}
 }

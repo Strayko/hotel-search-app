@@ -35,8 +35,9 @@
 
                         <li class="active"><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
                         <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
+                        <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>
                         <li><a href="{{route('contact.contact')}}">CONTACT</a></li>
-                        <li><a href="404.html">404 PAGE</a></li>
+
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -62,13 +63,27 @@
     </section>
     <!-- End Proerty header  -->
 
-    <div class="row">
+    <section id="aa-latest-property" style="padding-bottom: 5px; background-color: white;">
         <div class="container">
+            <div class="aa-latest-property-area">
+                <div class="aa-title">
+                    <h2>Choose your plan</h2>
+                    <span></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                </div>
+
+
+
+            </div>
 
         </div>
-    </div>
+
+    </section>
 
     {{-- Plan and Price START --}}
+    <div class="container">
+        <div class="row"></div>
+    </div>
     <section id="pricePlans">
         <ul id="plans">
             <li class="plan">
