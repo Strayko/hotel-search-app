@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use App\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AdminLocationsController extends Controller
@@ -38,8 +40,20 @@ class AdminLocationsController extends Controller
      */
     public function store(Request $request)
     {
-        Location::create($request->all());
-        return redirect('/admin2/locations');
+
+	    $input = $request->all();
+	    if($file = $request->file('photo_id')) {
+		    $name = time() . $file->getClientOriginalName();
+		    $file->move('images', $name);
+		    $photo = Photo::create(['file'=>$name]);
+		    $input['photo_id'] = $photo->id;
+	    }
+
+	    Location::create($input);
+	    return redirect('/admin2/locations');
+
+//        Location::create($request->all());
+//        return redirect('/admin2/locations');
     }
 
     /**
@@ -88,6 +102,7 @@ class AdminLocationsController extends Controller
     public function destroy($id)
     {
         $location = Location::findOrFail($id);
+        unlink(public_path() . $location->photo->file);
         $location->delete();
         Session::flash('deleted_location', 'The Location has ben deleted');
         return redirect('/admin2/locations');

@@ -108,5 +108,9 @@ class User extends Authenticatable
 		return $this->belongsTo('App\Package');
 	}
 
+	public function locations() {
+    	return $this->belongsTo('App\Location');
+	}
+
 
 }

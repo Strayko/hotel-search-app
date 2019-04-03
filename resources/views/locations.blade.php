@@ -77,7 +77,7 @@
                                     <article class="aa-properties-item">
                                         <a href="" class="aa-properties-item-img">
                                             <img width="262" height="199" src="{{asset('images/slider1.jpg')}}" alt="img">
-                                           
+
                                         </a>
                                         <div class="aa-tag for-sale">
                                             Passau

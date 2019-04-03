@@ -109,6 +109,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
+                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Created</th>
                                 <th>Updated</th>
@@ -121,6 +122,7 @@
                                 @foreach($locations as $location)
                                     <tr>
                                         <td>{{$location->id}}</td>
+                                        <td><img height="50" src="{{$location->photo ? $location->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                         <td>{{$location->name}}</td>
                                         <td>{{$location->created_at->diffForHumans()}}</td>
                                         <td>{{$location->updated_at->diffForHumans()}}</td>
@@ -158,11 +160,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store']) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store', 'files'=>true]) !!}
                     {{csrf_field()}}
                     <div class="form-group">
                         {!! Form::label('name', 'Name:') !!}
                         {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('photo_id', 'Photo:') !!}
+                        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                     </div>
 
                 </div>
