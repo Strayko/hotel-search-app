@@ -5,6 +5,10 @@
     {!! Form::label('title', 'Title:') !!}
     {!! Form::text('title', null, ['class'=>'form-control']) !!}
 </div>
+<div class="form-group">
+    {!! Form::label('location_id', 'Location:') !!}
+    {!! Form::select('location_id', $locations, null, ['class'=>'form-control']) !!}
+</div>
 
 <div class="form-group">
     {!! Form::label('body', 'Description:') !!}

@@ -28,6 +28,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('comments.index')}}" class="nav-link">Comments</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -196,6 +199,10 @@
                         <div class="form-group">
                             {!! Form::label('title', 'Title:') !!}
                             {!! Form::text('title', null, ['class'=>'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('location_id', 'Location:') !!}
+                            {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group">

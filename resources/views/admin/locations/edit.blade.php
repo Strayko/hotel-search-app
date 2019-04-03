@@ -16,7 +16,7 @@
                         <a href="{{route('restaurants.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('packages.index')}}" class="nav-link active">Packages</a>
+                        <a href="{{route('packages.index')}}" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('users.index')}}" class="nav-link">Users</a>
@@ -28,7 +28,7 @@
                         <a href="{{route('comments.index')}}" class="nav-link">Comments</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
+                        <a href="{{route('locations.index')}}" class="nav-link active">Locations</a>
                     </li>
                 </ul>
 
@@ -63,32 +63,29 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-success text-white">
+    <header id="main-header" class="py-2 bg-light text-black">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-box"></i> Packages</h1>
+                    <h1><i class="fas fa-map-marker-alt"></i> Edit Location</h1>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- SEARCH -->
-    <section id="search" class="py-4 mb-4 bg-light">
+    <section id="actions" class="py-4 mb-4 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addPackageModal">
-                        <i class="fas fa-plus"></i> Add Package
+                    <a href="/admin2" class="btn btn-primary btn-block">
+                        <i class="fas fa-arrow-left"></i> Back To Dashboard
                     </a>
                 </div>
-                <div class="col-md-6 ml-auto">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Packages...">
-                        <div class="input-group-append">
-                            <button class="btn btn-success">Search</button>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminLocationsController@destroy', $location->id]]) !!}
+                    <button type="submit" class="btn btn-danger btn-block"><i class="fas fa-trash-alt"></i> Delete Location</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -97,49 +94,29 @@
     <section id="categories">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            @if(Session::has('deleted_package'))
-                                <p class="alert alert-danger">{{session('deleted_package')}}</p>
-                            @endif
-                            <h4>Latest Packages</h4>
+                            <h4>Location</h4>
                         </div>
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Created</th>
-                                <th>Updated</th>
-                                <th></th>
+                        <div class="card-body">
+                            {!! Form::model($location, ['method'=>'PATCH', 'action'=>['AdminLocationsController@update', $location->id]]) !!}
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                {!! Form::label('name', 'Name:') !!}
+                                {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                            </div>
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if($packages)
-                                @foreach($packages as $package)
-                                <tr>
-                                    <td>{{$package->id}}</td>
-                                    <td>{{$package->name}}</td>
-                                    <td>{{$package->created_at->diffForHumans()}}</td>
-                                    <td>{{$package->updated_at->diffForHumans()}}</td>
 
-                                    <td class="d-flex justify-content-end">
-                                        <a href="{{route('packages.edit', $package->id)}}" class="btn btn-secondary">
-                                            <i class="fas fa-box"></i> Edit
-                                        </a>
-                                        <a href="#" class="d-inline-block ml-1">
-                                            {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPackagesController@destroy', $package->id]]) !!}
-                                            <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
-                                            {!! Form::close() !!}
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-map-marker-alt"></i> Update Location</button>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -158,16 +135,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminPackagesController@store']) !!}
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                        </div>
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store']) !!}
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        {!! Form::label('name', 'Name:') !!}
+                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit('Create Package', ['class'=>'btn btn-success']) !!}
+                    {!! Form::submit('Create ', ['class'=>'btn btn-success']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>

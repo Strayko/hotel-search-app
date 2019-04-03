@@ -1,7 +1,6 @@
 @extends('layouts.admin')
-<title>Users</title>
-@section('content')
 
+@section('content')
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
             <a href="/" class="navbar-brand">Home</a>
@@ -20,7 +19,7 @@
                         <a href="{{route('packages.index')}}" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('users.index')}}" class="nav-link active">Users</a>
+                        <a href="{{route('users.index')}}" class="nav-link">Users</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('media.index')}}" class="nav-link">Media</a>
@@ -29,7 +28,7 @@
                         <a href="{{route('comments.index')}}" class="nav-link">Comments</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
+                        <a href="{{route('locations.index')}}" class="nav-link active">Locations</a>
                     </li>
                 </ul>
 
@@ -64,11 +63,11 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-warning text-white">
+    <header id="main-header" class="py-2 bg-secondary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-users"></i> Users</h1>
+                    <h1><i class="fas fa-map-marker-alt"></i> Locations</h1>
                 </div>
             </div>
         </div>
@@ -79,78 +78,66 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
-                        <i class="fas fa-plus"></i> Add User
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addLocationModal">
+                        <i class="fas fa-plus"></i> Add Location
                     </a>
                 </div>
                 <div class="col-md-6 ml-auto">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Users...">
+                        <input type="text" class="form-control" placeholder="Search Locations...">
                         <div class="input-group-append">
-                            <button class="btn btn-warning">Search</button>
+                            <button class="btn btn-secondary">Search</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    @include('includes.form_error')
-    <!-- USERS -->
-    <section id="posts">
+
+    <section id="categories">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            @if(Session::has('deleted_user'))
-                                <p class="alert alert-danger">{{session('deleted_user')}}</p>
+                            @if(Session::has('deleted_location'))
+                                <p class="alert alert-danger">{{session('deleted_location')}}</p>
                             @endif
-                            <h4>Latest Users</h4>
+                            <h4>Latest Locations</h4>
                         </div>
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Photo</th>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Package</th>
-                                <th>Active</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                                 <th></th>
+
                             </tr>
                             </thead>
                             <tbody>
-
-                            @if($users)
-                                @foreach($users as $user)
+                            @if($locations)
+                                @foreach($locations as $location)
                                     <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td><img height="50" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->role->name}}</td>
-                                        <td>{{$user->package ? $user->package->name : 'Uncategorized'}}</td>
-                                        <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
-                                        <td>{{$user->created_at->diffForHumans()}}</td>
-                                        <td>{{$user->updated_at->diffForHumans()}}</td>
-                                        <td>
-                                            <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-user-edit"></i> Edit
+                                        <td>{{$location->id}}</td>
+                                        <td>{{$location->name}}</td>
+                                        <td>{{$location->created_at->diffForHumans()}}</td>
+                                        <td>{{$location->updated_at->diffForHumans()}}</td>
+
+                                        <td class="d-flex justify-content-end">
+                                            <a href="{{route('locations.edit', $location->id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-map-marker-alt"></i> Edit
                                             </a>
-                                            <a href="#" class="d-inline-block mt-1">
-                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
-                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
-                                                {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
+                                            <a href="#" class="d-inline-block ml-1">
+                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminLocationsController@destroy', $location->id]]) !!}
+                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
                                                 {!! Form::close() !!}
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
                             @endif
-
                             </tbody>
                         </table>
                     </div>
@@ -159,67 +146,33 @@
         </div>
     </section>
 
-    <!-- ADD USER MODAL -->
-    <div class="modal fade" id="addUserModal">
+
+    <!-- ADD LOCATION MODAL -->
+    <div class="modal fade" id="addLocationModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title">Add User</h5>
+                <div class="modal-header bg-secondary text-white">
+                    <h5 class="modal-title">Add Location</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
-                        <div class="form-group">
-                            {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('email', 'Email:') !!}
-                            {!! Form::email('email', null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('password', 'Password:') !!}
-                            {!! Form::password('password', ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('role_id', 'Role:') !!}
-                            {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('package_id', 'Package:') !!}
-                            {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('is_active', 'Status:') !!}
-                            {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('photo_id', 'Photo:') !!}
-                            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                        </div>
-
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store']) !!}
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        {!! Form::label('name', 'Name:') !!}
+                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    <div class="form-group">
-                        {!! Form::submit('Create User', ['class'=>'btn btn-warning']) !!}
-                    </div>
+                    {!! Form::submit('Create Location', ['class'=>'btn btn-secondary']) !!}
                     {!! Form::close() !!}
-                    {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}
-
                 </div>
             </div>
         </div>
     </div>
-
 
 @endsection
 

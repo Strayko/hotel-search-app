@@ -27,6 +27,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('comments.index')}}" class="nav-link">Comments</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -60,11 +63,11 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-success text-white">
+    <header id="main-header" class="py-2 bg-light text-black">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-box"></i> Packages</h1>
+                    <h1><i class="fas fa-box"></i> Edit Packages</h1>
                 </div>
             </div>
         </div>
@@ -94,7 +97,7 @@
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Latest Packages</h4>
+                            <h4>Package</h4>
                         </div>
                         <div class="card-body">
                             {!! Form::model($package, ['method'=>'PATCH', 'action'=>['AdminPackagesController@update', $package->id]]) !!}

@@ -5,6 +5,7 @@
         background-image: url("{{asset('images/single_page_header.jpg')}}")!important;
     }
 </style>
+<link rel="stylesheet" href="{{asset('css/locations.css')}}">
 @section('content')
 
     <!-- Start menu section -->
@@ -47,10 +48,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="aa-property-header-inner">
-                        <h2>Show All</h2>
+                        <h2>Locations</h2>
                         <ol class="breadcrumb">
                             <li><a href="/">HOME</a></li>
-                            <li class="active">Show All</li>
+                            <li class="active">Locations</li>
                         </ol>
                     </div>
                 </div>
@@ -60,6 +61,47 @@
     <!-- End Proerty header  -->
 
 
+
+    <section id="aa-latest-property">
+        <div class="container">
+            <div class="aa-latest-property-area">
+                <div class="aa-title">
+                    <h2>All Locations</h2>
+                    <span></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                </div>
+                <div class="aa-latest-properties-content">
+                    <div class="row">
+
+                                <div class="col-md-3">
+                                    <article class="aa-properties-item">
+                                        <a href="" class="aa-properties-item-img">
+                                            <img width="262" height="199" src="{{asset('images/slider1.jpg')}}" alt="img">
+                                           
+                                        </a>
+                                        <div class="aa-tag for-sale">
+                                            Passau
+                                        </div>
+
+                                    </article>
+                                </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- / Latest property -->
 
 
 

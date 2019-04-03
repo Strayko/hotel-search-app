@@ -30,6 +30,7 @@ class Restaurant extends Model
         'package_id',
 	    'photo_id',
 	    'title',
+	    'location_id',
 	    'body'
     ];
 
@@ -57,5 +58,8 @@ class Restaurant extends Model
     	return "http://placehold.it/360xa199";
     }
 
+    public function location() {
+    	return $this->belongsTo('App\Location');
+    }
 
 }

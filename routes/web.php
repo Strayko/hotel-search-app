@@ -11,6 +11,7 @@
 |
 */
 
+use App\Location;
 use App\Package;
 use App\Restaurant;
 use App\Role;
@@ -31,9 +32,9 @@ Auth::routes();
 //Route::post('register', 'Auth\RegisterController@register');
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
-/*-------------------------
+/*--------------------------
   ---> MIDDLEWARE ADMIN <---
---------------------------*/
+---------------------------*/
 Route::group(['middleware'=>'admin'], function() {
 	Route::get('/admin2', function() {
 
@@ -42,7 +43,8 @@ Route::group(['middleware'=>'admin'], function() {
 		$packages = Package::pluck('name', 'id')->all();
 		$package = Package::all();
 		$roles = Role::pluck('name', 'id')->all();
-		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package'));
+		$locations = Location::pluck('name', 'id')->all();
+		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package', 'locations'));
 	});
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -53,12 +55,16 @@ Route::group(['middleware'=>'admin'], function() {
 	Route::resource('admin2/media', 'AdminMediaController');
 	Route::resource('admin2/comments', 'RestaurantCommentController');
 	Route::resource('admin2/comment/replies', 'CommentRepliesController');
+	Route::resource('admin2/locations', 'AdminLocationsController');
 
 	Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
 
 });
 
 
+/*------------------------------
+  ---> SINGLE PAGE FRONTEND <---
+-------------------------------*/
 Route::resource('user/register', 'AuthorUsersController');
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
 Route::get('/plan-and-price', ['as'=>'plan_and_price.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
@@ -67,9 +73,9 @@ Route::get('/show-all', ['as'=>'show_all.showAll', 'uses'=>'SubscriberPlanContro
 Route::get('/locations', ['as'=>'locations.locations', 'uses'=>'SubscriberPlanController@locations']);
 
 
-/*-------------------------
+/*---------------------------
   ---> MIDDLEWARE AUTHOR <---
---------------------------*/
+----------------------------*/
 Route::group(['middleware'=>'author'], function() {
 
 	Route::get('/admin', function() {

@@ -27,6 +27,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('comments.index')}}" class="nav-link active">Comments</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

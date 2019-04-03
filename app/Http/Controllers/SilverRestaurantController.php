@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
 use App\Package;
 use App\Photo;
 use App\Restaurant;
@@ -25,8 +26,9 @@ class SilverRestaurantController extends Controller
 
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
 	    $packages = Package::pluck('name', 'id')->all();
+	    $locations = Location::pluck('name', 'id')->all();
 
-        return view('silver.restaurant.index', compact('restaurants', 'packages', 'bronze', 'gold', 'silver'));
+        return view('silver.restaurant.index', compact('restaurants', 'packages', 'bronze', 'gold', 'silver', 'locations'));
     }
 
     /**
@@ -81,13 +83,14 @@ class SilverRestaurantController extends Controller
     {
 	    $restaurants = Restaurant::findOrFail($id);
 	    $packages = Package::pluck('name', 'id')->all();
+	    $locations = Location::pluck('name', 'id')->all();
 
 	    $bronze = User::where('package_id', Auth::user()->isBronze())->first();
 	    $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
 
 //	    $silver = DB::table('users')->where('package_id', '=', '3')->value('package_id');
-	    return view('silver.restaurant.edit', compact('restaurants', 'packages', 'silver', 'bronze', 'gold'));
+	    return view('silver.restaurant.edit', compact('restaurants', 'packages', 'silver', 'bronze', 'gold', 'locations'));
     }
 
     /**

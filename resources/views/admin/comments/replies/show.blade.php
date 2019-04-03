@@ -27,6 +27,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('comments.index')}}" class="nav-link active">Comments</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -118,7 +121,7 @@
                                         <td>{{$reply->author}}</td>
                                         <td>{{$reply->email}}</td>
                                         <td>{{$reply->body}}</td>
-                                        <td><a href="{{route('single_restaurant.restaurant', $reply->comment->restaurant->id)}}">View Restaurant</a></td>
+                                        <td><a href="{{route('single_restaurant.restaurant', $reply->comment->restaurant->slug)}}">View Restaurant</a></td>
                                         <td>
                                             @if($reply->is_active == 1)
                                                 {!! Form::open(['method'=>'PATCH', 'action'=>['CommentRepliesController@update', $reply->id]]) !!}
