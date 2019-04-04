@@ -118,7 +118,29 @@
     </section>
     <!-- / Latest property -->
 
-
+    @if(isset($details))
+        <p>The Search results for your query <b>{{$query}}</b> are :</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                <td>Title</td>
+                <td>Body</td>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($details as $user)
+                <tr>
+                    <td>{{$user->title}}</td>
+                    <td>{{$user->body}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @elseif(isset($message))
+        <p>{{$message}}</p>
+    @endif
 
 
 @endsection

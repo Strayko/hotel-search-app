@@ -76,8 +76,18 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="aa-single-advance-search">
-
-                                    <input type="text" placeholder="Type Your Location">
+                                    <form action="{{URL::to('/search')}}" method="POST" role="search">
+                                        {{csrf_field()}}
+                                        <div class="input-group">
+                                            <input type="text" class="form_control" name="q" placeholder="Search Restaurants">
+                                            <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                    {{--<input type="text" placeholder="Type Your Location">--}}
                                 </div>
                             </div>
                             {{--<div class="col-md-2">--}}
@@ -127,6 +137,29 @@
     </section>
     <!-- / Advance Search -->
 
+    @if(isset($details))
+        <p>The Search results for your query <b>{{$query}}</b> are :</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    <td>Title</td>
+                    <td>Body</td>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach($details as $user)
+                    <tr>
+                        <td>{{$user->title}}</td>
+                        <td>{{$user->body}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        @elseif(isset($message))
+        <p>{{$message}}</p>
+    @endif
 
     <!-- Latest property -->
     <section id="aa-latest-property">
