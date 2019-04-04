@@ -72,6 +72,12 @@ Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanControll
 Route::get('/show-all', ['as'=>'show_all.showAll', 'uses'=>'SubscriberPlanController@showAll']);
 Route::get('/locations', ['as'=>'locations.locations', 'uses'=>'SubscriberPlanController@locations']);
 Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>'SubscriberPlanController@locationCategory']);
+Route::get('/search', ['as'=>'search.search', 'uses'=>'SearchController@search']);
+
+
+
+
+
 
 
 /*---------------------------
