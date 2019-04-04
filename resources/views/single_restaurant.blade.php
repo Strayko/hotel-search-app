@@ -159,7 +159,7 @@
                                                         <div class="col-md-6 col-sm-6">
                                                             <article class="aa-blog-single">
                                                                 <figure class="aa-blog-img">
-                                                                    <a width="360" height="199" href="{{route('single_restaurant.restaurant', $related->slug)}}"><img src="{{$related->photo ? $related->photo->file : $related->photoHome()}}" alt="img"></a>
+                                                                    <a href="{{route('single_restaurant.restaurant', $related->slug)}}"><img width="360" height="199" src="{{$related->photo ? $related->photo->file : $related->photoHome()}}" alt="img"></a>
                                                                     <span class="aa-date-tag">{{$related->created_at->diffForHumans()}}</span>
                                                                 </figure>
                                                                 <div class="aa-blog-single-content">

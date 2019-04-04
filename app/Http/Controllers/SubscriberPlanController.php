@@ -25,7 +25,13 @@ class SubscriberPlanController extends Controller
 	public function locations() {
 
     	$locations = Location::all();
-
     	return view('locations', compact('locations'));
+	}
+
+	public function locationCategory($id) {
+
+    	$location = Location::findOrFail($id);
+    	$restaurantLocation = $location->restaurant;
+    	return view('single_location', compact('location', 'restaurantLocation'));
 	}
 }

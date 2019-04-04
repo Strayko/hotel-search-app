@@ -1,11 +1,10 @@
 @extends('layouts.frontend')
-<title>Locations</title>
+<title>Location</title>
 <style>
     #aa-property-header {
         background-image: url("{{asset('images/single_page_header.jpg')}}")!important;
     }
 </style>
-<link rel="stylesheet" href="{{asset('css/locations.css')}}">
 @section('content')
 
     <!-- Start menu section -->
@@ -32,7 +31,7 @@
 
                         <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
                         <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
-                        <li class="active"><a href="{{route('locations.locations')}}">LOCATIONS</a></li>
+                        <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>
                         <li><a href="{{route('contact.contact')}}">CONTACT</a></li>
 
                     </ul>
@@ -48,10 +47,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="aa-property-header-inner">
-                        <h2>Locations</h2>
+                        <h2>Restaurants Location</h2>
                         <ol class="breadcrumb">
                             <li><a href="/">HOME</a></li>
-                            <li class="active">Locations</li>
+                            <li class="active">Restaurants Location</li>
                         </ol>
                     </div>
                 </div>
@@ -61,43 +60,55 @@
     <!-- End Proerty header  -->
 
 
-
     <section id="aa-latest-property">
         <div class="container">
             <div class="aa-latest-property-area">
                 <div class="aa-title">
-                    <h2>All Locations</h2>
+                    <h2>Restaurants</h2>
                     <span></span>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
                 </div>
                 <div class="aa-latest-properties-content">
                     <div class="row">
-
-                        @if(count($locations) > 0)
-                            @foreach($locations as $location)
-                                <div class="col-md-3">
+                        @if(count($restaurantLocation) > 0)
+                            @foreach($restaurantLocation as $locations)
+                                <div class="col-md-4">
                                     <article class="aa-properties-item">
-                                        <a href="{{route('single_location.locationCategory', $location->id)}}" class="aa-properties-item-img">
-                                            <img width="262" height="199" src="{{$location->photo ? $location->photo->file : $location->noPhoto()}}" alt="img">
-
+                                        <a href="{{route('single_restaurant.restaurant', $locations->slug)}}" class="aa-properties-item-img">
+                                            <img width="360" height="199" src="{{$locations->photo ? $locations->photo->file : $locations->photoHome()}}" alt="img">
                                         </a>
                                         <div class="aa-tag for-sale">
-                                            {{$location->name}}
-                                            (<b>{{$location->restaurant->count()}}</b>)
+                                            {{$locations->created_at->diffForHumans()}}
                                         </div>
-
+                                        <div class="aa-properties-item-content">
+                                            <div class="aa-properties-info">
+                                                <span>5 Rooms</span>
+                                                <span>2 Beds</span>
+                                                <span>3 Baths</span>
+                                                <span>1100 SQ FT</span>
+                                            </div>
+                                            <div class="aa-properties-about" style="height: 12rem">
+                                                <h3><a href="{{route('single_restaurant.restaurant', $locations->slug)}}">{{$locations->title}}</a></h3>
+                                                <p>{{Str::limit($locations->body, 120)}}</p>
+                                            </div>
+                                            <div class="aa-properties-detial">
+                                            <span class="aa-price">
+                                              $35000
+                                            </span>
+                                                <a href="{{route('single_restaurant.restaurant', $locations->slug)}}" class="aa-secondary-btn">View Details</a>
+                                            </div>
+                                        </div>
                                     </article>
                                 </div>
                             @endforeach
                             @else
-                            <h1 class="text-center">No Locations</h1>
+                            <h2 class="text-center">No Restaurants</h2>
                         @endif
-
 
                     </div>
                     <div class="row">
                         <div class="col-sm-12 text-center">
-
+                            {{--{{$restaurants->onEachSide(1)->links()}}--}}
                         </div>
                     </div>
                 </div>
@@ -108,7 +119,6 @@
 
     </section>
     <!-- / Latest property -->
-
 
 
 @endsection

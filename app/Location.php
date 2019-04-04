@@ -18,4 +18,8 @@ class Location extends Model
 	public function noPhoto() {
 		return "http://placehold.it/262xa199";
 	}
+
+	public function restaurant() {
+    	return $this->hasMany('App\Restaurant');
+	}
 }
