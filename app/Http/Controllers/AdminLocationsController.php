@@ -88,9 +88,17 @@ class AdminLocationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $location = Location::findOrFail($id);
-        $location->update($request->all());
-        return redirect('/admin2/locations');
+	    $location = Location::findOrFail($id);
+	    $input = $request->all();
+	    if($file = $request->file('photo_id')) {
+		    $name = time() . $file->getClientOriginalName();
+		    $file->move('images', $name);
+		    $photo = Photo::create(['file'=>$name]);
+		    $input['photo_id'] = $photo->id;
+	    }
+
+	    $location->update($input);
+	    return redirect('/admin2/locations');
     }
 
     /**

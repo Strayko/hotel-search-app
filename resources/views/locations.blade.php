@@ -73,19 +73,24 @@
                 <div class="aa-latest-properties-content">
                     <div class="row">
 
+                        @if(count($locations) > 0)
+                            @foreach($locations as $location)
                                 <div class="col-md-3">
                                     <article class="aa-properties-item">
                                         <a href="" class="aa-properties-item-img">
-                                            <img width="262" height="199" src="{{asset('images/slider1.jpg')}}" alt="img">
+                                            <img width="262" height="199" src="{{$location->photo ? $location->photo->file : $location->noPhoto()}}" alt="img">
 
                                         </a>
                                         <div class="aa-tag for-sale">
-                                            Passau
+                                            {{$location->name}}
                                         </div>
 
                                     </article>
                                 </div>
-
+                            @endforeach
+                            @else
+                            <h1 class="text-center">No Locations</h1>
+                        @endif
 
 
                     </div>

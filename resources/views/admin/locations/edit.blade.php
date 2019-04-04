@@ -100,11 +100,15 @@
                             <h4>Location</h4>
                         </div>
                         <div class="card-body">
-                            {!! Form::model($location, ['method'=>'PATCH', 'action'=>['AdminLocationsController@update', $location->id]]) !!}
+                            {!! Form::model($location, ['method'=>'PATCH', 'action'=>['AdminLocationsController@update', $location->id], 'files'=>true]) !!}
                             {{csrf_field()}}
                             <div class="form-group">
                                 {!! Form::label('name', 'Name:') !!}
                                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('photo_id', 'Photo:') !!}
+                                {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                             </div>
 
 
@@ -118,6 +122,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <img width="300" height="300" src="{{$location->photo ? $location->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
                 </div>
             </div>
         </div>
@@ -135,11 +142,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store']) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store', 'files'=>true]) !!}
                     {{csrf_field()}}
                     <div class="form-group">
                         {!! Form::label('name', 'Name:') !!}
                         {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('photo_id', 'Photo:') !!}
+                        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                     </div>
 
                 </div>

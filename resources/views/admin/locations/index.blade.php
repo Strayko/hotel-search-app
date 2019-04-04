@@ -122,7 +122,7 @@
                                 @foreach($locations as $location)
                                     <tr>
                                         <td>{{$location->id}}</td>
-                                        <td><img height="50" src="{{$location->photo ? $location->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                                        <td><img height="50" width="50" src="{{$location->photo ? $location->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                         <td>{{$location->name}}</td>
                                         <td>{{$location->created_at->diffForHumans()}}</td>
                                         <td>{{$location->updated_at->diffForHumans()}}</td>

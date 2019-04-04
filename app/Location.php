@@ -14,4 +14,8 @@ class Location extends Model
     public function photo() {
     	return $this->belongsTo('App\Photo');
     }
+
+	public function noPhoto() {
+		return "http://placehold.it/262xa199";
+	}
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
 use App\Restaurant;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,9 @@ class SubscriberPlanController extends Controller
 	}
 
 	public function locations() {
-    	return view('locations');
+
+    	$locations = Location::all();
+
+    	return view('locations', compact('locations'));
 	}
 }
