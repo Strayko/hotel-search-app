@@ -22,7 +22,8 @@ use App\User;
 --------------------------*/
 Route::get('/', function () {
 	$restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
-    return view('welcome', compact('restaurants'));
+	$locations = Location::pluck('name', 'id');
+    return view('welcome', compact('restaurants', 'locations'));
 });
 Auth::routes();
 

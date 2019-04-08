@@ -66,19 +66,20 @@
                 <div class="aa-title">
                     <h2>All Search</h2>
                     <span></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                    @if(isset($details))
+                    <p>The Search results for your query <b>{{$query}}</b> are :</p>
                 </div>
                 <div class="aa-latest-properties-content">
                     <div class="row">
-                        {{--@if($restaurants)--}}
-                            {{--@foreach($restaurants as $restaurant)--}}
+                        {{--@if(isset($details))--}}
+                            @foreach($details as $user)
                                 <div class="col-md-4">
                                     <article class="aa-properties-item">
-                                        {{--<a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}" class="aa-properties-item-img">--}}
-                                            {{--<img width="360" height="199" src="{{$restaurant->photo ? $restaurant->photo->file : $restaurant->photoHome()}}" alt="img">--}}
-                                        {{--</a>--}}
+                                        <a href="{{route('single_restaurant.restaurant', $user->slug)}}" class="aa-properties-item-img">
+                                            <img width="360" height="199" src="{{$user->photo ? $user->photo->file : $user->photoHome()}}" alt="img">
+                                        </a>
                                         <div class="aa-tag for-sale">
-                                            {{--{{$restaurant->created_at->diffForHumans()}}--}}
+                                            {{$user->created_at->diffForHumans()}}
                                         </div>
                                         <div class="aa-properties-item-content">
                                             <div class="aa-properties-info">
@@ -88,27 +89,30 @@
                                                 <span>1100 SQ FT</span>
                                             </div>
                                             <div class="aa-properties-about" style="height: 12rem">
-                                                {{--<h3><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">{{$restaurant->title}}</a></h3>--}}
-                                                {{--<p>{{Str::limit($restaurant->body, 120)}}</p>--}}
+                                                <h3><a href="{{route('single_restaurant.restaurant', $user->slug)}}">{{$user->title}}</a></h3>
+                                                <p>{{Str::limit($user->body, 120)}}</p>
                                             </div>
                                             <div class="aa-properties-detial">
                                             <span class="aa-price">
                                               $35000
                                             </span>
-                                                {{--<a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}" class="aa-secondary-btn">View Details</a>--}}
+                                                <a href="{{route('single_restaurant.restaurant', $user->slug)}}" class="aa-secondary-btn">View Details</a>
                                             </div>
                                         </div>
                                     </article>
                                 </div>
-                            {{--@endforeach--}}
-                        {{--@endif--}}
+                            @endforeach
+                        @elseif(isset($message))
+                            <h3>{{$message}}</h3>
+                        @endif
+
 
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            {{--{{$restaurants->onEachSide(1)->links()}}--}}
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="col-sm-12 text-center">--}}
+                            {{--{{$details->onEachSide(1)->links()}}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
 
             </div>
@@ -117,30 +121,6 @@
 
     </section>
     <!-- / Latest property -->
-
-    @if(isset($details))
-        <p>The Search results for your query <b>{{$query}}</b> are :</p>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>
-                <td>Title</td>
-                <td>Body</td>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($details as $user)
-                <tr>
-                    <td>{{$user->title}}</td>
-                    <td>{{$user->body}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    @elseif(isset($message))
-        <p>{{$message}}</p>
-    @endif
 
 
 @endsection
