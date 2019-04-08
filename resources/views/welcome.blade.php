@@ -87,7 +87,7 @@
                                         <div class="col-md-2">
                                             <div class="aa-single-advance-search">
 
-                                                    {!! Form::select('name', $locations, null, ['class'=>'form-control']) !!}
+                                                    {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
 
                                             </div>
                                         </div>
