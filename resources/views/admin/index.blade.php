@@ -31,6 +31,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('foods.index')}}" class="nav-link">Foods</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -146,6 +149,12 @@
 
                             </tbody>
                         </table>
+                        <!-- PAGINATION -->
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+                                {{$restaurants->onEachSide(1)->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -153,7 +162,7 @@
                         <div class="card-body">
                             <h3>Restaurants</h3>
                             <h4 class="display-4">
-                                <i class="fas fa-utensils"></i> {{$restaurants->count()}}
+                                <i class="fas fa-utensils"></i> {{$restaurantsall->count()}}
                             </h4>
                             <a href="{{route('restaurants.index')}}" class="btn btn-outline-light btn-sm">View</a>
                         </div>
@@ -203,6 +212,11 @@
                         <div class="form-group">
                             {!! Form::label('location_id', 'Location:') !!}
                             {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('food_id', 'Food:') !!}
+                            {!! Form::select('food_id', ['' => 'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
                         </div>
 
                         <div class="form-group">

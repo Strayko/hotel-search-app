@@ -28,10 +28,10 @@
                         <a href="{{route('comments.index')}}" class="nav-link">Comments</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('locations.index')}}" class="nav-link active">Locations</a>
+                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('foods.index')}}" class="nav-link">Foods</a>
+                        <a href="{{route('foods.index')}}" class="nav-link active">Foods</a>
                     </li>
                 </ul>
 
@@ -66,32 +66,29 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-secondary text-white">
+    <header id="main-header" class="py-2 bg-light text-black">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-map-marker-alt"></i> Locations</h1>
+                    <h1><i class="fas fa-pepper-hot"></i> Edit Foods</h1>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- SEARCH -->
-    <section id="search" class="py-4 mb-4 bg-light">
+    <section id="actions" class="py-4 mb-4 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addLocationModal">
-                        <i class="fas fa-plus"></i> Add Location
+                    <a href="/admin2" class="btn btn-primary btn-block">
+                        <i class="fas fa-arrow-left"></i> Back To Dashboard
                     </a>
                 </div>
-                <div class="col-md-6 ml-auto">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Locations...">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary">Search</button>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminFoodController@destroy', $food->id]]) !!}
+                    <button type="submit" class="btn btn-danger btn-block"><i class="fas fa-trash-alt"></i> Delete Food</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -100,51 +97,29 @@
     <section id="categories">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            @if(Session::has('deleted_location'))
-                                <p class="alert alert-danger">{{session('deleted_location')}}</p>
-                            @endif
-                            <h4>Latest Locations</h4>
+                            <h4>Food</h4>
                         </div>
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Photo</th>
-                                <th>Name</th>
-                                <th>Created</th>
-                                <th>Updated</th>
-                                <th></th>
+                        <div class="card-body">
+                            {!! Form::model($food, ['method'=>'PATCH', 'action'=>['AdminFoodController@update', $food->id]]) !!}
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                {!! Form::label('name', 'Name:') !!}
+                                {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                            </div>
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if($locations)
-                                @foreach($locations as $location)
-                                    <tr>
-                                        <td>{{$location->id}}</td>
-                                        <td><img height="50" width="50" src="{{$location->photo ? $location->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$location->name}}</td>
-                                        <td>{{$location->created_at->diffForHumans()}}</td>
-                                        <td>{{$location->updated_at->diffForHumans()}}</td>
 
-                                        <td class="d-flex justify-content-end">
-                                            <a href="{{route('locations.edit', $location->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-map-marker-alt"></i> Edit
-                                            </a>
-                                            <a href="#" class="d-inline-block ml-1">
-                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminLocationsController@destroy', $location->id]]) !!}
-                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
-                                                {!! Form::close() !!}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-pepper-hot"></i> Update Food</button>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,31 +127,27 @@
     </section>
 
 
-    <!-- ADD LOCATION MODAL -->
-    <div class="modal fade" id="addLocationModal">
+    <!-- ADD PACKAGE MODAL -->
+    <div class="modal fade" id="addPackageModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title">Add Location</h5>
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Add Package</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store', 'files'=>true]) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminPackagesController@store']) !!}
                     {{csrf_field()}}
                     <div class="form-group">
                         {!! Form::label('name', 'Name:') !!}
                         {!! Form::text('name', null, ['class'=>'form-control']) !!}
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('photo_id', 'Photo:') !!}
-                        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit('Create Location', ['class'=>'btn btn-secondary']) !!}
+                    {!! Form::submit('Create Package', ['class'=>'btn btn-success']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>

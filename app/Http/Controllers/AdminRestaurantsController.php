@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Food;
 use App\Http\Requests\RestaurantCreateRequest;
 use App\Location;
 use App\Package;
@@ -20,10 +21,11 @@ class AdminRestaurantsController extends Controller
      */
     public function index()
     {
-    	$restaurants = Restaurant::paginate(5);
+    	$restaurants = Restaurant::orderBy('id', 'desc')->paginate(5);
 	    $locations = Location::pluck('name', 'id')->all();
+	    $foods = Food::pluck('name', 'id')->all();
 
-        return view('admin.restaurants.index', compact('restaurants', 'locations'));
+        return view('admin.restaurants.index', compact('restaurants', 'locations', 'foods'));
     }
 
     /**
@@ -79,7 +81,8 @@ class AdminRestaurantsController extends Controller
     {
 	    $restaurants = Restaurant::findOrFail($id);
 		$locations = Location::pluck('name', 'id')->all();
-        return view('admin.restaurants.edit', compact('restaurants', 'locations'));
+	    $foods = Food::pluck('name', 'id')->all();
+        return view('admin.restaurants.edit', compact('restaurants', 'locations', 'foods'));
     }
 
     /**

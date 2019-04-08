@@ -91,7 +91,7 @@
                             @endif
                             <h4>Latest Restaurants</h4>
                         </div>
-
+                        @if(count($restaurants) > 0)
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
@@ -107,7 +107,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if($restaurants)
+
                                 @foreach($restaurants as $restaurant)
                                     <tr>
                                         <td>{{$restaurant->id}}</td>
@@ -130,29 +130,13 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @else
+                                <h1 class="text-center">Please insert your Restaurant</h1>
                             @endif
                             </tbody>
                         </table>
                         <!-- PAGINATION -->
-                        <nav class="ml-4">
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <a href="#" class="page-link">Previous</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+
                     </div>
                 </div>
             </div>

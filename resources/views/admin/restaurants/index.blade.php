@@ -31,6 +31,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('foods.index')}}" class="nav-link">Foods</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -183,9 +186,14 @@
                                 {!! Form::text('title', null, ['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">
-                        {!! Form::label('location_id', 'Location:') !!}
-                        {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
-                    </div>
+                                {!! Form::label('location_id', 'Location:') !!}
+                                {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
+                            </div>
+
+                            <div class="form-group">
+                                {!! Form::label('food_id', 'Food:') !!}
+                                {!! Form::select('food_id', ['' => 'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::label('body', 'Description:') !!}

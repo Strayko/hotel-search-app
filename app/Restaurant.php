@@ -31,7 +31,8 @@ class Restaurant extends Model
 	    'photo_id',
 	    'title',
 	    'location_id',
-	    'body'
+	    'body',
+	    'food_id'
     ];
 
     public function user() {
@@ -60,6 +61,10 @@ class Restaurant extends Model
 
     public function location() {
     	return $this->belongsTo('App\Location');
+    }
+
+    public function food() {
+    	return $this->belongsTo('App\Food');
     }
 
 }

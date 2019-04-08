@@ -11,6 +11,7 @@
 |
 */
 
+use App\Food;
 use App\Location;
 use App\Package;
 use App\Restaurant;
@@ -40,12 +41,14 @@ Route::group(['middleware'=>'admin'], function() {
 	Route::get('/admin2', function() {
 
 		$users = User::all();
-		$restaurants = Restaurant::all();
+		$restaurants = Restaurant::orderBy('id', 'desc')->paginate(7);
+		$restaurantsall = Restaurant::all();
 		$packages = Package::pluck('name', 'id')->all();
 		$package = Package::all();
 		$roles = Role::pluck('name', 'id')->all();
 		$locations = Location::pluck('name', 'id')->all();
-		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package', 'locations'));
+		$foods = Food::pluck('name', 'id')->all();
+		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package', 'locations', 'foods', 'restaurantsall'));
 	});
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -57,6 +60,7 @@ Route::group(['middleware'=>'admin'], function() {
 	Route::resource('admin2/comments', 'RestaurantCommentController');
 	Route::resource('admin2/comment/replies', 'CommentRepliesController');
 	Route::resource('admin2/locations', 'AdminLocationsController');
+	Route::resource('admin2/foods', 'AdminFoodController');
 
 	Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
 
@@ -74,8 +78,6 @@ Route::get('/show-all', ['as'=>'show_all.showAll', 'uses'=>'SubscriberPlanContro
 Route::get('/locations', ['as'=>'locations.locations', 'uses'=>'SubscriberPlanController@locations']);
 Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>'SubscriberPlanController@locationCategory']);
 Route::post('/search', ['as'=>'search.search', 'uses'=>'SearchController@search']);
-
-
 
 
 

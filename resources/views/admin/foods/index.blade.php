@@ -28,10 +28,10 @@
                         <a href="{{route('comments.index')}}" class="nav-link">Comments</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('locations.index')}}" class="nav-link active">Locations</a>
+                        <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('foods.index')}}" class="nav-link">Foods</a>
+                        <a href="{{route('foods.index')}}" class="nav-link active">Foods</a>
                     </li>
                 </ul>
 
@@ -70,7 +70,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-map-marker-alt"></i> Locations</h1>
+                    <h1><i class="fas fa-pepper-hot"></i> Foods</h1>
                 </div>
             </div>
         </div>
@@ -81,13 +81,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addLocationModal">
-                        <i class="fas fa-plus"></i> Add Location
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addFoodModal">
+                        <i class="fas fa-plus"></i> Add Food
                     </a>
                 </div>
                 <div class="col-md-6 ml-auto">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Locations...">
+                        <input type="text" class="form-control" placeholder="Search Food...">
                         <div class="input-group-append">
                             <button class="btn btn-secondary">Search</button>
                         </div>
@@ -103,16 +103,16 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            @if(Session::has('deleted_location'))
-                                <p class="alert alert-danger">{{session('deleted_location')}}</p>
+                            @if(Session::has('deleted_food'))
+                                <p class="alert alert-danger">{{session('deleted_food')}}</p>
                             @endif
-                            <h4>Latest Locations</h4>
+                            <h4>Latest Foods</h4>
                         </div>
+                        @if(count($foods))
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Created</th>
                                 <th>Updated</th>
@@ -121,30 +121,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if($locations)
-                                @foreach($locations as $location)
+
+                                @foreach($foods as $food)
                                     <tr>
-                                        <td>{{$location->id}}</td>
-                                        <td><img height="50" width="50" src="{{$location->photo ? $location->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$location->name}}</td>
-                                        <td>{{$location->created_at->diffForHumans()}}</td>
-                                        <td>{{$location->updated_at->diffForHumans()}}</td>
+                                        <td>{{$food->id}}</td>
+                                        <td>{{$food->name}}</td>
+                                        <td>{{$food->created_at->diffForHumans()}}</td>
+                                        <td>{{$food->updated_at->diffForHumans()}}</td>
 
                                         <td class="d-flex justify-content-end">
-                                            <a href="{{route('locations.edit', $location->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-map-marker-alt"></i> Edit
+                                            <a href="{{route('foods.edit', $food->id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-pepper-hot"></i> Edit
                                             </a>
                                             <a href="#" class="d-inline-block ml-1">
-                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminLocationsController@destroy', $location->id]]) !!}
+                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminFoodController@destroy', $food->id]]) !!}
                                                 <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
                                                 {!! Form::close() !!}
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
+                            @else
+                                <h1 class="text-center">No Foods</h1>
                             @endif
                             </tbody>
+
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -152,31 +155,28 @@
     </section>
 
 
-    <!-- ADD LOCATION MODAL -->
-    <div class="modal fade" id="addLocationModal">
+
+    <!-- ADD PACKAGE MODAL -->
+    <div class="modal fade" id="addFoodModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title">Add Location</h5>
+                    <h5 class="modal-title">Add Food</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminLocationsController@store', 'files'=>true]) !!}
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminFoodController@store']) !!}
                     {{csrf_field()}}
                     <div class="form-group">
                         {!! Form::label('name', 'Name:') !!}
                         {!! Form::text('name', null, ['class'=>'form-control']) !!}
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('photo_id', 'Photo:') !!}
-                        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit('Create Location', ['class'=>'btn btn-secondary']) !!}
+                    {!! Form::submit('Create Food', ['class'=>'btn btn-secondary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
