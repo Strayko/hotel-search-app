@@ -94,6 +94,14 @@
 
                                         <div class="col-md-2">
                                             <div class="aa-single-advance-search">
+
+                                                {!! Form::select('food', [''=>'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="aa-single-advance-search">
                                                 <input class="aa-search-btn" type="submit" value="Search">
                                             </div>
                                         </div>

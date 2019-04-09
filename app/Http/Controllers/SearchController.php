@@ -13,12 +13,14 @@ class SearchController extends Controller
 
     	$q = Input::get('q');
     	$name = Input::get('name');
+    	$food = Input::get('food');
 
 //    	$location = Restaurant::where('location_id', 'LIKE', '%' . $name . '%');
 
     	if($q != ' ') {
 			$restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
 										->where('title', 'LIKE', '%' .$q . '%')
+										->where('food_id', 'LIKE', '%' . $food . '%')
 										->get();
 
 
