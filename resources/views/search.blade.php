@@ -68,6 +68,7 @@
                     <span></span>
                     @if(isset($details))
                     <p>The Search results for your query <b>{{$query}}</b> are :</p>
+
                 </div>
                 <div class="aa-latest-properties-content">
                     <div class="row">
@@ -101,19 +102,31 @@
                                         </div>
                                     </article>
                                 </div>
+
                             @endforeach
                         @elseif(isset($message))
                             <h3>{{$message}}</h3>
+
                         @endif
 
 
+
                     </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div style="width: 100%; height: 400px; margin-top: 5rem;">{!! Mapper::render() !!}</div>
+                        </div>
+                    </div>
+
                     {{--<div class="row">--}}
                         {{--<div class="col-sm-12 text-center">--}}
                             {{--{{$details->onEachSide(1)->links()}}--}}
                         {{--</div>--}}
                     {{--</div>--}}
                 </div>
+
+
 
             </div>
 

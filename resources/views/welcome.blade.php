@@ -80,7 +80,7 @@
                                         {{csrf_field()}}
                                         <div class="col-md-3">
                                             <div class="aa-single-advance-search">
-                                                <input type="text" name="q" placeholder="Search Restaurants...">
+                                                <input type="text" name="q" id="address" placeholder="Type Restaurant...">
                                             </div>
                                         </div>
 
@@ -102,7 +102,7 @@
 
                                         <div class="col-md-2">
                                             <div class="aa-single-advance-search">
-                                                <input class="aa-search-btn" type="submit" value="Search">
+                                                <input class="aa-search-btn" type="submit" id="submit" value="Search">
                                             </div>
                                         </div>
 

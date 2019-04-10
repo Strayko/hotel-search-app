@@ -17,6 +17,9 @@ use App\Package;
 use App\Restaurant;
 use App\Role;
 use App\User;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Route;
+use Cornford\Googlmapper\Facades\MapperFacade;
 
 /*-------------------------
   ---> HOME PAGE <---
@@ -78,7 +81,86 @@ Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanControll
 Route::get('/show-all', ['as'=>'show_all.showAll', 'uses'=>'SubscriberPlanController@showAll']);
 Route::get('/locations', ['as'=>'locations.locations', 'uses'=>'SubscriberPlanController@locations']);
 Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>'SubscriberPlanController@locationCategory']);
-Route::post('/search', ['as'=>'search.search', 'uses'=>'SearchController@search']);
+
+
+
+/*------------------------------------------
+  ---> SINGLE PAGE FRONTEND SEARCH ONLY <---
+-------------------------------------------*/
+Route::post('/search', function() {
+	$name = Input::get('name');
+	$bodyMap = [
+		'zoom' => 14,
+		'draggable' => true,
+		'marker' => false,
+		'eventAfterLoad' =>
+			'circleListener(maps[0].shapes[0].circle_0);'
+	];
+
+	switch($name) {
+		case '2':
+			Mapper::location('Fürth')->map($bodyMap);
+		break;
+		case '3':
+			Mapper::location('München')->map($bodyMap);
+		break;
+		case '4':
+			Mapper::location('Würzburg')->map($bodyMap);
+		break;
+		case '5':
+			Mapper::location('Aschaffenburg')->map($bodyMap);
+		break;
+		case '6':
+			Mapper::location('Nüremberg')->map($bodyMap);
+		break;
+		case '7':
+			Mapper::location('Ingolstadt')->map($bodyMap);
+		break;
+		case '8':
+			Mapper::location('Passau')->map($bodyMap);
+		break;
+		case '9':
+			Mapper::location('Augsburg')->map($bodyMap);
+		break;
+		case '10':
+			Mapper::location('Bayreuth')->map($bodyMap);
+		break;
+		case '13':
+			Mapper::location('Kempten')->map($bodyMap);
+		break;
+		case '14':
+			Mapper::location('Rosenheim')->map($bodyMap);
+		break;
+		case '18':
+			Mapper::location('Rogensburg')->map($bodyMap);
+		break;
+		default:
+			Mapper::location('Schweiz')->map(
+				[
+					'zoom' => 8,
+					'draggable' => true,
+					'marker' => false,
+					'eventAfterLoad' =>
+						'circleListener(maps[0].shapes[0].circle_0);'
+				]
+			);
+	}
+
+	$q = Input::get('q');
+	$food = Input::get('food');
+
+	if($q != ' ') {
+		$restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
+		                        ->where('title', 'LIKE', '%' .$q . '%')
+		                        ->where('food_id', 'LIKE', '%' . $food . '%')
+		                        ->get();
+		if(count($restaurant) > 0) {
+			return view('search')->withDetails($restaurant)->withQuery($q);
+		}
+	}
+	return view('search')->withMessage('No restaurants found!');
+
+});
 
 
 
