@@ -66,14 +66,7 @@
                         <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
-                <div class="col-md-6 ml-auto">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Restaurants...">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Search</button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -89,7 +82,7 @@
                             @if(Session::has('deleted_restaurant'))
                                 <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
                             @endif
-                            <h4>Latest Restaurants</h4>
+                            <h4>Restaurants</h4>
                         </div>
                         @if(count($restaurants) > 0)
                         <table class="table table-striped">
@@ -97,10 +90,10 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Photo</th>
-                                <th>Owner</th>
-                                <th>Package</th>
+
                                 <th>Title</th>
                                 <th>Body</th>
+                                <th>View</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                                 <th></th>
@@ -111,11 +104,10 @@
                                 @foreach($restaurants as $restaurant)
                                     <tr>
                                         <td>{{$restaurant->id}}</td>
-                                        <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$restaurant->user->name}}</td>
-                                        <td>{{$restaurant->user ? $restaurant->user->package->name : 'Uncategorized'}}</td>
+                                        <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                                         <td>{{$restaurant->title}}</td>
                                         <td>{{str_limit($restaurant->body, 10)}}</td>
+                                        <td><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
                                         <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                         <td>{{$restaurant->updated_at->diffForHumans()}}</td>
                                         <td>
@@ -131,7 +123,7 @@
                                     </tr>
                                 @endforeach
                                 @else
-                                <h1 class="text-center">Please insert your Restaurant</h1>
+                                <h1 class="text-center">Please add your Restaurant</h1>
                             @endif
                             </tbody>
                         </table>
@@ -166,7 +158,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 @endsection
 
 @section('footer')

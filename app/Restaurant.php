@@ -56,7 +56,11 @@ class Restaurant extends Model
     }
 
     public function photoHome() {
-    	return "http://placehold.it/360xa199";
+    	return "http://placehold.it/360x199";
+    }
+
+    public function singleRestaurant() {
+    	return "http://placehold.it/100x90";
     }
 
     public function location() {

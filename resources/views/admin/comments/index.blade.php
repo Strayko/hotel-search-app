@@ -112,8 +112,8 @@
                                 <th>Author</th>
                                 <th>Email</th>
                                 <th>Comment</th>
-                                <th></th>
-                                <th></th>
+                                <th>Restaurant</th>
+                                <th>Replies</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -125,8 +125,8 @@
                                         <td>{{$comment->author}}</td>
                                         <td>{{$comment->email}}</td>
                                         <td>{{Str::limit($comment->body, 15)}}</td>
-                                        <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->slug)}}">View Restaurant</a></td>
-                                        <td><a href="{{route('replies.show', $comment->id)}}">View Replies</a></td>
+                                        <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->slug)}}">{{$comment->restaurant->title}}</a></td>
+                                        <td><a href="{{route('replies.show', $comment->id)}}">Replies ({{$comment->replies->count()}})</a></td>
 
                                         <td>
                                             @if($comment->is_active == 1)

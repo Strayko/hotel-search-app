@@ -111,7 +111,7 @@
                 <div class="aa-signin-area">
                     <div class="aa-signin-form">
                         <div class="aa-signin-form-title">
-                            <a class="aa-property-home" href="index.html">Property Home</a>
+                            <a class="aa-property-home" href="/">Home</a>
                             <h4>Sign in to your account</h4>
                         </div>
                         <form method="POST" action="{{ route('login') }}" class="contactform">
@@ -154,7 +154,7 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-                                <p>Don't Have A Account Yet? <a href="register.html">CREATE NOW!</a></p>
+                                <p>Don't Have A Account Yet? <a href="user/register">CREATE NOW!</a></p>
                             </div>
                         </form>
                     </div>

@@ -58,6 +58,77 @@
         </div>
     </header>
 
+    <!-- SEARCH -->
+    <section id="search" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RESTAURANTS -->
+    <section id="posts">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Your Restaurant</h4>
+                        </div>
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Photo</th>
+                                <th>Restaurant</th>
+                                <th>Body</th>
+                                <th>Comments</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if($restaurants)
+                                @foreach($restaurants as $restaurant)
+                                    <tr>
+                                        <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                                        <td>{{$restaurant->title}}</td>
+                                        <td>{{Str::limit($restaurant->body, 20)}}</td>
+                                        <td>{{$restaurant->comments->count()}}</td>
+                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
+
+                                        <td>
+                                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}" class="btn btn-secondary">
+                                                <i class="fas fa-utensils"></i> View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center bg-primary text-white mb-3">
+                        <div class="card-body">
+                            <h3><i class="fas fa-box"></i> Package</h3>
+                            <h4 class="display-4">
+                                 {{$restaurant->user ? $restaurant->user->package->name : 'Uncategorized'}}
+                            </h4>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
 @endsection

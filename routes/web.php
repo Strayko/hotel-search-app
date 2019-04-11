@@ -11,6 +11,7 @@
 |
 */
 
+use App\Comment;
 use App\Food;
 use App\Location;
 use App\Package;
@@ -171,11 +172,7 @@ Route::post('/search', function() {
 ----------------------------*/
 Route::group(['middleware'=>'author'], function() {
 
-	Route::get('/admin', function() {
-//		$restaurants = Restaurant::all();
-		return view('silver.index');
-	});
-
+	Route::get('/admin', ['as'=>'silver.index.locations', 'uses'=>'SilverAdminIndex@index']);
 
 	Route::resource('admin/user', 'SilverUserController');
 	Route::resource('admin/restaurant', 'SilverRestaurantController');
@@ -190,3 +187,7 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::post('comment/reply', 'CommentRepliesController@createReply');
 	Route::post('comment', 'RestaurantCommentController@store');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

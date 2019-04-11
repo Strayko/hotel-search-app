@@ -15,11 +15,17 @@ class Comment extends Model
 		'photo'
 	];
 
+	protected $with = ['user'];
+
     public function replies() {
     	return $this->hasMany('App\CommentReply');
     }
 
     public function restaurant() {
     	return $this->belongsTo('App\Restaurant');
+    }
+
+    public function user() {
+    	return $this->belongsTo('App\User');
     }
 }

@@ -112,7 +112,7 @@
                                     <th>Author</th>
                                     <th>Email</th>
                                     <th>Replies</th>
-                                    <th></th>
+                                    <th>Restaurant</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -124,7 +124,7 @@
                                         <td>{{$reply->author}}</td>
                                         <td>{{$reply->email}}</td>
                                         <td>{{$reply->body}}</td>
-                                        <td><a href="{{route('single_restaurant.restaurant', $reply->comment->restaurant->slug)}}">View Restaurant</a></td>
+                                        <td><a href="{{route('single_restaurant.restaurant', $reply->comment->restaurant->slug)}}">{{$reply->comment->restaurant->title}}</a></td>
                                         <td>
                                             @if($reply->is_active == 1)
                                                 {!! Form::open(['method'=>'PATCH', 'action'=>['CommentRepliesController@update', $reply->id]]) !!}

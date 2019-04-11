@@ -118,7 +118,7 @@
                 <div class="aa-signin-area">
                     <div class="aa-signin-form">
                         <div class="aa-signin-form-title">
-                            <a class="aa-property-home" href="index.html">Property Home</a>
+                            <a class="aa-property-home" href="/">Home</a>
                             <h4>Create your account and Stay with us</h4>
                         </div>
 

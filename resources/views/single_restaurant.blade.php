@@ -71,9 +71,13 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <article class="aa-blog-single aa-blog-details">
-                                                @if(Session::has('comment_message'))
-                                                    {{session('comment_message')}}
-                                                @endif
+
+                                                    @if(Session::has('comment_message'))
+                                                    <div class="alert alert-success">
+                                                        {{session('comment_message')}}
+                                                    </div>
+                                                    @endif
+
                                                 <figure class="aa-blog-img">
                                                     <a href="#"><img alt="img" src="{{$restaurant->photo ? $restaurant->photo->file : $restaurant->photoPlaceholder()}}"></a>
                                                     <span class="aa-date-tag">{{$restaurant->created_at->diffForHumans()}}</span>
@@ -185,7 +189,7 @@
                                         <div class="col-md-12">
                                             <div class="aa-comments-area">
                                                 @if(count($comments) > 0)
-                                                <h3>{{$comments->count()}} Comments</h3>
+                                                <h3>{{$commentss->count()}} Comments</h3>
                                                 @else
                                                 <h3>No Comments</h3>
                                                 @endif
@@ -256,29 +260,17 @@
                                                         @endif
 
 
-
-
-
-
                                                     </ul>
+
+
                                                     <!-- comments pagination -->
                                                     <nav>
                                                         <ul class="pagination comments-pagination">
-                                                            <li>
-                                                                <a aria-label="Previous" href="#">
-                                                                    <span aria-hidden="true">«</span>
-                                                                </a>
-                                                            </li>
-                                                            <li><a href="#">1</a></li>
-                                                            <li><a href="#">2</a></li>
-                                                            <li><a href="#">3</a></li>
-                                                            <li><a href="#">4</a></li>
-                                                            <li><a href="#">5</a></li>
-                                                            <li>
-                                                                <a aria-label="Next" href="#">
-                                                                    <span aria-hidden="true">»</span>
-                                                                </a>
-                                                            </li>
+                                                            <div class="row">
+                                                                <div class="text-center">
+                                                                    {{$comments->onEachSide(1)->links()}}
+                                                                </div>
+                                                            </div>
                                                         </ul>
                                                     </nav>
                                                 </div>
@@ -318,100 +310,54 @@
                             <div class="col-md-4">
                                 <aside class="aa-blog-sidebar">
                                     <!-- Start single sidebar -->
-                                    <div class="aa-blog-sidebar-single">
-                                        <form action="">
-                                            <div class="aa-blog-search">
-                                                <input class="aa-search-text" type="text" placeholder="Search...">
-                                                <button class="aa-search-submit" type="submit">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+
                                     <!-- Start single sidebar -->
                                     <div class="aa-blog-sidebar-single">
-                                        <h3>Categories</h3>
+                                        <h3>Cities</h3>
                                         <ul class="aa-blog-catg">
-                                            <li>Properties <span>15000</span></li>
-                                            <li>Apartment <span>5000</span></li>
-                                            <li>Office  <span>3000</span></li>
-                                            <li>Residential <span>4500</span></li>
-                                            <li>Commercial <span>1000</span>
-                                                <ul>
-                                                    <li>category 2.1 <span>50</span></li>
-                                                    <li>category 2.2 <span>100</span></li>
-                                                </ul>
-                                            </li>
-                                            <li>Villa <span>800</span></li>
-                                            <li>Bungalow  <span>200</span></li>
-                                            <li>News <span>375</span></li>
-                                            <li>Reviews <span>458</span></li>
+                                            @if($locations)
+                                                @foreach($locations as $location)
+                                                    <li><a href="{{route('single_location.locationCategory', $location->id)}}">{{$location->name}}</a></li>
+                                                @endforeach
+                                            @endif
                                         </ul>
                                     </div>
                                     <!-- Start single sidebar -->
                                     <div class="aa-blog-sidebar-single">
-                                        <h3>Tags</h3>
+                                        <h3>Type of food</h3>
                                         <div class="tag-cloud">
-                                            <a href="#">Apartment</a>
-                                            <a href="#">Propery</a>
-                                            <a href="#">Residential</a>
-                                            <a href="#">Commercial</a>
-                                            <a href="#">Office</a>
-                                            <a href="#">Rent</a>
-                                            <a href="#">Sale</a>
-                                            <a href="#">Villa</a>
+                                            @if($foods)
+                                                @foreach($foods as $food)
+                                                    <a href="#">{{$food->name}}</a>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- Start single sidebar -->
                                     <div class="aa-blog-sidebar-single">
-                                        <h3>Recent Post</h3>
+                                        <h3>Recent Restaurant</h3>
                                         <div class="aa-blog-recent-post">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <a href="#">
-                                                        <img alt="img" src="img/blog-img-3.jpg" class="media-object">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                    <span>15 April, 16</span>
-                                                </div>
-                                            </div>
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <a href="#">
-                                                        <img alt="img" src="img/blog-img-2.jpg" class="media-object">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                    <span>15 April, 16</span>
-                                                </div>
-                                            </div>
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <a href="#">
-                                                        <img alt="img" src="img/blog-img-1.jpg" class="media-object">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                    <span>15 April, 16</span>
-                                                </div>
-                                            </div>
+                                            @if($restaurantRecents)
+                                                @foreach($restaurantRecents as $restaurantRecent)
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="{{route('single_restaurant.restaurant', $restaurantRecent->slug)}}">
+                                                                <img alt="img" src="{{$restaurantRecent->photo ? $restaurantRecent->photo->file : $restaurantRecent->singleRestaurant()}}" class="media-object">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading"><a href="{{route('single_restaurant.restaurant', $restaurantRecent->slug)}}">{{$restaurantRecent->title}}</a></h4>
+                                                            <p>{{Str::limit($restaurantRecent->body, 80)}}</p>
+                                                            <span>{{$restaurantRecent->created_at->diffForHumans()}}</span>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+
+
                                         </div>
                                     </div>
-                                    <!-- Start single sidebar -->
-                                    <div class="aa-blog-sidebar-single">
-                                        <div class="aa-banner-ads">
-                                            <a href="#">
-                                                <img src="img/banner-ads.jpg" alt="banner img">
-                                            </a>
-                                        </div>
-                                    </div>
+
                                 </aside>
                             </div>
                         </div>
