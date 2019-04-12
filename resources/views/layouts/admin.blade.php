@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
           crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/404.css')}}">
+    <style>
+        .white-spacee{
+            height: 200px;
+        }
+    </style>
 
     <title>Admin</title>
 </head>
@@ -17,12 +22,16 @@
 
 @yield('content')
 
-
+<div class="container">
+    <div class="row">
+        <div class="white-spacee"></div>
+    </div>
+</div>
 <!-- FOOTER -->
 <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-md-12">
                 <p class="lead text-center">
                     Copyright &copy; <span id="year"></span>
 
