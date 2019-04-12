@@ -101,6 +101,7 @@
                         <div class="form-group">
                             {!! Form::label('password', 'Password:') !!}
                             {!! Form::password('password', ['class'=>'form-control']) !!}
+                            <small class="text-muted">Leave empty to keep the same</small>
                         </div>
 
                         <div class="form-group">
@@ -115,6 +116,7 @@
 
                         <div class="form-group">
                             {!! Form::label('photo_id', 'Photo:') !!}
+                            <small class="text-muted">Leave empty to keep the same</small>
                             {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                         </div>
 

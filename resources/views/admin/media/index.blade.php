@@ -65,7 +65,7 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-info text-white">
+    <header id="main-header" class="py-2 bg-secondary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -80,7 +80,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#addMediaModal">
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addMediaModal">
                         <i class="fas fa-plus"></i> Upload
                     </a>
                 </div>
@@ -88,7 +88,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Media...">
                         <div class="input-group-append">
-                            <button class="btn btn-info">Search</button>
+                            <button class="btn btn-secondary">Search</button>
                         </div>
                     </div>
                 </div>
@@ -103,18 +103,19 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Latest Media</h4>
+                            <form action="delete/media" method="post" class="form-inline">
+                                {{csrf_field()}}
+                                {{method_field('delete')}}
+                                <div class="form-group mr-3">
+                                    <select name="checkBoxArray" id="" class="form-control">
+                                        <option value="">Delete</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" name="delete_all" class="btn btn-primary px-5" value="Submit">
+                                </div>
                         </div>
-                        <form action="delete/media" method="post" class="form-inline">
-                        {{csrf_field()}}
-                            {{method_field('delete')}}
-                            <div class="form-group">
-                                <select name="checkBoxArray" id="" class="form-control">
-                                    <option value="">Delete</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="delete_all" class="btn btn-primary" value="Submit">
-                            </div>
+
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
@@ -157,7 +158,7 @@
     <div class="modal fade" id="addMediaModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-info text-white">
+                <div class="modal-header bg-secondary text-white">
                     <h5 class="modal-title">Upload</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>

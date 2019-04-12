@@ -25,6 +25,6 @@
 
 </div>
 <div class="modal-footer">
-    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-primary']) !!}
+    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-secondary']) !!}
     {!! Form::close() !!}
 </div>

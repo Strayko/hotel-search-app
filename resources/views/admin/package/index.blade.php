@@ -66,7 +66,7 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-success text-white">
+    <header id="main-header" class="py-2 bg-secondary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -81,7 +81,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addPackageModal">
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addPackageModal">
                         <i class="fas fa-plus"></i> Add Package
                     </a>
                 </div>
@@ -89,7 +89,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Packages...">
                         <div class="input-group-append">
-                            <button class="btn btn-success">Search</button>
+                            <button class="btn btn-secondary">Search</button>
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
     <div class="modal fade" id="addPackageModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-secondary text-white">
                     <h5 class="modal-title">Add Package</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
@@ -170,7 +170,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit('Create Package', ['class'=>'btn btn-success']) !!}
+                    {!! Form::submit('Create Package', ['class'=>'btn btn-secondary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>

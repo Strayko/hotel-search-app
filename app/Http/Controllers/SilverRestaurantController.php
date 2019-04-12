@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Food;
+use App\Http\Requests\SilverRequest;
 use App\Location;
 use App\Package;
 use App\Photo;
@@ -25,7 +26,7 @@ class SilverRestaurantController extends Controller
 	    $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
 
-	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
+	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
 
 	    $locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
@@ -50,7 +51,7 @@ class SilverRestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SilverRequest $request)
     {
 	    $input = $request->all();
 	    $user = Auth::user();

@@ -47,7 +47,7 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-primary text-white">
+    <header id="main-header" class="py-2 bg-secondary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addRestaurantModal">
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addRestaurantModal">
                         <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
@@ -88,9 +88,7 @@
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
-                                <th>Id</th>
                                 <th>Photo</th>
-
                                 <th>Title</th>
                                 <th>Body</th>
                                 <th>View</th>
@@ -103,21 +101,15 @@
 
                                 @foreach($restaurants as $restaurant)
                                     <tr>
-                                        <td>{{$restaurant->id}}</td>
                                         <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$restaurant->title}}</td>
-                                        <td>{{str_limit($restaurant->body, 10)}}</td>
+                                        <td>{{Str::limit($restaurant->title, 15)}}</td>
+                                        <td>{{Str::limit($restaurant->body, 10)}}</td>
                                         <td><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
                                         <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                         <td>{{$restaurant->updated_at->diffForHumans()}}</td>
                                         <td>
                                             <a href="{{route('restaurant.edit', $restaurant->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-utensils"></i> Edit
-                                            </a>
-                                            <a href="#" class="d-inline-block">
-                                                {!! Form::open(['method'=>'DELETE', 'action'=>['SilverRestaurantController@destroy', $restaurant->id]]) !!}
-                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
-                                                {!! Form::close() !!}
+                                                <i class="fas fa-utensils"></i> Edit/Delete
                                             </a>
                                         </td>
                                     </tr>
@@ -139,7 +131,7 @@
     <div class="modal fade" id="addRestaurantModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
+                <div class="modal-header bg-secondary text-white">
                     <h5 class="modal-title">Add Restaurant</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>

@@ -93,7 +93,7 @@
                                 @foreach($restaurants as $restaurant)
                                     <tr>
                                         <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$restaurant->title}}</td>
+                                        <td>{{Str::limit($restaurant->title, 15)}}</td>
                                         <td>{{Str::limit($restaurant->body, 20)}}</td>
                                         <td>{{$restaurant->comments->count()}}</td>
                                         <td>{{$restaurant->created_at->diffForHumans()}}</td>
@@ -117,7 +117,7 @@
                         <div class="card-body">
                             <h3><i class="fas fa-box"></i> Package</h3>
                             <h4 class="display-4">
-                                 {{$restaurant->user ? $restaurant->user->package->name : 'Uncategorized'}}
+                                 {{--{{$restaurant->user ? $restaurant->user->package->name : 'Uncategorized'}}--}}
                             </h4>
 
                         </div>

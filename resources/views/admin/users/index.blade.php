@@ -67,7 +67,7 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-warning text-white">
+    <header id="main-header" class="py-2 bg-secondary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -82,7 +82,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addUserModal">
                         <i class="fas fa-plus"></i> Add User
                     </a>
                 </div>
@@ -90,7 +90,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Users...">
                         <div class="input-group-append">
-                            <button class="btn btn-warning">Search</button>
+                            <button class="btn btn-secondary">Search</button>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,6 @@
                                 <th>Package</th>
                                 <th>Active</th>
                                 <th>Created</th>
-                                <th>Updated</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -131,14 +130,14 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{$user->id}}</td>
-                                        <td><img height="50" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
+                                        <td><img height="50" width="50" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                                        <td>{{Str::limit($user->name, 16)}}</td>
+                                        <td>{{Str::limit($user->email, 23)}}</td>
                                         <td>{{$user->role->name}}</td>
                                         <td>{{$user->package ? $user->package->name : 'Uncategorized'}}</td>
                                         <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
                                         <td>{{$user->created_at->diffForHumans()}}</td>
-                                        <td>{{$user->updated_at->diffForHumans()}}</td>
+
                                         <td>
                                             <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-user-edit"></i> Edit
@@ -156,6 +155,11 @@
 
                             </tbody>
                         </table>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+                                {{$users->onEachSide(1)->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,7 +170,7 @@
     <div class="modal fade" id="addUserModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
+                <div class="modal-header bg-secondary text-white">
                     <h5 class="modal-title">Add User</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
@@ -213,7 +217,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">
-                        {!! Form::submit('Create User', ['class'=>'btn btn-warning']) !!}
+                        {!! Form::submit('Create User', ['class'=>'btn btn-secondary']) !!}
                     </div>
                     {!! Form::close() !!}
                     {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}

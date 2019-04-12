@@ -39,7 +39,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown mr-3">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                            <i class="fas fa-user"></i> {{Auth::user()->name}}
+                            <i class="fas fa-user"></i> {{Str::limit(Auth::user()->name, 14)}}
                         </a>
                         <div class="dropdown-menu">
                             <a href="{{route('users.edit', Auth::user()->id)}}" class="dropdown-item">
@@ -65,7 +65,7 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-primary text-white">
+    <header id="main-header" class="py-2 bg-secondary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -80,7 +80,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addRestaurantModal">
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addRestaurantModal">
                         <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
@@ -88,7 +88,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search Restaurants...">
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Search</button>
+                            <button class="btn btn-secondary">Search</button>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,6 @@
                                 <th>View</th>
                                 <th>Comment</th>
                                 <th>Created</th>
-                                <th>Updated</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -131,22 +130,21 @@
                                @foreach($restaurants as $restaurant)
                                    <tr>
                                        <td>{{$restaurant->id}}</td>
-                                       <td><img height="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                       <td>{{$restaurant->user->name}}</td>
+                                       <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                                       <td>{{Str::limit($restaurant->user->name, 10)}}</td>
                                        <td>{{$restaurant->user->package ? $restaurant->user->package->name : 'Uncategorized'}}</td>
-                                       <td>{{$restaurant->title}}</td>
+                                       <td>{{Str::limit($restaurant->title, 16)}}</td>
                                        <td>{{Str::limit($restaurant->body, 10)}}</td>
                                        <td><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
                                        <td><a href="{{route('comments.show', $restaurant->id)}}">View</a></td>
                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
-                                       <td>{{$restaurant->updated_at->diffForHumans()}}</td>
                                        <td>
                                            <a href="{{route('restaurants.edit', $restaurant->id)}}" class="btn btn-secondary">
                                                <i class="fas fa-utensils"></i> Edit
                                            </a>
                                            <a href="#" class="d-inline-block">
                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRestaurantsController@destroy', $restaurant->id]]) !!}
-                                               <button type="submit" class="btn btn-secondary mt-1"><i class="fas fa-trash-alt"></i> Delete</button>
+                                               <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
                                                {!! Form::close() !!}
                                            </a>
                                        </td>
@@ -171,7 +169,7 @@
     <div class="modal fade" id="addRestaurantModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
+                <div class="modal-header bg-secondary text-white">
                     <h5 class="modal-title">Add Restaurant</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
@@ -206,7 +204,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-primary']) !!}
+                    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-secondary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
