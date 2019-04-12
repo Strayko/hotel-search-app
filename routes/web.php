@@ -28,8 +28,9 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 Route::get('/', function () {
 	$restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
 	$locations = Location::pluck('name', 'id')->all();
+	$locationss = Location::limit(8)->get();
 	$foods = Food::pluck('name', 'id')->all();
-    return view('welcome', compact('restaurants', 'locations', 'foods'));
+    return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss'));
 });
 Auth::routes();
 

@@ -2,7 +2,7 @@
 <title>Plan and price</title>
 <style>
     #aa-property-header {
-        background-image: url("{{asset('images/single_page_header.jpg')}}")!important;
+        background-image: url("{{asset('images/header11.jpg')}}")!important;
     }
 
 
@@ -63,134 +63,159 @@
     </section>
     <!-- End Proerty header  -->
 
-    <section id="aa-latest-property" style="padding-bottom: 5px; background-color: white;">
-        <div class="container">
-            <div class="aa-latest-property-area">
-                <div class="aa-title">
-                    <h2>Choose your plan</h2>
-                    <span></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
-                </div>
 
-
-
-            </div>
-
-        </div>
-
-    </section>
 
     {{-- Plan and Price START --}}
     <div class="container">
         <div class="row"></div>
     </div>
-    <section id="pricePlans">
-        <ul id="plans">
-            <li class="plan">
-                <ul class="planContainer">
-                    <li class="title"><h2>Free</h2></li>
-                    <li class="price"><p>FREE</p></li>
-                    <li>
-                        <ul class="options">
-                            <li>30 <span>Show</span></li>
-                            <li>Publishing <span>Admin Moderation</span></li>
-                            <li>Period <span>30 days</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+    <section id="aa-latest-property" style="padding: 30px 0 50px 0;">
+        <div class="container">
+            <div class="aa-latest-property-area">
+                <div class="aa-title" style="margin: 70px 0 70px 0">
+                    <h2>Plan and Price</h2>
+                    <span></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                </div>
 
-                        </ul>
-                    </li>
-                    <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
-                </ul>
-            </li>
+                <section id="pricePlans">
+                    <ul id="plans">
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2>Free</h2></li>
+                                <li class="price"><p>FREE</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>30 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>30 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Deal Actions</span></li>
 
-            <li class="plan">
-                <ul class="planContainer">
-                    <li class="title"><h2>Silver</h2></li>
-                    <li class="price"><p>€28</p></li>
-                    <li>
-                        <ul class="options">
-                            <li>30 <span>Show</span></li>
-                            <li>Publishing <span>Admin Moderation</span></li>
-                            <li>Period <span>365 days</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
+                                    </ul>
+                                </li>
+                                <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
 
-                        </ul>
-                    </li>
-                    <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
-                </ul>
-            </li>
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2>Silver</h2></li>
+                                <li class="price"><p>€28</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>30 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>365 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Deal Actions</span></li>
 
-            <li class="plan">
-                <ul class="planContainer">
-                    <li class="title"><h2 class="bestPlanTitle">Gold</h2></li>
-                    <li class="price"><p class="bestPlanPrice">€46</p></li>
-                    <li>
-                        <ul class="options">
-                            <li>100 <span>Show</span></li>
-                            <li>Publishing <span>Admin Moderation</span></li>
-                            <li>Period <span>365 days</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Picture Gallery</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Map</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Video</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Rating System With Comments</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                    </ul>
+                                </li>
+                                <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
 
-                        </ul>
-                    </li>
-                    <li class="button"><a class="bestPlanButton" href="{{route('register.index')}}">REGISTER</a></li>
-                </ul>
-            </li>
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2 class="bestPlanTitle">Gold</h2></li>
+                                <li class="price"><p class="bestPlanPrice">€46</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>100 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>365 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Deal Actions</span></li>
 
-            <li class="plan">
-                <ul class="planContainer">
-                    <li class="title"><h2>Platinum</h2></li>
-                    <li class="price"><p>€52</p></li>
-                    <li>
-                        <ul class="options">
-                            <li>100 <span>Show</span></li>
-                            <li>Publishing <span>Admin Moderation</span></li>
-                            <li>Period <span>365 days</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Picture Gallery</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Map</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Video</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Rating System With Comments</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(Info About Current <br>Opening Status)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>(So top contribution <br>on home page)</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Competition System</span></li>
-                            <li><i class="fas fa-check text-success"></i> <span>Deal Actions</span></li>
-                        </ul>
-                    </li>
-                    <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
-                </ul>
-            </li>
-        </ul> <!-- End ul#plans -->
+                                    </ul>
+                                </li>
+                                <li class="button"><a class="bestPlanButton" href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2>Platinum</h2></li>
+                                <li class="price"><p>€52</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>100 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>365 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Deal Actions</span></li>
+                                    </ul>
+                                </li>
+                                <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
+                    </ul> <!-- End ul#plans -->
+                </section>
+
+            </div>
+        </div>
     </section>
-    {{-- Plan and Price END --}}
 
 @endsection
 

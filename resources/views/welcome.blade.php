@@ -1,5 +1,19 @@
 @extends('layouts.frontend')
 <title>Home</title>
+<style>
+    #search-fields {
+        margin-top: -250px!important;
+        background-color: rgba(221, 221, 221, 0.0)!important;
+    }
+    #aa-advance-search .aa-advance-search-area .aa-advance-search-top .aa-single-advance-search select {
+        height: 50px!important;
+    }
+    #aa-advance-search .aa-advance-search-area .aa-advance-search-top .aa-single-advance-search .aa-search-btn {
+        height: 50px!important;
+        margin-top: 40px;
+    }
+</style>
+<link rel="stylesheet" href="{{asset('css/planAndPrice.css')}}">
 @section('content')
 
     <!-- Start menu section -->
@@ -44,19 +58,13 @@
                 <div class="aa-top-slider-single">
                     <img src="{{asset('images/slider1.jpg')}}" alt="">
                     <!-- Top slider content -->
-                    <div class="aa-top-slider-content">
-                        <span class="aa-top-slider-catg">Duplex</span>
-                        <h2 class="aa-top-slider-title">Search Restaurants</h2>
-                        <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>South Beach, Miami (USA)</p>
-                        <span class="aa-top-slider-off">30% OFF</span>
-                        <p class="aa-top-slider-price">$460,000</p>
-                        <a href="#" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
-                    </div>
+
+
+
                     <!-- / Top slider content -->
                 </div>
                 <!-- / Top slider single slide -->
                 <!-- Top slider single slide -->
-
 
 
                 <!-- / Top slider single slide -->
@@ -70,7 +78,7 @@
     <!-- Advance Search -->
     <section id="aa-advance-search">
         <div class="container">
-            <div class="aa-advance-search-area">
+            <div id="search-fields" class="aa-advance-search-area">
                 <div class="form">
                     <div class="aa-advance-search-top">
                         <div class="row">
@@ -78,13 +86,13 @@
                                 <div class="aa-single-advance-search">
                                     <form action="{{URL::to('/search')}}" method="POST" role="search">
                                         {{csrf_field()}}
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="aa-single-advance-search">
-                                                <input type="text" name="q" id="address" placeholder="Type Restaurant...">
+                                                <input style="height: 50px;" type="text" name="q" id="address" placeholder="Type Restaurant...">
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <div class="aa-single-advance-search">
 
                                                     {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
@@ -92,7 +100,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <div class="aa-single-advance-search">
 
                                                 {!! Form::select('food', [''=>'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
@@ -100,7 +108,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
+
+                                        </div>
+
+                                        <div class="col-md-4">
                                             <div class="aa-single-advance-search">
                                                 <input class="aa-search-btn" type="submit" id="submit" value="Search">
                                             </div>
@@ -110,39 +122,7 @@
                                     {{--<input type="text" placeholder="Type Your Location">--}}
                                 </div>
                             </div>
-                            {{--<div class="col-md-2">--}}
-                                {{--<div class="aa-single-advance-search">--}}
-                                    {{--<select>--}}
-                                        {{--<option value="0" selected>Category</option>--}}
-                                        {{--<option value="1">Flat</option>--}}
-                                        {{--<option value="2">Land</option>--}}
-                                        {{--<option value="3">Plot</option>--}}
-                                        {{--<option value="4">Commercial</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-2">--}}
-                                {{--<div class="aa-single-advance-search">--}}
-                                    {{--<select>--}}
-                                        {{--<option value="0" selected>Type</option>--}}
-                                        {{--<option value="1">Flat</option>--}}
-                                        {{--<option value="2">Land</option>--}}
-                                        {{--<option value="3">Plot</option>--}}
-                                        {{--<option value="4">Commercial</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-2">--}}
-                                {{--<div class="aa-single-advance-search">--}}
-                                    {{--<select>--}}
-                                        {{--<option value="0" selected>Type</option>--}}
-                                        {{--<option value="1">Flat</option>--}}
-                                        {{--<option value="2">Land</option>--}}
-                                        {{--<option value="3">Plot</option>--}}
-                                        {{--<option value="4">Commercial</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+
 
 
                         </div>
@@ -154,8 +134,57 @@
     </section>
     <!-- / Advance Search -->
 
-    <!-- Latest property -->
+
     <section id="aa-latest-property">
+        <div class="container">
+            <div class="aa-latest-property-area">
+                <div class="aa-title">
+                    <h2>All Locations</h2>
+                    <span></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                </div>
+                <div class="aa-latest-properties-content">
+                    <div class="row">
+
+                        @if(count($locationss) > 0)
+                            @foreach($locationss as $locationn)
+                                <div class="col-md-3">
+                                    <article class="aa-properties-item">
+                                        <a href="{{route('single_location.locationCategory', $locationn->id)}}" class="aa-properties-item-img">
+                                            <img width="262" height="199" src="{{$locationn->photo ? $locationn->photo->file : $locationn->noPhoto()}}" alt="img">
+
+                                        </a>
+                                        <div class="aa-tag for-sale">
+                                            {{$locationn->name}}
+                                            (<b>{{$locationn->restaurant->count()}}</b>)
+                                        </div>
+
+                                    </article>
+                                </div>
+                            @endforeach
+                        @else
+                            <h1 class="text-center">No Locations</h1>
+                        @endif
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- / Latest property -->
+
+
+    <!-- Latest property -->
+    <section id="aa-latest-property" style="padding: 30px 0 100px 0;">
         <div class="container">
             <div class="aa-latest-property-area">
                 <div class="aa-title">
@@ -203,6 +232,199 @@
         </div>
     </section>
     <!-- / Latest property -->
+
+
+    <section id="aa-latest-property" style="padding: 30px 0 50px 0;">
+        <div class="container">
+            <div class="aa-latest-property-area">
+                <div class="aa-title">
+                    <h2>Plan and Price</h2>
+                    <span></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                </div>
+
+                <section id="pricePlans">
+                    <ul id="plans">
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2>Free</h2></li>
+                                <li class="price"><p>FREE</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>30 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>30 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Deal Actions</span></li>
+
+                                    </ul>
+                                </li>
+                                <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2>Silver</h2></li>
+                                <li class="price"><p>€28</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>30 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>365 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Deal Actions</span></li>
+
+                                    </ul>
+                                </li>
+                                <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2 class="bestPlanTitle">Gold</h2></li>
+                                <li class="price"><p class="bestPlanPrice">€46</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>100 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>365 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-times"></i> <span>Deal Actions</span></li>
+
+                                    </ul>
+                                </li>
+                                <li class="button"><a class="bestPlanButton" href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="plan">
+                            <ul class="planContainer">
+                                <li class="title"><h2>Platinum</h2></li>
+                                <li class="price"><p>€52</p></li>
+                                <li>
+                                    <ul class="options">
+                                        <li>100 <span>Show</span></li>
+                                        <li>Publishing <span>Admin Moderation</span></li>
+                                        <li>Period <span>365 days</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Main Image</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Contact Information</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Description</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Social Media Links</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Opening Hours</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Upload PDF (like Menu)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Picture Gallery</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Map</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Video</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Rating System With Comments</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(1x Advertising In The <br>Newsletter Per Year)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Reservation Possible Over ausgang.bayern)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Photo Upload By Customer <br>Of The Partner Company <br>"With Own Login")</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(Info About Current <br>Opening Status)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>(So top contribution <br>on home page)</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Competition System</span></li>
+                                        <li><i class="fas fa-check text-success"></i> <span>Deal Actions</span></li>
+                                    </ul>
+                                </li>
+                                <li class="button"><a href="{{route('register.index')}}">REGISTER</a></li>
+                            </ul>
+                        </li>
+                    </ul> <!-- End ul#plans -->
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="aa-latest-property" style="padding: 30px 0 100px 0;">
+        <div class="container">
+            <div class="aa-latest-property-area">
+                <div class="aa-title">
+                    <h2>About us</h2>
+                    <span></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-about-us-area">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="aa-about-us-left">
+                                        <img src="{{asset('images/about-us.jpg')}}" alt="image">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="aa-about-us-right">
+                                        <div class="aa-title">
+
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat ab dignissimos vitae maxime adipisci blanditiis rerum quae quos! Id at rerum maxime modi fugit vero corrupti, ad atque sit laborum ipsum sunt blanditiis suscipit odio, aut nostrum assumenda nobis rem a maiores temporibus non commodi laboriosam, doloremque expedita! Corporis, provident?</p>
+                                        <ul>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, blanditiis.</li>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia.</li>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, blanditiis.</li>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 @endsection
 

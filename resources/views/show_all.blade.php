@@ -2,7 +2,7 @@
 <title>Show All</title>
 <style>
     #aa-property-header {
-        background-image: url("{{asset('images/single_page_header.jpg')}}")!important;
+        background-image: url("{{asset('images/header11.jpg')}}")!important;
     }
 </style>
 @section('content')
