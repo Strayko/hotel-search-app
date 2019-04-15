@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRegisterRequest;
 use App\Package;
 use App\Photo;
 use App\Restaurant;
@@ -40,7 +41,7 @@ class AuthorUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRegisterRequest $request)
     {
 	    if(trim($request->password) == '') {
 		    $input = $request->except('password');
@@ -59,7 +60,7 @@ class AuthorUsersController extends Controller
 
 	    User::create($input);
 
-	    return redirect('/home');
+	    return redirect('/login');
 
 	    //return $request->all();
     }

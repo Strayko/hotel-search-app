@@ -114,14 +114,29 @@
 <section id="aa-signin">
     <div class="container">
         <div class="row">
+
             <div class="col-md-12">
                 <div class="aa-signin-area">
                     <div class="aa-signin-form">
                         <div class="aa-signin-form-title">
                             <a class="aa-property-home" href="/">Home</a>
                             <h4>Create your account and Stay with us</h4>
-                        </div>
-
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @if(count($errors) > 0)
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                        <li>{{$error}}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                         {{--{!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}--}}
                         {{--<div class="form-group">--}}
                         {{--{!! Form::label('name', 'Name:') !!}--}}
@@ -185,7 +200,7 @@
                         </div>
 
                         <div class="aa-single-field">
-                            <label for="photo_id">Photo: <span class="required">*</span></label>
+                            <label for="photo_id">Photo:</label>
                             {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                         </div>
                         <div class="aa-single-submit">

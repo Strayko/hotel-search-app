@@ -102,8 +102,16 @@ class SilverUserController extends Controller
     public function destroy($id)
     {
 	    $user = User::findOrFail($id);
-	    unlink(public_path() . $user->photo->file);
-	    $user->delete();
-	    return redirect('/');
+	    if($user->photo_id == 1) {
+		    $user->delete();
+		    Session::flash('deleted_user', 'The User has been deleted');
+		    return redirect('/admin2/users');
+	    } else {
+		    unlink( public_path() . $user->photo->file );
+		    $user->delete();
+		    Session::flash('deleted_user', 'The User has been deleted');
+		    return redirect('/admin2/users');
+	    }
+
     }
 }

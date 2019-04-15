@@ -28,8 +28,7 @@ class UsersRequest extends FormRequest
 	        'email' => 'required|unique:users|max:30',
             'password' => 'required',
 	        'role_id' => 'required',
-	        'is_active' => 'required',
-	        'photo_id' => 'required'
+	        'is_active' => 'required'
         ];
     }
 
@@ -40,8 +39,7 @@ class UsersRequest extends FormRequest
 			'email.required'  => 'Email is required',
 			'password.required' => 'Password is required',
 			'role_id.required' => 'Role is required',
-			'is_active.required' => 'Status is required',
-			'photo_id.required' => 'Photo is required'
+			'is_active.required' => 'Status is required'
 		];
 	}
 

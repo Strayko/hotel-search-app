@@ -100,7 +100,7 @@
 
             </div>
             <div class="col-md-6">
-                <img width="300" height="300" src="{{$restaurants->photo ? $restaurants->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
+                <img width="500" src="{{$restaurants->photo ? $restaurants->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
             </div>
 
         </div>

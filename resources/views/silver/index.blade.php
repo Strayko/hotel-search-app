@@ -117,7 +117,7 @@
                         <div class="card-body">
                             <h3><i class="fas fa-box"></i> Package</h3>
                             <h4 class="display-4">
-                                 {{--{{$restaurant->user ? $restaurant->user->package->name : 'Uncategorized'}}--}}
+                                 {{$user->package ? $user->package->name : 'Uncategorized'}}
                             </h4>
 
                         </div>

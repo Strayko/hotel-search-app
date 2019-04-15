@@ -93,8 +93,9 @@ Route::post('/search', function() {
 	$name = Input::get('name');
 	$bodyMap = [
 		'zoom' => 14,
-		'draggable' => true,
-		'marker' => false,
+		'draggable' => false,
+		'marker' => true,
+		'overlay' => 'TRAFFIC',
 		'eventAfterLoad' =>
 			'circleListener(maps[0].shapes[0].circle_0);'
 	];
@@ -120,6 +121,9 @@ Route::post('/search', function() {
 		break;
 		case '8':
 			Mapper::location('Passau')->map($bodyMap);
+
+//				Mapper::informationWindow(48.5708483,13.4320009, 'hello');
+
 		break;
 		case '9':
 			Mapper::location('Augsburg')->map($bodyMap);
@@ -140,7 +144,7 @@ Route::post('/search', function() {
 			Mapper::location('Schweiz')->map(
 				[
 					'zoom' => 8,
-					'draggable' => true,
+					'draggable' => false,
 					'marker' => false,
 					'eventAfterLoad' =>
 						'circleListener(maps[0].shapes[0].circle_0);'
@@ -188,7 +192,3 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::post('comment/reply', 'CommentRepliesController@createReply');
 	Route::post('comment', 'RestaurantCommentController@store');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

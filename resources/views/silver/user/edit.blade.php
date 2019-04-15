@@ -134,7 +134,7 @@
 
             </div>
             <div class="col-md-6">
-                <img width="300" height="300" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
+                <img width="300" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
             </div>
 
         </div>

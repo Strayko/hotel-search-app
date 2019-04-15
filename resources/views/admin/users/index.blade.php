@@ -106,7 +106,12 @@
                     <div class="card">
                         <div class="card-header">
                             @if(Session::has('deleted_user'))
-                                <p class="alert alert-danger">{{session('deleted_user')}}</p>
+
+                                <p class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{session('deleted_user')}}</p>
                             @endif
                             <h4>Latest Users</h4>
                         </div>

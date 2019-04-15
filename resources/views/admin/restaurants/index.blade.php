@@ -105,7 +105,11 @@
                     <div class="card">
                         <div class="card-header">
                             @if(Session::has('deleted_restaurant'))
-                                <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
+                                <p class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{session('deleted_restaurant')}}</p>
                             @endif
                             <h4>Latest Restaurants</h4>
                         </div>
