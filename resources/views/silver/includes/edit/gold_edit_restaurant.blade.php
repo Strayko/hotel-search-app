@@ -25,7 +25,7 @@
 </div>
 
 <div class="form-group">
-    <div class="row">
+    <div class="row d-flex justify-content-end">
         <div class="col-md-6">
             <button type="submit" class="btn btn-success btn-block"><i class="fas fa-utensils"></i> Update Restaurant</button>
             {!! Form::close() !!}

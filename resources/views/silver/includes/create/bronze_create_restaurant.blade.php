@@ -24,7 +24,14 @@
 </div>
 
 </div>
-<div class="modal-footer">
-    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-secondary']) !!}
-    {!! Form::close() !!}
+
+<div class="container">
+    <div class="form-group">
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block"><i class="fas fa-utensils"></i> Create Restaurant</button>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
 </div>

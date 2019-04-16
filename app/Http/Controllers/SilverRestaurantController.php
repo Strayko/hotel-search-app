@@ -22,6 +22,19 @@ class SilverRestaurantController extends Controller
      */
     public function index()
     {
+
+	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+
+        return view('silver.restaurant.index', compact('restaurants'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
 	    $bronze = User::where('package_id', Auth::user()->isBronze())->first();
 	    $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
@@ -32,17 +45,7 @@ class SilverRestaurantController extends Controller
 	    $foods = Food::pluck('name', 'id')->all();
 
 
-        return view('silver.restaurant.index', compact('restaurants', 'bronze', 'gold', 'silver', 'locations', 'foods'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('silver.restaurant.create', compact('restaurants', 'locations', 'foods', 'bronze', 'gold', 'silver'));
     }
 
     /**

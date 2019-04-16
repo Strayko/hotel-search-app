@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-<title>Users</title>
+<title>Edit User</title>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
@@ -121,9 +121,9 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-user-edit"></i> Update Profile</button>
+                            <div class="row d-flex justify-content-end">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success btn-block"> Update Profile</button>
                                     {!! Form::close() !!}
                                 </div>
                             </div>

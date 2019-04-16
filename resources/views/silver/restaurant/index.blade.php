@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+<title>Restaurant</title>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addRestaurantModal">
+                    <a href="{{route('restaurant.create')}}" class="btn btn-secondary btn-block">
                         <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
@@ -128,29 +128,29 @@
     </section>
 
     {{--MODAL--}}
-    <div class="modal fade" id="addRestaurantModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title">Add Restaurant</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+    {{--<div class="modal fade" id="addRestaurantModal">--}}
+        {{--<div class="modal-dialog modal-lg">--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-header bg-secondary text-white">--}}
+                    {{--<h5 class="modal-title">Add Restaurant</h5>--}}
+                    {{--<button class="close" data-dismiss="modal">--}}
+                        {{--<span>&times;</span>--}}
+                    {{--</button>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
 
-                    @if($gold)
-                        @include('silver.includes.create.gold_create_restaurant')
-                    @elseif($silver)
-                        @include('silver.includes.create.silver_create_restaurant')
-                    @elseif($bronze)
-                        @include('silver.includes.create.bronze_create_restaurant')
-                    @endif
+                    {{--@if($gold)--}}
+                        {{--@include('silver.includes.create.gold_create_restaurant')--}}
+                    {{--@elseif($silver)--}}
+                        {{--@include('silver.includes.create.silver_create_restaurant')--}}
+                    {{--@elseif($bronze)--}}
+                        {{--@include('silver.includes.create.bronze_create_restaurant')--}}
+                    {{--@endif--}}
 
-            </div>
-        </div>
-    </div>
-    </div>
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 @endsection
 
 @section('footer')

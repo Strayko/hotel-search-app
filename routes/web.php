@@ -122,7 +122,18 @@ Route::post('/search', function() {
 		case '8':
 			Mapper::location('Passau')->map($bodyMap);
 
-//				Mapper::informationWindow(48.5708483,13.4320009, 'hello');
+//			$restos = Restaurant::where('title', 'LIKE', '%' .$q . '%');
+//
+//				$restosd = [
+//			['lat' => 50.061711, 'lng' => 19.937356],
+//    ['lat' => 50.063693, 'lng' => 19.911742],
+//    ['lat' => 50.057979, 'lng' => 19.920445],
+//    ['lat' => 50.054466, 'lng' => 19.936655]
+//];
+//
+//foreach ($restos as $resto) {
+//	Mapper::marker($resto['lat'], $resto['lng']);
+//}
 
 		break;
 		case '9':

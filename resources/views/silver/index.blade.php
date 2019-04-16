@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-<title>Silver</title>
+<title>Admin</title>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
