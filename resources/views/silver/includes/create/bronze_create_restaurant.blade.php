@@ -6,12 +6,12 @@
     {!! Form::text('title', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('location_id', 'Location:') !!}
+    {!! Form::label('location_id', 'City:') !!}
     {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    <label for="address">Address Google Map:</label>
-    <input type="text" id="address" onchange="codeAddress()" class="form-control" placeholder="example: Passau, Padu Innstrasse">
+    {!! Form::label('address', 'Address Google Map:') !!}
+    {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('food_id', 'Food:') !!}
@@ -27,6 +27,13 @@
     {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
 </div>
 
+<div class="form-group">
+    {!! Form::label('lat', 'Lat:') !!}
+    {!! Form::text('lat', null) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('lng', 'Lng:') !!}
+    {!! Form::text('lng', null) !!}
 </div>
 
 <div class="container">

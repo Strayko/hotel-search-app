@@ -6,9 +6,15 @@
     {!! Form::text('title', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('location_id', 'Location:') !!}
+    {!! Form::label('location_id', 'City:') !!}
     {!! Form::select('location_id', $locations, null, ['class'=>'form-control']) !!}
 </div>
+
+<div class="form-group">
+    {!! Form::label('address', 'Address Google Map:') !!}
+    {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
+</div>
+
 <div class="form-group">
     {!! Form::label('food_id', 'Food:') !!}
     {!! Form::select('food_id', $foods, null, ['class'=>'form-control']) !!}
@@ -22,6 +28,14 @@
     {!! Form::label('photo_id', 'Photo:') !!}
     <small class="text-muted">Leave empty to keep the same</small>
     {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('lat', 'Lat:') !!}
+    {!! Form::text('lat', null) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('lng', 'Lng:') !!}
+    {!! Form::text('lng', null) !!}
 </div>
 
 <div class="form-group">

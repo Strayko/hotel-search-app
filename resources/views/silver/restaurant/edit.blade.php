@@ -1,7 +1,55 @@
 @extends('layouts.admin')
 <title>Restaurant</title>
-@section('content')
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jIRmJ7b6Zxqwr65GHiuVVj8j-RXuke8&sensor=false&libraries=places"></script>
+<style>
+    #map_canvas { width:100%; height:300px; }
+</style>
 
+<script type="text/javascript">
+
+    var geocoder;
+    var map;
+    var lat;
+    var lng;
+
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(46.818188, 8.227511999999933);
+        var myOptions = {
+            zoom: 14,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    }
+
+    function codeAddress() {
+        var address = document.getElementById("address").value;
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker;
+                document.getElementById('lat').value = results[0].geometry.location.lat();
+                document.getElementById('lng').value = results[0].geometry.location.lng();
+
+            } else {
+                document.getElementById('lat').value = '';
+                document.getElementById('lng').value = '';
+                alert("YOU HAVE NOT SELECTED ANYTHING OR IS INCORRECT GOOGLE MAP FORMAT!");
+            }
+        });
+    }
+
+    function init() {
+        var input = document.getElementById('address');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+
+    google.maps.event.addDomListener(window, 'load', init);
+
+</script>
+@section('content')
+    <body onload="initialize()">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
             <a href="/" class="navbar-brand">Home</a>
@@ -100,12 +148,21 @@
 
             </div>
             <div class="col-md-6">
-                <img width="500" src="{{$restaurants->photo ? $restaurants->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
+
+                <div class="row">
+                    <img width="500" src="{{$restaurants->photo ? $restaurants->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
+                </div>
+
+                <div class="row mt-5">
+                    <div id="map_canvas"></div>
+                </div>
+
             </div>
+
 
         </div>
     </div>
-
+    </body>
 @endsection
 
 @section('footer')

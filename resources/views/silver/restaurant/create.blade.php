@@ -32,9 +32,10 @@
                 document.getElementById('lat').value = results[0].geometry.location.lat();
                 document.getElementById('lng').value = results[0].geometry.location.lng();
 
-
             } else {
-                alert("YOU HAVE NOT SELECTED ANYTHING OR IS INCORRECT!");
+                document.getElementById('lat').value = '';
+                document.getElementById('lng').value = '';
+                alert("YOU HAVE NOT SELECTED ANYTHING OR IS INCORRECT GOOGLE MAP FORMAT!");
             }
         });
     }
@@ -48,7 +49,7 @@
 
 </script>
 @section('content')
-<body onload="initialize()"></body>
+<body onload="initialize()">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
             <a href="/" class="navbar-brand">Home</a>
@@ -159,7 +160,7 @@
 
         </div>
     </div>
-
+</body>
 @endsection
 
 @section('footer')
