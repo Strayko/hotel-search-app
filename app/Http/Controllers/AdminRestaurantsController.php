@@ -115,9 +115,15 @@ class AdminRestaurantsController extends Controller
     public function destroy($id)
     {
 	    $restaurant = Restaurant::findOrFail($id);
-	    unlink(public_path() . $restaurant->photo->file);
-	    $restaurant->delete();
-	    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
-	    return redirect('/admin2/restaurants');
+	    if($restaurant->photo_id == 2) {
+		    $restaurant->delete();
+		    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
+		    return redirect('/admin2/restaurants');
+	    } else {
+		    unlink(public_path() . $restaurant->photo->file);
+		    $restaurant->delete();
+		    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
+		    return redirect('/admin2/restaurants');
+	    }
     }
 }
