@@ -100,56 +100,67 @@ Route::post('/search', function() {
 			'circleListener(maps[0].shapes[0].circle_0);'
 	];
 
+	function restaurantPin() {
+		$name = Input::get('name');
+		$restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')->get();
+
+		foreach ($restos as $resto) {
+			Mapper::marker($resto['lat'], $resto['lng']);
+		}
+	}
+
+
 	switch($name) {
 		case '2':
 			Mapper::location('Fürth')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '3':
 			Mapper::location('München')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '4':
 			Mapper::location('Würzburg')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '5':
 			Mapper::location('Aschaffenburg')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '6':
 			Mapper::location('Nüremberg')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '7':
 			Mapper::location('Ingolstadt')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '8':
 			Mapper::location('Passau')->map($bodyMap);
+//			->polyline([['latitude' => 48.5667364, 'longitude' => 13.431946599999947], ['latitude' => 48.5707981, 'longitude' => 13.431985299999951]]);
 
-//			$restos = Restaurant::where('title', 'LIKE', '%' .$q . '%');
-//
-//				$restosd = [
-//			['lat' => 50.061711, 'lng' => 19.937356],
-//    ['lat' => 50.063693, 'lng' => 19.911742],
-//    ['lat' => 50.057979, 'lng' => 19.920445],
-//    ['lat' => 50.054466, 'lng' => 19.936655]
-//];
-//
-//foreach ($restos as $resto) {
-//	Mapper::marker($resto['lat'], $resto['lng']);
-//}
+			restaurantPin();
 
 		break;
 		case '9':
 			Mapper::location('Augsburg')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '10':
 			Mapper::location('Bayreuth')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '13':
 			Mapper::location('Kempten')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '14':
 			Mapper::location('Rosenheim')->map($bodyMap);
+			restaurantPin();
 		break;
 		case '18':
 			Mapper::location('Rogensburg')->map($bodyMap);
+			restaurantPin();
 		break;
 		default:
 			Mapper::location('Schweiz')->map(

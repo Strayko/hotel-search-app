@@ -34,7 +34,7 @@
 
 
             } else {
-                alert("Geocode was not successful for the following reason: " + status);
+                alert("YOU HAVE NOT SELECTED ANYTHING OR IS INCORRECT!");
             }
         });
     }
@@ -125,8 +125,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div id="map_canvas"></div>
-                Latitude: <input type="text" id="lat"><br>
-                Longitude: <input type="text" id="lng"><br>
+
             </div>
             <div class="col-md-6 order-first">
                 @include('includes.user_form_error')
@@ -139,11 +138,10 @@
                     <div class="card-body">
 
 
-                        <div>
-                            <input id="address" type="text" onchange="codeAddress()">
+                        {{--<div>--}}
+                            {{--<input id="address" type="text" onchange="codeAddress()">--}}
                             {{--<input type="button" value="Localizar!" onclick="codeAddress()"><br>--}}
-
-                        </div>
+                        {{--</div>--}}
 
                         @if($silver)
                             @include('silver.includes.create.silver_create_restaurant')

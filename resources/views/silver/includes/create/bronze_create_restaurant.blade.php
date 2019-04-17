@@ -10,6 +10,10 @@
     {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
+    <label for="address">Address Google Map:</label>
+    <input type="text" id="address" onchange="codeAddress()" class="form-control" placeholder="example: Passau, Padu Innstrasse">
+</div>
+<div class="form-group">
     {!! Form::label('food_id', 'Food:') !!}
     {!! Form::select('food_id', ['' => 'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
 </div>
