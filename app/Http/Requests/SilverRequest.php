@@ -27,8 +27,7 @@ class SilverRequest extends FormRequest
             'title' => 'required',
 	        'location_id' => 'required',
 	        'food_id' => 'required',
-	        'body' => 'required',
-	        'photo_id' => 'required'
+	        'body' => 'required'
         ];
     }
 
@@ -38,8 +37,7 @@ class SilverRequest extends FormRequest
 			'title.required' => 'Title is required',
 			'location_id.required' => 'Location is required',
 			'food_id.required' => 'Food is required',
-			'body.required' => 'Body is required',
-			'photo_id.required' => 'Photo is required'
+			'body.required' => 'Body is required'
 		];
 	}
 }

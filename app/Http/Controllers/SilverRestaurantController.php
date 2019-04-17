@@ -130,8 +130,13 @@ class SilverRestaurantController extends Controller
     public function destroy($id)
     {
 	    $restaurant = Restaurant::findOrFail($id);
-	    unlink(public_path() . $restaurant->photo->file);
-	    $restaurant->delete();
-	    return redirect('/admin/restaurant');
+	    if($restaurant->photo_id == 2) {
+		    $restaurant->delete();
+		    return redirect('/admin/restaurant');
+	    } else {
+		    unlink(public_path() . $restaurant->photo->file);
+		    $restaurant->delete();
+		    return redirect('/admin/restaurant');
+	    }
     }
 }
