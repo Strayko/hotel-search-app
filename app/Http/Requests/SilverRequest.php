@@ -34,10 +34,10 @@ class SilverRequest extends FormRequest
 	public function messages()
 	{
 		return [
-			'title.required' => 'Title is required',
-			'location_id.required' => 'Location is required',
+			'title.required' => 'Name is required',
+			'location_id.required' => 'City is required',
 			'food_id.required' => 'Food is required',
-			'body.required' => 'Body is required'
+			'body.required' => 'Description is required'
 		];
 	}
 }

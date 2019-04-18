@@ -35,7 +35,11 @@ class AdminRestaurantsController extends Controller
      */
     public function create()
     {
-        //
+
+	    $locations = Location::pluck('name', 'id')->all();
+	    $foods = Food::pluck('name', 'id')->all();
+
+        return view('admin.restaurants.create', compact('locations', 'foods'));
     }
 
     /**
@@ -94,6 +98,7 @@ class AdminRestaurantsController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	$restaurant = Restaurant::findOrFail($id);
         $input = $request->all();
         if($file = $request->file('photo_id')) {
 			$name = time() . $file->getClientOriginalName();
@@ -102,7 +107,7 @@ class AdminRestaurantsController extends Controller
 			$input['photo_id'] = $photo->id;
         }
 
-        Auth::user()->restaurants()->whereId($id)->first()->update($input);
+        $restaurant->whereId($id)->first()->update($input);
         return redirect('/admin2/restaurants');
     }
 

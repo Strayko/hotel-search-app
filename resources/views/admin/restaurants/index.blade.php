@@ -80,7 +80,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addRestaurantModal">
+                    <a href="{{route('restaurants.create')}}" class="btn btn-secondary btn-block">
                         <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
@@ -169,51 +169,7 @@
         </div>
     </section>
 
-    {{--MODAL--}}
-    <div class="modal fade" id="addRestaurantModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title">Add Restaurant</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
 
-                        {!! Form::open(['method'=>'POST', 'action'=>'AdminRestaurantsController@store', 'files'=>true]) !!}
-                            {{csrf_field()}}
-                            <div class="form-group">
-                                {!! Form::label('title', 'Title:') !!}
-                                {!! Form::text('title', null, ['class'=>'form-control']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('location_id', 'Location:') !!}
-                                {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
-                            </div>
-
-                            <div class="form-group">
-                                {!! Form::label('food_id', 'Food:') !!}
-                                {!! Form::select('food_id', ['' => 'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
-                            </div>
-
-                            <div class="form-group">
-                                {!! Form::label('body', 'Description:') !!}
-                                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('photo_id', 'Photo:') !!}
-                                {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                            </div>
-
-                </div>
-                <div class="modal-footer">
-                    {!! Form::submit('Create Restaurant', ['class'=>'btn btn-secondary']) !!}
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection
 

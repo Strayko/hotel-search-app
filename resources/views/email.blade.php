@@ -8,7 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>{{$author}}</h1>
     <p>{{$comment}}</p>
 </body>
 </html>
