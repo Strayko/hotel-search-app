@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Location;
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class SubscriberPlanController extends Controller
 {
@@ -15,6 +17,17 @@ class SubscriberPlanController extends Controller
 
     public function contact() {
     	return view('contact');
+    }
+
+    public function contactSend(Request $request) {
+	    $data = $request->all();
+
+	    Mail::send('email', $data, function($message) use ($data) {
+		    $message->to($data['email'], $data['author'])->subject($data['subject']);
+	    });
+
+	    Session::flash('form_submitted', 'Form is sent!');
+	    return redirect()->back();
     }
 
 	public function showAll() {
@@ -34,4 +47,9 @@ class SubscriberPlanController extends Controller
     	$restaurantLocation = $location->restaurant;
     	return view('single_location', compact('location', 'restaurantLocation'));
 	}
+
+
+
+
+
 }

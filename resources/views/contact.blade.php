@@ -64,16 +64,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    @if(Session::has('form_submitted'))
+
+                        <h2 class="alert alert-danger text-center">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{session('form_submitted')}}</h2>
+                    @endif
                     <div class="aa-contact-area">
 
                         <div class="aa-contact-bottom">
                             <div class="aa-title">
+
                                 <h2>Send Your Message</h2>
                                 <span></span>
                                 <p>Your email address will not be published. Required fields are marked <strong class="required">*</strong></p>
                             </div>
                             <div class="aa-contact-form">
-                                <form class="contactform">
+                                {!! Form::open(['url'=>'contact', 'class'=>'contactform']) !!}
                                     <p class="comment-form-author">
                                         <label for="author">Name <span class="required">*</span></label>
                                         <input type="text" name="author" value="" size="30" required="required">
@@ -93,7 +102,7 @@
                                     <p class="form-submit">
                                         <input type="submit" name="submit" class="aa-browse-btn" value="Send Message">
                                     </p>
-                                </form>
+                                {!! Form::close() !!}
                             </div>
                         </div>
 
