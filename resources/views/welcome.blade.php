@@ -118,6 +118,8 @@
                                             </div>
                                         </div>
 
+
+
                                     </form>
                                     {{--<input type="text" placeholder="Type Your Location">--}}
                                 </div>

@@ -1,7 +1,6 @@
 @extends('layouts.admin')
-<title>Users</title>
-@section('content')
 
+@section('content')
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
             <a href="/" class="navbar-brand">Home</a>
@@ -20,7 +19,7 @@
                         <a href="{{route('packages.index')}}" class="nav-link">Packages</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('users.index')}}" class="nav-link active">Users</a>
+                        <a href="{{route('users.index')}}" class="nav-link">Users</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('media.index')}}" class="nav-link">Media</a>
@@ -77,7 +76,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-users"></i> Users</h1>
+                    <h1><i class="fas fa-location-arrow"></i> Distance</h1>
                 </div>
             </div>
         </div>
@@ -88,13 +87,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addUserModal">
-                        <i class="fas fa-plus"></i> Add User
+                    <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#addDistanceModal">
+                        <i class="fas fa-plus"></i> Add Distance
                     </a>
                 </div>
                 <div class="col-md-6 ml-auto">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Users...">
+                        <input type="text" class="form-control" placeholder="Search Distance...">
                         <div class="input-group-append">
                             <button class="btn btn-secondary">Search</button>
                         </div>
@@ -103,141 +102,97 @@
             </div>
         </div>
     </section>
-    @include('includes.form_error')
-    <!-- USERS -->
-    <section id="posts">
+
+    <section id="categories">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            @if(Session::has('deleted_user'))
-
+                            @if(Session::has('deleted_distance'))
                                 <p class="alert alert-danger">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    {{session('deleted_user')}}</p>
+                                    {{session('deleted_distance')}}</p>
+
                             @endif
-                            <h4>Latest Users</h4>
+                            <h4>Latest Distance</h4>
                         </div>
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Photo</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Package</th>
-                                <th>Active</th>
-                                <th>Created</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                        @if(count($distances))
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Distance</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                    <th></th>
 
-                            @if($users)
-                                @foreach($users as $user)
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($distances as $distance)
                                     <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td><img height="50" width="50" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{Str::limit($user->name, 16)}}</td>
-                                        <td>{{Str::limit($user->email, 23)}}</td>
-                                        <td>{{$user->role->name}}</td>
-                                        <td>{{$user->package ? $user->package->name : 'Uncategorized'}}</td>
-                                        <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
-                                        <td>{{$user->created_at->diffForHumans()}}</td>
+                                        <td>{{$distance->id}}</td>
+                                        <td>{{$distance->distance}}</td>
+                                        <td>{{$distance->created_at->diffForHumans()}}</td>
+                                        <td>{{$distance->updated_at->diffForHumans()}}</td>
 
-                                        <td>
-                                            <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-user-edit"></i> Edit
+                                        <td class="d-flex justify-content-end">
+                                            <a href="{{route('distance.edit', $distance->id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-location-arrow"></i> Edit
                                             </a>
-                                            <a href="#" class="d-inline-block mt-1">
-                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
-                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
-                                                {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
+                                            <a href="#" class="d-inline-block ml-1">
+                                                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRadiusController@destroy', $distance->id]]) !!}
+                                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
                                                 {!! Form::close() !!}
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
-                            @endif
+                                @else
+                                    <h1 class="text-center">No Distance</h1>
+                                @endif
+                                </tbody>
 
-                            </tbody>
-                        </table>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                {{$users->onEachSide(1)->links()}}
-                            </div>
-                        </div>
+                            </table>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ADD USER MODAL -->
-    <div class="modal fade" id="addUserModal">
+
+
+    <!-- ADD PACKAGE MODAL -->
+    <div class="modal fade" id="addDistanceModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title">Add User</h5>
+                    <h5 class="modal-title">Add Distance</h5>
                     <button class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
-                        <div class="form-group">
-                            {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name', null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('email', 'Email:') !!}
-                            {!! Form::email('email', null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('password', 'Password:') !!}
-                            {!! Form::password('password', ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('role_id', 'Role:') !!}
-                            {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('package_id', 'Package:') !!}
-                            {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('is_active', 'Status:') !!}
-                            {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('photo_id', 'Photo:') !!}
-                            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                        </div>
-
+                    {!! Form::open(['method'=>'POST', 'action'=>'AdminRadiusController@store']) !!}
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        {!! Form::label('distance', 'Distance:') !!}
+                        {!! Form::text('distance', null, ['class'=>'form-control']) !!}
+                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    <div class="form-group">
-                        {!! Form::submit('Create User', ['class'=>'btn btn-secondary']) !!}
-                    </div>
+                    {!! Form::submit('Create Distance', ['class'=>'btn btn-secondary']) !!}
                     {!! Form::close() !!}
-                    {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}
-
                 </div>
             </div>
         </div>
     </div>
-
 
 @endsection
 

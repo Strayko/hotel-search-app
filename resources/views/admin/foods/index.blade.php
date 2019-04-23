@@ -30,8 +30,14 @@
                     <li class="nav-item px-2">
                         <a href="{{route('locations.index')}}" class="nav-link">Locations</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a href="{{route('foods.index')}}" class="nav-link active">Foods</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Others
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{route('foods.index')}}">Foods</a>
+                            <a class="dropdown-item" href="{{route('distance.index')}}">Distance</a>
+                        </div>
                     </li>
                 </ul>
 
@@ -104,7 +110,11 @@
                     <div class="card">
                         <div class="card-header">
                             @if(Session::has('deleted_food'))
-                                <p class="alert alert-danger">{{session('deleted_food')}}</p>
+                                <p class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{session('deleted_food')}}</p>
                             @endif
                             <h4>Latest Foods</h4>
                         </div>

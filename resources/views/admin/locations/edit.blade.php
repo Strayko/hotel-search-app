@@ -30,8 +30,14 @@
                     <li class="nav-item px-2">
                         <a href="{{route('locations.index')}}" class="nav-link active">Locations</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a href="{{route('foods.index')}}" class="nav-link">Foods</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Others
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{route('foods.index')}}">Foods</a>
+                            <a class="dropdown-item" href="{{route('distance.index')}}">Distance</a>
+                        </div>
                     </li>
                 </ul>
 
