@@ -14,6 +14,10 @@
     {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
 </div>
 <div class="form-group">
+    {!! Form::label('distance_id', 'Distance from center:') !!}
+    {!! Form::select('distance_id', ['' => 'Choose Distance'] + $distance, null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
     {!! Form::label('food_id', 'Food:') !!}
     {!! Form::select('food_id', ['' => 'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
 </div>

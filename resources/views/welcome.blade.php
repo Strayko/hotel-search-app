@@ -86,13 +86,13 @@
                                 <div class="aa-single-advance-search">
                                     <form action="{{URL::to('/search')}}" method="POST" role="search">
                                         {{csrf_field()}}
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="aa-single-advance-search">
                                                 <input style="height: 50px;" type="text" name="q" id="address" placeholder="Type Restaurant...">
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="aa-single-advance-search">
 
                                                     {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
@@ -100,10 +100,18 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="aa-single-advance-search">
 
                                                 {!! Form::select('food', [''=>'Choose Food'] + $foods, null, ['class'=>'form-control']) !!}
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="aa-single-advance-search">
+
+                                                {!! Form::select('distance', ['10'=>'Choose Distance'] + $distance, null, ['class'=>'form-control']) !!}
 
                                             </div>
                                         </div>

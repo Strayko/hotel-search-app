@@ -35,7 +35,8 @@ class Restaurant extends Model
 	    'food_id',
 	    'lat',
 	    'lng',
-	    'address'
+	    'address',
+	    'distance_id'
     ];
 
     public function user() {
@@ -72,6 +73,10 @@ class Restaurant extends Model
 
     public function food() {
     	return $this->belongsTo('App\Food');
+    }
+
+    public function distance() {
+    	return $this->belongsTo('App\Distance');
     }
 
 }

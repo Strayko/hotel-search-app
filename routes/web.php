@@ -12,6 +12,7 @@
 */
 
 use App\Comment;
+use App\Distance;
 use App\Food;
 use App\Location;
 use App\Package;
@@ -30,7 +31,8 @@ Route::get('/', function () {
 	$locations = Location::pluck('name', 'id')->all();
 	$locationss = Location::limit(8)->get();
 	$foods = Food::pluck('name', 'id')->all();
-    return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss'));
+	$distance = Distance::pluck('distance', 'id')->all();
+    return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss', 'distance'));
 });
 Auth::routes();
 
@@ -93,6 +95,8 @@ Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>
 -------------------------------------------*/
 Route::post('/search', function() {
 	$name = Input::get('name');
+	$food = Input::get('food');
+	$distance = Input::get('distance');
 	$bodyMap = [
 		'zoom' => 14,
 		'draggable' => false,
@@ -104,7 +108,12 @@ Route::post('/search', function() {
 
 	function restaurantPin() {
 		$name = Input::get('name');
-		$restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')->get();
+		$food = Input::get('food');
+		$distance = Input::get('distance');
+		$restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
+		                    ->where('food_id', 'LIKE', '%' . $food . '%')
+							->where('distance_id', '<=', $distance)
+		                    ->get();
 
 		foreach ($restos as $resto) {
 			Mapper::marker($resto['lat'], $resto['lng']);
@@ -177,12 +186,13 @@ Route::post('/search', function() {
 	}
 
 	$q = Input::get('q');
-	$food = Input::get('food');
+
 
 	if($q != ' ') {
 		$restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
 		                        ->where('title', 'LIKE', '%' .$q . '%')
 		                        ->where('food_id', 'LIKE', '%' . $food . '%')
+								->where('distance_id', '<=', $distance)
 		                        ->get();
 		if(count($restaurant) > 0) {
 			return view('search')->withDetails($restaurant)->withQuery($q);

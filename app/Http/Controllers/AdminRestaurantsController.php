@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Distance;
 use App\Food;
 use App\Http\Requests\RestaurantCreateRequest;
 use App\Location;
@@ -38,8 +39,9 @@ class AdminRestaurantsController extends Controller
 
 	    $locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
+	    $distance = Distance::pluck('distance', 'id')->all();
 
-        return view('admin.restaurants.create', compact('locations', 'foods'));
+        return view('admin.restaurants.create', compact('locations', 'foods', 'distance'));
     }
 
     /**
@@ -86,7 +88,8 @@ class AdminRestaurantsController extends Controller
 	    $restaurants = Restaurant::findOrFail($id);
 		$locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
-        return view('admin.restaurants.edit', compact('restaurants', 'locations', 'foods'));
+	    $distance = Distance::pluck('distance', 'id')->all();
+        return view('admin.restaurants.edit', compact('restaurants', 'locations', 'foods', 'distance'));
     }
 
     /**
