@@ -107,6 +107,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 </head>
@@ -191,6 +192,22 @@
                             <label for="photo_id">Photo:</label>
                             {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                         </div>
+
+
+
+                        <div class="aa-single-field{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                            <div class="col-md-6" style="margin-left: -14px!important;">
+                                {!! NoCaptcha::display() !!}
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
                         <div class="aa-single-submit">
                             {!! Form::submit('Create User', ['class'=>'btn btn-warning']) !!}
                         </div>
