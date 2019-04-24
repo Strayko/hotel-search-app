@@ -6,11 +6,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Lang;
 
 class PasswordReset extends Notification
 {
     use Queueable;
 
+	private static $toMailCallback;
     public $token;
 
     /**
@@ -42,10 +44,25 @@ class PasswordReset extends Notification
      */
     public function toMail($notifiable)
     {
+
+	    if (static::$toMailCallback) {
+		    return call_user_func(static::$toMailCallback, $notifiable, $this->token);
+	    }
+
 	    return (new MailMessage)
-		    ->line('You are receiving this email because we received a password reset request for your account.') // Here are the lines you can safely override
-		    ->action('Reset Password', url('password/reset', $this->token))
-		    ->line('If you did not request a password reset, no further action is required.');
+		    ->view(
+			    'auth.emails.password', ['token' => $this->token]
+		    )
+		    ->subject(Lang::getFromJson('Reset Password Notification'))
+		    ->from(Lang::getFromJson('info@example.com'));
+
+
+//	    return (new MailMessage)
+//		    ->from('info@example.com')
+//		    ->subject( 'Reset your password' )
+//		    ->line('You are receiving this email because we received a password reset request for your account.') // Here are the lines you can safely override
+//		    ->action('Reset Password', url('password/reset', $this->token))
+//		    ->line('If you did not request a password reset, no further action is required.');
     }
 
     /**
