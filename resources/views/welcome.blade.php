@@ -111,7 +111,7 @@
                                         <div class="col-md-3">
                                             <div class="aa-single-advance-search">
 
-                                                {!! Form::select('distance', ['10'=>'Choose Distance'] + $distance, null, ['class'=>'form-control']) !!}
+                                                {!! Form::select('distance', [100=>'Choose Distance'] + $distance, null, ['class'=>'form-control']) !!}
 
                                             </div>
                                         </div>
