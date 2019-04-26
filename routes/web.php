@@ -101,9 +101,8 @@ Route::post('/search', function() {
 		'zoom' => 14,
 		'draggable' => false,
 		'marker' => true,
-		'overlay' => 'TRAFFIC',
-		'eventAfterLoad' =>
-			'circleListener(maps[0].shapes[0].circle_0);'
+		'locate' => true,
+		'overlay' => 'TRAFFIC'
 	];
 
 	function restaurantPin() {
@@ -148,10 +147,7 @@ Route::post('/search', function() {
 		break;
 		case '8':
 			Mapper::location('Passau')->map($bodyMap);
-//			->polyline([['latitude' => 48.5667364, 'longitude' => 13.431946599999947], ['latitude' => 48.5707981, 'longitude' => 13.431985299999951]]);
-
 			restaurantPin();
-
 		break;
 		case '9':
 			Mapper::location('Augsburg')->map($bodyMap);
@@ -173,6 +169,14 @@ Route::post('/search', function() {
 			Mapper::location('Rogensburg')->map($bodyMap);
 			restaurantPin();
 		break;
+		case '19':
+			Mapper::location('Zavidovići')->map([
+				'zoom' => 15,
+				'center' => true,
+				'locate' => true,
+				'eventAfterLoad' => 'onMapLoad(map);']);
+
+			break;
 		default:
 			Mapper::location('Schweiz')->map(
 				[

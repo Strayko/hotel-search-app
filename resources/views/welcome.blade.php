@@ -14,6 +14,7 @@
     }
 </style>
 <link rel="stylesheet" href="{{asset('css/planAndPrice.css')}}">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jIRmJ7b6Zxqwr65GHiuVVj8j-RXuke8&sensor=false&libraries=places"></script>
 @section('content')
 
     <!-- Start menu section -->
