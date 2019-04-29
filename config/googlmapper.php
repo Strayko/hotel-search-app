@@ -203,7 +203,7 @@ return [
         | Display a custom icon for markers. (Link to an image)
         |
         */
-        'icon' => '',
+        'icon' => 'http://webapp.dep/images/cafe-512.png',
 
         /*
         |--------------------------------------------------------------------------

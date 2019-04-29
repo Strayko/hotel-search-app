@@ -100,7 +100,7 @@ Route::post('/search', function() {
 	$bodyMap = [
 		'zoom' => 14,
 		'draggable' => false,
-		'marker' => true,
+		'marker' => false,
 		'locate' => true,
 		'overlay' => 'TRAFFIC'
 	];
@@ -111,14 +111,14 @@ Route::post('/search', function() {
 		$distance = Input::get('distance');
 		$restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
 		                    ->where('food_id', 'LIKE', '%' . $food . '%')
-							->where('distance_id', '<=', $distance)
+//							->where('distance_id', '<=', $distance)
 		                    ->get();
 
 		foreach ($restos as $resto) {
 			Mapper::marker($resto['lat'], $resto['lng']);
 		}
 	}
-
+dd($distance);
 
 	switch($name) {
 		case '2':
@@ -196,7 +196,7 @@ Route::post('/search', function() {
 		$restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
 		                        ->where('title', 'LIKE', '%' .$q . '%')
 		                        ->where('food_id', 'LIKE', '%' . $food . '%')
-								->where('distance_id', '<=', $distance)
+//								->where('distance_id', '<=', $distance)
 		                        ->get();
 		if(count($restaurant) > 0) {
 			return view('search')->withDetails($restaurant)->withQuery($q);

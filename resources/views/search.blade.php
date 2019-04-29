@@ -116,7 +116,7 @@
 
                     <div class="container">
                         <div class="row">
-                            <div id="map" style="width: 100%; height: 400px; margin-top: 5rem;">{!! Mapper::render() !!}</div>
+                            <div style="width: 100%; height: 400px; margin-top: 5rem;">{!! Mapper::render() !!}</div>
                         </div>
                     </div>
 
