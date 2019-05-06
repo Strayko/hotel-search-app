@@ -13,8 +13,10 @@
     {!! Form::label('address', 'Address Google Map:') !!}
     {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()', 'disabled']) !!}
 
-    <input type="checkbox" id="yourBox" />
-    <label for="yourBox">I want to add registration or change</label>
+    <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" id="yourBox" class="custom-control-input" />
+        <label class="custom-control-label" for="yourBox">I want to add registration or change</label>
+    </div>
 
 </div>
 

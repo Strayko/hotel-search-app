@@ -3,8 +3,12 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jIRmJ7b6Zxqwr65GHiuVVj8j-RXuke8&sensor=false&libraries=places"></script>
 <style>
     #map_canvas { width:100%; height:300px; }
+    #pointers {
+        cursor: pointer!important;
+    }
 </style>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
+
 <script type="text/javascript">
 
     var geocoder;
@@ -183,12 +187,11 @@
                             {!! Form::label('address', 'Address Google Map:') !!}
                             {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
 
-                            <input type="checkbox" id="yourBox" />
-                            <label for="yourBox">Not registered on google map</label>
-
+                            <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" id="yourBox" class="custom-control-input" />
+                            <label id="pointers" class="custom-control-label" for="yourBox">Not registered on google map</label>
+                            </div>
                         </div>
-
-
 
                         <div class="form-group">
                             {!! Form::label('food_id', 'Food:') !!}
@@ -199,20 +202,26 @@
                             {!! Form::label('body', 'Description:') !!}
                             {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('photo_id', 'Photo:') !!}
-                            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+
+                        <div class="custom-file mb-3">
+                            {!! Form::label('photo_id', 'Upload Picture', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
+                            {!! Form::file('photo_id', null, ['class'=>'custom-file-input']) !!}
                         </div>
-                        <div class="form-group">
+                        <div class="custom-file mb-3">
+                            {!! Form::label('pdf_id', 'Upload PDF', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
+                            {!! Form::file('pdf_id', null, ['class'=>'custom-file-input']) !!}
+                        </div>
+
+                        <div class="form-group" style="display:none;">
                             {!! Form::label('lat', 'Lat:') !!}
                             {!! Form::text('lat', null) !!}
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display:none;">
                             {!! Form::label('lng', 'Lng:') !!}
                             {!! Form::text('lng', null) !!}
                         </div>
 
-                        <div class="container">
+
                             <div class="form-group">
                                 <div class="row d-flex justify-content-end">
                                     <div class="col-md-6">
@@ -221,7 +230,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
 
                     </div>
                 </div>

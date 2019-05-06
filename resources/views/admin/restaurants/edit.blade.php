@@ -174,8 +174,10 @@
                             {!! Form::label('address', 'Address Google Map:') !!}
                             {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()', 'disabled']) !!}
 
-                            <input type="checkbox" id="yourBox" />
-                            <label for="yourBox">I want to add registration or change</label>
+                            <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" id="yourBox" class="custom-control-input" />
+                            <label for="yourBox" class="custom-control-label">I want to add registration or change</label>
+                            </div>
 
                         </div>
 
@@ -193,11 +195,11 @@
                             <small class="text-muted">Leave empty to keep the same</small>
                             {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             {!! Form::label('lat', 'Lat:') !!}
                             {!! Form::text('lat', null) !!}
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             {!! Form::label('lng', 'Lng:') !!}
                             {!! Form::text('lng', null) !!}
                         </div>

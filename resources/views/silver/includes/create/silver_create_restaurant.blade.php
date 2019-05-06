@@ -14,9 +14,10 @@
     {!! Form::label('address', 'Address Google Map:') !!}
     {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
 
-    <input type="checkbox" id="yourBox" />
-    <label for="yourBox">Not registered on google map</label>
-
+    <div class="custom-control custom-checkbox mb-3">
+    <input type="checkbox" id="yourBox" class="custom-control-input" />
+    <label class="custom-control-label" for="yourBox">Not registered on google map</label>
+    </div>
 </div>
 
 <div class="form-group">
