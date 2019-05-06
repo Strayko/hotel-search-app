@@ -166,6 +166,10 @@
 @endsection
 
 @section('footer')
-
+    <script>
+        document.getElementById('yourBox').onchange = function() {
+            document.getElementById('address').disabled = !this.checked;
+        };
+    </script>
 @endsection
 

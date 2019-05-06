@@ -12,7 +12,11 @@
 
 <div class="form-group">
     {!! Form::label('address', 'Address Google Map:') !!}
-    {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
+    {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()', 'disabled']) !!}
+
+    <input type="checkbox" id="yourBox" />
+    <label for="yourBox">I want to add registration or change</label>
+
 </div>
 
 <div class="form-group">
