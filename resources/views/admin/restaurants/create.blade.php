@@ -4,7 +4,7 @@
 <style>
     #map_canvas { width:100%; height:300px; }
 </style>
-
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
 <script type="text/javascript">
 
     var geocoder;
@@ -182,7 +182,13 @@
                         <div class="form-group">
                             {!! Form::label('address', 'Address Google Map:') !!}
                             {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
+
+                            <input type="checkbox" id="yourBox" />
+                            <label for="yourBox">Not registered on google map</label>
+
                         </div>
+
+
 
                         <div class="form-group">
                             {!! Form::label('food_id', 'Food:') !!}
@@ -229,5 +235,12 @@
 @endsection
 
 @section('footer')
-
+    <script>
+        document.getElementById('yourBox').onchange = function() {
+            document.getElementById('address').disabled = this.checked;
+            document.getElementById('address').value = '';
+            document.getElementById('lat').value = '';
+            document.getElementById('lng').value = '';
+        };
+    </script>
 @endsection
