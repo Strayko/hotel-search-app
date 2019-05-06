@@ -111,18 +111,16 @@ Route::post('/search', function() {
     $distance = Input::get('distance');
     $restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
         ->where('food_id', 'LIKE', '%' . $food . '%')
-        ->where('distance_id', '<=', $distance)
         ->get();
 
 
-
+    $lnglat = null;
     foreach($restos as $resto){
         $lng = $resto['lng'];
         $lat = $resto['lat'];
         $lnglat[] = array('lng'=>$lng, 'lat'=>$lat);
     }
     $json = json_encode($lnglat);
-    var_dump($json);
 
 
 
@@ -190,7 +188,6 @@ Route::post('/search', function() {
         $restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
             ->where('title', 'LIKE', '%' .$q . '%')
             ->where('food_id', 'LIKE', '%' . $food . '%')
-            ->where('distance_id', '<=', $distance)
             ->get();
         if(count($restaurant) > 0) {
             return view('search', compact('distance', 'json'))->withDetails($restaurant)->withQuery($q);

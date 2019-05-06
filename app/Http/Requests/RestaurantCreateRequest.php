@@ -26,7 +26,6 @@ class RestaurantCreateRequest extends FormRequest
         return [
 	        'title' => 'required',
             'location_id' => 'required',
-	        'distance_id' => 'required',
 	        'food_id' => 'required',
 	        'body' => 'required'
         ];
@@ -37,7 +36,6 @@ class RestaurantCreateRequest extends FormRequest
 		return [
 			'title.required' => 'Name is required',
 			'location_id.required' => 'City is required',
-			'distance_id.required' => 'Distance is required',
 			'food_id.required' => 'Food is required',
 			'body.required' => 'Description is required'
 		];

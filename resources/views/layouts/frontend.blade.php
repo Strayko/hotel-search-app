@@ -177,7 +177,6 @@
 <script src="{{ asset('js/jquery.fancybox.pack.js') }}"></script>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/jquery.mixitup.js') }}"></script>
-<script src="{{ asset('js/nouislider.js') }}"></script>
 <script src="{{ asset('js/slick.js') }}"></script>
 {{--<script src="{{ asset('js/libs.js') }}"></script>--}}
 <script>
@@ -214,9 +213,6 @@
     }
 
 
-</script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jIRmJ7b6Zxqwr65GHiuVVj8j-RXuke8&callback=initMap">
 </script>
 
 </body>

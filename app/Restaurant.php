@@ -35,8 +35,7 @@ class Restaurant extends Model
 	    'food_id',
 	    'lat',
 	    'lng',
-	    'address',
-	    'distance_id'
+	    'address'
     ];
 
     public function user() {
