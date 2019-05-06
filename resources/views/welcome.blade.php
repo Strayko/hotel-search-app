@@ -2,7 +2,7 @@
 <title>Home</title>
 <style>
     #search-fields {
-        margin-top: -300px!important;
+        margin-top: -350px!important;
         background-color: rgba(221, 221, 221, 0.0)!important;
     }
     #aa-advance-search .aa-advance-search-area .aa-advance-search-top .aa-single-advance-search select {
@@ -14,7 +14,6 @@
     }
 </style>
 <link rel="stylesheet" href="{{asset('css/planAndPrice.css')}}">
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jIRmJ7b6Zxqwr65GHiuVVj8j-RXuke8&sensor=false&libraries=places"></script>
 @section('content')
 
     <!-- Start menu section -->
@@ -96,7 +95,7 @@
                                         <div class="col-md-3">
                                             <div class="aa-single-advance-search">
 
-                                                    {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
+                                                {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control']) !!}
 
                                             </div>
                                         </div>
