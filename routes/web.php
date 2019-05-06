@@ -27,11 +27,11 @@ use Cornford\Googlmapper\Facades\MapperFacade;
   ---> HOME PAGE <---
 --------------------------*/
 Route::get('/', function () {
-	$restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
-	$locations = Location::pluck('name', 'id')->all();
-	$locationss = Location::limit(8)->get();
-	$foods = Food::pluck('name', 'id')->all();
-	$distance = Distance::pluck('distance', 'id')->all();
+    $restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
+    $locations = Location::pluck('name', 'id')->all();
+    $locationss = Location::limit(8)->get();
+    $foods = Food::pluck('name', 'id')->all();
+    $distance = Distance::pluck('id', 'distance')->all();
     return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss', 'distance'));
 });
 Auth::routes();
@@ -46,32 +46,32 @@ Auth::routes();
   ---> MIDDLEWARE ADMIN <---
 ---------------------------*/
 Route::group(['middleware'=>'admin'], function() {
-	Route::get('/admin2', function() {
+    Route::get('/admin2', function() {
 
-		$users = User::all();
-		$restaurants = Restaurant::orderBy('id', 'desc')->paginate(7);
-		$restaurantsall = Restaurant::all();
-		$packages = Package::pluck('name', 'id')->all();
-		$package = Package::all();
-		$roles = Role::pluck('name', 'id')->all();
-		$locations = Location::pluck('name', 'id')->all();
-		$foods = Food::pluck('name', 'id')->all();
-		return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package', 'locations', 'foods', 'restaurantsall'));
-	});
-	Route::get('/home', 'HomeController@index')->name('home');
+        $users = User::all();
+        $restaurants = Restaurant::orderBy('id', 'desc')->paginate(7);
+        $restaurantsall = Restaurant::all();
+        $packages = Package::pluck('name', 'id')->all();
+        $package = Package::all();
+        $roles = Role::pluck('name', 'id')->all();
+        $locations = Location::pluck('name', 'id')->all();
+        $foods = Food::pluck('name', 'id')->all();
+        return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package', 'locations', 'foods', 'restaurantsall'));
+    });
+    Route::get('/home', 'HomeController@index')->name('home');
 
 
-	Route::resource('admin2/users', 'AdminUsersController');
-	Route::resource('admin2/restaurants', 'AdminRestaurantsController');
-	Route::resource('admin2/packages', 'AdminPackagesController');
-	Route::resource('admin2/media', 'AdminMediaController');
-	Route::resource('admin2/comments', 'RestaurantCommentController');
-	Route::resource('admin2/comment/replies', 'CommentRepliesController');
-	Route::resource('admin2/locations', 'AdminLocationsController');
-	Route::resource('admin2/foods', 'AdminFoodController');
-	Route::resource('admin2/distance', 'AdminRadiusController');
+    Route::resource('admin2/users', 'AdminUsersController');
+    Route::resource('admin2/restaurants', 'AdminRestaurantsController');
+    Route::resource('admin2/packages', 'AdminPackagesController');
+    Route::resource('admin2/media', 'AdminMediaController');
+    Route::resource('admin2/comments', 'RestaurantCommentController');
+    Route::resource('admin2/comment/replies', 'CommentRepliesController');
+    Route::resource('admin2/locations', 'AdminLocationsController');
+    Route::resource('admin2/foods', 'AdminFoodController');
+    Route::resource('admin2/distance', 'AdminRadiusController');
 
-	Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
+    Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
 
 });
 
@@ -94,115 +94,109 @@ Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>
   ---> SINGLE PAGE FRONTEND SEARCH ONLY <---
 -------------------------------------------*/
 Route::post('/search', function() {
-	$name = Input::get('name');
-	$food = Input::get('food');
-	$distance = Input::get('distance');
-	$bodyMap = [
-		'zoom' => 14,
-		'draggable' => false,
-		'marker' => false,
-		'locate' => true,
-		'overlay' => 'TRAFFIC'
-	];
-
-	function restaurantPin() {
-		$name = Input::get('name');
-		$food = Input::get('food');
-		$distance = Input::get('distance');
-		$restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
-		                    ->where('food_id', 'LIKE', '%' . $food . '%')
-//							->where('distance_id', '<=', $distance)
-		                    ->get();
-
-		foreach ($restos as $resto) {
-			Mapper::marker($resto['lat'], $resto['lng']);
-		}
-	}
-dd($distance);
-
-	switch($name) {
-		case '2':
-			Mapper::location('Fürth')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '3':
-			Mapper::location('München')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '4':
-			Mapper::location('Würzburg')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '5':
-			Mapper::location('Aschaffenburg')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '6':
-			Mapper::location('Nüremberg')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '7':
-			Mapper::location('Ingolstadt')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '8':
-			Mapper::location('Passau')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '9':
-			Mapper::location('Augsburg')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '10':
-			Mapper::location('Bayreuth')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '13':
-			Mapper::location('Kempten')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '14':
-			Mapper::location('Rosenheim')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '18':
-			Mapper::location('Rogensburg')->map($bodyMap);
-			restaurantPin();
-		break;
-		case '19':
-			Mapper::location('Zavidovići')->map([
-				'zoom' => 15,
-				'center' => true,
-				'locate' => true,
-				'eventAfterLoad' => 'onMapLoad(map);']);
-
-			break;
-		default:
-			Mapper::location('Schweiz')->map(
-				[
-					'zoom' => 8,
-					'draggable' => false,
-					'marker' => false,
-					'eventAfterLoad' =>
-						'circleListener(maps[0].shapes[0].circle_0);'
-				]
-			);
-	}
-
-	$q = Input::get('q');
+    $name = Input::get('name');
+    $food = Input::get('food');
+    $distance = Input::get('distance');
+    $bodyMap = [
+        'zoom' => 14,
+        'center' => true,
+        'marker' => false,
+        'eventAfterLoad' => 'onMapLoad(maps[0].map);'
+    ];
 
 
-	if($q != ' ') {
-		$restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
-		                        ->where('title', 'LIKE', '%' .$q . '%')
-		                        ->where('food_id', 'LIKE', '%' . $food . '%')
-//								->where('distance_id', '<=', $distance)
-		                        ->get();
-		if(count($restaurant) > 0) {
-			return view('search')->withDetails($restaurant)->withQuery($q);
-		}
-	}
-	return view('search')->withMessage('No restaurants found!');
+
+    $name = Input::get('name');
+    $food = Input::get('food');
+    $distance = Input::get('distance');
+    $restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
+        ->where('food_id', 'LIKE', '%' . $food . '%')
+        ->where('distance_id', '<=', $distance)
+        ->get();
+
+
+
+    foreach($restos as $resto){
+        $lng = $resto['lng'];
+        $lat = $resto['lat'];
+        $lnglat[] = array('lng'=>$lng, 'lat'=>$lat);
+    }
+    $json = json_encode($lnglat);
+    var_dump($json);
+
+
+
+
+    switch($name) {
+        case '2':
+            Mapper::location('Fürth')->map($bodyMap);
+            break;
+        case '3':
+            Mapper::location('München')->map($bodyMap);
+            break;
+        case '4':
+            Mapper::location('Würzburg')->map($bodyMap);
+            break;
+        case '5':
+            Mapper::location('Aschaffenburg')->map($bodyMap);
+            break;
+        case '6':
+            Mapper::location('Nüremberg')->map($bodyMap);
+            break;
+        case '7':
+            Mapper::location('Ingolstadt')->map($bodyMap);
+            break;
+        case '8':
+            Mapper::location('Passau')->map($bodyMap);
+//			->polyline([['latitude' => 48.5667364, 'longitude' => 13.431946599999947], ['latitude' => 48.5707981, 'longitude' => 13.431985299999951]]);
+            break;
+        case '9':
+            Mapper::location('Augsburg')->map($bodyMap);
+            break;
+        case '10':
+            Mapper::location('Bayreuth')->map($bodyMap);
+            break;
+        case '13':
+            Mapper::location('Kempten')->map($bodyMap);
+            break;
+        case '14':
+            Mapper::location('Rosenheim')->map($bodyMap);
+            break;
+        case '18':
+            Mapper::location('Rogensburg')->map($bodyMap);
+            break;
+        case '19':
+            Mapper::location('Zavidovići')->map($bodyMap);
+            break;
+        case '20':
+            Mapper::location('Sarajevo')->map($bodyMap);
+            break;
+        default:
+            Mapper::location('Schweiz')->map(
+                [
+                    'zoom' => 8,
+                    'draggable' => false,
+                    'marker' => false,
+                    'eventAfterLoad' =>
+                        'circleListener(maps[0].shapes[0].circle_0);'
+                ]
+            );
+    }
+
+    $q = Input::get('q');
+
+
+    if($q != ' ') {
+        $restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
+            ->where('title', 'LIKE', '%' .$q . '%')
+            ->where('food_id', 'LIKE', '%' . $food . '%')
+            ->where('distance_id', '<=', $distance)
+            ->get();
+        if(count($restaurant) > 0) {
+            return view('search', compact('distance', 'json'))->withDetails($restaurant)->withQuery($q);
+        }
+    }
+    return view('search', compact('distance', 'json'))->withMessage('No restaurants found!');
 
 });
 
@@ -215,10 +209,10 @@ dd($distance);
 ----------------------------*/
 Route::group(['middleware'=>'author'], function() {
 
-	Route::get('/admin', ['as'=>'silver.index.locations', 'uses'=>'SilverAdminIndex@index']);
+    Route::get('/admin', ['as'=>'silver.index.locations', 'uses'=>'SilverAdminIndex@index']);
 
-	Route::resource('admin/user', 'SilverUserController');
-	Route::resource('admin/restaurant', 'SilverRestaurantController');
+    Route::resource('admin/user', 'SilverUserController');
+    Route::resource('admin/restaurant', 'SilverRestaurantController');
 });
 
 
@@ -227,6 +221,6 @@ Route::group(['middleware'=>'author'], function() {
   ---> MIDDLEWARE AUTH <---
 --------------------------*/
 Route::group(['middleware'=>'auth'], function() {
-	Route::post('comment/reply', 'CommentRepliesController@createReply');
-	Route::post('comment', 'RestaurantCommentController@store');
+    Route::post('comment/reply', 'CommentRepliesController@createReply');
+    Route::post('comment', 'RestaurantCommentController@store');
 });
