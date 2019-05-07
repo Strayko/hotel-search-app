@@ -79,8 +79,8 @@ class Restaurant extends Model
     	return $this->belongsTo('App\Distance');
     }
 
-    public function pdf_documents() {
-        return $this->belongsTo('App\Pdf');
+    public function documents() {
+        return $this->belongsTo('App\Pdf', 'pdf_id');
     }
 
 }

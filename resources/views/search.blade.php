@@ -273,7 +273,7 @@
 
 
 
-        var all_locations = <?php Print($json) ?>;
+        var all_locations = <?php Print($json); ?>;
 
 
 
@@ -283,6 +283,7 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
+
                         var pos = {
                                 lat: position.coords.latitude,
                                 lng: position.coords.longitude,
@@ -297,7 +298,7 @@
                             lng: currentLng
                         };
 
-                            positionOptions = {
+                        positionOptions = {
                             timeout: 5000,
                             maximumAge : 0,
                             enableHighAccuracy : true

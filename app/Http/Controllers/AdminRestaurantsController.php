@@ -7,10 +7,12 @@ use App\Food;
 use App\Http\Requests\RestaurantCreateRequest;
 use App\Location;
 use App\Package;
+use App\Pdf;
 use App\Photo;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminRestaurantsController extends Controller
@@ -60,6 +62,13 @@ class AdminRestaurantsController extends Controller
 		    $photo = Photo::create(['file'=>$name]);
 		    $input['photo_id'] = $photo->id;
 	    }
+
+	    if($file = $request->file('pdf_id')) {
+            $name = time() . $file->getClientOriginalName();
+            $file->move('documents', $name);
+            $document = Pdf::create(['document'=>$name]);
+            $input['pdf_id'] = $document->id;
+        }
 
 	    $user->restaurants()->create($input);
 	    return redirect('/admin2/restaurants');
@@ -123,12 +132,18 @@ class AdminRestaurantsController extends Controller
     public function destroy($id)
     {
 	    $restaurant = Restaurant::findOrFail($id);
+	    if(!$restaurant->pdf_id == null) {
+            unlink(public_path() . '/documents/' . $restaurant->documents->document);
+            DB::delete('delete from pdf_documents where id = ?',[$restaurant->documents->id]);
+        }
+
 	    if($restaurant->photo_id == 2) {
 		    $restaurant->delete();
 		    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
 		    return redirect('/admin2/restaurants');
 	    } else {
 		    unlink(public_path() . $restaurant->photo->file);
+            DB::delete('delete from photos where id = ?',[$restaurant->documents->id]);
 		    $restaurant->delete();
 		    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
 		    return redirect('/admin2/restaurants');

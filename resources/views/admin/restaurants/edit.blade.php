@@ -3,6 +3,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jIRmJ7b6Zxqwr65GHiuVVj8j-RXuke8&sensor=false&libraries=places"></script>
 <style>
     #map_canvas { width:100%; height:300px; }
+    #grey-color {
+        color: grey;
+    }
 </style>
 
 <script type="text/javascript">
@@ -176,7 +179,7 @@
 
                             <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" id="yourBox" class="custom-control-input" />
-                            <label for="yourBox" class="custom-control-label">I want to add registration or change</label>
+                            <label for="yourBox" class="custom-control-label"><span id="grey-color">I want to add registration or change</span></label>
                             </div>
 
                         </div>

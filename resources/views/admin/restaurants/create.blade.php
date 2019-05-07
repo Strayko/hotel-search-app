@@ -6,6 +6,9 @@
     #pointers {
         cursor: pointer!important;
     }
+    #grey-color {
+        color: grey;
+    }
 </style>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
 
@@ -189,7 +192,7 @@
 
                             <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" id="yourBox" class="custom-control-input" />
-                            <label id="pointers" class="custom-control-label" for="yourBox">Not registered on google map</label>
+                            <label id="pointers" class="custom-control-label" for="yourBox"><span id="grey-color">Not registered on google map</span></label>
                             </div>
                         </div>
 
