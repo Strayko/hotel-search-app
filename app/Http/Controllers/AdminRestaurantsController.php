@@ -97,8 +97,7 @@ class AdminRestaurantsController extends Controller
 	    $restaurants = Restaurant::findOrFail($id);
 		$locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
-	    $distance = Distance::pluck('distance', 'id')->all();
-        return view('admin.restaurants.edit', compact('restaurants', 'locations', 'foods', 'distance'));
+        return view('admin.restaurants.edit', compact('restaurants', 'locations', 'foods'));
     }
 
     /**
@@ -117,6 +116,13 @@ class AdminRestaurantsController extends Controller
 			$file->move('images', $name);
 			$photo = Photo::create(['file'=>$name]);
 			$input['photo_id'] = $photo->id;
+        }
+
+        if($file = $request->file('pdf_id')) {
+            $name = time() . $file->getClientOriginalName();
+            $file->move('documents', $name);
+            $document = Pdf::create(['document'=>$name]);
+            $input['pdf_id'] = $document->id;
         }
 
         $restaurant->whereId($id)->first()->update($input);

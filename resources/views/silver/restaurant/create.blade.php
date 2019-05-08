@@ -3,6 +3,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1jIRmJ7b6Zxqwr65GHiuVVj8j-RXuke8&sensor=false&libraries=places"></script>
 <style>
     #map_canvas { width:100%; height:300px; }
+    #pointers {
+        cursor: pointer!important;
+    }
 </style>
 
 <script type="text/javascript">
@@ -16,7 +19,7 @@
         geocoder = new google.maps.Geocoder();
         var latlng = new google.maps.LatLng(46.818188, 8.227511999999933);
         var myOptions = {
-            zoom: 14,
+            zoom: 16,
             center: latlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };

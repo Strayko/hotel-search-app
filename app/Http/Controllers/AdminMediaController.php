@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pdf;
 use App\Photo;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class AdminMediaController extends Controller
 {
     public function index() {
 
-    	$photos = Photo::paginate(10);
+    	$photos = Photo::orderBy('id', 'desc')->paginate(10);
     	return view('admin.media.index', compact('photos'));
     }
 

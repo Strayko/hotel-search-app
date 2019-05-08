@@ -15,7 +15,7 @@
     {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()', 'disabled']) !!}
     <div class="custom-control custom-checkbox mb-3">
     <input type="checkbox" id="yourBox" class="custom-control-input" />
-    <label class="custom-control-label" for="yourBox">I want to add registration or change</label>
+    <label id="pointers" class="custom-control-label" for="yourBox">I want to add registration or change</label>
     </div>
 </div>
 
@@ -28,16 +28,21 @@
     {!! Form::label('body', 'Description:') !!}
     {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
 </div>
-<div class="form-group">
-    {!! Form::label('photo_id', 'Photo:') !!}
-    <small class="text-muted">Leave empty to keep the same</small>
-    {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+<small class="text-muted">Leave empty to keep the same</small>
+<div class="custom-file mb-3">
+    {!! Form::label('photo_id', 'Upload Picture', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
+    {!! Form::file('photo_id', null, ['class'=>'custom-file-input']) !!}
 </div>
-<div class="form-group">
+<small class="text-muted">Leave empty to keep the same</small>
+<div class="custom-file mb-3">
+    {!! Form::label('pdf_id', 'Upload PDF', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
+    {!! Form::file('pdf_id', null, ['class'=>'custom-file-input']) !!}
+</div>
+<div class="form-group" style="display: none;">
     {!! Form::label('lat', 'Lat:') !!}
     {!! Form::text('lat', null) !!}
 </div>
-<div class="form-group">
+<div class="form-group" style="display: none;">
     {!! Form::label('lng', 'Lng:') !!}
     {!! Form::text('lng', null) !!}
 </div>

@@ -193,7 +193,7 @@ Route::post('/search', function() {
             return view('search', compact('distance', 'json'))->withDetails($restaurant)->withQuery($q);
         }
     }
-    return view('search', compact('distance', 'json'))->withMessage('No restaurants found!');
+    return view('search', compact('distance', 'json'))->withMessage('No restaurant could not be found!');
 
 });
 

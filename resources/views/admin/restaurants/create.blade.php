@@ -23,7 +23,7 @@
         geocoder = new google.maps.Geocoder();
         var latlng = new google.maps.LatLng(46.818188, 8.227511999999933);
         var myOptions = {
-            zoom: 14,
+            zoom: 16,
             center: latlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
@@ -230,10 +230,10 @@
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-success btn-block"><i class="fas fa-utensils"></i> Create Restaurant</button>
                                         {!! Form::close() !!}
+
                                     </div>
                                 </div>
                             </div>
-
 
                     </div>
                 </div>

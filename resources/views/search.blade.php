@@ -108,7 +108,7 @@
 
                         @endforeach
                         @elseif(isset($message))
-                            <h3>{{$message}}</h3>
+                            <h2>{{$message}}</h2>
 
                         @endif
 
@@ -118,6 +118,7 @@
 
                     <div class="container">
                         <div class="row">
+                            <h2 id="message2" style="margin-top:20px; text-align:center;">Test</h2>
                             <div id="mappers" style="width: 100%; height: 400px; margin-top: 5rem;">{!! Mapper::render() !!}</div>
                         </div>
                     </div>
@@ -313,18 +314,25 @@
                         var distance = <?php Print($distance); ?>;
                         var distanceString = distance.toString();
 
-                        for (var j = 0; j < all_locations.length; j++) {
-                            var lat = all_locations[j]['lat'];
-                            var lng = all_locations[j]['lng'];
-                            var marker_lat_lng = {lat, lng};
-                            var calculate2 = Distance.between(currentLocation, marker_lat_lng);
-                            if(calculate2 <= Distance(distanceString + ' m')){
-                                var new_marker = new google.maps.Marker({
-                                    position: marker_lat_lng,
-                                    map: map,
-                                    title: "Name"
-                                });
+                        if(all_locations != null){
+                            for (var j = 0; j < all_locations.length; j++) {
+                                var lat = all_locations[j]['lat'];
+                                var lng = all_locations[j]['lng'];
+                                var marker_lat_lng = {lat, lng};
+                                var calculate2 = Distance.between(currentLocation, marker_lat_lng);
+                                if(calculate2 <= Distance(distanceString + ' m')){
+                                    var new_marker = new google.maps.Marker({
+                                        position: marker_lat_lng,
+                                        map: map,
+                                        title: "Name"
+                                    });
+                                }else {
+                                    document.getElementById("message2").innerHTML = "There is not one restaurant in the selected radius!";
+                                    break;
+                                }
                             }
+                        }else{
+                            console.log('There are no registered restaurants in the selected city');
                         }
 
                             currentLocation = new google.maps.Circle({

@@ -7,6 +7,7 @@ use App\Food;
 use App\Http\Requests\SilverRequest;
 use App\Location;
 use App\Package;
+use App\Pdf;
 use App\Photo;
 use App\Restaurant;
 use App\User;
@@ -67,6 +68,13 @@ class SilverRestaurantController extends Controller
 		    $input['photo_id'] = $photo->id;
 	    }
 
+        if($file = $request->file('pdf_id')) {
+            $name = time() . $file->getClientOriginalName();
+            $file->move('documents', $name);
+            $document = Pdf::create(['document' => $name]);
+            $input['pdf_id'] = $document->id;
+        }
+
 	    $user->restaurants()->create($input);
 	    return redirect('/admin/restaurant');
     }
@@ -93,14 +101,13 @@ class SilverRestaurantController extends Controller
 	    $restaurants = Restaurant::findOrFail($id);
 	    $foods = Food::pluck('name', 'id')->all();
 	    $locations = Location::pluck('name', 'id')->all();
-	    $distance = Distance::pluck('distance', 'id')->all();
 
 	    $bronze = User::where('package_id', Auth::user()->isBronze())->first();
 	    $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
 
 //	    $silver = DB::table('users')->where('package_id', '=', '3')->value('package_id');
-	    return view('silver.restaurant.edit', compact('restaurants', 'silver', 'bronze', 'gold', 'locations', 'foods', 'distance'));
+	    return view('silver.restaurant.edit', compact('restaurants', 'silver', 'bronze', 'gold', 'locations', 'foods'));
     }
 
     /**
@@ -120,6 +127,13 @@ class SilverRestaurantController extends Controller
 		    $input['photo_id'] = $photo->id;
 	    }
 
+        if($file = $request->file('pdf_id')) {
+            $name = time() . $file->getClientOriginalName();
+            $file->move('documents', $name);
+            $document = Pdf::create(['document' => $name]);
+            $input['pdf_id'] = $document->id;
+        }
+
 	    Auth::user()->restaurants()->whereId($id)->first()->update($input);
 	    return redirect('/admin/restaurant');
     }
@@ -133,11 +147,17 @@ class SilverRestaurantController extends Controller
     public function destroy($id)
     {
 	    $restaurant = Restaurant::findOrFail($id);
+        if(!$restaurant->pdf_id == null) {
+            unlink(public_path() . '/documents/' . $restaurant->documents->document);
+            DB::delete('delete from pdf_documents where id = ?',[$restaurant->documents->id]);
+        }
+
 	    if($restaurant->photo_id == 2) {
 		    $restaurant->delete();
 		    return redirect('/admin/restaurant');
 	    } else {
 		    unlink(public_path() . $restaurant->photo->file);
+            DB::delete('delete from photos where id = ?',[$restaurant->documents->id]);
 		    $restaurant->delete();
 		    return redirect('/admin/restaurant');
 	    }

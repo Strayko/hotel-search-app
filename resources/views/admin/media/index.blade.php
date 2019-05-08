@@ -149,11 +149,11 @@
                             </tbody>
                         </table>
                         </form>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                {{$photos->onEachSide(1)->links()}}
-                            </div>
-                        </div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-12 d-flex justify-content-center">--}}
+                                {{--{{$photos->onEachSide(1)->links()}}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@ use App\Restaurant;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
@@ -138,6 +139,7 @@ class AdminUsersController extends Controller
 			return redirect('/admin2/users');
 		} else {
 			unlink( public_path() . $user->photo->file );
+            DB::delete('delete from photos where id = ?',[$user->photo->id]);
 			$user->delete();
 			Session::flash('deleted_user', 'The User has been deleted');
 			return redirect('/admin2/users');
