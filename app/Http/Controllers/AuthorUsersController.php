@@ -7,6 +7,7 @@ use App\Package;
 use App\Photo;
 use App\Restaurant;
 use App\User;
+use DateTime;
 use Illuminate\Http\Request;
 
 class AuthorUsersController extends Controller
@@ -56,6 +57,29 @@ class AuthorUsersController extends Controller
 		    $photo = Photo::create(['file'=>$name]);
 		    $input['photo_id'] = $photo->id;
 	    }
+
+
+	    switch($request->get('package_id')) {
+            case '1':
+                $dateTime = new DateTime();
+                $dateTime->modify('+5 hour');
+                $dateTime->format('Y-m-d H:i:s');
+                $input['package_expiry'] = $dateTime;
+            break;
+            case '2':
+                $dateTime = new DateTime();
+                $dateTime->modify('+10 hour');
+                $dateTime->format('Y-m-d H:i:s');
+                $input['package_expiry'] = $dateTime;
+            break;
+            case '3':
+                $dateTime = new DateTime();
+                $dateTime->modify('+15 hour');
+                $dateTime->format('Y-m-d H:i:s');
+                $input['package_expiry'] = $dateTime;
+            break;
+        }
+
 
 
 	    User::create($input);

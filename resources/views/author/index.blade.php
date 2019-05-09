@@ -167,6 +167,7 @@
                         {{--<button class="btn btn-warning" data-dismiss="modal">Save Changes</button>--}}
 
                         {!! Form::open(['method'=>'POST', 'action'=>'AuthorUsersController@store', 'files'=>true]) !!}
+                        <input type="hidden" name="package_expiry">
                         <div class="aa-single-field">
                             <label for="name">Name <span class="required">*</span></label>
                             {{--<input type="text" required="required" aria-required="true" value="" name="name">--}}

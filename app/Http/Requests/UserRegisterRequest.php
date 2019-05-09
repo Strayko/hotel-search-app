@@ -24,30 +24,30 @@ class UserRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-	        'name' => 'required|unique:users|max:30',
-	        'email' => 'required|unique:users|max:30',
-	        'password' => 'required',
-	        'package_id' => 'required',
-	        'g-recaptcha-response' => 'required|captcha'
+//	        'name' => 'required|unique:users|max:30',
+//	        'email' => 'required|unique:users|max:30',
+//	        'password' => 'required',
+//	        'package_id' => 'required',
+//	        'g-recaptcha-response' => 'required|captcha'
         ];
     }
 
 	public function messages()
 	{
 		return [
-			'name.required' => 'Name is required',
-			'email.required'  => 'Email is required',
-			'password.required' => 'Password is required',
-			'package_id.required' => 'Package is required',
-			'g-recaptcha-response.required' => 'reCAPTCHA field is required'
+//			'name.required' => 'Name is required',
+//			'email.required'  => 'Email is required',
+//			'password.required' => 'Password is required',
+//			'package_id.required' => 'Package is required',
+//			'g-recaptcha-response.required' => 'reCAPTCHA field is required'
 		];
 	}
 
 	public function attributes()
 	{
 		return [
-			'name' => 'Name',
-			'email' => 'Email'
+//			'name' => 'Name',
+//			'email' => 'Email'
 		];
 	}
 }
