@@ -13,6 +13,8 @@ class AuthorRestaurantController extends Controller
     public function restaurant($slug) {
 
     	$restaurant = Restaurant::findBySlugOrFail($slug);
+
+
     	$comments = $restaurant->comments()->whereIsActive(1)->paginate(5);
     	$commentss = $restaurant->comments()->whereIsActive(1)->get();
     	$relateds = Restaurant::all()->random(2);

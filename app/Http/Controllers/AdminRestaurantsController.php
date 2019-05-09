@@ -155,4 +155,5 @@ class AdminRestaurantsController extends Controller
 		    return redirect('/admin2/restaurants');
 	    }
     }
+
 }

@@ -118,7 +118,7 @@
 
                     <div class="container">
                         <div class="row">
-                            <h2 id="message2" style="margin-top:20px; text-align:center;">Test</h2>
+                            <h2 id="message2" style="margin-top:20px; text-align:center;"></h2>
                             <div id="mappers" style="width: 100%; height: 400px; margin-top: 5rem;">{!! Mapper::render() !!}</div>
                         </div>
                     </div>

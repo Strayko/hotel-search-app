@@ -90,6 +90,14 @@
                                                     </div>
                                                     <p>{{$restaurant->body}}</p>
                                                     <p>{{$restaurant->body}}</p>
+                                                    @if(!empty($restaurant->documents->document))
+                                                        <a href="{{ asset('documents/' . $restaurant->documents->document) }}" target="_blank"><h2 style="display: inline-block;"><i class="fas fa-file-pdf"></i></h2></a>
+                                                        @else
+                                                        <p>You dont have pdf</p>
+                                                        @endif
+
+
+                                                    {{--<h3><i class="fas fa-file-pdf"></i></h3>{{ link_to_asset('documents/' . $restaurant->documents->document, 'Open the pdf!') }}--}}
                                                     <blockquote>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate explicabo consequuntur, impedit aut similique cum.</p>
                                                         <cite>- Mr. josep</cite>

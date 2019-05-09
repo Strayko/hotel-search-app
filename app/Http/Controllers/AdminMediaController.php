@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pdf;
 use App\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class AdminMediaController extends Controller
 {
