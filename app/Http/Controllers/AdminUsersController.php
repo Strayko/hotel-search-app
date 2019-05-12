@@ -10,8 +10,10 @@ use App\Restaurant;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class AdminUsersController extends Controller
 {
@@ -23,9 +25,26 @@ class AdminUsersController extends Controller
     public function index()
     {
 
+//        $date = Carbon::now();
+//        $package_expiry = User::where('package_expiry', '<', $date)->delete();
+//
+//        dd($package_expiry);
+
+//        foreach ($package_expiry as $key => $object) {
+//            echo $expiry = $object->package_expiry;
+//        }
+
+//        if($date > $expiry) {
+//            $totalUsers = \DB::table('users')->where('package_expiry', '<', $date)
+//              ->delete();
+//        }
+
+
+
 		$users = User::orderBy('id', 'desc')->paginate(10);
 	    $roles = Role::pluck('name', 'id')->all();
 	    $packages = Package::pluck('name', 'id')->all();
+
 
         return view('admin.users.index', compact('users', 'roles', 'packages'));
     }

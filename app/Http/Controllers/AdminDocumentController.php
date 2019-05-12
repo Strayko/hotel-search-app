@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class AdminDocumentController extends Controller
 {
+
+    //single delete pdf in edit restaurants not allowed
     public function deletepdf(Request $request) {
 
         if(isset($request->delete_pdf)) {
