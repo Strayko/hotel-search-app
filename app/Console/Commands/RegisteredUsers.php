@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Restaurant;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -42,8 +43,16 @@ class RegisteredUsers extends Command
     {
 
 
+
         $date = Carbon::now();
-        $package_expiry = User::where('package_expiry', '<', $date)->delete();
+        $package_expiry = User::where('package_expiry', '<', $date)->get();
+        foreach ($package_expiry as $key => $object) {
+            $restaurant = Restaurant::where('user_id', $object->id)->delete();
+            $object->is_active = 0;
+            $object->save();
+        }
+
+
 
 //       $today_date =  Carbon::now();
 //        $package_expiry = \DB::table('users')

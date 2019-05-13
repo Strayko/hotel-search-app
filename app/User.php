@@ -109,6 +109,14 @@ class User extends Authenticatable
 //		return false;
 //	}
 
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) {
+            $user->restaurants()->delete();
+        });
+    }
+
 	public function restaurants() {
     	return $this->hasMany('App\Restaurant');
 	}

@@ -5,10 +5,14 @@ namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 class Restaurant extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
 	use Sluggable;
 	use SluggableScopeHelpers;
 

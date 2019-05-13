@@ -28,13 +28,18 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/admin2';
 
-    protected function credentials(Request $request)
-    {
-        $credentials = $request->only($this->username(), 'password');
-        $credentials['is_active'] = 1;
 
-        return $credentials;
-    }
+
+
+
+
+//    protected function credentials(Request $request)
+//    {
+//        $credentials = $request->only($this->username(), 'password');
+//        $credentials['is_active'] = 1;
+//        return $credentials;
+//
+//    }
 
     /**
      * Create a new controller instance.
