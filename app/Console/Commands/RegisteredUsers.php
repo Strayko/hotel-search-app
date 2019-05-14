@@ -53,6 +53,7 @@ class RegisteredUsers extends Command
         foreach ($package_expiry as $key => $object) {
             $restaurant = Restaurant::where('user_id', $object->id)->delete();
             $object->is_active = 0;
+            $object->remember_token = null;
             $object->save();
         }
 
