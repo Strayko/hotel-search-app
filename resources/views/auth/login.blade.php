@@ -110,6 +110,7 @@
                         <div class="aa-signin-form-title">
                             <a class="aa-property-home" href="/">Home</a>
                             <h4>Sign in to your account</h4>
+
                         </div>
                         <form method="POST" action="{{ route('login') }}" class="contactform">
                             @csrf

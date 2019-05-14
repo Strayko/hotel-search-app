@@ -7,6 +7,7 @@ use App\Package;
 use App\Photo;
 use App\Restaurant;
 use App\User;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -61,19 +62,19 @@ class AuthorUsersController extends Controller
 
 	    switch($request->get('package_id')) {
             case '1':
-                $dateTime = new DateTime();
+                $dateTime = Carbon::now();
                 $dateTime->modify('+5 hour');
                 $dateTime->format('Y-m-d H:i:s');
                 $input['package_expiry'] = $dateTime;
             break;
             case '2':
-                $dateTime = new DateTime();
+                $dateTime = Carbon::now();
                 $dateTime->modify('+10 hour');
                 $dateTime->format('Y-m-d H:i:s');
                 $input['package_expiry'] = $dateTime;
             break;
             case '3':
-                $dateTime = new DateTime();
+                $dateTime = Carbon::now();
                 $dateTime->modify('+15 hour');
                 $dateTime->format('Y-m-d H:i:s');
                 $input['package_expiry'] = $dateTime;

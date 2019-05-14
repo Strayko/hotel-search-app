@@ -153,12 +153,12 @@ class SilverRestaurantController extends Controller
         }
 
 	    if($restaurant->photo_id == 2) {
-		    $restaurant->delete();
+		    $restaurant->forceDelete();
 		    return redirect('/admin/restaurant');
 	    } else {
 		    unlink(public_path() . $restaurant->photo->file);
             DB::delete('delete from photos where id = ?',[$restaurant->documents->id]);
-		    $restaurant->delete();
+		    $restaurant->forceDelete();
 		    return redirect('/admin/restaurant');
 	    }
     }

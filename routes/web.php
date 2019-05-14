@@ -89,6 +89,9 @@ Route::get('/locations', ['as'=>'locations.locations', 'uses'=>'SubscriberPlanCo
 Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>'SubscriberPlanController@locationCategory']);
 
 
+Route::post('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@store']);
+Route::get('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@renewAccount']);
+
 
 /*------------------------------------------
   ---> SINGLE PAGE FRONTEND SEARCH ONLY <---

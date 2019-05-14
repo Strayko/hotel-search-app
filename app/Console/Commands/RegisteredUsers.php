@@ -5,8 +5,13 @@ namespace App\Console\Commands;
 use App\Restaurant;
 use App\User;
 use Carbon\Carbon;
+
+use Closure;
 use Illuminate\Console\Command;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class RegisteredUsers extends Command
 {
@@ -41,7 +46,6 @@ class RegisteredUsers extends Command
      */
     public function handle()
     {
-
 
 
         $date = Carbon::now();
