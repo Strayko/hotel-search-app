@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Event;
 use App\Food;
 use App\Location;
 use App\Restaurant;
@@ -15,7 +16,7 @@ class AuthorRestaurantController extends Controller
 
     	$restaurant = Restaurant::findBySlugOrFail($slug);
 
-
+        $event = $restaurant->events()->orderBy('id', 'desc')->whereIsActive(1)->first();
     	$comments = $restaurant->comments()->whereIsActive(1)->paginate(5);
     	$commentss = $restaurant->comments()->whereIsActive(1)->get();
     	$relateds = Restaurant::orderBy(DB::raw('RAND()'))->limit(2)->get();
@@ -23,7 +24,7 @@ class AuthorRestaurantController extends Controller
     	$foods = Food::all();
 	    $restaurantRecents = Restaurant::orderBy('id', 'desc')->limit(3)->get();
 
-    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents'));
+    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents', 'event'));
     }
 
 }

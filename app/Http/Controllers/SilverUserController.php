@@ -7,6 +7,7 @@ use App\Photo;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class SilverUserController extends Controller
@@ -61,9 +62,10 @@ class SilverUserController extends Controller
      */
     public function edit($id)
     {
+        $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $user = User::findOrFail($id);
 	    $packages = Package::pluck('name', 'id')->all();
-	    return view('silver.user.edit', compact ('user', 'packages'));
+	    return view('silver.user.edit', compact ('user', 'packages', 'gold'));
     }
 
     /**

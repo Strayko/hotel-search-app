@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-<title>Restaurant</title>
+<title>Event</title>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
@@ -14,13 +14,11 @@
                         <a href="/admin" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurants</a>
+                        <a href="{{route('restaurant.index')}}" class="nav-link">Restaurants</a>
                     </li>
-                    @if($gold)
                     <li class="nav-item px-2">
-                        <a href="{{route('event.index')}}" class="nav-link">Events</a>
+                        <a href="{{route('event.index')}}" class="nav-link active">Events</a>
                     </li>
-                    @endif
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -56,7 +54,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-utensils"></i> Restaurants</h1>
+                    <h1><i class="fas fa-calendar-alt"></i> Events</h1>
                 </div>
             </div>
         </div>
@@ -67,8 +65,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="{{route('restaurant.create')}}" class="btn btn-secondary btn-block">
-                        <i class="fas fa-plus"></i> Add Restaurant
+                    <a href="{{route('event.create')}}" class="btn btn-secondary btn-block">
+                        <i class="fas fa-plus"></i> Add Event
                     </a>
                 </div>
 
@@ -87,44 +85,58 @@
                             @if(Session::has('deleted_restaurant'))
                                 <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
                             @endif
-                            <h4>Restaurants</h4>
+                            <h4>Events</h4>
                         </div>
-                        @if(count($restaurants) > 0)
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Photo</th>
-                                <th>Title</th>
-                                <th>Body</th>
-                                <th>View</th>
-                                <th>Created</th>
-                                <th>Updated</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                        @if(count($events) > 0)
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Restaurant</th>
+                                    <th>Title</th>
+                                    <th>Body</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                                @foreach($restaurants as $restaurant)
+                                @foreach($events as $event)
                                     <tr>
-                                        <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{Str::limit($restaurant->title, 15)}}</td>
-                                        <td>{{Str::limit($restaurant->body, 10)}}</td>
-                                        <td><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
-                                        <td>{{$restaurant->created_at->diffForHumans()}}</td>
-                                        <td>{{$restaurant->updated_at->diffForHumans()}}</td>
+                                        <td><img height="50" width="50" src="{{$event->photo ? $event->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                                        <td>{{$event->restaurant->title}}</td>
+                                        <td>{{Str::limit($event->title, 15)}}</td>
+                                        <td>{{Str::limit($event->body, 10)}}</td>
+                                        <td>{{$event->created_at->diffForHumans()}}</td>
+                                        <td>{{$event->updated_at->diffForHumans()}}</td>
                                         <td>
-                                            <a href="{{route('restaurant.edit', $restaurant->id)}}" class="btn btn-secondary">
+                                            @if($event->is_active == 1)
+                                                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
+                                                <input type="hidden" name="is_active" value="0">
+                                                {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
+                                                {!! Form::close() !!}
+                                            @else
+                                                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
+                                                <input type="hidden" name="is_active" value="1">
+                                                {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
+                                                {!! Form::close() !!}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('event.edit', $event->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-utensils"></i> Edit/Delete
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
                                 @else
-                                <h1 class="text-center">Please add your Restaurant</h1>
-                            @endif
-                            </tbody>
-                        </table>
-                        <!-- PAGINATION -->
+                                    <h1 class="text-center">Please add your Events</h1>
+                                @endif
+                                </tbody>
+                            </table>
+                            <!-- PAGINATION -->
 
                     </div>
                 </div>
@@ -132,30 +144,7 @@
         </div>
     </section>
 
-    {{--MODAL--}}
-    {{--<div class="modal fade" id="addRestaurantModal">--}}
-        {{--<div class="modal-dialog modal-lg">--}}
-            {{--<div class="modal-content">--}}
-                {{--<div class="modal-header bg-secondary text-white">--}}
-                    {{--<h5 class="modal-title">Add Restaurant</h5>--}}
-                    {{--<button class="close" data-dismiss="modal">--}}
-                        {{--<span>&times;</span>--}}
-                    {{--</button>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
 
-                    {{--@if($gold)--}}
-                        {{--@include('silver.includes.create.gold_create_restaurant')--}}
-                    {{--@elseif($silver)--}}
-                        {{--@include('silver.includes.create.silver_create_restaurant')--}}
-                    {{--@elseif($bronze)--}}
-                        {{--@include('silver.includes.create.bronze_create_restaurant')--}}
-                    {{--@endif--}}
-
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
 @endsection
 
 @section('footer')

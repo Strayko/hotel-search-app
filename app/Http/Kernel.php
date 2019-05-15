@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
 	    'bronze' => \App\Http\Middleware\Bronze::class,
 	    'author' => \App\Http\Middleware\Author::class,
         'checkstatus' => \App\Http\Middleware\CheckStatus::class,
+        'gold' => \App\Http\Middleware\Gold::class,
     ];
 
     /**

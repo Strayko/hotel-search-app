@@ -24,10 +24,10 @@ class SilverRestaurantController extends Controller
      */
     public function index()
     {
-
+        $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
 
-        return view('silver.restaurant.index', compact('restaurants'));
+        return view('silver.restaurant.index', compact('restaurants', 'gold'));
     }
 
     /**

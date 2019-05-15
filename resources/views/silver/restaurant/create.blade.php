@@ -67,6 +67,11 @@
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurants</a>
                     </li>
+                    @if($gold)
+                        <li class="nav-item px-2">
+                            <a href="{{route('event.index')}}" class="nav-link">Events</a>
+                        </li>
+                    @endif
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

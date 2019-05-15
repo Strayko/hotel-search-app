@@ -87,4 +87,8 @@ class Restaurant extends Model
         return $this->belongsTo('App\Pdf', 'pdf_id');
     }
 
+    public function events() {
+        return $this->hasMany('App\Event');
+    }
+
 }

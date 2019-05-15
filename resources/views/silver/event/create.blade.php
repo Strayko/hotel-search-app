@@ -1,7 +1,11 @@
 @extends('layouts.admin')
-<title>Edit User</title>
-@section('content')
+<title>Restaurant</title>
+<style>
 
+</style>
+
+@section('content')
+    <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
             <a href="/" class="navbar-brand">Home</a>
@@ -16,11 +20,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link">Restaurants</a>
                     </li>
-                    @if($gold)
-                        <li class="nav-item px-2">
-                            <a href="{{route('event.index')}}" class="nav-link">Events</a>
-                        </li>
-                    @endif
+                    <li class="nav-item px-2">
+                        <a href="{{route('event.index')}}" class="nav-link active">Events</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -56,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-user"></i> Edit Profile</h1>
+                    <h1><i class="fas fa-calendar-alt"></i> Create Event</h1>
                 </div>
             </div>
         </div>
@@ -72,81 +74,78 @@
                     </a>
                 </div>
                 <div class="col-md-3">
-                    {!! Form::open(['method'=>'DELETE', 'action'=>['SilverUserController@destroy', $user->id]]) !!}
-                    <button type="submit" class="btn btn-danger btn-block"><i class="fas fa-trash-alt"></i> Delete Account</button>
-                    {!! Form::close() !!}
+
                 </div>
             </div>
         </div>
     </section>
 
     <div class="container">
-        @include('includes.form_error')
         {{--<h1>Edit User</h1>--}}
         <div class="row">
+
             <div class="col-md-6">
+                @include('includes.user_form_error')
                 <div class="card">
                     <div class="card-header">
-                        <h4>Profile</h4>
+                        <h4>Event</h4>
+
                     </div>
 
                     <div class="card-body">
-                        {!! Form::model($user, ['method'=>'PATCH', 'action'=>['SilverUserController@update', $user->id], 'files'=>true]) !!}
+
+
+
+                        {!! Form::open(['method'=>'POST', 'action'=>'AuthorEventController@store', 'files'=>true]) !!}
+                        {{csrf_field()}}
                         <div class="form-group">
-                            {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                            {!! Form::label('title', 'Name:') !!}
+                            {!! Form::text('title', null, ['class'=>'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('body', 'Description:') !!}
+                            {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('restaurant_id', 'Restaurant:') !!}
+                            {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'form-control']) !!}
+                        </div>
+                        <div class="custom-file mb-3">
+                            {!! Form::label('photo_id', 'Upload Picture', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
+                            {!! Form::file('photo_id', null, ['class'=>'custom-file-input']) !!}
                         </div>
 
-                        <div class="form-group">
-                            {!! Form::label('email', 'Email:') !!}
-                            {!! Form::email('email', null, ['class'=>'form-control']) !!}
-                        </div>
 
-                        <div class="form-group">
-                            {!! Form::label('password', 'Password:') !!}
-                            {!! Form::password('password', ['class'=>'form-control']) !!}
-                            <small class="text-muted">Leave empty to keep the same</small>
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('package_id', 'Package:') !!}
-                            {!! Form::select('package_id', $packages, null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('is_active', 'Status:') !!}
-                            {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('photo_id', 'Photo:') !!}
-                            <small class="text-muted">Leave empty to keep the same</small>
-                            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row d-flex justify-content-end">
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-success btn-block"> Update Profile</button>
-                                    {!! Form::close() !!}
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-end">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-calendar-alt"></i> Create Event</button>
+                                        {!! Form::close() !!}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
+
+
+                        {{--@if($silver)--}}
+                            {{--@include('silver.includes.create.silver_create_restaurant')--}}
+                        {{--@elseif($bronze)--}}
+                            {{--@include('silver.includes.create.bronze_create_restaurant')--}}
+                        {{--@elseif($gold)--}}
+                            {{--@include('silver.includes.create.gold_create_restaurant')--}}
+                        {{--@endif--}}
+
+                    </div>
                 </div>
 
             </div>
-            <div class="col-md-6">
-                <img width="300" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" class="img-fluid img-thumbnail rounded" alt="">
-            </div>
+
 
         </div>
     </div>
-
+    </body>
 @endsection
 
 @section('footer')
 
 @endsection
-

@@ -97,19 +97,15 @@
 
 
                                                     {{--<h3><i class="fas fa-file-pdf"></i></h3>{{ link_to_asset('documents/' . $restaurant->documents->document, 'Open the pdf!') }}--}}
-                                                    <blockquote>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate explicabo consequuntur, impedit aut similique cum.</p>
-                                                        <cite>- Mr. josep</cite>
-                                                    </blockquote>
-                                                    <h1>H1 Title</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia inventore commodi labore. Doloremque voluptas ullam iusto nemo quisquam, saepe sit.</p>
-                                                    <h2>H2 Title</h2>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia inventore commodi labore. Doloremque voluptas ullam iusto nemo quisquam, saepe sit.</p>
-                                                    <h3>H3 Title</h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia inventore commodi labore. Doloremque voluptas ullam iusto nemo quisquam, saepe sit.</p>
-                                                    <h4>H4 Title</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, provident.</p>
-
+                                                    {{--<blockquote>--}}
+                                                        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate explicabo consequuntur, impedit aut similique cum.</p>--}}
+                                                        {{--<cite>- Mr. josep</cite>--}}
+                                                    {{--</blockquote>--}}
+                                                    @if($event)
+                                                    <h1>{{$event->title}}</h1>
+                                                    <img width="400" alt="img" src="{{$event->photo ? $restaurant->photo->file : $restaurant->photoPlaceholder()}}">
+                                                    <p style="margin-top: 20px;">{{$event->body}}</p>
+                                                    @endif
                                                 </div>
                                             </article>
                                         </div>
