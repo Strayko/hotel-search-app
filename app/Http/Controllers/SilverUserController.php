@@ -8,6 +8,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class SilverUserController extends Controller
@@ -105,12 +106,14 @@ class SilverUserController extends Controller
     {
 	    $user = User::findOrFail($id);
 	    if($user->photo_id == 1) {
-		    $user->delete();
+	        DB::delete('delete from events where user_id = ?', [$user->id]);
+		    $user->forceDelete();
 		    Session::flash('deleted_user', 'The User has been deleted');
 		    return redirect('/admin2/users');
 	    } else {
+            DB::delete('delete from events where user_id = ?', [$user->id]);
 		    unlink( public_path() . $user->photo->file );
-		    $user->delete();
+		    $user->forceDelete();
 		    Session::flash('deleted_user', 'The User has been deleted');
 		    return redirect('/admin2/users');
 	    }

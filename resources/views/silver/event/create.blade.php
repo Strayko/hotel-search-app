@@ -23,6 +23,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('event.index')}}" class="nav-link active">Events</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

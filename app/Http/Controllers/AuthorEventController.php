@@ -8,6 +8,7 @@ use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthorEventController extends Controller
 {
@@ -30,7 +31,8 @@ class AuthorEventController extends Controller
      */
     public function create()
     {
-        $restaurants = Restaurant::pluck('title', 'id')->all();
+        $user_id = Auth::user()->id;
+        $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
         return view('silver.event.create', compact('restaurants'));
     }
 
@@ -81,8 +83,9 @@ class AuthorEventController extends Controller
      */
     public function edit($id)
     {
+        $user_id = Auth::user()->id;
         $events = Event::findOrFail($id);
-        $restaurants = Restaurant::pluck('title', 'id')->all();
+        $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
         return view('silver.event.edit', compact('events', 'restaurants'));
     }
 
@@ -118,7 +121,10 @@ class AuthorEventController extends Controller
     public function destroy($id)
     {
         $events = Event::findOrFail($id);
-        unlink(public_path() . $events->photo->file);
+        if($events->photo_id != 3){
+            unlink(public_path() . $events->photo->file);
+            DB::delete('delete from photos where id = ?',[$events->photo_id]);
+        }
         $events->delete();
         return redirect('/admin/event');
     }

@@ -147,17 +147,33 @@ class SilverRestaurantController extends Controller
     public function destroy($id)
     {
 	    $restaurant = Restaurant::findOrFail($id);
+        $resto = $restaurant->events;
+
         if(!$restaurant->pdf_id == null) {
             unlink(public_path() . '/documents/' . $restaurant->documents->document);
             DB::delete('delete from pdf_documents where id = ?',[$restaurant->documents->id]);
         }
 
 	    if($restaurant->photo_id == 2) {
+            foreach($resto as $rest){
+                if($rest['photo_id'] != 3) {
+                    unlink(public_path() . $rest->photo->file);
+                    DB::delete('delete from photos where id = ?', [$rest['photo_id']]);
+                }
+            }
+	        DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
 		    $restaurant->forceDelete();
 		    return redirect('/admin/restaurant');
 	    } else {
 		    unlink(public_path() . $restaurant->photo->file);
-            DB::delete('delete from photos where id = ?',[$restaurant->documents->id]);
+            foreach($resto as $rest){
+                if($rest['photo_id'] != 3) {
+                    unlink(public_path() . $rest->photo->file);
+                    DB::delete('delete from photos where id = ?', [$rest['photo_id']]);
+                }
+            }
+            DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
+            DB::delete('delete from photos where id = ?',[$restaurant->photo_id]);
 		    $restaurant->forceDelete();
 		    return redirect('/admin/restaurant');
 	    }

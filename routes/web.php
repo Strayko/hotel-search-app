@@ -218,6 +218,7 @@ Route::group(['middleware'=>'author'], function() {
 Route::group(['middleware'=>'gold'], function() {
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');
+    Route::resource('admin/gallery', 'AuthorGalleryController');
 });
 
 

@@ -17,10 +17,10 @@
                         <a href="{{route('restaurant.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('event.index')}}" class="nav-link active">Events</a>
+                        <a href="{{route('event.index')}}" class="nav-link">Events</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
+                        <a href="{{route('gallery.index')}}" class="nav-link active">Gallery</a>
                     </li>
                 </ul>
 
@@ -57,7 +57,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-calendar-alt"></i> Events</h1>
+                    <h1><i class="fas fa-images"></i> Gallery</h1>
                 </div>
             </div>
         </div>
@@ -67,11 +67,11 @@
     <section id="search" class="py-4 mb-4 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <a href="{{route('event.create')}}" class="btn btn-secondary btn-block">
-                        <i class="fas fa-plus"></i> Add Event
-                    </a>
-                </div>
+                {{--<div class="col-md-3">--}}
+                    {{--<a href="{{route('event.create')}}" class="btn btn-secondary btn-block">--}}
+                        {{--<i class="fas fa-plus"></i> Add Event--}}
+                    {{--</a>--}}
+                {{--</div>--}}
 
             </div>
         </div>
@@ -88,54 +88,55 @@
                             @if(Session::has('deleted_restaurant'))
                                 <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
                             @endif
-                            <h4>Events</h4>
+                            <h4>Gallery</h4>
                         </div>
-                        @if(count($events) > 0)
+                        @if(count($restaurants) > 0)
                             <table class="table table-striped">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>Photo</th>
+                                    {{--<th>Photo</th>--}}
                                     <th>Restaurant</th>
-                                    <th>Title</th>
-                                    <th>Body</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
                                     <th></th>
-                                    <th></th>
+                                    {{--<th>Title</th>--}}
+                                    {{--<th>Body</th>--}}
+                                    {{--<th>Created</th>--}}
+                                    {{--<th>Updated</th>--}}
+                                    {{--<th></th>--}}
+                                    {{--<th></th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($events as $event)
+                                @foreach($restaurants as $restaurant)
                                     <tr>
-                                        <td><img height="50" width="50" src="{{$event->photo ? $event->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$event->restaurant->title}}</td>
-                                        <td>{{Str::limit($event->title, 15)}}</td>
-                                        <td>{{Str::limit($event->body, 10)}}</td>
-                                        <td>{{$event->created_at->diffForHumans()}}</td>
-                                        <td>{{$event->updated_at->diffForHumans()}}</td>
+                                        {{--<td><img height="50" width="50" src="{{$event->photo ? $event->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>--}}
+                                        <td>{{$restaurant->title}}</td>
+                                        {{--<td>{{Str::limit($event->title, 15)}}</td>--}}
+                                        {{--<td>{{Str::limit($event->body, 10)}}</td>--}}
+                                        {{--<td>{{$event->created_at->diffForHumans()}}</td>--}}
+                                        {{--<td>{{$event->updated_at->diffForHumans()}}</td>--}}
+                                        {{--<td>--}}
+                                            {{--@if($event->is_active == 1)--}}
+                                                {{--{!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}--}}
+                                                {{--<input type="hidden" name="is_active" value="0">--}}
+                                                {{--{!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}--}}
+                                                {{--{!! Form::close() !!}--}}
+                                            {{--@else--}}
+                                                {{--{!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}--}}
+                                                {{--<input type="hidden" name="is_active" value="1">--}}
+                                                {{--{!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}--}}
+                                                {{--{!! Form::close() !!}--}}
+                                            {{--@endif--}}
+                                        {{--</td>--}}
                                         <td>
-                                            @if($event->is_active == 1)
-                                                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
-                                                <input type="hidden" name="is_active" value="0">
-                                                {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
-                                                {!! Form::close() !!}
-                                            @else
-                                                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
-                                                <input type="hidden" name="is_active" value="1">
-                                                {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
-                                                {!! Form::close() !!}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{route('event.edit', $event->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-calendar-alt"></i> Edit/Delete
+                                            <a href="{{route('gallery.create', $restaurant->id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-images"></i> Upload/Delete
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
                                 @else
-                                    <h1 class="text-center">Please add your Events</h1>
+                                    <h1 class="text-center">First add restaurant</h1>
                                 @endif
                                 </tbody>
                             </table>
