@@ -129,7 +129,7 @@
                                             {{--@endif--}}
                                         {{--</td>--}}
                                         <td>
-                                            <a href="{{route('gallery.create', $restaurant->id)}}" class="btn btn-secondary">
+                                            <a href="{{route('gallery.edit', $restaurant->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-images"></i> Upload/Delete
                                             </a>
                                         </td>

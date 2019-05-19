@@ -91,4 +91,8 @@ class Restaurant extends Model
         return $this->hasMany('App\Event');
     }
 
+    public function gallery() {
+        return $this->hasMany('App\Gallery');
+    }
+
 }

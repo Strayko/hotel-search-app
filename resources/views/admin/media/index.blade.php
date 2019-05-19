@@ -175,6 +175,7 @@
                 {!! Form::open(['method'=>'POST', 'action'=>'AdminMediaController@store', 'class'=>'dropzone']) !!}
 
                 {!! Form::close() !!}
+
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">

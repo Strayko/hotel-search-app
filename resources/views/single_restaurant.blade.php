@@ -106,6 +106,13 @@
                                                     <img width="400" alt="img" src="{{$event->photo ? $restaurant->photo->file : $restaurant->photoPlaceholder()}}">
                                                     <p style="margin-top: 20px;">{{$event->body}}</p>
                                                     @endif
+
+
+                                                @foreach($gallerys as $gallery)
+                                                        <img src="{{URL::asset('/gallery/' . $gallery->photo)}}" alt="profile Pic" height="200" width="200">
+                                                @endforeach
+
+
                                                 </div>
                                             </article>
                                         </div>
