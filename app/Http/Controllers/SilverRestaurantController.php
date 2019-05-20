@@ -14,6 +14,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class SilverRestaurantController extends Controller
 {
@@ -120,11 +121,21 @@ class SilverRestaurantController extends Controller
     public function update(Request $request, $id)
     {
 	    $input = $request->all();
+	    $restaurant = Restaurant::findOrFail($id);
+
+	    $restaurantImage = public_path($restaurant->photo->file);
+
+        if(File::exists($restaurantImage) && $restaurant->photo_id != 2) {
+            unlink($restaurantImage);
+        }
+
 	    if($file = $request->file('photo_id')) {
 		    $name = time() . $file->getClientOriginalName();
 		    $file->move('images', $name);
-		    $photo = Photo::create(['file'=>$name]);
-		    $input['photo_id'] = $photo->id;
+		    $photo = Photo::find($restaurant->photo->id);
+		    $photo->file = $name;
+            $photo->save();
+            $input['photo_id'] = $photo->id;
 	    }
 
         if($file = $request->file('pdf_id')) {
@@ -148,6 +159,8 @@ class SilverRestaurantController extends Controller
     {
 	    $restaurant = Restaurant::findOrFail($id);
         $resto = $restaurant->events;
+        $gallerys = $restaurant->gallery;
+
 
         if(!$restaurant->pdf_id == null) {
             unlink(public_path() . '/documents/' . $restaurant->documents->document);
@@ -161,6 +174,12 @@ class SilverRestaurantController extends Controller
                     DB::delete('delete from photos where id = ?', [$rest['photo_id']]);
                 }
             }
+            if(count($gallerys) > 0) {
+                foreach($gallerys as $gallery) {
+                    unlink(public_path() . '/gallery/' . $gallery['photo']);
+                    DB::delete('delete from gallery where restaurant_id = ?', [$restaurant->id]);
+                }
+            }
 	        DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
 		    $restaurant->forceDelete();
 		    return redirect('/admin/restaurant');
@@ -170,6 +189,12 @@ class SilverRestaurantController extends Controller
                 if($rest['photo_id'] != 3) {
                     unlink(public_path() . $rest->photo->file);
                     DB::delete('delete from photos where id = ?', [$rest['photo_id']]);
+                }
+            }
+            if(count($gallerys) > 0) {
+                foreach($gallerys as $gallery) {
+                    unlink(public_path() . '/gallery/' . $gallery['photo']);
+                    DB::delete('delete from gallery where restaurant_id = ?', [$restaurant->id]);
                 }
             }
             DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);

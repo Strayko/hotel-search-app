@@ -57,7 +57,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-image"></i> Media</h1>
+                    <h1><i class="fas fa-image"></i> Gallery</h1>
                 </div>
             </div>
         </div>
@@ -69,8 +69,12 @@
             <div class="row">
                 <div class="col-md-3">
                     {{ Form::model($restaurants, ['method'=>'PUT', 'action'=>['AuthorGalleryController@update', $restaurants->id], 'files'=>true]) }}
-                    {{ Form::file('file[]', array('multiple'=>true,'accept'=>'image/*'))  }}
-                    {{ Form::submit('Upload')  }}
+                    <div class="custom-file mb-3">
+                        {{ Form::label('file', 'Upload...', ['class'=>'custom-file-label'])}}
+                        {{ Form::file('file[]', array('multiple'=>true,'accept'=>'image/*','class'=>'custom-file-input'))  }}
+                    </div>
+
+                    {{ Form::submit('Upload', ['class'=>'btn btn-success btn-block'])  }}
                     {{ Form::close()  }}
                 </div>
                 <div class="col-md-6 ml-auto">
@@ -91,52 +95,57 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Latest Media</h4>
-                            {{--<form action="delete/media" method="post" class="form-inline">--}}
-                                {{--{{csrf_field()}}--}}
-                                {{--{{method_field('delete')}}--}}
-                                {{--<div class="form-group mr-3">--}}
-                                    {{--<select name="checkBoxArray" id="" class="form-control">--}}
-                                        {{--<option value="">Delete</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<input type="submit" name="delete_all" class="btn btn-primary px-5" value="Submit">--}}
-                                {{--</div>--}}
-                        {{--</div>--}}
+                            <h4>Latest Pictures</h4>
 
-                        {{--<table class="table table-striped">--}}
-                            {{--<thead class="thead-dark">--}}
-                            {{--<tr>--}}
-                                {{--<th><input type="checkbox" id="options"></th>--}}
-                                {{--<th>Id</th>--}}
-                                {{--<th>Picture</th>--}}
-                                {{--<th>Created</th>--}}
-                                {{--<th></th>--}}
-                            {{--</tr>--}}
-                            {{--</thead>--}}
-                            {{--<tbody>--}}
-                            {{--@if($photos)--}}
-                                {{--@foreach($photos as $photo)--}}
-                                    {{--<tr>--}}
-                                        {{--<td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$photo->id}}"></td>--}}
-                                        {{--<td>{{$photo->id}}</td>--}}
-                                        {{--<td><img height="50" src="{{$photo->file}}" alt=""></td>--}}
-                                        {{--<td>{{$photo->created_at ? $photo->created_at : 'no data'}}</td>--}}
-                                        {{--<td class="d-flex justify-content-end">--}}
 
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                {{--@endforeach--}}
-                            {{--@endif--}}
-                            {{--</tbody>--}}
-                        {{--</table>--}}
-                        {{--</form>--}}
+                            <form action="delete/gallery" method="post" class="form-inline">
+                                {{csrf_field()}}
+                                {{method_field('delete')}}
+                                <div class="form-group mr-3">
+                                    <select name="checkBoxArray" id="" class="form-control">
+                                        <option value="">Delete</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" name="delete_all" class="btn btn-primary px-5" value="Submit">
+                                </div>
+                        </div>
+                        @if(count($gallerys) > 0)
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th><input type="checkbox" id="options"></th>
+                                <th>Picture</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach($gallerys as $gallery)
+                                    <tr>
+                                        <td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$gallery->id}}"></td>
+                                        <td><img src="{{URL::asset('/gallery/' . $gallery->photo)}}" alt="" height="100" width="100"></td>
+                                        {{--<td><img height="50" src="{{$restaurant->file}}" alt=""></td>--}}
+                                        <td>{{$gallery->created_at ? $gallery->created_at->diffForHumans() : 'no data'}}</td>
+                                        <td class="d-flex justify-content-end">
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @else
+                                <h1 class="text-center">Upload your gallery</h1>
+                            @endif
+                            </tbody>
+                        </table>
+                        </form>
                         {{--<div class="row">--}}
                             {{--<div class="col-12 d-flex justify-content-center">--}}
                                 {{--{{$photos->onEachSide(1)->links()}}--}}
                             {{--</div>--}}
                         {{--</div>--}}
+
+
                     </div>
                 </div>
             </div>

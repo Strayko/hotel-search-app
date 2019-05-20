@@ -219,6 +219,7 @@ Route::group(['middleware'=>'gold'], function() {
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');
     Route::resource('admin/gallery', 'AuthorGalleryController');
+    Route::delete('admin/gallery/{id}/delete/gallery', 'AuthorGalleryController@deleteGallery');
 });
 
 

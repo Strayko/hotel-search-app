@@ -135,7 +135,7 @@
                                     </tr>
                                 @endforeach
                                 @else
-                                    <h1 class="text-center">Please add your Events</h1>
+                                    <h1 class="text-center">First add restaurant</h1>
                                 @endif
                                 </tbody>
                             </table>

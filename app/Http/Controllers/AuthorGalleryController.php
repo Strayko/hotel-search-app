@@ -6,6 +6,7 @@ use App\Gallery;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthorGalleryController extends Controller
 {
@@ -16,6 +17,7 @@ class AuthorGalleryController extends Controller
      */
     public function index()
     {
+
         $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         return view('silver.gallery.index', compact('restaurants'));
     }
@@ -39,20 +41,6 @@ class AuthorGalleryController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
-
-        $file = $request->file('file');
-        $user = Auth::user();
-//        dd($user['id']);
-        if($request->hasFile('file'))
-        {
-            foreach ($file as $fil) {
-                $name = time() . $fil->getClientOriginalName();
-                $fil->move('gallery', $name);
-                Gallery::create(['photo'=>$name, 'user_id'=>$user['id']]);
-            }
-        }
-        return redirect()->back();
     }
 
     /**
@@ -75,7 +63,9 @@ class AuthorGalleryController extends Controller
     public function edit($id)
     {
         $restaurants = Restaurant::findOrFail($id);
-        return view('silver.gallery.edit', compact('restaurants'));
+        $restaurant_id = $restaurants['id'];
+        $gallerys = $restaurants->gallery()->where('restaurant_id', $restaurant_id)->get();
+        return view('silver.gallery.edit', compact('restaurants', 'gallerys'));
     }
 
     /**
@@ -111,5 +101,21 @@ class AuthorGalleryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function deleteGallery(Request $request) {
+
+
+        if(isset($request->delete_all) && !empty($request->checkBoxArray)) {
+            $photos = Gallery::findOrFail($request->checkBoxArray);
+            //dd($photos[0]['id']);
+            foreach($photos as $photo) {
+                unlink(public_path() . '/gallery/' . $photo['photo']);
+                $photo->delete();
+            }
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 }

@@ -96,6 +96,7 @@
                                 <tr>
                                     {{--<th>Photo</th>--}}
                                     <th>Restaurant</th>
+                                    <th>Count</th>
                                     <th></th>
                                     {{--<th>Title</th>--}}
                                     {{--<th>Body</th>--}}
@@ -111,6 +112,7 @@
                                     <tr>
                                         {{--<td><img height="50" width="50" src="{{$event->photo ? $event->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>--}}
                                         <td>{{$restaurant->title}}</td>
+                                        <td>{{$restaurant->gallery->count()}}</td>
                                         {{--<td>{{Str::limit($event->title, 15)}}</td>--}}
                                         {{--<td>{{Str::limit($event->body, 10)}}</td>--}}
                                         {{--<td>{{$event->created_at->diffForHumans()}}</td>--}}
@@ -128,7 +130,7 @@
                                                 {{--{!! Form::close() !!}--}}
                                             {{--@endif--}}
                                         {{--</td>--}}
-                                        <td>
+                                        <td class="d-flex justify-content-center">
                                             <a href="{{route('gallery.edit', $restaurant->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-images"></i> Upload/Delete
                                             </a>
