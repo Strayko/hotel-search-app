@@ -40,7 +40,11 @@ class Restaurant extends Model
 	    'lat',
 	    'lng',
 	    'address',
-        'pdf_id'
+        'pdf_id',
+        'facebook',
+        'twitter',
+        'instagram',
+        'google'
     ];
 
     public function user() {

@@ -215,6 +215,10 @@ Route::group(['middleware'=>'author'], function() {
     Route::resource('admin/restaurant', 'SilverRestaurantController');
 });
 
+
+/*---------------------------
+  ---> MIDDLEWARE PREMIUM PACKAGE <---
+----------------------------*/
 Route::group(['middleware'=>'gold'], function() {
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');

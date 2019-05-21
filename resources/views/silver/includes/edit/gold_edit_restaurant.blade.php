@@ -48,8 +48,42 @@
     {!! Form::text('lng', null) !!}
 </div>
 
-<div class="form-group">
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="form-row">
+            <div class="col">
+                {!! Form::label('facebook', 'Facebook:') !!}
+                {!! Form::text('facebook', null, ['class'=>'form-control']) !!}
+            </div>
+            <div class="col">
+                {!! Form::label('twitter', 'Twitter:') !!}
+                {!! Form::text('twitter', null, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                {!! Form::label('instagram', 'Instagram:') !!}
+                {!! Form::text('instagram', null, ['class'=>'form-control']) !!}
+            </div>
+            <div class="col">
+                {!! Form::label('google', 'Google Plus:') !!}
+                {!! Form::text('google', null, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group mt-3">
     <div class="row d-flex justify-content-end">
+        <div class="col-md-6">
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Edit social network
+                </button>
+            </p>
+
+        </div>
         <div class="col-md-6">
             <button type="submit" class="btn btn-success btn-block"><i class="fas fa-utensils"></i> Update Restaurant</button>
             {!! Form::close() !!}

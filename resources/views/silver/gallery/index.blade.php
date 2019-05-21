@@ -94,42 +94,21 @@
                             <table class="table table-striped">
                                 <thead class="thead-dark">
                                 <tr>
-                                    {{--<th>Photo</th>--}}
+
                                     <th>Restaurant</th>
                                     <th>Count</th>
                                     <th></th>
-                                    {{--<th>Title</th>--}}
-                                    {{--<th>Body</th>--}}
-                                    {{--<th>Created</th>--}}
-                                    {{--<th>Updated</th>--}}
-                                    {{--<th></th>--}}
-                                    {{--<th></th>--}}
+
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 @foreach($restaurants as $restaurant)
                                     <tr>
-                                        {{--<td><img height="50" width="50" src="{{$event->photo ? $event->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>--}}
+
                                         <td>{{$restaurant->title}}</td>
                                         <td>{{$restaurant->gallery->count()}}</td>
-                                        {{--<td>{{Str::limit($event->title, 15)}}</td>--}}
-                                        {{--<td>{{Str::limit($event->body, 10)}}</td>--}}
-                                        {{--<td>{{$event->created_at->diffForHumans()}}</td>--}}
-                                        {{--<td>{{$event->updated_at->diffForHumans()}}</td>--}}
-                                        {{--<td>--}}
-                                            {{--@if($event->is_active == 1)--}}
-                                                {{--{!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}--}}
-                                                {{--<input type="hidden" name="is_active" value="0">--}}
-                                                {{--{!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}--}}
-                                                {{--{!! Form::close() !!}--}}
-                                            {{--@else--}}
-                                                {{--{!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}--}}
-                                                {{--<input type="hidden" name="is_active" value="1">--}}
-                                                {{--{!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}--}}
-                                                {{--{!! Form::close() !!}--}}
-                                            {{--@endif--}}
-                                        {{--</td>--}}
+
                                         <td class="d-flex justify-content-center">
                                             <a href="{{route('gallery.edit', $restaurant->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-images"></i> Upload/Delete

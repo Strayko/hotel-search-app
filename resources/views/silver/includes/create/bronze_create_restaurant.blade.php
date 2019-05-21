@@ -47,7 +47,7 @@
     {!! Form::text('lng', null) !!}
 </div>
 
-<div class="container">
+
     <div class="form-group">
         <div class="row d-flex justify-content-end">
             <div class="col-md-6">
@@ -56,4 +56,3 @@
             </div>
         </div>
     </div>
-</div>

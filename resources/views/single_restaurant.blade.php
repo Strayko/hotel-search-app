@@ -134,11 +134,21 @@
                                         <div class="col-md-12">
                                             <div class="aa-properties-social">
                                                 <ul>
-                                                    <li>Share</li>
-                                                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-google-plus-square"></i></a></li>
-                                                    <li><a href="#"><i class="fab fa-pinterest-square"></i></a></li>
+
+                                                    <li></li>
+                                                    @if($restaurant->facebook)
+                                                    <li><a href="{{$restaurant->facebook}}"><i class="fab fa-facebook"></i></a></li>
+                                                    @endif
+                                                    @if($restaurant->facebook)
+                                                    <li><a href="{{$restaurant->twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                                    @endif
+                                                    @if($restaurant->facebook)
+                                                    <li><a href="{{$restaurant->instagram}}"><i class="fab fa-instagram"></i></a></li>
+                                                    @endif
+                                                    @if($restaurant->facebook)
+                                                    <li><a href="{{$restaurant->google}}"><i class="fab fa-google-plus"></i></a></li>
+                                                    @endif
+
                                                 </ul>
                                             </div>
                                         </div>
