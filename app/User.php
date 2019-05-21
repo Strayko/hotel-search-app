@@ -129,4 +129,8 @@ class User extends Authenticatable
 	    return $this->hasMany('App\Event');
     }
 
+    public function blog() {
+	    return $this->hasMany('App\Blog');
+    }
+
 }

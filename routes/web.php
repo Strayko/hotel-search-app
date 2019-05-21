@@ -70,6 +70,7 @@ Route::group(['middleware'=>'admin'], function() {
     Route::resource('admin2/locations', 'AdminLocationsController');
     Route::resource('admin2/foods', 'AdminFoodController');
     Route::resource('admin2/distance', 'AdminRadiusController');
+    Route::resource('admin2/blog', 'AdminBlogController');
 
     Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
 
