@@ -37,6 +37,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{route('foods.index')}}">Foods</a>
                             <a class="dropdown-item" href="{{route('distance.index')}}">Distance</a>
+                            <a class="dropdown-item" href="{{route('blog.index')}}">Blog</a>
                         </div>
                     </li>
                 </ul>

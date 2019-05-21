@@ -38,6 +38,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{route('foods.index')}}">Foods</a>
                             <a class="dropdown-item" href="{{route('distance.index')}}">Distance</a>
+                            <a class="dropdown-item" href="{{route('blog.index')}}">Blog</a>
                         </div>
                     </li>
                 </ul>
@@ -71,7 +72,7 @@
     </nav>
 
     <!-- HEADER -->
-    <header id="main-header" class="py-2 bg-light text-black">
+    <header id="main-header" class="py-2 bg-light text-black mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -81,33 +82,33 @@
         </div>
     </header>
 
-    <!-- ACTIONS -->
-    <section id="actions" class="py-4 mb-4 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
-                        <i class="fas fa-plus"></i> Add Restaurant
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
-                        <i class="fas fa-plus"></i> Add Package
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
-                        <i class="fas fa-plus"></i> Add User
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#addMediaModal">
-                        <i class="fas fa-plus"></i> Upload
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{--<!-- ACTIONS -->--}}
+    {{--<section id="actions" class="py-4 mb-4 bg-light">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-3">--}}
+                    {{--<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">--}}
+                        {{--<i class="fas fa-plus"></i> Add Restaurant--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-3">--}}
+                    {{--<a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">--}}
+                        {{--<i class="fas fa-plus"></i> Add Package--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-3">--}}
+                    {{--<a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">--}}
+                        {{--<i class="fas fa-plus"></i> Add User--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-3">--}}
+                    {{--<a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#addMediaModal">--}}
+                        {{--<i class="fas fa-plus"></i> Upload--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</section>--}}
 
     <!-- RESTAURANTS -->
     <section id="posts">
