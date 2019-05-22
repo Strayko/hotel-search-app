@@ -16,9 +16,27 @@ class RestaurantCommentController extends Controller
      */
     public function index()
     {
-    	$comments = Comment::all();
+    	$comments = Comment::orderBy('id', 'asc')->paginate(5);
 
         return view('admin.comments.index', compact('comments'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $comments = Comment::where('id', 'like', '%'.$query.'%')
+                ->orWhere('author', 'like', '%'.$query.'%')
+                ->orWhere('email', 'like', '%'.$query.'%')
+                ->orWhere('body', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.comments_data', compact('comments'))->render();
+        }
     }
 
     /**

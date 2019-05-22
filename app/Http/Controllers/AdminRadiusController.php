@@ -15,8 +15,24 @@ class AdminRadiusController extends Controller
      */
     public function index()
     {
-    	$distances = Distance::all();
+    	$distances = Distance::orderBy('id', 'asc')->paginate(5);
     	return view('admin.distance.index', compact('distances'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $distances = Distance::where('id', 'like', '%'.$query.'%')
+                ->orWhere('distance', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.distances_data', compact('distances'))->render();
+        }
     }
 
     /**

@@ -24,11 +24,28 @@ class AdminRestaurantsController extends Controller
      */
     public function index()
     {
-    	$restaurants = Restaurant::orderBy('id', 'desc')->paginate(5);
+    	$restaurants = Restaurant::orderBy('id', 'asc')->paginate(5);
 	    $locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
 
         return view('admin.restaurants.index', compact('restaurants', 'locations', 'foods'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $restaurants = Restaurant::where('id', 'like', '%'.$query.'%')
+                ->orWhere('title', 'like', '%'.$query.'%')
+                ->orWhere('body', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.restaurants_data', compact('restaurants'))->render();
+        }
     }
 
     /**

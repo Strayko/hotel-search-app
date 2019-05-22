@@ -36,12 +36,24 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-//Route::get('/pagination/', 'PaginationController@index');
-Route::get('/admin2/users/fetch_data', 'AdminUsersController@fetch_data');
 
-//Route::get('/register', 'AuthorUsersController@register');
-//Route::post('register', 'Auth\RegisterController@register');
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+
+
+/*----------------------------
+  ---> AJAX FETCHING DATA <---
+-----------------------------*/
+Route::get('/admin2/users/Cd3XZEkaB3dFS2jc', 'AdminUsersController@fetch_data');
+Route::get('/admin2/restaurants/Nh7vbS3VDh6S5fQh', 'AdminRestaurantsController@fetch_data');
+Route::get('/admin2/packages/46x2bvCw8JfSHT24', 'AdminPackagesController@fetch_data');
+Route::get('/admin2/media/APm573uRgxAnSFHE', 'AdminMediaController@fetch_data');
+Route::get('/admin2/comments/BCNZj3nE2fsD6SaN', 'RestaurantCommentController@fetch_data');
+Route::get('/admin2/locations/mz8y9arxaj6qPBMP', 'AdminLocationsController@fetch_data');
+Route::get('/admin2/foods/cSgG2EREmKrVtvqn', 'AdminFoodController@fetch_data');
+Route::get('/admin2/distance/6bHgNQGUJvBTRz47', 'AdminRadiusController@fetch_data');
+Route::get('/admin2/blog/v88D4TpNWbL3yGQf', 'AdminBlogController@fetch_data');
+
+
+
 
 /*--------------------------
   ---> MIDDLEWARE ADMIN <---
@@ -63,8 +75,6 @@ Route::group(['middleware'=>'admin'], function() {
 
 
     Route::resource('admin2/users', 'AdminUsersController');
-    Route::get('/admin2/users/fetch_data', 'AdminUsersController@fetch_data');
-
     Route::resource('admin2/restaurants', 'AdminRestaurantsController');
     Route::resource('admin2/packages', 'AdminPackagesController');
     Route::resource('admin2/media', 'AdminMediaController');

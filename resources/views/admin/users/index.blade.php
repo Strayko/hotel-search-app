@@ -95,7 +95,7 @@
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-primary btn-block sorting" data-sorting_type="asc" data-column_name="id">
+                    <a href="#" class="btn btn-secondary btn-block sorting" data-sorting_type="asc" data-column_name="id">
                         <i class="fas fa-users"></i> Sorting User
                     </a>
                 </div>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </section>
 
     <!-- ADD USER MODAL -->
@@ -243,7 +243,7 @@
             function fetch_data(page, sort_type, sort_by, query)
             {
                 $.ajax({
-                    url:"/admin2/users/fetch_data?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    url:"/admin2/users/Cd3XZEkaB3dFS2jc?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
                     success:function(data)
                     {
                         $('tbody').html('');

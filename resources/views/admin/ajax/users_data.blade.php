@@ -25,7 +25,7 @@
 <tr>
     <td colspan="10" align="center">
         <div style="display: inline-flex">
-           {{ $users->links() }}
+           {{ $users->onEachSide(1)->links() }}
         </div>
     </td>
 </tr>

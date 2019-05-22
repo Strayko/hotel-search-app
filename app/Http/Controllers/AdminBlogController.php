@@ -18,8 +18,25 @@ class AdminBlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::orderBy('id', 'desc')->get();
+        $blogs = Blog::orderBy('id', 'asc')->paginate(5);
         return view('admin.blog.index', compact('blogs'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $blogs = Blog::where('id', 'like', '%'.$query.'%')
+                ->orWhere('title', 'like', '%'.$query.'%')
+                ->orWhere('body', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.blogs_data', compact('blogs'))->render();
+        }
     }
 
     /**

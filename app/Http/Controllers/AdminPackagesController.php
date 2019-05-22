@@ -15,9 +15,25 @@ class AdminPackagesController extends Controller
      */
     public function index()
     {
-    	$packages = Package::all();
+    	$packages = Package::orderBy('id', 'asc')->paginate(5);
 
         return view('admin.package.index', compact('packages'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $packages = Package::where('id', 'like', '%'.$query.'%')
+                ->orWhere('name', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.packages_data', compact('packages'))->render();
+        }
     }
 
     /**

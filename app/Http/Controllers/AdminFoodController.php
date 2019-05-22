@@ -15,8 +15,24 @@ class AdminFoodController extends Controller
      */
     public function index()
     {
-    	$foods = Food::all();
+    	$foods = Food::orderBy('id', 'asc')->paginate(5);
         return view('admin.foods.index', compact('foods'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $foods = Food::where('id', 'like', '%'.$query.'%')
+                ->orWhere('name', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.foods_data', compact('foods'))->render();
+        }
     }
 
     /**

@@ -17,9 +17,25 @@ class AdminLocationsController extends Controller
      */
     public function index()
     {
-    	$locations = Location::all();
+    	$locations = Location::orderBy('id', 'asc')->paginate(5);
 
         return view('admin.locations.index', compact('locations'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $locations = Location::where('id', 'like', '%'.$query.'%')
+                ->orWhere('name', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.locations_data', compact('locations'))->render();
+        }
     }
 
     /**

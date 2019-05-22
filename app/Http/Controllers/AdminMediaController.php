@@ -11,8 +11,24 @@ class AdminMediaController extends Controller
 {
     public function index() {
 
-    	$photos = Photo::orderBy('id', 'desc')->paginate(10);
+    	$photos = Photo::orderBy('id', 'asc')->paginate(5);
     	return view('admin.media.index', compact('photos'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $photos = Photo::where('id', 'like', '%'.$query.'%')
+                ->orWhere('file', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.media_data', compact('photos'))->render();
+        }
     }
 
     public function store(Request $request) {

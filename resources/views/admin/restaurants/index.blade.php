@@ -91,12 +91,14 @@
                         <i class="fas fa-plus"></i> Add Restaurant
                     </a>
                 </div>
+                <div class="col-md-3">
+                    <a href="#" class="btn btn-secondary btn-block sorting" data-sorting_type="asc" data-column_name="id">
+                        <i class="fas fa-utensils"></i> Sorting Restaurants
+                    </a>
+                </div>
                 <div class="col-md-6 ml-auto">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Restaurants...">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary">Search</button>
-                        </div>
+                    <div class="form-group">
+                        <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Restaurants...">
                     </div>
                 </div>
             </div>
@@ -120,7 +122,7 @@
                             @endif
                             <h4>Latest Restaurants</h4>
                         </div>
-
+                        <div class="table-responsive">
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
@@ -137,39 +139,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if($restaurants)
-                               @foreach($restaurants as $restaurant)
-                                   <tr>
-                                       <td>{{$restaurant->id}}</td>
-                                       <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                       <td>{{Str::limit($restaurant->user->name, 10)}}</td>
-                                       <td>{{$restaurant->user->package ? $restaurant->user->package->name : 'Uncategorized'}}</td>
-                                       <td>{{Str::limit($restaurant->title, 16)}}</td>
-                                       <td>{{Str::limit($restaurant->body, 10)}}</td>
-                                       <td><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
-                                       <td><a href="{{route('comments.show', $restaurant->id)}}">View</a></td>
-                                       <td>{{$restaurant->created_at->diffForHumans()}}</td>
-                                       <td>
-                                           <a href="{{route('restaurants.edit', $restaurant->id)}}" class="btn btn-secondary">
-                                               <i class="fas fa-utensils"></i> Edit
-                                           </a>
-                                           <a href="#" class="d-inline-block">
-                                               {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRestaurantsController@destroy', $restaurant->id]]) !!}
-                                               <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
-                                               {!! Form::close() !!}
-                                           </a>
-                                       </td>
-                                   </tr>
-                               @endforeach
-                            @endif
+                            @include('admin.ajax.restaurants_data')
                             </tbody>
                         </table>
-                        <!-- PAGINATION -->
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                {{$restaurants->onEachSide(1)->links()}}
-                            </div>
+                            <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+                            <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />
+                            <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
                         </div>
+                        <!-- PAGINATION -->
+                        {{--<div class="row">--}}
+                            {{--<div class="col-12 d-flex justify-content-center">--}}
+                                {{--{{$restaurants->onEachSide(1)->links()}}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>
@@ -181,5 +163,74 @@
 @endsection
 
 @section('footer')
+    <script>
+        $(document).ready(function(){
 
+            function clear_icon()
+            {
+                $('#id_icon').html('');
+                $('#post_title_icon').html('');
+            }
+
+            function fetch_data(page, sort_type, sort_by, query)
+            {
+                $.ajax({
+                    url:"/admin2/restaurants/Nh7vbS3VDh6S5fQh?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    success:function(data)
+                    {
+                        $('tbody').html('');
+                        $('tbody').html(data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#serach', function(){
+                var query = $('#serach').val();
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+                var page = $('#hidden_page').val();
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+            $(document).on('click', '.sorting', function(){
+                var column_name = $(this).data('column_name');
+                var order_type = $(this).data('sorting_type');
+                var reverse_order = '';
+                if(order_type == 'asc')
+                {
+                    $(this).data('sorting_type', 'desc');
+                    reverse_order = 'desc';
+                    clear_icon();
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
+                }
+                if(order_type == 'desc')
+                {
+                    $(this).data('sorting_type', 'asc');
+                    reverse_order = 'asc';
+                    clear_icon
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
+                }
+                $('#hidden_column_name').val(column_name);
+                $('#hidden_sort_type').val(reverse_order);
+                var page = $('#hidden_page').val();
+                var query = $('#serach').val();
+                fetch_data(page, reverse_order, column_name, query);
+            });
+
+            $(document).on('click', '.pagination a', function(event){
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                $('#hidden_page').val(page);
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+
+                var query = $('#serach').val();
+
+                $('li').removeClass('active');
+                $(this).parent().addClass('active');
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+        });
+    </script>
 @endsection
