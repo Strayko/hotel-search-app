@@ -41,12 +41,29 @@ class AdminUsersController extends Controller
 
 
 
-		$users = User::orderBy('id', 'desc')->paginate(10);
+        $users = User::orderBy('id', 'asc')->paginate(5);
 	    $roles = Role::pluck('name', 'id')->all();
 	    $packages = Package::pluck('name', 'id')->all();
 
 
         return view('admin.users.index', compact('users', 'roles', 'packages'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $users = User::where('id', 'like', '%'.$query.'%')
+                ->orWhere('name', 'like', '%'.$query.'%')
+                ->orWhere('email', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('admin.ajax.users_data', compact('users'))->render();
+        }
     }
 
     /**

@@ -36,7 +36,8 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-
+//Route::get('/pagination/', 'PaginationController@index');
+Route::get('/admin2/users/fetch_data', 'AdminUsersController@fetch_data');
 
 //Route::get('/register', 'AuthorUsersController@register');
 //Route::post('register', 'Auth\RegisterController@register');
@@ -62,6 +63,8 @@ Route::group(['middleware'=>'admin'], function() {
 
 
     Route::resource('admin2/users', 'AdminUsersController');
+    Route::get('/admin2/users/fetch_data', 'AdminUsersController@fetch_data');
+
     Route::resource('admin2/restaurants', 'AdminRestaurantsController');
     Route::resource('admin2/packages', 'AdminPackagesController');
     Route::resource('admin2/media', 'AdminMediaController');
