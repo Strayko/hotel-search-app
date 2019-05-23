@@ -72,7 +72,16 @@
                         <i class="fas fa-plus"></i> Add Event
                     </a>
                 </div>
-
+                <div class="col-md-3">
+                    <a href="#" class="btn btn-secondary btn-block sorting" data-sorting_type="asc" data-column_name="id">
+                        <i class="fas fa-calendar-alt"></i> Sorting Events
+                    </a>
+                </div>
+                <div class="col-md-6 ml-auto">
+                    <div class="form-group">
+                        <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Events...">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -106,39 +115,15 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($events as $event)
-                                    <tr>
-                                        <td><img height="50" width="50" src="{{$event->photo ? $event->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-                                        <td>{{$event->restaurant->title}}</td>
-                                        <td>{{Str::limit($event->title, 15)}}</td>
-                                        <td>{{Str::limit($event->body, 10)}}</td>
-                                        <td>{{$event->created_at->diffForHumans()}}</td>
-                                        <td>{{$event->updated_at->diffForHumans()}}</td>
-                                        <td>
-                                            @if($event->is_active == 1)
-                                                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
-                                                <input type="hidden" name="is_active" value="0">
-                                                {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
-                                                {!! Form::close() !!}
-                                            @else
-                                                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
-                                                <input type="hidden" name="is_active" value="1">
-                                                {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
-                                                {!! Form::close() !!}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{route('event.edit', $event->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-calendar-alt"></i> Edit/Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @include('silver.ajax.events_data')
                                 @else
                                     <h1 class="text-center">Create event</h1>
                                 @endif
                                 </tbody>
                             </table>
+                            <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+                            <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />
+                            <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
                             <!-- PAGINATION -->
 
                     </div>
@@ -151,5 +136,74 @@
 @endsection
 
 @section('footer')
+    <script>
+        $(document).ready(function(){
 
+            function clear_icon()
+            {
+                $('#id_icon').html('');
+                $('#post_title_icon').html('');
+            }
+
+            function fetch_data(page, sort_type, sort_by, query)
+            {
+                $.ajax({
+                    url:"/admin/event/tvy5kTYJeWYBY4CX?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    success:function(data)
+                    {
+                        $('tbody').html('');
+                        $('tbody').html(data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#serach', function(){
+                var query = $('#serach').val();
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+                var page = $('#hidden_page').val();
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+            $(document).on('click', '.sorting', function(){
+                var column_name = $(this).data('column_name');
+                var order_type = $(this).data('sorting_type');
+                var reverse_order = '';
+                if(order_type == 'asc')
+                {
+                    $(this).data('sorting_type', 'desc');
+                    reverse_order = 'desc';
+                    clear_icon();
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
+                }
+                if(order_type == 'desc')
+                {
+                    $(this).data('sorting_type', 'asc');
+                    reverse_order = 'asc';
+                    clear_icon
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
+                }
+                $('#hidden_column_name').val(column_name);
+                $('#hidden_sort_type').val(reverse_order);
+                var page = $('#hidden_page').val();
+                var query = $('#serach').val();
+                fetch_data(page, reverse_order, column_name, query);
+            });
+
+            $(document).on('click', '.pagination a', function(event){
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                $('#hidden_page').val(page);
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+
+                var query = $('#serach').val();
+
+                $('li').removeClass('active');
+                $(this).parent().addClass('active');
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+        });
+    </script>
 @endsection

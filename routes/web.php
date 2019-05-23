@@ -39,9 +39,9 @@ Auth::routes();
 
 
 
-/*----------------------------
-  ---> AJAX FETCHING DATA <---
------------------------------*/
+/*---------------------------------------------
+  ---> AJAX FETCHING DATA MAIN ADMIN PANEL <---
+---------------------------------------------*/
 Route::get('/admin2/users/Cd3XZEkaB3dFS2jc', 'AdminUsersController@fetch_data');
 Route::get('/admin2/restaurants/Nh7vbS3VDh6S5fQh', 'AdminRestaurantsController@fetch_data');
 Route::get('/admin2/packages/46x2bvCw8JfSHT24', 'AdminPackagesController@fetch_data');
@@ -216,6 +216,13 @@ Route::post('/search', function() {
 
 
 
+/*---------------------------------------------
+  ---> AJAX FETCHING DATA USER ADMIN PANEL <---
+---------------------------------------------*/
+Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fetch_data');
+Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
+Route::get('/admin/gallery/jLYZFd64ggZe3s8f', 'AuthorGalleryController@fetch_data');
+Route::get('/admin/gallery/{id}/cKS3dpqP6xF6qZEf', 'AuthorGalleryController@fetch_data2');
 
 
 /*---------------------------

@@ -20,8 +20,25 @@ class AuthorEventController extends Controller
     public function index()
     {
         $gold = User::where('package_id', Auth::user()->isGold())->first();
-        $events = Event::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        $events = Event::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
         return view('silver.event.index', compact('events', 'gold'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $events = Event::where('id', 'like', '%'.$query.'%')
+                ->orWhere('title', 'like', '%'.$query.'%')
+                ->orWhere('body', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('silver.ajax.events_data', compact('events'))->render();
+        }
     }
 
     /**

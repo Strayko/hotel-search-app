@@ -18,8 +18,25 @@ class AuthorGalleryController extends Controller
     public function index()
     {
 
-        $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
         return view('silver.gallery.index', compact('restaurants'));
+    }
+
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $restaurants = Restaurant::where('id', 'like', '%'.$query.'%')
+                ->orWhere('title', 'like', '%'.$query.'%')
+                ->orWhere('body', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('silver.ajax.restaurants_choose_data', compact('restaurants'))->render();
+        }
     }
 
     /**
@@ -64,8 +81,24 @@ class AuthorGalleryController extends Controller
     {
         $restaurants = Restaurant::findOrFail($id);
         $restaurant_id = $restaurants['id'];
-        $gallerys = $restaurants->gallery()->where('restaurant_id', $restaurant_id)->get();
+        $gallerys = $restaurants->gallery()->where('restaurant_id', $restaurant_id)->orderBy('id', 'asc')->paginate(5);
         return view('silver.gallery.edit', compact('restaurants', 'gallerys'));
+    }
+
+    function fetch_data2(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $gallerys = Gallery::where('id', 'like', '%'.$query.'%')
+                ->orWhere('photo', 'like', '%'.$query.'%')
+                ->orderBy($sort_by, $sort_type)
+                ->paginate(5);
+            return view('silver.ajax.gallerys_data', compact('gallerys'))->render();
+        }
     }
 
     /**
