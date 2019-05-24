@@ -31,19 +31,19 @@ class RenewAccountController extends Controller
             $input['is_active'] = 1;
 
             switch($request->get('package_id')) {
-                case '1':
+                case '2':
                     $dateTime = Carbon::now();
                     $dateTime->modify('+10 hour');
                     $dateTime->format('Y-m-d H:i:s');
                     $input['package_expiry'] = $dateTime;
                     break;
-                case '2':
+                case '3':
                     $dateTime = Carbon::now();
                     $dateTime->modify('+15 hour');
                     $dateTime->format('Y-m-d H:i:s');
                     $input['package_expiry'] = $dateTime;
                     break;
-                case '3':
+                case '4':
                     $dateTime = Carbon::now();
                     $dateTime->modify('+20 hour');
                     $dateTime->format('Y-m-d H:i:s');

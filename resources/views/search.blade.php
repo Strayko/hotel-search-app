@@ -327,8 +327,7 @@
                                         title: "Name"
                                     });
                                 }else {
-                                    document.getElementById("message2").innerHTML = "There is not one restaurant in the selected radius!";
-                                    break;
+                                    console.log('There is not one restaurant in the selected radius!');
                                 }
                             }
                         }else{

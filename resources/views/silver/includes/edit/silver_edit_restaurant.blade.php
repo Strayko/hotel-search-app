@@ -1,7 +1,7 @@
 {!! Form::model($restaurants, ['method'=>'PATCH', 'action'=>['SilverRestaurantController@update', $restaurants->id], 'files'=>true]) !!}
 {{csrf_field()}}
 <div class="form-group">
-    <h1>Edit Silver Restaurant</h1>
+    <h1>Edit Platinium Restaurant</h1>
     {!! Form::label('title', 'Title:') !!}
     {!! Form::text('title', null, ['class'=>'form-control']) !!}
 </div>
@@ -9,14 +9,15 @@
     {!! Form::label('location_id', 'City:') !!}
     {!! Form::select('location_id', $locations, null, ['class'=>'form-control']) !!}
 </div>
-
 <div class="form-group">
     {!! Form::label('address', 'Address Google Map:') !!}
     {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()', 'disabled']) !!}
+
     <div class="custom-control custom-checkbox mb-3">
-    <input type="checkbox" id="yourBox" class="custom-control-input" />
-    <label id="pointers" class="custom-control-label" for="yourBox">I want to add registration or change</label>
+        <input type="checkbox" id="yourBox" class="custom-control-input" />
+        <label id="pointers" class="custom-control-label" for="yourBox">I want to add registration or change</label>
     </div>
+
 </div>
 
 <div class="form-group">
@@ -47,8 +48,42 @@
     {!! Form::text('lng', null) !!}
 </div>
 
-<div class="form-group">
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="form-row">
+            <div class="col">
+                {!! Form::label('facebook', 'Facebook:') !!}
+                {!! Form::text('facebook', $restaurants->social->facebook, ['class'=>'form-control']) !!}
+            </div>
+            <div class="col">
+                {!! Form::label('twitter', 'Twitter:') !!}
+                {!! Form::text('twitter', $restaurants->social->twitter, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                {!! Form::label('instagram', 'Instagram:') !!}
+                {!! Form::text('instagram', $restaurants->social->instagram, ['class'=>'form-control']) !!}
+            </div>
+            <div class="col">
+                {!! Form::label('google', 'Google Plus:') !!}
+                {!! Form::text('google', $restaurants->social->google, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group mt-3">
     <div class="row d-flex justify-content-end">
+        <div class="col-md-6">
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Edit social network
+                </button>
+            </p>
+
+        </div>
         <div class="col-md-6">
             <button type="submit" class="btn btn-success btn-block"><i class="fas fa-utensils"></i> Update Restaurant</button>
             {!! Form::close() !!}

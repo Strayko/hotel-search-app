@@ -81,15 +81,15 @@ class SilverRestaurantController extends Controller
     {
 	    $input = $request->all();
 
-	    $social_network = Social::create([
-	        'facebook'=>$input['facebook'],
-            'twitter'=>$input['twitter'],
-            'instagram'=>$input['instagram'],
-            'google'=>$input['google']
-        ]);
-
-	    $input['social_network_id'] = $social_network->id;
-
+        if(!Auth::user()->isFrei()) {
+            $social_network = Social::create([
+                'facebook'=>$input['facebook'],
+                'twitter'=>$input['twitter'],
+                'instagram'=>$input['instagram'],
+                'google'=>$input['google']
+            ]);
+            $input['social_network_id'] = $social_network->id;
+        }
 
 	    $user = Auth::user();
 	    if($file = $request->file('photo_id')) {
@@ -99,12 +99,15 @@ class SilverRestaurantController extends Controller
 		    $input['photo_id'] = $photo->id;
 	    }
 
-        if($file = $request->file('pdf_id')) {
-            $name = time() . $file->getClientOriginalName();
-            $file->move('documents', $name);
-            $document = Pdf::create(['document' => $name]);
-            $input['pdf_id'] = $document->id;
+	    if(!Auth::user()->isFrei()) {
+            if($file = $request->file('pdf_id')) {
+                $name = time() . $file->getClientOriginalName();
+                $file->move('documents', $name);
+                $document = Pdf::create(['document' => $name]);
+                $input['pdf_id'] = $document->id;
+            }
         }
+
 
 	    $user->restaurants()->create($input);
 	    return redirect('/admin/restaurant');
@@ -161,14 +164,14 @@ class SilverRestaurantController extends Controller
             unlink($restaurantImage);
         }
 
-
-        $social_network = Social::find($restaurant->social->id);
-        $social_network['facebook'] = $input['facebook'];
-        $social_network['twitter'] = $input['twitter'];
-        $social_network['instagram'] = $input['instagram'];
-        $social_network['google'] = $input['google'];
-        $social_network->save();
-
+        if(!Auth::user()->isFrei()) {
+            $social_network = Social::find($restaurant->social->id);
+            $social_network['facebook'] = $input['facebook'];
+            $social_network['twitter'] = $input['twitter'];
+            $social_network['instagram'] = $input['instagram'];
+            $social_network['google'] = $input['google'];
+            $social_network->save();
+        }
 
 	    if($file = $request->file('photo_id')) {
 		    $name = time() . $file->getClientOriginalName();
@@ -179,11 +182,13 @@ class SilverRestaurantController extends Controller
             $input['photo_id'] = $photo->id;
 	    }
 
-        if($file = $request->file('pdf_id')) {
-            $name = time() . $file->getClientOriginalName();
-            $file->move('documents', $name);
-            $document = Pdf::create(['document' => $name]);
-            $input['pdf_id'] = $document->id;
+        if(!Auth::user()->isFrei()) {
+            if ($file = $request->file('pdf_id')) {
+                $name = time() . $file->getClientOriginalName();
+                $file->move('documents', $name);
+                $document = Pdf::create(['document' => $name]);
+                $input['pdf_id'] = $document->id;
+            }
         }
 
 	    Auth::user()->restaurants()->whereId($id)->first()->update($input);

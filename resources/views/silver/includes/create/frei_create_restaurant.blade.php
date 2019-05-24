@@ -33,10 +33,6 @@
     {!! Form::label('photo_id', 'Upload Picture', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
     {!! Form::file('photo_id', null, ['class'=>'custom-file-input']) !!}
 </div>
-<div class="custom-file mb-3">
-    {!! Form::label('pdf_id', 'Upload PDF', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
-    {!! Form::file('pdf_id', null, ['class'=>'custom-file-input']) !!}
-</div>
 
 <div class="form-group" style="display:none;">
     {!! Form::label('lat', 'Lat:') !!}
