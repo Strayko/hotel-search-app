@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Package;
+
+use App\Renew;
 use App\Restaurant;
 use App\User;
 use Carbon\Carbon;
@@ -14,7 +15,7 @@ class RenewAccountController extends Controller
 {
     public function renewAccount() {
 
-        $packages = Package::pluck('name', 'id')->all();
+        $packages = Renew::pluck('name', 'id')->all();
         return view('renew_account', compact('packages'));
     }
 
@@ -32,19 +33,19 @@ class RenewAccountController extends Controller
             switch($request->get('package_id')) {
                 case '1':
                     $dateTime = Carbon::now();
-                    $dateTime->modify('+5 hour');
+                    $dateTime->modify('+10 hour');
                     $dateTime->format('Y-m-d H:i:s');
                     $input['package_expiry'] = $dateTime;
                     break;
                 case '2':
                     $dateTime = Carbon::now();
-                    $dateTime->modify('+10 hour');
+                    $dateTime->modify('+15 hour');
                     $dateTime->format('Y-m-d H:i:s');
                     $input['package_expiry'] = $dateTime;
                     break;
                 case '3':
                     $dateTime = Carbon::now();
-                    $dateTime->modify('+15 hour');
+                    $dateTime->modify('+20 hour');
                     $dateTime->format('Y-m-d H:i:s');
                     $input['package_expiry'] = $dateTime;
                     break;

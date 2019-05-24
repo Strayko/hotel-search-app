@@ -90,6 +90,16 @@ Route::group(['middleware'=>'admin'], function() {
 });
 
 
+
+/*------------------------------
+  ---> INDELIBLE <---
+-------------------------------*/
+Route::group(['middleware'=>'protected'], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+
+
+
 /*------------------------------
   ---> SINGLE PAGE FRONTEND <---
 -------------------------------*/
@@ -240,7 +250,7 @@ Route::group(['middleware'=>'author'], function() {
 /*---------------------------
   ---> MIDDLEWARE PREMIUM PACKAGE <---
 ----------------------------*/
-Route::group(['middleware'=>'gold'], function() {
+Route::group(['middleware'=>'platinium'], function() {
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');
     Route::resource('admin/gallery', 'AuthorGalleryController');

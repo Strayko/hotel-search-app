@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSocialNetworkToRestaurants extends Migration
+class AddSocialNetworkIdToRestaurants extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddSocialNetworkToRestaurants extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->string('facebook')->nullable();
-            $table->string('twitter')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('google')->nullable();
+            $table->integer('social_network_id')->nullable();
         });
     }
 
@@ -29,10 +26,7 @@ class AddSocialNetworkToRestaurants extends Migration
     public function down()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->dropColumn('facebook');
-            $table->dropColumn('twitter');
-            $table->dropColumn('instagram');
-            $table->dropColumn('google');
+            $table->dropColumn('social_network_id');
         });
     }
 }

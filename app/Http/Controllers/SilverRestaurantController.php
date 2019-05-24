@@ -10,6 +10,7 @@ use App\Package;
 use App\Pdf;
 use App\Photo;
 use App\Restaurant;
+use App\Social;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,10 @@ class SilverRestaurantController extends Controller
      */
     public function index()
     {
-        $gold = User::where('package_id', Auth::user()->isGold())->first();
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
 
-        return view('silver.restaurant.index', compact('restaurants', 'gold'));
+        return view('silver.restaurant.index', compact('restaurants', 'platinium'));
     }
 
     function fetch_data(Request $request)
@@ -55,9 +56,10 @@ class SilverRestaurantController extends Controller
      */
     public function create()
     {
-	    $bronze = User::where('package_id', Auth::user()->isBronze())->first();
+	    $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
 	    $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
+        $frei = User::where('package_id', Auth::user()->isFrei())->first();
 
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
 
@@ -66,7 +68,7 @@ class SilverRestaurantController extends Controller
 	    $distance = Distance::pluck('distance', 'id')->all();
 
 
-        return view('silver.restaurant.create', compact('restaurants', 'locations', 'foods', 'bronze', 'gold', 'silver', 'distance'));
+        return view('silver.restaurant.create', compact('restaurants', 'locations', 'foods', 'platinium', 'gold', 'silver', 'distance', 'frei'));
     }
 
     /**
@@ -78,6 +80,16 @@ class SilverRestaurantController extends Controller
     public function store(SilverRequest $request)
     {
 	    $input = $request->all();
+
+	    $social_network = Social::create([
+	        'facebook'=>$input['facebook'],
+            'twitter'=>$input['twitter'],
+            'instagram'=>$input['instagram'],
+            'google'=>$input['google']
+        ]);
+
+	    $input['social_network_id'] = $social_network->id;
+
 
 	    $user = Auth::user();
 	    if($file = $request->file('photo_id')) {
@@ -118,15 +130,17 @@ class SilverRestaurantController extends Controller
     public function edit($id)
     {
 	    $restaurants = Restaurant::findOrFail($id);
+
 	    $foods = Food::pluck('name', 'id')->all();
 	    $locations = Location::pluck('name', 'id')->all();
 
-	    $bronze = User::where('package_id', Auth::user()->isBronze())->first();
+	    $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
 	    $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
+        $frei = User::where('package_id', Auth::user()->isFrei())->first();
 
 //	    $silver = DB::table('users')->where('package_id', '=', '3')->value('package_id');
-	    return view('silver.restaurant.edit', compact('restaurants', 'silver', 'bronze', 'gold', 'locations', 'foods'));
+	    return view('silver.restaurant.edit', compact('restaurants', 'platinium', 'silver', 'gold', 'locations', 'foods', 'frei'));
     }
 
     /**
@@ -146,6 +160,15 @@ class SilverRestaurantController extends Controller
         if(File::exists($restaurantImage) && $restaurant->photo_id != 2) {
             unlink($restaurantImage);
         }
+
+
+        $social_network = Social::find($restaurant->social->id);
+        $social_network['facebook'] = $input['facebook'];
+        $social_network['twitter'] = $input['twitter'];
+        $social_network['instagram'] = $input['instagram'];
+        $social_network['google'] = $input['google'];
+        $social_network->save();
+
 
 	    if($file = $request->file('photo_id')) {
 		    $name = time() . $file->getClientOriginalName();
@@ -198,6 +221,7 @@ class SilverRestaurantController extends Controller
                     DB::delete('delete from gallery where restaurant_id = ?', [$restaurant->id]);
                 }
             }
+            DB::delete('delete from social_networks where id = ?', [$restaurant->social_network_id]);
 	        DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
 		    $restaurant->forceDelete();
 		    return redirect('/admin/restaurant');
@@ -215,6 +239,7 @@ class SilverRestaurantController extends Controller
                     DB::delete('delete from gallery where restaurant_id = ?', [$restaurant->id]);
                 }
             }
+            DB::delete('delete from social_networks where id = ?', [$restaurant->social_network_id]);
             DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
             DB::delete('delete from photos where id = ?',[$restaurant->photo_id]);
 		    $restaurant->forceDelete();

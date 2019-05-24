@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Gold
+class Platinium
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Gold
     public function handle($request, Closure $next)
     {
         if(Auth::check()) {
-            if(Auth::user()->isGold()) {
+            if(Auth::user()->isPlatinium()) {
                 return $next($request);
             }
         }

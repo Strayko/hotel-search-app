@@ -41,10 +41,7 @@ class Restaurant extends Model
 	    'lng',
 	    'address',
         'pdf_id',
-        'facebook',
-        'twitter',
-        'instagram',
-        'google'
+        'social_network_id'
     ];
 
     public function user() {
@@ -97,6 +94,10 @@ class Restaurant extends Model
 
     public function gallery() {
         return $this->hasMany('App\Gallery');
+    }
+
+    public function social() {
+        return $this->belongsTo('App\Social', 'social_network_id');
     }
 
 }

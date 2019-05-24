@@ -67,7 +67,7 @@
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurants</a>
                     </li>
-                    @if($gold)
+                    @if($platinium)
                         <li class="nav-item px-2">
                             <a href="{{route('event.index')}}" class="nav-link">Events</a>
                         </li>
@@ -146,12 +146,14 @@
 
                     <div class="card-body">
 
-                        @if($silver)
+                        @if($frei)
+                            @include('silver.includes.edit.frei_edit_restaurant')
+                        @elseif($silver)
                             @include('silver.includes.edit.silver_edit_restaurant')
-                        @elseif($bronze)
-                            @include('silver.includes.edit.bronze_edit_restaurant')
                         @elseif($gold)
                             @include('silver.includes.edit.gold_edit_restaurant')
+                        @elseif($platinium)
+                            @include('silver.includes.edit.platinium_edit_restaurant')
                         @endif
 
                     </div>

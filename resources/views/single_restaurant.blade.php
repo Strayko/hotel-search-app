@@ -136,17 +136,17 @@
                                                 <ul>
 
                                                     <li></li>
-                                                    @if($restaurant->facebook)
-                                                    <li><a href="{{$restaurant->facebook}}"><i class="fab fa-facebook"></i></a></li>
+                                                    @if($restaurant->social->facebook)
+                                                    <li><a href="{{$restaurant->social->facebook}}"><i class="fab fa-facebook"></i></a></li>
                                                     @endif
-                                                    @if($restaurant->facebook)
-                                                    <li><a href="{{$restaurant->twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                                    @if($restaurant->social->twitter)
+                                                    <li><a href="{{$restaurant->social->twitter}}"><i class="fab fa-twitter"></i></a></li>
                                                     @endif
-                                                    @if($restaurant->facebook)
-                                                    <li><a href="{{$restaurant->instagram}}"><i class="fab fa-instagram"></i></a></li>
+                                                    @if($restaurant->social->instagram)
+                                                    <li><a href="{{$restaurant->social->instagram}}"><i class="fab fa-instagram"></i></a></li>
                                                     @endif
-                                                    @if($restaurant->facebook)
-                                                    <li><a href="{{$restaurant->google}}"><i class="fab fa-google-plus"></i></a></li>
+                                                    @if($restaurant->social->google)
+                                                    <li><a href="{{$restaurant->social->google}}"><i class="fab fa-google-plus"></i></a></li>
                                                     @endif
 
                                                 </ul>

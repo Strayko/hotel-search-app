@@ -67,6 +67,13 @@ class User extends Authenticatable
 	    return false;
 	}
 
+    public function isProto() {
+        if($this->role->name == "proto" && $this->is_active == 1) {
+            return true;
+        }
+        return false;
+    }
+
 	public function isSilver() {
     	if($this->package->name == "Silver" && $this->is_active == 1) {
 			return true;
@@ -74,12 +81,19 @@ class User extends Authenticatable
 	    return false;
 	}
 
-	public function isBronze() {
-		if($this->package->name == "Bronze" && $this->is_active == 1) {
+	public function isPlatinium() {
+		if($this->package->name == "Platinium" && $this->is_active == 1) {
 			return true;
 		}
 		return false;
 	}
+
+	public function isFrei() {
+	    if($this->package->name == "Frei" && $this->is_active == 1) {
+	        return true;
+        }
+	    return false;
+    }
 
 	public function isGold() {
 		if($this->package->name == "Gold" && $this->is_active == 1) {

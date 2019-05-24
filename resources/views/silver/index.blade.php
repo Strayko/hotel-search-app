@@ -16,7 +16,7 @@
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link">Restaurants</a>
                     </li>
-                    @if($gold)
+                    @if($platinium)
                         <li class="nav-item px-2">
                             <a href="{{route('event.index')}}" class="nav-link">Events</a>
                         </li>
@@ -123,9 +123,9 @@
                     <div class="card text-center bg-primary text-white mb-3">
                         <div class="card-body">
                             <h3><i class="fas fa-box"></i> Package</h3>
-                            <h4 class="display-4">
+                            <h1>
                                  {{$user->package ? $user->package->name : 'Uncategorized'}}
-                            </h4>
+                            </h1>
 
                         </div>
                     </div>

@@ -79,6 +79,12 @@ class AuthorUsersController extends Controller
                 $dateTime->format('Y-m-d H:i:s');
                 $input['package_expiry'] = $dateTime;
             break;
+            case '4':
+                $dateTime = Carbon::now();
+                $dateTime->modify('+20 hour');
+                $dateTime->format('Y-m-d H:i:s');
+                $input['package_expiry'] = $dateTime;
+                break;
         }
 
 

@@ -11,10 +11,10 @@ class SilverAdminIndex extends Controller
 {
     public function index() {
 
-        $gold = User::where('package_id', Auth::user()->isGold())->first();
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
 		$user = User::where('id', Auth::user()->id)->first();
 
-	    return view('silver.index', compact('restaurants', 'user', 'gold'));
+	    return view('silver.index', compact('restaurants', 'user', 'platinium'));
     }
 }
