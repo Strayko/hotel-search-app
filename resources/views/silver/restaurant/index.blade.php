@@ -16,7 +16,7 @@
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link active">Restaurants</a>
                     </li>
-                    @if($platinium)
+                    @if($platinium || $gold)
                     <li class="nav-item px-2">
                         <a href="{{route('event.index')}}" class="nav-link">Events</a>
                     </li>

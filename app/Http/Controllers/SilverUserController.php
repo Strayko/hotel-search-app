@@ -64,9 +64,10 @@ class SilverUserController extends Controller
     public function edit($id)
     {
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
+        $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $user = User::findOrFail($id);
 	    $packages = Package::pluck('name', 'id')->all();
-	    return view('silver.user.edit', compact ('user', 'packages', 'platinium'));
+	    return view('silver.user.edit', compact ('user', 'packages', 'platinium', 'gold'));
     }
 
     /**

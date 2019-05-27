@@ -250,7 +250,7 @@ Route::group(['middleware'=>'author'], function() {
 /*---------------------------
   ---> MIDDLEWARE PREMIUM PACKAGE <---
 ----------------------------*/
-Route::group(['middleware'=>'platinium'], function() {
+Route::group(['middleware'=>'goldandplatinium'], function() {
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');
     Route::resource('admin/gallery', 'AuthorGalleryController');
