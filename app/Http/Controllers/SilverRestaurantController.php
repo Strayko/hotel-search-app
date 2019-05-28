@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Distance;
 use App\Food;
 use App\Http\Requests\SilverRequest;
@@ -33,7 +34,7 @@ class SilverRestaurantController extends Controller
         return view('silver.restaurant.index', compact('restaurants', 'platinium', 'gold'));
     }
 
-    function fetch_data(Request $request)
+    function fetch_data(Request $request, User $user)
     {
         if($request->ajax())
         {
@@ -41,10 +42,10 @@ class SilverRestaurantController extends Controller
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
-            $restaurants = Restaurant::where('id', 'like', '%'.$query.'%')
-                ->orWhere('title', 'like', '%'.$query.'%')
-                ->orWhere('body', 'like', '%'.$query.'%')
-                ->orderBy($sort_by, $sort_type)
+            $restaurants = Restaurant::where('id', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('title', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('body', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
                 ->paginate(5);
             return view('silver.ajax.restaurants_data', compact('restaurants'))->render();
         }
@@ -91,6 +92,16 @@ class SilverRestaurantController extends Controller
             ]);
             $input['social_network_id'] = $social_network->id;
         }
+
+        $contact_information = Contact::create([
+            'address2'=>$input['address2'],
+            'email'=>$input['email'],
+            'telephone'=>$input['telephone'],
+            'mobile'=>$input['mobile'],
+            'opening'=>$input['opening'],
+            'closing'=>$input['closing']
+        ]);
+        $input['contact_id'] = $contact_information->id;
 
 	    $user = Auth::user();
 	    if($file = $request->file('photo_id')) {
@@ -174,6 +185,15 @@ class SilverRestaurantController extends Controller
             $social_network->save();
         }
 
+        $contact_information = Contact::find($restaurant->contact->id);
+        $contact_information['address2'] = $input['address2'];
+        $contact_information['email'] = $input['email'];
+        $contact_information['telephone'] = $input['telephone'];
+        $contact_information['mobile'] = $input['mobile'];
+        $contact_information['opening'] = $input['opening'];
+        $contact_information['closing'] = $input['closing'];
+        $contact_information->save();
+
 	    if($file = $request->file('photo_id')) {
 		    $name = time() . $file->getClientOriginalName();
 		    $file->move('images', $name);
@@ -227,6 +247,7 @@ class SilverRestaurantController extends Controller
                     DB::delete('delete from gallery where restaurant_id = ?', [$restaurant->id]);
                 }
             }
+            DB::delete('delete from contact where id = ?', [$restaurant->contact_id]);
             DB::delete('delete from social_networks where id = ?', [$restaurant->social_network_id]);
 	        DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
 		    $restaurant->forceDelete();
@@ -245,6 +266,7 @@ class SilverRestaurantController extends Controller
                     DB::delete('delete from gallery where restaurant_id = ?', [$restaurant->id]);
                 }
             }
+            DB::delete('delete from contact where id = ?', [$restaurant->contact_id]);
             DB::delete('delete from social_networks where id = ?', [$restaurant->social_network_id]);
             DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
             DB::delete('delete from photos where id = ?',[$restaurant->photo_id]);

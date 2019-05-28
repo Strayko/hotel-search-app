@@ -8,25 +8,18 @@
     }
 </style>
 <style>
-
-
-
     input.invalid {
         background-color: #ffdddd;
     }
-
     select.invalid {
         background-color: #ffdddd;
     }
-
     textarea.invalid {
         background-color: #ffdddd;
     }
-
     .tab {
         display: none;
     }
-
     button {
         background-color: #4CAF50;
         color: #ffffff;
@@ -36,15 +29,12 @@
         font-family: Raleway;
         cursor: pointer;
     }
-
     button:hover {
         opacity: 0.8;
     }
-
     #prevBtn {
         background-color: #bbbbbb;
     }
-
     .step {
         height: 15px;
         width: 15px;
@@ -55,11 +45,9 @@
         display: inline-block;
         opacity: 0.5;
     }
-
     .step.active {
         opacity: 1;
     }
-
     .step.finish {
         background-color: #4CAF50;
     }
@@ -195,6 +183,8 @@
             <div class="col-md-6">
                 <div id="map_canvas"></div>
 
+
+
                 {{--<div class="card mt-4">--}}
                     {{--<div class="card-header">--}}
                         {{--<h4>Contact Information</h4>--}}
@@ -233,6 +223,10 @@
                     {{--</div>--}}
                 {{--</div>--}}
 
+
+
+
+
             </div>
             <div class="col-md-6 order-first">
                 @include('includes.user_form_error')
@@ -250,102 +244,21 @@
                             {{--<input type="button" value="Localizar!" onclick="codeAddress()"><br>--}}
                         {{--</div>--}}
 
-                        {{--@if($frei)--}}
-                            {{--@include('silver.includes.create.frei_create_restaurant')--}}
-                        {{--@elseif($silver)--}}
-                            {{--@include('silver.includes.create.silver_create_restaurant')--}}
-                        {{--@elseif($gold)--}}
-                            {{--@include('silver.includes.create.gold_create_restaurant')--}}
-                        {{--@elseif($platinium)--}}
-                            {{--@include('silver.includes.create.platinium_create_restaurant')--}}
-                        {{--@endif--}}
+                        @if($frei)
+                            @include('silver.includes.create.frei_create_restaurant')
+                        @elseif($silver)
+                            @include('silver.includes.create.silver_create_restaurant')
+                        @elseif($gold)
+                            @include('silver.includes.create.gold_create_restaurant')
+                        @elseif($platinium)
+                            @include('silver.includes.create.platinium_create_restaurant')
+                        @endif
 
 
 
 
                             <!-- One "tab" for each step in the form: -->
-                            {!! Form::open(['method'=>'POST', 'action'=>'SilverRestaurantController@store', 'files'=>true, 'id'=>'regForm']) !!}
-                            {{csrf_field()}}
-                                <div class="tab">
-                                    <div class="form-group">
-                                        {!! Form::label('title', 'Title:') !!}
-                                        {!! Form::text('title', null, ['class'=>'check form-control', 'oninput'=>'this.className = "form-control check"']) !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::label('location_id', 'City:') !!}
-                                        {!! Form::select('location_id', ['' => 'Choose Location'] + $locations, null, ['class'=>'check form-control', 'oninput'=>'this.className = "form-control check"']) !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::label('address', 'Address Google Map:') !!}
-                                        {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'example: Passau, Padu Innstrasse', 'onchange'=>'codeAddress()']) !!}
 
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" id="yourBox" class="custom-control-input" />
-                                            <label id="pointers" class="custom-control-label" for="yourBox">Not registered on google map</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::label('food_id', 'Food:') !!}
-                                        {!! Form::select('food_id', ['' => 'Choose Food'] + $foods, null, ['class'=>'check form-control', 'oninput'=>'this.className = "form-control check"']) !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::label('body', 'Description:') !!}
-                                        {!! Form::textarea('body', null, ['class'=>'check form-control', 'oninput'=>'this.className = "form-control check"', 'rows'=>3]) !!}
-                                    </div>
-                                    <div class="custom-file mb-3">
-                                        {!! Form::label('photo_id', 'Upload Picture', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
-                                        {!! Form::file('photo_id', null, ['class'=>'custom-file-input']) !!}
-                                    </div>
-                                    <div class="custom-file mb-3">
-                                        {!! Form::label('pdf_id', 'Upload PDF', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
-                                        {!! Form::file('pdf_id', null, ['class'=>'custom-file-input']) !!}
-                                    </div>
-                                    <div class="form-group" style="display:none;">
-                                        {!! Form::label('lat', 'Lat:') !!}
-                                        {!! Form::text('lat', null) !!}
-                                    </div>
-                                    <div class="form-group" style="display:none;">
-                                        {!! Form::label('lng', 'Lng:') !!}
-                                        {!! Form::text('lng', null) !!}
-                                    </div>
-                                </div>
-
-
-
-
-
-                                <div class="tab">
-                                    <div class="form-group">
-                                        {!! Form::label('facebook', 'Facebook:') !!}
-                                        {!! Form::text('facebook', null, ['class'=>'form-control']) !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::label('twitter', 'Twitter:') !!}
-                                        {!! Form::text('twitter', null, ['class'=>'form-control']) !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::label('instagram', 'Instagram:') !!}
-                                        {!! Form::text('instagram', null, ['class'=>'form-control']) !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::label('google', 'Google Plus:') !!}
-                                        {!! Form::text('google', null, ['class'=>'form-control']) !!}
-                                    </div>
-                                </div>
-                                {!! Form::close() !!}
-                                <div style="overflow:auto;">
-                                    <div style="float:right;">
-                                        <button class="btn" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                                        <button class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                                    </div>
-                                </div>
-                                <!-- Circles which indicates the steps of the form: -->
-                                <div style="text-align:center;margin-top:40px;">
-                                    <span class="step"></span>
-                                    <span class="step"></span>
-
-                                </div>
 
 
 

@@ -30,10 +30,10 @@ class AuthorGalleryController extends Controller
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
-            $restaurants = Restaurant::where('id', 'like', '%'.$query.'%')
-                ->orWhere('title', 'like', '%'.$query.'%')
-                ->orWhere('body', 'like', '%'.$query.'%')
-                ->orderBy($sort_by, $sort_type)
+            $restaurants = Restaurant::where('id', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('title', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('body', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
                 ->paginate(5);
             return view('silver.ajax.restaurants_choose_data', compact('restaurants'))->render();
         }
@@ -93,9 +93,9 @@ class AuthorGalleryController extends Controller
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
-            $gallerys = Gallery::where('id', 'like', '%'.$query.'%')
-                ->orWhere('photo', 'like', '%'.$query.'%')
-                ->orderBy($sort_by, $sort_type)
+            $gallerys = Gallery::where('id', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('photo', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
                 ->paginate(5);
             return view('silver.ajax.gallerys_data', compact('gallerys'))->render();
         }
@@ -110,6 +110,7 @@ class AuthorGalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
         $restaurant = Restaurant::findOrFail($id);
         $restaurant_id = $restaurant['id'];
 
@@ -119,7 +120,11 @@ class AuthorGalleryController extends Controller
             foreach ($files as $file) {
                 $name = time() . $file->getClientOriginalName();
                 $file->move('gallery', $name);
-                Gallery::create(['photo'=>$name, 'restaurant_id'=>$restaurant_id]);
+                Gallery::create([
+                    'photo'=>$name,
+                    'restaurant_id'=>$restaurant_id,
+                    'user_id'=>$user->id
+                ]);
             }
         }
         return redirect()->back();

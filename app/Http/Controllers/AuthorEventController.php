@@ -32,10 +32,10 @@ class AuthorEventController extends Controller
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
             $query = str_replace(" ", "%", $query);
-            $events = Event::where('id', 'like', '%'.$query.'%')
-                ->orWhere('title', 'like', '%'.$query.'%')
-                ->orWhere('body', 'like', '%'.$query.'%')
-                ->orderBy($sort_by, $sort_type)
+            $events = Event::where('id', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('title', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('body', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
                 ->paginate(5);
             return view('silver.ajax.events_data', compact('events'))->render();
         }
