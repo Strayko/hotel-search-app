@@ -100,11 +100,13 @@ Route::group(['middleware'=>'protected'], function() {
 
 
 
+
 /*------------------------------
   ---> SINGLE PAGE FRONTEND <---
 -------------------------------*/
 Route::resource('user/register', 'AuthorUsersController');
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
+Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
 Route::get('/plan-and-price', ['as'=>'plan_and_price.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
 Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contact']);
 Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);

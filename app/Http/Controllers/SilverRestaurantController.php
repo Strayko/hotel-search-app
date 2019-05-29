@@ -34,7 +34,7 @@ class SilverRestaurantController extends Controller
         return view('silver.restaurant.index', compact('restaurants', 'platinium', 'gold'));
     }
 
-    function fetch_data(Request $request, User $user)
+    function fetch_data(Request $request)
     {
         if($request->ajax())
         {

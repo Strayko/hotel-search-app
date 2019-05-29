@@ -50,6 +50,7 @@
 
 
 <div class="tab">
+    <h4 class="text-center">Social Networks</h4>
     <div class="form-group">
         {!! Form::label('facebook', 'Facebook:') !!}
         {!! Form::text('facebook', null, ['class'=>'form-control']) !!}

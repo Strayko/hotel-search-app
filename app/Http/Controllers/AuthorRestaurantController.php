@@ -7,6 +7,7 @@ use App\Event;
 use App\Food;
 use App\Location;
 use App\Restaurant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +18,9 @@ class AuthorRestaurantController extends Controller
     	$restaurant = Restaurant::findBySlugOrFail($slug);
     	$restaurant_id = $restaurant['id'];
 
+    	$times = Carbon::now();
+    	$time = $times->toTimeString();
+
     	$gallerys = $restaurant->gallery()->where('restaurant_id', $restaurant_id)->get();
         $event = $restaurant->events()->orderBy('id', 'desc')->whereIsActive(1)->first();
     	$comments = $restaurant->comments()->whereIsActive(1)->paginate(5);
@@ -26,7 +30,11 @@ class AuthorRestaurantController extends Controller
     	$foods = Food::all();
 	    $restaurantRecents = Restaurant::orderBy('id', 'desc')->limit(3)->get();
 
-    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents', 'event', 'gallerys'));
+    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents', 'event', 'gallerys', 'time'));
+    }
+
+    public function store(Request $request) {
+        dd($request->all());
     }
 
 }

@@ -84,6 +84,16 @@
                                                 </figure>
                                                 <div class="aa-blog-single-content">
                                                     <h2>{{$restaurant->title}}</h2>
+                                                    <h4 style="float: right;">
+                                                        @if($time > $restaurant->contact->opening && $time < $restaurant->contact->closing)
+                                                            OPEN
+                                                            @else
+                                                            CLOSED
+                                                        @endif
+                                                    </h4>
+                                                    <div class="hidden">...</div>
+                                                    <p style="float: right; clear: both;">Open: {{$restaurant->contact->opening}}</p>
+                                                    <p style="float: right; clear: both;">Closed: {{$restaurant->contact->closing}}</p>
                                                     <div class="aa-blog-single-bottom">
                                                         <i class="fa fa-user"></i> {{$restaurant->user->name}}
                                                         <i class="fas fa-comments"></i> {{$restaurant->comments->count()}}
@@ -116,6 +126,32 @@
                                                 </div>
                                             </article>
                                         </div>
+
+
+                                        <div class="col-md-12">
+                                        <div class="comment-reply-container">
+                                                <button class="toggle-reply btn btn-secondary" style="margin-bottom: 10px;">Online Booking</button>
+
+                                                <div class="comment-reply" style="display: none; width: 100%;">
+                                                    {!! Form::open(['method'=>'POST', 'action'=>'AuthorRestaurantController@store']) !!}
+                                                    {{csrf_field()}}
+
+                                                    <div class="form-group">
+                                                        {!! Form::label('body', 'Body:') !!}
+                                                        {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>1]) !!}
+                                                    </div>
+
+                                                    {!! Form::submit('Create', ['class'=>'btn btn-secondary']) !!}
+                                                    {!! Form::close() !!}
+                                                </div>
+
+                                        </div>
+                                        </div>
+
+
+
+
+
                                         <!-- Post tags -->
                                         <div class="col-md-12">
                                             <div class="aa-blog-post-tag">
@@ -391,5 +427,9 @@
 @endsection
 
 @section('footer')
-
+    <script>
+        $(".toggle-booking .boking-open").click(function() {
+            $(this).next().slideToggle("slow");
+        });
+    </script>
 @endsection
