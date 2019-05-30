@@ -140,8 +140,10 @@
                                                 <div class="comment-reply" style="display: none; width: 100%;">
                                                     {!! Form::open(['method'=>'POST', 'action'=>'AuthorRestaurantController@store']) !!}
                                                     {{csrf_field()}}
-                                                    <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
+                                                    <input type="hidden" name="user_id" value="{{$restaurant->user->id}}">
+                                                    <input type="hidden" name="restaurant_title" value="{{$restaurant->title}}">
                                                     <h3>Book a table:</h3>
+
                                                     <div class="form-group">
                                                         {!! Form::label('date', 'Date:', ['class'=>'col-2 col-form-label']) !!}
                                                         <div class="col-10">
@@ -180,6 +182,11 @@
                                                         {!! Form::label('phone', 'Phone:') !!}
                                                         {!! Form::text('phone', null, ['class'=>'form-control']) !!}
                                                     </div>
+                                                    <div class="form-group">
+                                                        {!! Form::label('body', 'Description:') !!}
+                                                        {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3, 'placeholder'=>'Optional']) !!}
+                                                    </div>
+
                                                     {!! Form::submit('Send Reservation', ['class'=>'btn btn-secondary pull-right', 'style'=>'margin-top: 20px;']) !!}
                                                     {!! Form::close() !!}
                                                     </div>
@@ -187,9 +194,6 @@
                                                 </div>
 
                                         </div>
-                                        
-
-
 
 
 
@@ -468,9 +472,5 @@
 @endsection
 
 @section('footer')
-    <script>
-        $(".toggle-booking .boking-open").click(function() {
-            $(this).next().slideToggle("slow");
-        });
-    </script>
+
 @endsection

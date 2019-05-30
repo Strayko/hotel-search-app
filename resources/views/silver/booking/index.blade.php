@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-<title>Event</title>
+<title>Restaurant</title>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
@@ -16,15 +16,17 @@
                     <li class="nav-item px-2">
                         <a href="{{route('restaurant.index')}}" class="nav-link">Restaurants</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a href="{{route('event.index')}}" class="nav-link active">Events</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a href="{{route('booking')}}" class="nav-link">Booking</a>
-                    </li>
+
+                        <li class="nav-item px-2">
+                            <a href="{{route('event.index')}}" class="nav-link">Events</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a href="{{route('booking')}}" class="nav-link active">Booking</a>
+                        </li>
+
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -60,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-calendar-alt"></i> Events</h1>
+                    <h1><i class="fas fa-calendar-check"></i> Booking</h1>
                 </div>
             </div>
         </div>
@@ -71,18 +73,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="{{route('event.create')}}" class="btn btn-secondary btn-block">
-                        <i class="fas fa-plus"></i> Add Event
+                    <a href="#" class="btn btn-secondary btn-block">
+                        <i class="fas fa-plus"></i> Add
                     </a>
                 </div>
                 <div class="col-md-3">
                     <a href="#" class="btn btn-secondary btn-block sorting" data-sorting_type="asc" data-column_name="id">
-                        <i class="fas fa-calendar-alt"></i> Sorting Events
+                        <i class="fas fa-calendar-check"></i> Sorting Reservations
                     </a>
                 </div>
                 <div class="col-md-6 ml-auto">
                     <div class="form-group">
-                        <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Events...">
+                        <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Reservations...">
                     </div>
                 </div>
             </div>
@@ -100,27 +102,40 @@
                             @if(Session::has('deleted_restaurant'))
                                 <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
                             @endif
-                            <h4>Events</h4>
+                            <h4>Reservations</h4>
                         </div>
-                        @if(count($events) > 0)
+
+                            @if(count($booking) > 0)
                             <table class="table table-striped">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th>Photo</th>
                                     <th>Restaurant</th>
-                                    <th>Title</th>
-                                    <th>Body</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Description</th>
+                                    <th>Phone</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Party</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @include('silver.ajax.events_data')
+                                @foreach($booking as $item)
+                                     <tr>
+                                         <td>{{$item->restaurant_title}}</td>
+                                         <td>{{$item->name}}</td>
+                                         <td>{{$item->email}}</td>
+                                         <td>{{$item->body}}</td>
+                                         <td>{{$item->phone}}</td>
+                                         <td>{{$item->date}}</td>
+                                         <td>{{$item->time}}</td>
+                                         <td>{{$item->party}}</td>
+                                     </tr>
+                                @endforeach
                                 @else
-                                    <h1 class="text-center">Create event</h1>
+
+                                    <h1 class="text-center">Currently do not have reservations ...</h1>
                                 @endif
                                 </tbody>
                             </table>
@@ -130,6 +145,7 @@
                             <!-- PAGINATION -->
 
                     </div>
+
                 </div>
             </div>
         </div>
@@ -139,74 +155,5 @@
 @endsection
 
 @section('footer')
-    <script>
-        $(document).ready(function(){
 
-            function clear_icon()
-            {
-                $('#id_icon').html('');
-                $('#post_title_icon').html('');
-            }
-
-            function fetch_data(page, sort_type, sort_by, query)
-            {
-                $.ajax({
-                    url:"/admin/event/tvy5kTYJeWYBY4CX?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
-                    success:function(data)
-                    {
-                        $('tbody').html('');
-                        $('tbody').html(data);
-                    }
-                })
-            }
-
-            $(document).on('keyup', '#serach', function(){
-                var query = $('#serach').val();
-                var column_name = $('#hidden_column_name').val();
-                var sort_type = $('#hidden_sort_type').val();
-                var page = $('#hidden_page').val();
-                fetch_data(page, sort_type, column_name, query);
-            });
-
-            $(document).on('click', '.sorting', function(){
-                var column_name = $(this).data('column_name');
-                var order_type = $(this).data('sorting_type');
-                var reverse_order = '';
-                if(order_type == 'asc')
-                {
-                    $(this).data('sorting_type', 'desc');
-                    reverse_order = 'desc';
-                    clear_icon();
-                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
-                }
-                if(order_type == 'desc')
-                {
-                    $(this).data('sorting_type', 'asc');
-                    reverse_order = 'asc';
-                    clear_icon
-                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
-                }
-                $('#hidden_column_name').val(column_name);
-                $('#hidden_sort_type').val(reverse_order);
-                var page = $('#hidden_page').val();
-                var query = $('#serach').val();
-                fetch_data(page, reverse_order, column_name, query);
-            });
-
-            $(document).on('click', '.pagination a', function(event){
-                event.preventDefault();
-                var page = $(this).attr('href').split('page=')[1];
-                $('#hidden_page').val(page);
-                var column_name = $('#hidden_column_name').val();
-                var sort_type = $('#hidden_sort_type').val();
-
-                var query = $('#serach').val();
-
-                $('li').removeClass('active');
-                $(this).parent().addClass('active');
-                fetch_data(page, sort_type, column_name, query);
-            });
-
-        });
-    </script>
 @endsection

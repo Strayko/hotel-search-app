@@ -105,4 +105,8 @@ class Restaurant extends Model
         return $this->belongsTo('App\Contact', 'contact_id');
     }
 
+    public function booking() {
+        return $this->hasMany('App\Booking');
+    }
+
 }

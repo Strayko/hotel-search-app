@@ -14,6 +14,8 @@ class Booking extends Model
         'name',
         'email',
         'phone',
-        'restaurant_id'
+        'user_id',
+        'restaurant_title',
+        'body'
     ];
 }

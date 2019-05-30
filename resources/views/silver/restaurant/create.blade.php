@@ -119,6 +119,9 @@
                         <li class="nav-item px-2">
                             <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
                         </li>
+                        <li class="nav-item px-2">
+                            <a href="{{route('booking')}}" class="nav-link">Booking</a>
+                        </li>
                     @endif
                 </ul>
 
@@ -182,48 +185,6 @@
         <div class="row">
             <div class="col-md-6">
                 <div id="map_canvas"></div>
-
-
-
-                {{--<div class="card mt-4">--}}
-                    {{--<div class="card-header">--}}
-                        {{--<h4>Contact Information</h4>--}}
-                    {{--</div>--}}
-                    {{--<div class="card-body">--}}
-
-                        {{--<div class="form-group">--}}
-                            {{--{!! Form::label('address2', 'Address:') !!}--}}
-                            {{--{!! Form::text('address2', null, ['class'=>'form-control']) !!}--}}
-                        {{--</div>--}}
-
-                        {{--<div class="form-group">--}}
-                            {{--{!! Form::label('email', 'Email:') !!}--}}
-                            {{--{!! Form::email('email', null, ['class'=>'form-control']) !!}--}}
-                        {{--</div>--}}
-                        {{--<div class="form-row">--}}
-                            {{--<div class="col form-group">--}}
-                                {{--{!! Form::label('telephone', 'Tel:') !!}--}}
-                                {{--{!! Form::text('telephone', null, ['class'=>'form-control']) !!}--}}
-                            {{--</div>--}}
-                            {{--<div class="col form-group">--}}
-                                {{--{!! Form::label('mobile', 'Mob:') !!}--}}
-                                {{--{!! Form::text('mobile', null, ['class'=>'form-control']) !!}--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="form row">--}}
-                            {{--<div class="col form-group">--}}
-                                {{--<label for="example-time-input">Opening Time:</label>--}}
-                                {{--<input class="form-control" type="time" value="00:00:00" id="example-time-input">--}}
-                            {{--</div>--}}
-                            {{--<div class="col form-group">--}}
-                                {{--<label for="example-time-input">Closing Time:</label>--}}
-                                {{--<input class="form-control" type="time" value="12:00:00" id="example-time-input">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-
 
 
 

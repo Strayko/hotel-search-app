@@ -253,6 +253,7 @@ Route::group(['middleware'=>'author'], function() {
   ---> MIDDLEWARE PREMIUM PACKAGE <---
 ----------------------------*/
 Route::group(['middleware'=>'goldandplatinium'], function() {
+    Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');
     Route::resource('admin/gallery', 'AuthorGalleryController');

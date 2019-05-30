@@ -22,6 +22,9 @@
                     <li class="nav-item px-2">
                         <a href="{{route('gallery.index')}}" class="nav-link active">Gallery</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="{{route('booking')}}" class="nav-link">Booking</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
