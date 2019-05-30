@@ -77,6 +77,11 @@
                                                         {{session('comment_message')}}
                                                     </div>
                                                     @endif
+                                                    @if(Session::has('online_booking'))
+                                                        <div class="alert alert-success">
+                                                            {{session('online_booking')}}
+                                                        </div>
+                                                    @endif
 
                                                 <figure class="aa-blog-img">
                                                     <a href="#"><img alt="img" src="{{$restaurant->photo ? $restaurant->photo->file : $restaurant->photoPlaceholder()}}"></a>
@@ -135,18 +140,54 @@
                                                 <div class="comment-reply" style="display: none; width: 100%;">
                                                     {!! Form::open(['method'=>'POST', 'action'=>'AuthorRestaurantController@store']) !!}
                                                     {{csrf_field()}}
-
+                                                    <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
+                                                    <h3>Book a table:</h3>
                                                     <div class="form-group">
-                                                        {!! Form::label('body', 'Body:') !!}
-                                                        {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>1]) !!}
+                                                        {!! Form::label('date', 'Date:', ['class'=>'col-2 col-form-label']) !!}
+                                                        <div class="col-10">
+                                                            {!! Form::date('date', null, ['class'=>'form-control', 'style'=>'line-height: 20px;']) !!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {!! Form::label('time', 'Time:', ['class'=>'col-2 col-form-label']) !!}
+                                                        <div class="col-10">
+                                                            {!! Form::time('time', null, ['class'=>'form-control', 'style'=>'line-height: 20px;']) !!}
+                                                        </div>
+                                                    </div>
+                                                    {!! Form::label('party', 'Party:') !!}
+                                                    <select class="form-control" name="party">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                    </select>
+                                                    <h3>Contact Details:</h3>
+                                                    <div class="form-group">
+                                                        {!! Form::label('name', 'Name:') !!}
+                                                        {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {!! Form::label('email', 'Email:') !!}
+                                                        {!! Form::email('email', null, ['class'=>'form-control']) !!}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        {!! Form::label('phone', 'Phone:') !!}
+                                                        {!! Form::text('phone', null, ['class'=>'form-control']) !!}
+                                                    </div>
+                                                    {!! Form::submit('Send Reservation', ['class'=>'btn btn-secondary pull-right', 'style'=>'margin-top: 20px;']) !!}
+                                                    {!! Form::close() !!}
                                                     </div>
 
-                                                    {!! Form::submit('Create', ['class'=>'btn btn-secondary']) !!}
-                                                    {!! Form::close() !!}
                                                 </div>
 
                                         </div>
-                                        </div>
+                                        
 
 
 

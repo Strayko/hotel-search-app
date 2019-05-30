@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Comment;
 use App\Event;
 use App\Food;
@@ -34,7 +35,11 @@ class AuthorRestaurantController extends Controller
     }
 
     public function store(Request $request) {
-        dd($request->all());
+
+        $data = $request->all();
+        Booking::create($data);
+        $request->session()->flash('online_booking', 'Your request for reservation is sent and we will contact you');
+        return redirect()->back();
     }
 
 }
