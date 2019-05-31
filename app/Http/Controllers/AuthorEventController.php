@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Event;
 use App\Photo;
 use App\Restaurant;
@@ -19,9 +20,14 @@ class AuthorEventController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
+
         $gold = User::where('package_id', Auth::user()->isGold())->first();
         $events = Event::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.event.index', compact('events', 'gold'));
+        return view('silver.event.index', compact('events', 'gold', 'notifications'));
     }
 
     function fetch_data(Request $request)
@@ -48,9 +54,14 @@ class AuthorEventController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
+
         $user_id = Auth::user()->id;
         $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
-        return view('silver.event.create', compact('restaurants'));
+        return view('silver.event.create', compact('restaurants', 'notifications'));
     }
 
     /**
@@ -100,10 +111,15 @@ class AuthorEventController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
+
         $user_id = Auth::user()->id;
         $events = Event::findOrFail($id);
         $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
-        return view('silver.event.edit', compact('events', 'restaurants'));
+        return view('silver.event.edit', compact('events', 'restaurants', 'notifications'));
     }
 
     /**

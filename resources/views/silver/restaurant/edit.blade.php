@@ -6,6 +6,23 @@
     #pointers {
         cursor: pointer!important;
     }
+
+     .remove-caret::after {
+         display:none!important;
+     }
+    #all-read {
+        border: none;
+        background: white;
+        cursor: pointer;
+        color: green;
+    }
+    #all-read:hover {
+        background: rgba(128,255,0,0.2);
+    }
+    #green-item:hover {
+        background: rgba(128,255,0,0.2);
+    }
+
 </style>
 <style>
     input.invalid {
@@ -125,6 +142,35 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
+                    @if($platinium || $gold)
+                    <li class="nav-item dropdown mr-3">
+                        <a href="#" class="nav-link dropdown-toggle remove-caret" data-toggle="dropdown">
+                            <i class="fas fa-bell mt-1"></i>
+                            @if(count($notifications) > 0)
+                                <span class="badge badge-light">{{count($notifications)}}</span>
+                            @endif
+
+                        </a>
+                        @if(count($notifications) > 0)
+                            <div class="dropdown-menu">
+
+                                {!! Form::open(['method'=>'POST', 'action'=>'OnlineBookingController@update']) !!}
+                                <input id="all-read" class="dropdown-item" type="submit" value="Mark all read">
+                                {!! Form::close() !!}
+
+                                @foreach($notifications as $notification)
+                                    <a id="green-item" href="#" class="dropdown-item">
+                                        {{Str::limit($notification->restaurant_title, 20)}} -> {{Str::limit($notification->name, 20)}}, {{$notification->party}}
+                                    </a>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="dropdown-menu">
+                                <p class="dropdown-item">You dont have notifications</p>
+                            </div>
+                        @endif
+                    </li>
+                    @endif
                     <li class="nav-item dropdown mr-3">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                             <i class="fas fa-user"></i> {{Auth::user()->name}}

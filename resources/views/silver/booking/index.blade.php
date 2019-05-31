@@ -1,5 +1,22 @@
 @extends('layouts.admin')
 <title>Restaurant</title>
+<style>
+    .remove-caret::after {
+        display:none!important;
+    }
+    #all-read {
+        border: none;
+        background: white;
+        cursor: pointer;
+        color: green;
+    }
+    #all-read:hover {
+        background: rgba(128,255,0,0.2);
+    }
+    #green-item:hover {
+        background: rgba(128,255,0,0.2);
+    }
+</style>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
@@ -30,6 +47,39 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
+
+
+
+                    <li class="nav-item dropdown mr-3">
+                        <a href="#" class="nav-link dropdown-toggle remove-caret" data-toggle="dropdown">
+                            <i class="fas fa-bell mt-1"></i>
+                            @if(count($notifications) > 0)
+                                <span class="badge badge-light">{{count($notifications)}}</span>
+                            @endif
+
+                        </a>
+                        @if(count($notifications) > 0)
+                        <div class="dropdown-menu">
+
+                            {!! Form::open(['method'=>'POST', 'action'=>'OnlineBookingController@update']) !!}
+                            <input id="all-read" class="dropdown-item" type="submit" value="Mark all read">
+                            {!! Form::close() !!}
+
+                            @foreach($notifications as $notification)
+                            <a id="green-item" href="#" class="dropdown-item">
+                                 {{Str::limit($notification->restaurant_title, 20)}} -> {{Str::limit($notification->name, 20)}}, {{$notification->party}}
+                            </a>
+                            @endforeach
+                        </div>
+                        @else
+                            <div class="dropdown-menu">
+                                <p class="dropdown-item">You dont have notifications</p>
+                            </div>
+                        @endif
+                    </li>
+
+
+
                     <li class="nav-item dropdown mr-3">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                             <i class="fas fa-user"></i> {{Auth::user()->name}}
@@ -72,11 +122,7 @@
     <section id="search" class="py-4 mb-4 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <a href="#" class="btn btn-secondary btn-block">
-                        <i class="fas fa-plus"></i> Add
-                    </a>
-                </div>
+               
                 <div class="col-md-3">
                     <a href="#" class="btn btn-secondary btn-block sorting" data-sorting_type="asc" data-column_name="id">
                         <i class="fas fa-calendar-check"></i> Sorting Reservations
@@ -99,8 +145,13 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            @if(Session::has('deleted_restaurant'))
-                                <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
+                            @if(Session::has('deleted_reservations'))
+
+                                <p class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{session('deleted_reservations')}}</p>
                             @endif
                             <h4>Reservations</h4>
                         </div>
@@ -112,27 +163,16 @@
                                     <th>Restaurant</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Description</th>
                                     <th>Phone</th>
                                     <th>Date</th>
                                     <th>Time</th>
                                     <th>Party</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($booking as $item)
-                                     <tr>
-                                         <td>{{$item->restaurant_title}}</td>
-                                         <td>{{$item->name}}</td>
-                                         <td>{{$item->email}}</td>
-                                         <td>{{$item->body}}</td>
-                                         <td>{{$item->phone}}</td>
-                                         <td>{{$item->date}}</td>
-                                         <td>{{$item->time}}</td>
-                                         <td>{{$item->party}}</td>
-                                     </tr>
-                                @endforeach
+                                @include('silver.ajax.booking_data')
                                 @else
 
                                     <h1 class="text-center">Currently do not have reservations ...</h1>
@@ -155,5 +195,74 @@
 @endsection
 
 @section('footer')
+    <script>
+        $(document).ready(function(){
 
+            function clear_icon()
+            {
+                $('#id_icon').html('');
+                $('#post_title_icon').html('');
+            }
+
+            function fetch_data(page, sort_type, sort_by, query)
+            {
+                $.ajax({
+                    url:"/admin/booking/8NAkT49naKfcwhwQ?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    success:function(data)
+                    {
+                        $('tbody').html('');
+                        $('tbody').html(data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#serach', function(){
+                var query = $('#serach').val();
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+                var page = $('#hidden_page').val();
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+            $(document).on('click', '.sorting', function(){
+                var column_name = $(this).data('column_name');
+                var order_type = $(this).data('sorting_type');
+                var reverse_order = '';
+                if(order_type == 'asc')
+                {
+                    $(this).data('sorting_type', 'desc');
+                    reverse_order = 'desc';
+                    clear_icon();
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
+                }
+                if(order_type == 'desc')
+                {
+                    $(this).data('sorting_type', 'asc');
+                    reverse_order = 'asc';
+                    clear_icon
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
+                }
+                $('#hidden_column_name').val(column_name);
+                $('#hidden_sort_type').val(reverse_order);
+                var page = $('#hidden_page').val();
+                var query = $('#serach').val();
+                fetch_data(page, reverse_order, column_name, query);
+            });
+
+            $(document).on('click', '.pagination a', function(event){
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                $('#hidden_page').val(page);
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+
+                var query = $('#serach').val();
+
+                $('li').removeClass('active');
+                $(this).parent().addClass('active');
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+        });
+    </script>
 @endsection

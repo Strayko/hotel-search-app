@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Package;
 use App\Photo;
 use App\Role;
@@ -63,11 +64,15 @@ class SilverUserController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $user = User::findOrFail($id);
 	    $packages = Package::pluck('name', 'id')->all();
-	    return view('silver.user.edit', compact ('user', 'packages', 'platinium', 'gold'));
+	    return view('silver.user.edit', compact ('user', 'packages', 'platinium', 'gold', 'notifications'));
     }
 
     /**

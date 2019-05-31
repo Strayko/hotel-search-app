@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Gallery;
 use App\Restaurant;
 use Illuminate\Http\Request;
@@ -17,9 +18,13 @@ class AuthorGalleryController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
 
         $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.gallery.index', compact('restaurants'));
+        return view('silver.gallery.index', compact('restaurants', 'notifications'));
     }
 
     function fetch_data(Request $request)
@@ -79,10 +84,15 @@ class AuthorGalleryController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
+
         $restaurants = Restaurant::findOrFail($id);
         $restaurant_id = $restaurants['id'];
         $gallerys = $restaurants->gallery()->where('restaurant_id', $restaurant_id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.gallery.edit', compact('restaurants', 'gallerys'));
+        return view('silver.gallery.edit', compact('restaurants', 'gallerys', 'notifications'));
     }
 
     function fetch_data2(Request $request)

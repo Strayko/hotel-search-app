@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Contact;
 use App\Distance;
 use App\Food;
@@ -27,11 +28,15 @@ class SilverRestaurantController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
 
-        return view('silver.restaurant.index', compact('restaurants', 'platinium', 'gold'));
+        return view('silver.restaurant.index', compact('restaurants', 'platinium', 'gold', 'notifications'));
     }
 
     function fetch_data(Request $request)
@@ -58,6 +63,11 @@ class SilverRestaurantController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
+
 	    $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
 	    $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $silver = User::where('package_id', Auth::user()->isSilver())->first();
@@ -70,7 +80,7 @@ class SilverRestaurantController extends Controller
 	    $distance = Distance::pluck('distance', 'id')->all();
 
 
-        return view('silver.restaurant.create', compact('restaurants', 'locations', 'foods', 'platinium', 'gold', 'silver', 'distance', 'frei'));
+        return view('silver.restaurant.create', compact('restaurants', 'locations', 'foods', 'platinium', 'gold', 'silver', 'distance', 'frei', 'notifications'));
     }
 
     /**
@@ -144,6 +154,11 @@ class SilverRestaurantController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
+
 	    $restaurants = Restaurant::findOrFail($id);
 
 	    $foods = Food::pluck('name', 'id')->all();
@@ -155,7 +170,7 @@ class SilverRestaurantController extends Controller
         $frei = User::where('package_id', Auth::user()->isFrei())->first();
 
 //	    $silver = DB::table('users')->where('package_id', '=', '3')->value('package_id');
-	    return view('silver.restaurant.edit', compact('restaurants', 'platinium', 'silver', 'gold', 'locations', 'foods', 'frei'));
+	    return view('silver.restaurant.edit', compact('restaurants', 'platinium', 'silver', 'gold', 'locations', 'foods', 'frei', 'notifications'));
     }
 
     /**

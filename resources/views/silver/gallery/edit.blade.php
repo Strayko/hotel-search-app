@@ -1,5 +1,22 @@
 @extends('layouts.admin')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
+<style>
+    .remove-caret::after {
+        display:none!important;
+    }
+    #all-read {
+        border: none;
+        background: white;
+        cursor: pointer;
+        color: green;
+    }
+    #all-read:hover {
+        background: rgba(128,255,0,0.2);
+    }
+    #green-item:hover {
+        background: rgba(128,255,0,0.2);
+    }
+</style>
 @section('content')
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
@@ -28,6 +45,33 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown mr-3">
+                        <a href="#" class="nav-link dropdown-toggle remove-caret" data-toggle="dropdown">
+                            <i class="fas fa-bell mt-1"></i>
+                            @if(count($notifications) > 0)
+                                <span class="badge badge-light">{{count($notifications)}}</span>
+                            @endif
+
+                        </a>
+                        @if(count($notifications) > 0)
+                            <div class="dropdown-menu">
+
+                                {!! Form::open(['method'=>'POST', 'action'=>'OnlineBookingController@update']) !!}
+                                <input id="all-read" class="dropdown-item" type="submit" value="Mark all read">
+                                {!! Form::close() !!}
+
+                                @foreach($notifications as $notification)
+                                    <a id="green-item" href="#" class="dropdown-item">
+                                        {{Str::limit($notification->restaurant_title, 20)}} -> {{Str::limit($notification->name, 20)}}, {{$notification->party}}
+                                    </a>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="dropdown-menu">
+                                <p class="dropdown-item">You dont have notifications</p>
+                            </div>
+                        @endif
+                    </li>
                     <li class="nav-item dropdown mr-3">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                             <i class="fas fa-user"></i> {{Auth::user()->name}}

@@ -235,6 +235,7 @@ Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fet
 Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
 Route::get('/admin/gallery/jLYZFd64ggZe3s8f', 'AuthorGalleryController@fetch_data');
 Route::get('/admin/gallery/{id}/cKS3dpqP6xF6qZEf', 'AuthorGalleryController@fetch_data2');
+Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
 
 
 /*---------------------------
@@ -249,11 +250,16 @@ Route::group(['middleware'=>'author'], function() {
 });
 
 
-/*---------------------------
-  ---> MIDDLEWARE PREMIUM PACKAGE <---
-----------------------------*/
+/*---------------------------------------------
+  ---> MIDDLEWARE PREMIUM AND GOLD PACKAGE <---
+----------------------------------------------*/
 Route::group(['middleware'=>'goldandplatinium'], function() {
+
     Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');
+    Route::post('admin/booking', 'OnlineBookingController@update')->name('booking');
+    Route::get('admin/booking/{id}/edit', 'OnlineBookingController@edit')->name('bookingEdit');
+    Route::delete('admin/booking/{id}', 'OnlineBookingController@destroy')->name('bookingDestroy');
+
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');
     Route::resource('admin/gallery', 'AuthorGalleryController');

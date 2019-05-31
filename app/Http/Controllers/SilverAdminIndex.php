@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
@@ -11,11 +12,16 @@ class SilverAdminIndex extends Controller
 {
     public function index() {
 
+        $user = Auth::user();
+        $notifications = Booking::where('user_id', $user->id)
+            ->where('is_read', 1)
+            ->get();
+
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $gold = User::where('package_id', Auth::user()->isGold())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
 		$user = User::where('id', Auth::user()->id)->first();
 
-	    return view('silver.index', compact('restaurants', 'user', 'platinium', 'gold'));
+	    return view('silver.index', compact('restaurants', 'user', 'platinium', 'gold', 'notifications'));
     }
 }
