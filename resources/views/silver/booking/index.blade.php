@@ -16,6 +16,11 @@
     #green-item:hover {
         background: rgba(128,255,0,0.2);
     }
+    #green-item {
+        background: rgba(211,211,211,0.3);
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
 </style>
 @section('content')
 
@@ -66,9 +71,9 @@
                             {!! Form::close() !!}
 
                             @foreach($notifications as $notification)
-                            <a id="green-item" href="#" class="dropdown-item">
-                                 {{Str::limit($notification->restaurant_title, 20)}} -> {{Str::limit($notification->name, 20)}}, {{$notification->party}}
-                            </a>
+                                <a id="green-item" href="{{route('bookingEdit', $notification->id)}}" class="dropdown-item">
+                                     {{Str::limit($notification->restaurant_title, 20)}} -> {{Str::limit($notification->name, 20)}}, {{$notification->party}}
+                                </a>
                             @endforeach
                         </div>
                         @else
@@ -122,12 +127,13 @@
     <section id="search" class="py-4 mb-4 bg-light">
         <div class="container">
             <div class="row">
-               
+
                 <div class="col-md-3">
                     <a href="#" class="btn btn-secondary btn-block sorting" data-sorting_type="asc" data-column_name="id">
                         <i class="fas fa-calendar-check"></i> Sorting Reservations
                     </a>
                 </div>
+
                 <div class="col-md-6 ml-auto">
                     <div class="form-group">
                         <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Reservations...">
@@ -143,6 +149,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
+
                     <div class="card">
                         <div class="card-header">
                             @if(Session::has('deleted_reservations'))
@@ -162,10 +169,10 @@
                                 <tr>
                                     <th>Restaurant</th>
                                     <th>Name</th>
-                                    <th>Email</th>
                                     <th>Phone</th>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th>Created</th>
                                     <th>Party</th>
                                     <th></th>
                                 </tr>

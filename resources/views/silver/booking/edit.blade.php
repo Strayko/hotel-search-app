@@ -16,6 +16,11 @@
     #green-item:hover {
         background: rgba(128,255,0,0.2);
     }
+    #green-item {
+        background: rgba(211,211,211,0.3);
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
 </style>
 
 @section('content')
@@ -62,7 +67,7 @@
                                 {!! Form::close() !!}
 
                                 @foreach($notifications as $notification)
-                                    <a id="green-item" href="#" class="dropdown-item">
+                                    <a id="green-item" href="{{route('bookingEdit', $notification->id)}}" class="dropdown-item">
                                         {{Str::limit($notification->restaurant_title, 20)}} -> {{Str::limit($notification->name, 20)}}, {{$notification->party}}
                                     </a>
                                 @endforeach
@@ -116,8 +121,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="/admin" class="btn btn-primary btn-block">
-                        <i class="fas fa-arrow-left"></i> Back To Dashboard
+                    <a href="/admin/booking" class="btn btn-primary btn-block">
+                        <i class="fas fa-arrow-left"></i> Back
                     </a>
                 </div>
                 <div class="col-md-3">

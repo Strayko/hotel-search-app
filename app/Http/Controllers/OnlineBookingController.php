@@ -36,11 +36,14 @@ class OnlineBookingController extends Controller
 
     public function edit($id) {
 
+        $booking = Booking::findOrFail($id);
+        $booking['is_read'] = 0;
+        $booking->save();
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
             ->get();
-        $booking = Booking::findOrFail($id);
+
         return view('silver.booking.edit', compact('booking', 'notifications'));
     }
 

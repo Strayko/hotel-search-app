@@ -2,10 +2,10 @@
     <tr>
         <td>{{Str::limit($item->restaurant_title, 15)}}</td>
         <td>{{Str::limit($item->name, 17)}}</td>
-        <td>{{Str::limit($item->email, 15)}}</td>
         <td>{{Str::limit($item->phone, 15)}}</td>
         <td>{{$item->date}}</td>
         <td>{{$item->time}}</td>
+        <td>{{$item->created_at->diffForHumans()}}</td>
         <td>{{$item->party}}</td>
         <td>
             <a href="{{route('bookingEdit', $item->id)}}" class="btn btn-secondary">
