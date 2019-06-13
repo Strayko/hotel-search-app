@@ -250,6 +250,17 @@ Route::group(['middleware'=>'author'], function() {
 });
 
 
+
+
+/*---------------------------------------------
+  ---> MIDDLEWARE PREMIUM PACKAGE <---
+----------------------------------------------*/
+Route::resource('admin/actions', 'AuthorActionsController');
+Route::patch('admin/actions/{id}/update', 'AuthorActionsController@updateActions');
+
+
+
+
 /*---------------------------------------------
   ---> MIDDLEWARE PREMIUM AND GOLD PACKAGE <---
 ----------------------------------------------*/
@@ -261,7 +272,7 @@ Route::group(['middleware'=>'goldandplatinium'], function() {
     Route::delete('admin/booking/{id}', 'OnlineBookingController@destroy')->name('bookingDestroy');
 
     Route::resource('admin/event', 'AuthorEventController');
-    Route::patch('admin/event/{id}', 'AuthorEventController@updateEvent');
+    Route::patch('admin/event/{id}/update', 'AuthorEventController@updateEvent');
     Route::resource('admin/gallery', 'AuthorGalleryController');
     Route::delete('admin/gallery/{id}/delete/gallery', 'AuthorGalleryController@deleteGallery');
 });

@@ -40,7 +40,7 @@
                         <a href="{{route('restaurant.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('event.index')}}" class="nav-link active">Events</a>
+                        <a href="{{route('event.index')}}" class="nav-link">Events</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
@@ -49,7 +49,7 @@
                         <a href="{{route('booking')}}" class="nav-link">Booking</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('actions.index')}}" class="nav-link">Actions</a>
+                        <a href="{{route('actions.index')}}" class="nav-link active">Actions</a>
                     </li>
                 </ul>
 
@@ -113,7 +113,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-calendar-alt"></i> Create Event</h1>
+                    <h1><i class="fas fa-shopping-bag"></i> Create Actions</h1>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
                 @include('includes.user_form_error')
                 <div class="card">
                     <div class="card-header">
-                        <h4>Event</h4>
+                        <h4>Actions</h4>
 
                     </div>
 
@@ -151,8 +151,9 @@
 
 
 
-                        {!! Form::open(['method'=>'POST', 'action'=>'AuthorEventController@store', 'files'=>true]) !!}
+                        {!! Form::open(['method'=>'POST', 'action'=>'AuthorActionsController@store']) !!}
                         {{csrf_field()}}
+
                         <div class="form-group">
                             {!! Form::label('title', 'Name:') !!}
                             {!! Form::text('title', null, ['class'=>'form-control']) !!}
@@ -162,32 +163,33 @@
                             {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('benefits', 'Benefits:') !!}
+                            {!! Form::text('benefits', null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
                             {!! Form::label('restaurant_id', 'Restaurant:') !!}
                             {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'form-control']) !!}
                         </div>
-                        <div class="custom-file mb-3">
-                            {!! Form::label('photo_id', 'Upload Picture', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
-                            {!! Form::file('photo_id', null, ['class'=>'custom-file-input']) !!}
-                        </div>
 
 
-                            <div class="form-group">
-                                <div class="row d-flex justify-content-end">
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-calendar-alt"></i> Create Event</button>
-                                        {!! Form::close() !!}
-                                    </div>
+                        <div class="form-group">
+                            <div class="row d-flex justify-content-end">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-shopping-bag"></i> Create Actions</button>
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
+                        </div>
 
 
 
                         {{--@if($silver)--}}
-                            {{--@include('silver.includes.create.silver_create_restaurant')--}}
+                        {{--@include('silver.includes.create.silver_create_restaurant')--}}
                         {{--@elseif($bronze)--}}
-                            {{--@include('silver.includes.create.bronze_create_restaurant')--}}
+                        {{--@include('silver.includes.create.bronze_create_restaurant')--}}
                         {{--@elseif($gold)--}}
-                            {{--@include('silver.includes.create.gold_create_restaurant')--}}
+                        {{--@include('silver.includes.create.gold_create_restaurant')--}}
                         {{--@endif--}}
 
                     </div>

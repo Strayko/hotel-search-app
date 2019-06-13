@@ -21,6 +21,11 @@
         margin-top: 1px;
         margin-bottom: 1px;
     }
+    #green-item {
+        background: rgba(211,211,211,0.3);
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
 </style>
 @section('content')
 
@@ -42,13 +47,13 @@
                         <a href="{{route('event.index')}}" class="nav-link">Events</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('gallery.index')}}" class="nav-link active">Gallery</a>
+                        <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('booking')}}" class="nav-link">Booking</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('actions.index')}}" class="nav-link">Actions</a>
+                        <a href="{{route('actions.index')}}" class="nav-link active">Actions</a>
                     </li>
                 </ul>
 
@@ -112,7 +117,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-images"></i> Gallery</h1>
+                    <h1><i class="fas fa-shopping-bag"></i> Actions</h1>
                 </div>
             </div>
         </div>
@@ -123,21 +128,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
+                    <a href="{{route('actions.create')}}" class="btn btn-secondary btn-block">
+                        <i class="fas fa-plus"></i> Add Actions
+                    </a>
+                </div>
+                <div class="col-md-3">
                     <a href="#" class="btn btn-secondary btn-block sorting" data-sorting_type="asc" data-column_name="id">
-                        <i class="fas fa-images"></i> Sorting Gallery
+                        <i class="fas fa-shopping-bag"></i> Sorting Actions
                     </a>
                 </div>
                 <div class="col-md-6 ml-auto">
                     <div class="form-group">
-                        <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Gallery...">
+                        <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Actions...">
                     </div>
                 </div>
-                {{--<div class="col-md-3">--}}
-                    {{--<a href="{{route('event.create')}}" class="btn btn-secondary btn-block">--}}
-                        {{--<i class="fas fa-plus"></i> Add Event--}}
-                    {{--</a>--}}
-                {{--</div>--}}
-
             </div>
         </div>
     </section>
@@ -153,24 +157,26 @@
                             @if(Session::has('deleted_restaurant'))
                                 <p class="alert alert-danger">{{session('deleted_restaurant')}}</p>
                             @endif
-                            <h4>Gallery</h4>
+                            <h4>Actions</h4>
                         </div>
-                        @if(count($restaurants) > 0)
+                        @if(count($actions) > 0)
                             <table class="table table-striped">
                                 <thead class="thead-dark">
                                 <tr>
-
                                     <th>Restaurant</th>
-                                    <th>Count</th>
+                                    <th>Title</th>
+                                    <th>Body</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
                                     <th></th>
-
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @include('silver.ajax.restaurants_choose_data')
+                                @include('silver.ajax.actions_data')
                                 @else
-                                    <h1 class="text-center">First add restaurant</h1>
+                                    <h1 class="text-center">Create actions</h1>
                                 @endif
                                 </tbody>
                             </table>
@@ -201,7 +207,7 @@
             function fetch_data(page, sort_type, sort_by, query)
             {
                 $.ajax({
-                    url:"/admin/gallery/jLYZFd64ggZe3s8f?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    url:"/admin/event/tvy5kTYJeWYBY4CX?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
                     success:function(data)
                     {
                         $('tbody').html('');

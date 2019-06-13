@@ -144,6 +144,9 @@
                             <a href="{{route('booking')}}" class="nav-link">Booking</a>
                         </li>
                     @endif
+                        <li class="nav-item px-2">
+                            <a href="{{route('actions.index')}}" class="nav-link">Actions</a>
+                        </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

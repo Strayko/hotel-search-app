@@ -147,4 +147,8 @@ class User extends Authenticatable
 	    return $this->hasMany('App\Blog');
     }
 
+    public function actions() {
+	    return $this->hasMany('App\Actions');
+    }
+
 }

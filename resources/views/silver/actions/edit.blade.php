@@ -40,7 +40,7 @@
                         <a href="{{route('restaurant.index')}}" class="nav-link">Restaurants</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('event.index')}}" class="nav-link active">Events</a>
+                        <a href="{{route('event.index')}}" class="nav-link">Events</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="{{route('gallery.index')}}" class="nav-link">Gallery</a>
@@ -49,7 +49,7 @@
                         <a href="{{route('booking')}}" class="nav-link">Booking</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="{{route('actions.index')}}" class="nav-link">Actions</a>
+                        <a href="{{route('actions.index')}}" class="nav-link active">Actions</a>
                     </li>
                 </ul>
 
@@ -113,7 +113,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fas fa-calendar-alt"></i> Create Event</h1>
+                    <h1><i class="fas fa-shopping-bag"></i> Edit Actions</h1>
                 </div>
             </div>
         </div>
@@ -124,12 +124,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="/admin" class="btn btn-primary btn-block">
-                        <i class="fas fa-arrow-left"></i> Back To Dashboard
+                    <a href="/admin/actions" class="btn btn-primary btn-block">
+                        <i class="fas fa-arrow-left"></i> Back
                     </a>
                 </div>
                 <div class="col-md-3">
-
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['AuthorActionsController@destroy', $actions->id]]) !!}
+                    <button type="submit" class="btn btn-danger btn-block"><i class="fas fa-trash-alt"></i> Delete Actions</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -143,7 +145,7 @@
                 @include('includes.user_form_error')
                 <div class="card">
                     <div class="card-header">
-                        <h4>Event</h4>
+                        <h4>Actions</h4>
 
                     </div>
 
@@ -151,7 +153,7 @@
 
 
 
-                        {!! Form::open(['method'=>'POST', 'action'=>'AuthorEventController@store', 'files'=>true]) !!}
+                        {!! Form::model($actions, ['method'=>'PATCH', 'action'=>['AuthorActionsController@update', $actions->id], 'files'=>true]) !!}
                         {{csrf_field()}}
                         <div class="form-group">
                             {!! Form::label('title', 'Name:') !!}
@@ -162,32 +164,33 @@
                             {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('benefits', 'Benefits:') !!}
+                            {!! Form::text('benefits', null, ['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
                             {!! Form::label('restaurant_id', 'Restaurant:') !!}
                             {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'form-control']) !!}
                         </div>
-                        <div class="custom-file mb-3">
-                            {!! Form::label('photo_id', 'Upload Picture', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
-                            {!! Form::file('photo_id', null, ['class'=>'custom-file-input']) !!}
-                        </div>
 
 
-                            <div class="form-group">
-                                <div class="row d-flex justify-content-end">
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-calendar-alt"></i> Create Event</button>
-                                        {!! Form::close() !!}
-                                    </div>
+                        <div class="form-group">
+                            <div class="row d-flex justify-content-end">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-calendar-alt"></i> Update Actions</button>
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
+                        </div>
 
 
 
                         {{--@if($silver)--}}
-                            {{--@include('silver.includes.create.silver_create_restaurant')--}}
+                        {{--@include('silver.includes.create.silver_create_restaurant')--}}
                         {{--@elseif($bronze)--}}
-                            {{--@include('silver.includes.create.bronze_create_restaurant')--}}
+                        {{--@include('silver.includes.create.bronze_create_restaurant')--}}
                         {{--@elseif($gold)--}}
-                            {{--@include('silver.includes.create.gold_create_restaurant')--}}
+                        {{--@include('silver.includes.create.gold_create_restaurant')--}}
                         {{--@endif--}}
 
                     </div>
