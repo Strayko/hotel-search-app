@@ -25,6 +25,24 @@ class AuthorActionsController extends Controller
         return view('silver.actions.index', compact('notifications', 'actions'));
     }
 
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+            $actions = Actions::where('id', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('title', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('body', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orWhere('benefits', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+                ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
+                ->paginate(5);
+            return view('silver.ajax.actions_data', compact('actions'))->render();
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

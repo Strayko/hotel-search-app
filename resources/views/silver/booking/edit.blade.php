@@ -48,9 +48,11 @@
                     <li class="nav-item px-2">
                         <a href="{{route('booking')}}" class="nav-link active">Booking</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a href="{{route('actions.index')}}" class="nav-link">Actions</a>
-                    </li>
+                    @if($platinium)
+                        <li class="nav-item px-2">
+                            <a href="{{route('actions.index')}}" class="nav-link">Actions</a>
+                        </li>
+                    @endif
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

@@ -25,9 +25,10 @@ class AuthorEventController extends Controller
             ->where('is_read', 1)
             ->get();
 
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $gold = User::where('package_id', Auth::user()->isGold())->first();
         $events = Event::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.event.index', compact('events', 'gold', 'notifications'));
+        return view('silver.event.index', compact('events', 'gold', 'notifications', 'platinium'));
     }
 
     function fetch_data(Request $request)
@@ -59,9 +60,10 @@ class AuthorEventController extends Controller
             ->where('is_read', 1)
             ->get();
 
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $user_id = Auth::user()->id;
         $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
-        return view('silver.event.create', compact('restaurants', 'notifications'));
+        return view('silver.event.create', compact('restaurants', 'notifications', 'platinium'));
     }
 
     /**
@@ -116,10 +118,11 @@ class AuthorEventController extends Controller
             ->where('is_read', 1)
             ->get();
 
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $user_id = Auth::user()->id;
         $events = Event::findOrFail($id);
         $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
-        return view('silver.event.edit', compact('events', 'restaurants', 'notifications'));
+        return view('silver.event.edit', compact('events', 'restaurants', 'notifications', 'platinium'));
     }
 
     /**

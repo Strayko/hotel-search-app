@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'checkstatus' => \App\Http\Middleware\CheckStatus::class,
         'protected' => \App\Http\Middleware\Proto::class,
         'goldandplatinium' => \App\Http\Middleware\GoldAndPlatinium::class,
+        'platinium' => \App\Http\Middleware\Platinium::class,
     ];
 
     /**

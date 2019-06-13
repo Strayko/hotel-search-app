@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -13,12 +14,13 @@ class OnlineBookingController extends Controller
 
         $user = Auth::user();
         $booking = Booking::where('user_id', $user->id)->orderBy('id', 'asc')->paginate(5);
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
             ->get();
 
 
-        return view('silver.booking.index', compact('booking', 'notifications'));
+        return view('silver.booking.index', compact('booking', 'notifications', 'platinium'));
     }
 
     public function update() {
@@ -44,7 +46,8 @@ class OnlineBookingController extends Controller
             ->where('is_read', 1)
             ->get();
 
-        return view('silver.booking.edit', compact('booking', 'notifications'));
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
+        return view('silver.booking.edit', compact('booking', 'notifications', 'platinium'));
     }
 
     public function destroy($id) {

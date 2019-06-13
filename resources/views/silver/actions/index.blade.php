@@ -207,7 +207,7 @@
             function fetch_data(page, sort_type, sort_by, query)
             {
                 $.ajax({
-                    url:"/admin/event/tvy5kTYJeWYBY4CX?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    url:"/admin/actions/spy5k2YgeWYBY46X?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
                     success:function(data)
                     {
                         $('tbody').html('');

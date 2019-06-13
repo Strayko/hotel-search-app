@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Gallery;
 use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,9 +23,9 @@ class AuthorGalleryController extends Controller
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
             ->get();
-
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.gallery.index', compact('restaurants', 'notifications'));
+        return view('silver.gallery.index', compact('restaurants', 'notifications', 'platinium'));
     }
 
     function fetch_data(Request $request)
@@ -89,10 +90,11 @@ class AuthorGalleryController extends Controller
             ->where('is_read', 1)
             ->get();
 
+        $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $restaurants = Restaurant::findOrFail($id);
         $restaurant_id = $restaurants['id'];
         $gallerys = $restaurants->gallery()->where('restaurant_id', $restaurant_id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.gallery.edit', compact('restaurants', 'gallerys', 'notifications'));
+        return view('silver.gallery.edit', compact('restaurants', 'gallerys', 'notifications', 'platinium'));
     }
 
     function fetch_data2(Request $request)

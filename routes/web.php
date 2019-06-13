@@ -236,6 +236,7 @@ Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
 Route::get('/admin/gallery/jLYZFd64ggZe3s8f', 'AuthorGalleryController@fetch_data');
 Route::get('/admin/gallery/{id}/cKS3dpqP6xF6qZEf', 'AuthorGalleryController@fetch_data2');
 Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
+Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_data');
 
 
 /*---------------------------
@@ -255,9 +256,10 @@ Route::group(['middleware'=>'author'], function() {
 /*---------------------------------------------
   ---> MIDDLEWARE PREMIUM PACKAGE <---
 ----------------------------------------------*/
-Route::resource('admin/actions', 'AuthorActionsController');
-Route::patch('admin/actions/{id}/update', 'AuthorActionsController@updateActions');
-
+Route::group(['middleware'=>'platinium'], function() {
+    Route::resource('admin/actions', 'AuthorActionsController');
+    Route::patch('admin/actions/{id}/update', 'AuthorActionsController@updateActions');
+});
 
 
 
