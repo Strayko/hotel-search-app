@@ -109,4 +109,8 @@ class Restaurant extends Model
         return $this->hasMany('App\Booking');
     }
 
+    public function actions() {
+        return $this->hasMany('App\Actions');
+    }
+
 }

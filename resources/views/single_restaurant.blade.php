@@ -123,9 +123,15 @@
                                                     @endif
 
 
-                                                @foreach($gallerys as $gallery)
-                                                        <img src="{{URL::asset('/gallery/' . $gallery->photo)}}" alt="profile Pic" height="200" width="200">
-                                                @endforeach
+                                                    @foreach($gallerys as $gallery)
+                                                            <img src="{{URL::asset('/gallery/' . $gallery->photo)}}" alt="profile Pic" height="200" width="200">
+                                                    @endforeach
+
+                                                    @if($actions)
+                                                        <h2>{{$actions->title}}</h2>
+                                                        <p>{{$actions->body}}</p>
+                                                        <h3>{{$actions->benefits}}</h3>
+                                                    @endif
 
 
                                                 </div>

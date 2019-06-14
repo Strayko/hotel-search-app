@@ -30,8 +30,9 @@ class AuthorRestaurantController extends Controller
     	$locations = Location::all();
     	$foods = Food::all();
 	    $restaurantRecents = Restaurant::orderBy('id', 'desc')->limit(3)->get();
+	    $actions = $restaurant->actions()->orderBy('id', 'desc')->whereIsActive(1)->first();
 
-    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents', 'event', 'gallerys', 'time'));
+    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents', 'event', 'gallerys', 'time', 'actions'));
     }
 
     public function store(Request $request) {
