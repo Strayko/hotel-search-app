@@ -31,7 +31,7 @@ class SubscriberPlanController extends Controller
     }
 
 	public function showAll() {
-		$restaurants = Restaurant::orderBy('id', 'desc')->paginate(9);
+		$restaurants = Restaurant::orderBy('id', 'desc')->paginate(3);
     	return view('show_all', compact('restaurants'));
 	}
 

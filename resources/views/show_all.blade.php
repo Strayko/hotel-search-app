@@ -135,6 +135,11 @@
 
 @extends('layouts.frontend-thema')
 <title>Restaurants</title>
+<style>
+    .page-item {
+        display: inline-block;
+    }
+</style>
 @section('content')
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
@@ -181,7 +186,7 @@
             <h3>Popular</h3>
         </div>
         <div class="restaurants-content">
-            
+
 
             @if($restaurants)
                 @foreach($restaurants as $restaurant)
@@ -211,16 +216,22 @@
             @endif
 
         </div>
-        <div class="pagination">
-            <img src="img/left-arrow-angle-white-red.svg" class="pagination-left" alt="">
-            <p class="p-lead p-circle">1</p>
-            <p class="p-lead">2</p>
-            <p class="p-lead mobile-none-pagination">3</p>
-            <p class="p-lead mobile-none-pagination">4</p>
-            <p class="p-lead">...</p>
-            <p class="p-lead">9</p>
-            <img src="img/right-arrow-angle-white-red.svg" class="pagination-right" alt="">
-        </div>
+
+{{--        <div class="pagination">--}}
+{{--            <img src="img/left-arrow-angle-white-red.svg" class="pagination-left" alt="">--}}
+{{--            <p class="p-lead p-circle">1</p>--}}
+{{--            <p class="p-lead">2</p>--}}
+{{--            <p class="p-lead mobile-none-pagination">3</p>--}}
+{{--            <p class="p-lead mobile-none-pagination">4</p>--}}
+{{--            <p class="p-lead">...</p>--}}
+{{--            <p class="p-lead">9</p>--}}
+{{--            <img src="img/right-arrow-angle-white-red.svg" class="pagination-right" alt="">--}}
+{{--        </div>--}}
+
+
+                {{$restaurants->onEachSide(1)->links()}}
+
+
         <h3 class="restaurants-h3">All Restaurants</h3>
         <div class="restaurants-content">
 
@@ -251,16 +262,17 @@
                 @endforeach
             @endif
 
-            <div class="pagination pagination-last-bottom">
-                <img src="img/left-arrow-angle-white-red.svg" class="pagination-left" alt="">
-                <p class="p-lead p-circle">1</p>
-                <p class="p-lead">2</p>
-                <p class="p-lead mobile-none-pagination">3</p>
-                <p class="p-lead mobile-none-pagination">4</p>
-                <p class="p-lead">...</p>
-                <p class="p-lead">9</p>
-                <img src="img/right-arrow-angle-white-red.svg" class="pagination-right" alt="">
-            </div>
+{{--            <div class="pagination pagination-last-bottom">--}}
+{{--                <img src="img/left-arrow-angle-white-red.svg" class="pagination-left" alt="">--}}
+{{--                <p class="p-lead p-circle">1</p>--}}
+{{--                <p class="p-lead">2</p>--}}
+{{--                <p class="p-lead mobile-none-pagination">3</p>--}}
+{{--                <p class="p-lead mobile-none-pagination">4</p>--}}
+{{--                <p class="p-lead">...</p>--}}
+{{--                <p class="p-lead">9</p>--}}
+{{--                <img src="img/right-arrow-angle-white-red.svg" class="pagination-right" alt="">--}}
+{{--            </div>--}}
+
         </div>
     </div>
 </section>
