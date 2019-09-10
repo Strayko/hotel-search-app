@@ -453,6 +453,34 @@
 @extends('layouts.frontend-thema')
 
 @section('content')
+<!-- START LOGO AND MENU -->
+<section id="menu" class="menu">
+    <div class="container-menu">
+
+        <div class="logo alignLeft center-response">
+            <a href="index.html"><img src="img/logo.svg" class="logo-img" alt=""></a>
+        </div>
+
+        <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
+            <i class="fas fa-bars"></i>
+        </a>
+
+        <nav class="navbar" id="navbar">
+            <!--<div class="burger-nav"></div>-->
+            <ul class="nav alignRight center-response">
+                <li><a class="active mobile-font" href="/">Homepage</a></li>
+                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
+                <li><a class="mobile-font" href="contact.html">Contact</a></li>
+                <li class="menu-buttons-block">
+                <li class="menu-collapse"><a href="signIn.html" class="sign-in">Sign in</a></li>
+                <li class="menu-collapse top-distance-mobile"><a href="register.html" class="register">Register</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</section>
+<!-- END LOGO AND MENU -->
 <section id="slider">
     <div class="container">
 
@@ -488,303 +516,143 @@
                 <img src="img/right-circle-arrow-red.svg" class="right right-circle" alt="">
                 <div class="slider slider-nav">
 
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
 
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
+
+
+
+{{--                    @if($restaurants)--}}
+{{--                        @foreach($restaurants as $restaurant)--}}
+{{--                            <div class="col-md-4">--}}
+{{--                                <article class="aa-properties-item">--}}
+{{--                                    <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}" class="aa-properties-item-img">--}}
+{{--                                        <img width="360" height="199" src="{{$restaurant->photo ? $restaurant->photo->file : $restaurant->photoHome()}}" alt="img">--}}
+{{--                                    </a>--}}
+{{--                                    <div class="aa-tag for-sale">--}}
+{{--                                        {{$restaurant->created_at->diffForHumans()}}--}}
+{{--                                    </div>--}}
+{{--                                    <div class="aa-properties-item-content">--}}
+{{--                                        <div class="aa-properties-info">--}}
+{{--                                            <span>5 Rooms</span>--}}
+{{--                                            <span>2 Beds</span>--}}
+{{--                                            <span>3 Baths</span>--}}
+{{--                                            <span>1100 SQ FT</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="aa-properties-about" style="height: 12rem">--}}
+{{--                                            <h3><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">{{$restaurant->title}}</a></h3>--}}
+{{--                                            <p>{{Str::limit($restaurant->body, 120)}}</p>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="aa-properties-detial">--}}
+{{--                                            <span class="aa-price">--}}
+{{--                                              $35000--}}
+{{--                                            </span>--}}
+{{--                                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}" class="aa-secondary-btn">View Details</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </article>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    @endif--}}
+
+
+
+
+                    @if($restaurants)
+                        @foreach($restaurants as $restaurant)
+                            <div>
+                                <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                    <div class="restaurant-box">
+                                        <div class="pic-box">
+                                            <img src="img/popular_place.png" class="imgs" alt="">
+                                        </div>
+                                        <div class="container-box">
+                                            <div class="container-box-header">
+                                                <h4>{{$restaurant->title}}</h4>
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                            </div>
+                                            <div class="container-box-footer">
+                                                <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$restaurant->location->name}}</p>
+                                                <hr>
+                                                <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, ,Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                        @endforeach
+                    @endif
+
+
+
+
+
                 </div>
                 <div class="slider slider-nav-s">
 
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
+                    @if($restaurants)
+                        @foreach($restaurants as $restaurant)
+                            <div>
+                                <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                    <div class="restaurant-box">
+                                        <div class="pic-box">
+                                            <img src="img/popular_place.png" class="imgs" alt="">
+                                        </div>
+                                        <div class="container-box">
+                                            <div class="container-box-header">
+                                                <h4>{{$restaurant->title}}</h4>
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                            </div>
+                                            <div class="container-box-footer">
+                                                <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$restaurant->location->name}}</p>
+                                                <hr>
+                                                <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
+                        @endforeach
+                    @endif
 
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City <span class="mobile-none">, ,Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
                 <div class="slider slider-nav-r">
 
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
+                    @if($restaurants)
+                        @foreach($restaurants as $restaurant)
+                            <div>
+                                <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                    <div class="restaurant-box">
+                                        <div class="pic-box">
+                                            <img src="img/popular_place.png" class="imgs" alt="">
+                                        </div>
+                                        <div class="container-box">
+                                            <div class="container-box-header">
+                                                <h4>{{$restaurant->title}}</h4>
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                                <img src="img/star.svg" class="svg star" alt="">
+                                            </div>
+                                            <div class="container-box-footer">
+                                                <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$restaurant->location->name}}</p>
+                                                <hr>
+                                                <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City<span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
+                        @endforeach
+                    @endif
 
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City<span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City<span class="mobile-none">, Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="singlePage.html">
-                            <div class="restaurant-box">
-                                <div class="pic-box">
-                                    <img src="img/popular_place.png" class="imgs" alt="">
-                                </div>
-                                <div class="container-box">
-                                    <div class="container-box-header">
-                                        <h4>Carpe diem</h4>
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                        <img src="img/star.svg" class="svg star" alt="">
-                                    </div>
-                                    <div class="container-box-footer">
-                                        <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>Some City<span class="mobile-none"> , Some Address</span></p>
-                                        <hr>
-                                        <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -801,71 +669,25 @@
     </div>
     <div class="main container-top-minus">
         <div class="slider slider-nav2">
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
+
+            @if($restaurants)
+                @foreach($restaurants as $restaurant)
+                    <div>
+                        <div class="recently-box">
+                            <a href="singlePage.html">
+                                <div class="cube-box">
+                                    <img src="img/recent_place.png" alt="">
+                                </div>
+                                <div class="cube-box-footer">
+                                    <h4>{{$restaurant->title}}</h4>
+                                    <img src="img/location-minify.svg" class="svg location" alt=""><p>{{$restaurant->location->name}}</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                    </div>
+                @endforeach
+            @endif
+
         </div>
         <div class="slider slider-nav2-s">
             <div>

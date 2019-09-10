@@ -26,34 +26,7 @@
 </head>
 <body>
 
-<!-- START LOGO AND MENU -->
-<section id="menu" class="menu">
-    <div class="container-menu">
 
-        <div class="logo alignLeft center-response">
-            <a href="index.html"><img src="img/logo.svg" class="logo-img" alt=""></a>
-        </div>
-
-        <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
-            <i class="fas fa-bars"></i>
-        </a>
-
-        <nav class="navbar" id="navbar">
-            <!--<div class="burger-nav"></div>-->
-            <ul class="nav alignRight center-response">
-                <li><a class="active mobile-font" href="/">Homepage</a></li>
-                <li><a class="mobile-font" href="plans&pricing.html">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="restaurants.html">Restaurants</a></li>
-                <li><a class="mobile-font" href="contact.html">Contact</a></li>
-                <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="signIn.html" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="register.html" class="register">Register</a></li>
-            </ul>
-        </nav>
-
-    </div>
-</section>
-<!-- END LOGO AND MENU -->
 
 @yield('content')
 
