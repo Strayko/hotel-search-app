@@ -2,66 +2,68 @@
 
 {{--@section('content')--}}
 {{--<div class="container">--}}
-    {{--<div class="row justify-content-center">--}}
-        {{--<div class="col-md-8">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-header">{{ __('Reset Password') }}</div>--}}
+{{--    <div class="row justify-content-center">--}}
+{{--        <div class="col-md-8">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-header">{{ __('Reset Password') }}</div>--}}
 
-                {{--<div class="card-body">--}}
-                    {{--<form method="POST" action="{{ route('password.update') }}">--}}
-                        {{--@csrf--}}
+{{--                <div class="card-body">--}}
+{{--                    <form method="POST" action="{{ route('password.update') }}">--}}
+{{--                        @csrf--}}
 
-                        {{--<input type="hidden" name="token" value="{{ $token }}">--}}
+{{--                        <input type="hidden" name="token" value="{{ $token }}">--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>--}}
 
-                                {{--@if ($errors->has('email'))--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $errors->first('email') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--                                @if ($errors->has('email'))--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('email') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
 
-                                {{--@if ($errors->has('password'))--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--                                @if ($errors->has('password'))--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        {{--<div class="form-group row mb-0">--}}
-                            {{--<div class="col-md-6 offset-md-4">--}}
-                                {{--<button type="submit" class="btn btn-primary">--}}
-                                    {{--{{ __('Reset Password') }}--}}
-                                {{--</button>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+{{--                        <div class="form-group row mb-0">--}}
+{{--                            <div class="col-md-6 offset-md-4">--}}
+{{--                                <button type="submit" class="btn btn-primary">--}}
+{{--                                    {{ __('Reset Password') }}--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 {{--</div>--}}
 {{--@endsection--}}
+
+
 
 
 
@@ -155,3 +157,227 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+{{--@extends('layouts.frontend-thema')--}}
+{{--<style>--}}
+{{--    .invalid-feedback {--}}
+{{--        font-size: 17px;--}}
+{{--        display: block;--}}
+{{--    }--}}
+{{--</style>--}}
+{{--@section('content')--}}
+{{--<!-- START LOGO AND MENU -->--}}
+{{--<section id="menu" class="menu">--}}
+{{--    <div class="container-menu">--}}
+
+{{--        <div class="logo alignLeft center-response">--}}
+{{--            <a href="index.html"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>--}}
+{{--        </div>--}}
+
+{{--        <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">--}}
+{{--            <i class="fas fa-bars"></i>--}}
+{{--        </a>--}}
+
+{{--        <nav class="navbar" id="navbar">--}}
+{{--            <!--<div class="burger-nav"></div>-->--}}
+{{--            <ul class="nav alignRight center-response">--}}
+{{--                <li><a class="mobile-font" href="/">Homepage</a></li>--}}
+{{--                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>--}}
+{{--                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>--}}
+{{--                <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>--}}
+{{--                <li class="menu-buttons-block">--}}
+{{--                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>--}}
+{{--                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>--}}
+{{--            </ul>--}}
+{{--        </nav>--}}
+
+{{--    </div>--}}
+{{--</section>--}}
+{{--<!-- END LOGO AND MENU -->--}}
+
+{{--<!-- START NEW PASSWORD -->--}}
+{{--<section id="newPassword">--}}
+{{--    <div class="container">--}}
+{{--        <div class="newPassword-box">--}}
+{{--            <div class="resetPassword-container">--}}
+{{--                <h4>New Password</h4>--}}
+
+
+
+
+
+
+
+{{--                <form method="POST" action="{{ route('password.update') }}" class="contactform">--}}
+{{--                    @csrf--}}
+{{--                    <input type="hidden" name="token" value="{{ $token }}">--}}
+{{--                    <div class="aa-single-field">--}}
+{{--                        <label for="email">E-Mail Address <span class="required">*</span></label>--}}
+{{--                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>--}}
+
+{{--                        @if ($errors->has('email'))--}}
+{{--                            <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('email') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+
+{{--                    <div class="aa-single-field">--}}
+{{--                        <label for="password">New Password <span class="required">*</span></label>--}}
+{{--                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
+{{--                        @if ($errors->has('password'))--}}
+{{--                            <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+
+{{--                    <div class="aa-single-field">--}}
+{{--                        <label for="password-confirm">Confirm Password <span class="required">*</span></label>--}}
+{{--                        <input id="password-confirm" type="password" name="password_confirmation" class="form-control" required>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="aa-single-submit">--}}
+{{--                        <button type="submit" class="btn btn-primary">--}}
+{{--                            {{ __('Confirm New Password') }}--}}
+{{--                        </button>--}}
+
+{{--                    </div>--}}
+{{--                </form>--}}
+
+
+
+
+
+
+{{--                <form method="POST" action="{{ route('password.update') }}" class="contactform">--}}
+{{--                @csrf--}}
+
+{{--                <i class="fas fa-envelope" style="margin-top:11px!important;"></i>--}}
+{{--                <input id="email" type="email" class="reset-email-input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" placeholder="Email" required autofocus>--}}
+{{--                @if ($errors->has('email'))--}}
+{{--                    <span class="invalid-feedback" role="alert">--}}
+{{--                        <strong>{{ $errors->first('email') }}</strong>--}}
+{{--                    </span>--}}
+{{--                @endif--}}
+
+{{--                <i class="fas fa-lock"></i>--}}
+{{--                <input id="password" type="password" class="reset-email-input{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="New Password" required>--}}
+{{--                @if ($errors->has('password'))--}}
+{{--                    <span class="invalid-feedback" role="alert">--}}
+{{--                        <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                    </span>--}}
+{{--                @endif--}}
+
+{{--                <i class="fas fa-lock"></i>--}}
+{{--                <input id="password-confirm" type="password" name="password_confirmation" class="reset-email-input" placeholder="Confirm Password" required>--}}
+
+{{--                <input class="send-link-input" type="submit" value="Send link">--}}
+{{--                </form>--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+{{--<!-- END NEW PASSWORD -->--}}
+{{--@endsection--}}
+
+{{--@section('footer')--}}
+
+{{--@endsection--}}
+
+
+
+
+
+
+
+{{--@extends('layouts.frontend-thema')--}}
+{{--<title>New Password</title>--}}
+{{--@section('content')--}}
+{{--<!-- START LOGO AND MENU -->--}}
+{{--<section id="menu" class="menu">--}}
+{{--    <div class="container-menu">--}}
+
+{{--        <div class="logo alignLeft center-response">--}}
+{{--            <a href="index.html"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>--}}
+{{--        </div>--}}
+
+{{--        <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">--}}
+{{--            <i class="fas fa-bars"></i>--}}
+{{--        </a>--}}
+
+{{--        <nav class="navbar" id="navbar">--}}
+{{--            <!--<div class="burger-nav"></div>-->--}}
+{{--            <ul class="nav alignRight center-response">--}}
+{{--                <li><a class="mobile-font" href="/">Homepage</a></li>--}}
+{{--                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>--}}
+{{--                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>--}}
+{{--                <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>--}}
+{{--                <li class="menu-buttons-block">--}}
+{{--                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>--}}
+{{--                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>--}}
+{{--            </ul>--}}
+{{--        </nav>--}}
+
+{{--    </div>--}}
+{{--</section>--}}
+{{--<!-- END LOGO AND MENU -->--}}
+
+{{--<!-- START NEW PASSWORD -->--}}
+{{--<section id="newPassword">--}}
+{{--    <div class="container">--}}
+{{--        <div class="newPassword-box">--}}
+{{--            <div class="resetPassword-container">--}}
+{{--                <h4>New Password</h4>--}}
+
+
+
+
+{{--                <form method="POST" action="{{ route('password.update') }}" class="contactform">--}}
+{{--                    @csrf--}}
+{{--                    <input type="hidden" name="token" value="{{ $token }}">--}}
+
+{{--                        <i class="fas fa-envelope"></i>--}}
+{{--                        <input id="email" type="email" class="reset-email-input {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" placeholder="Email" required autofocus>--}}
+{{--                        @if ($errors->has('email'))--}}
+{{--                            <span class="invalid-feedback" role="alert">--}}
+{{--                                <strong>{{ $errors->first('email') }}</strong>--}}
+{{--                            </span>--}}
+{{--                        @endif--}}
+
+{{--                        <i class="fas fa-lock"></i>--}}
+{{--                        <input id="password" type="password" class="reset-email-input {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="New Password" name="password" required>--}}
+{{--                        @if ($errors->has('password'))--}}
+{{--                            <span class="invalid-feedback" role="alert">--}}
+{{--                                <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                            </span>--}}
+{{--                        @endif--}}
+
+{{--                        <i class="fas fa-lock"></i>--}}
+{{--                        <input id="password-confirm" type="password" name="password_confirmation" class="reset-email-input" placeholder="Confirm Password" required>--}}
+
+{{--                        <input class="send-link-input" type="submit" value="Send link">--}}
+
+{{--                </form>--}}
+
+
+
+
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+{{--<!-- END NEW PASSWORD -->--}}
+{{--@endsection--}}
+
+{{--@section('footer')--}}
+
+{{--@endsection--}}
