@@ -49,17 +49,17 @@
 {{--                        <input type="hidden" name="package_expiry">--}}
 {{--                        <div class="aa-single-field">--}}
 {{--                            <label for="name">Name <span class="required">*</span></label>--}}
-{{--                            --}}{{--<input type="text" required="required" aria-required="true" value="" name="name">--}}
+{{--                            <input type="text" required="required" aria-required="true" value="" name="name">--}}
 {{--                            {!! Form::text('name', null, ['class'=>'form-control']) !!}--}}
 {{--                        </div>--}}
 {{--                        <div class="aa-single-field">--}}
 {{--                            <label for="email">Email <span class="required">*</span></label>--}}
-{{--                            --}}{{--<input type="email" required="required" aria-required="true" value="" name="email">--}}
+{{--                            <input type="email" required="required" aria-required="true" value="" name="email">--}}
 {{--                            {!! Form::email('email', null, ['class'=>'form-control']) !!}--}}
 {{--                        </div>--}}
 {{--                        <div class="aa-single-field">--}}
 {{--                            <label for="password">Password <span class="required">*</span></label>--}}
-{{--                            --}}{{--<input type="password" name="password">--}}
+{{--                            <input type="password" name="password">--}}
 {{--                            {!! Form::password('password', ['class'=>'form-control']) !!}--}}
 {{--                        </div>--}}
 
@@ -160,17 +160,28 @@
             <div class="register-container">
                 <img src="{{asset('img/logo.svg')}}" alt="">
                 <h4>Create an account and stay with us</h4>
-                <i class="fas fa-user"></i><input class="register-input" type="text" placeholder="Name">
-                <i class="fas fa-envelope"></i><input class="register-input" type="email" placeholder="Email">
-                <i class="fas fa-lock"></i><input class="register-input" type="password" placeholder="Password">
-                <i class="fas fa-box"></i><select name="" id="register-package">
-                    <option value="first">Choose Packages</option>
-                </select>
+                {!! Form::open(['method'=>'POST', 'action'=>'AuthorUsersController@store', 'files'=>true]) !!}
+                <input type="hidden" name="package_expiry">
+                <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input', 'placeholder'=>'Name']) !!}
+                <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input', 'placeholder'=>'Email']) !!}
+                <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'register-input', 'placeholder'=>'Password']) !!}
+                <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package']) !!}
                 <div class="upload-btn-wrapper">
                     <button class="btn">Upload picture</button>
-                    <input type="file" name="myfile" />
+                    {!! Form::file('photo_id', null, ['class'=>'form-controlsa']) !!}
                 </div>
-                <input class="register-submit" type="submit" value="Register">
+                <div class="aa-single-field{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                    <div class="col-md-6" style="margin-left: -14px!important;">
+                        {!! NoCaptcha::display() !!}
+                        @if ($errors->has('g-recaptcha-response'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
+                {!! Form::submit('Register', ['class'=>'register-submit']) !!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
