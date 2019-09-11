@@ -71,98 +71,316 @@
     {{--</div>--}}
 {{--</div>--}}
 {{--@endsection--}}
-<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home Property | Signin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- CUSTOM STYLE -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" >
+    <link rel="stylesheet" href="css/styleMediaQuery.css" type="text/css" >
 
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/003e33b51d.js"></script>
 
-    <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
 
-
-    <!-- Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://cdnjscloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjscloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
+    <title>Sign In</title>
 </head>
 <body>
-<section id="aa-signin">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="aa-signin-area">
-                    <div class="aa-signin-form">
-                        <div class="aa-signin-form-title">
-                            <a class="aa-property-home" href="/">Home</a>
-                            <h4>Sign in to your account</h4>
 
-                        </div>
-                        <form method="POST" action="{{ route('login') }}" class="contactform">
-                            @csrf
-                            <div class="aa-single-field">
-                                <label for="email">Email <span class="required">*</span></label>
-                                {{--<input type="email" required="required" aria-required="true" value="" name="email">--}}
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+<!-- START LOGO AND MENU -->
+<section id="menu" class="menu">
+    <div class="container-menu">
+
+        <div class="logo alignLeft center-response">
+            <a href="index.html"><img src="img/logo.svg" class="logo-img" alt=""></a>
+        </div>
+
+        <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
+            <i class="fas fa-bars"></i>
+        </a>
+
+        <nav class="navbar" id="navbar">
+            <!--<div class="burger-nav"></div>-->
+            <ul class="nav alignRight center-response">
+                <li><a class="mobile-font" href="index.html">Homepage</a></li>
+                <li><a class="mobile-font" href="plans&pricing.html">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="restaurants.html">Restaurants</a></li>
+                <li><a class="mobile-font" href="contact.html">Contact</a></li>
+                <li class="menu-buttons-block">
+                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</section>
+<!-- END LOGO AND MENU -->
+
+<!-- START SIGN IN -->
+<section id="signin">
+    <div class="container">
+        <div class="signin-container">
+            <div class="content-signin">
+                <img src="img/logo.svg" alt="">
+                <h4>Sign In</h4>
+
+
+
+
+                <form method="POST" action="{{ route('login') }}" class="contactform">
+                @csrf
+                <i class="fas fa-envelope"></i><input class="signin-input{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{old('email')}}" required autofocus placeholder="Email">
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                            <div class="aa-single-field">
-                                <label for="password">Password <span class="required">*</span></label>
-                                {{--<input type="password" name="password">--}}
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="aa-single-field">
+                @endif
 
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
+                <i class="fas fa-lock"></i><input name="password" class="signin-input{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" required placeholder="Password">
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                @endif
 
-                            </div>
-                            <div class="aa-single-submit">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                <label class="checkbox-container"> {{ __('Remember Me') }}
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <span class="checkmark"></span>
+                </label>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                                <p>Don't Have A Account Yet? <a href="user/register">CREATE NOW!</a></p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                @if (Route::has('password.request'))
+                    <a class="signin-forgot-pass" href="{{ route('password.request') }}">
+                        {{ __('Forgot Your Password?') }}
+                    </a>
+                @endif
+
+                <input class="login-content-btn" type="submit" value="Login">
+
+                <p class="p-lead">You don't have account yet?<a href="user/register">CREATE IT NOW</a></p>
+                </form>
+
+
+
+
+
+
+
+{{--                                        <form method="POST" action="{{ route('login') }}" class="contactform">--}}
+{{--                                            @csrf--}}
+{{--                                            <div class="aa-single-field">--}}
+{{--                                                <label for="email">Email <span class="required">*</span></label>--}}
+{{--                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>--}}
+{{--                                                @if ($errors->has('email'))--}}
+{{--                                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                                        <strong>{{ $errors->first('email') }}</strong>--}}
+{{--                                                    </span>--}}
+{{--                                                @endif--}}
+{{--                                            </div>--}}
+{{--                                            <div class="aa-single-field">--}}
+{{--                                                <label for="password">Password <span class="required">*</span></label>--}}
+{{--                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
+{{--                                                @if ($errors->has('password'))--}}
+{{--                                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                                        <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                                    </span>--}}
+{{--                                                @endif--}}
+{{--                                            </div>--}}
+{{--                                            <div class="aa-single-field">--}}
+
+{{--                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
+{{--                                                <label class="form-check-label" for="remember">--}}
+{{--                                                    {{ __('Remember Me') }}--}}
+{{--                                                </label>--}}
+
+{{--                                            </div>--}}
+{{--                                            <div class="aa-single-submit">--}}
+{{--                                                <button type="submit" class="btn btn-primary">--}}
+{{--                                                    {{ __('Login') }}--}}
+{{--                                                </button>--}}
+
+{{--                                                @if (Route::has('password.request'))--}}
+{{--                                                    <a class="btn btn-link" href="{{ route('password.request') }}">--}}
+{{--                                                        {{ __('Forgot Your Password?') }}--}}
+{{--                                                    </a>--}}
+{{--                                                @endif--}}
+{{--                                                <p>Don't Have A Account Yet? <a href="user/register">CREATE NOW!</a></p>--}}
+{{--                                            </div>--}}
+{{--                                        </form>--}}
+
+
+
+
+
             </div>
         </div>
     </div>
 </section>
+<!-- END SIGN IN -->
 
-<script src="{{ asset('js/libs.js') }}"></script>
+<!-- START FOOTER -->
+<section id="footer">
+    <div class="container">
+        <div class="footer-left">
+            <img src="img/logo-white.svg" alt="">
+            <p class="p-lead">Subscribe to our newsletter</p>
+            <i class="far fa-envelope"></i>
+            <input type="text" class="newsletter-input">
+            <input type="submit" class="newsletter-submit" value="Send">
+        </div>
+        <div class="footer-right">
+            <div class="footer-menu">
+                <ol>
+                    <li><a href="index.html">Homepage</a></li>
+                    <li><a href="plans&pricing.html">Plans&Pricing</a></li>
+                    <li><a href="restaurants.html">Restaurants</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ol>
+            </div>
+            <div class="footer-social-icon">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Created by Swisswebprofi &copy; 2019</p>
+    </div>
+</section>
+<!-- END FOOTER -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+    $('.toggle-menu-link').click( function() {
+        $("#navbar").toggleClass("navbar").css({"display": "block!important"});
+    } );
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+{{--<!DOCTYPE html>--}}
+{{--<html lang="en">--}}
+{{--<head>--}}
+{{--    <meta charset="utf-8">--}}
+{{--    <meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
+{{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
+{{--    <title>Home Property | Signin</title>--}}
+
+{{--    <!-- Favicon -->--}}
+{{--    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">--}}
+
+
+{{--    <link href="{{ asset('css/libs.css') }}" rel="stylesheet">--}}
+
+
+{{--    <!-- Google Font -->--}}
+{{--    <link href='https://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>--}}
+{{--    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>--}}
+
+
+{{--    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->--}}
+{{--    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->--}}
+{{--    <!--[if lt IE 9]>--}}
+{{--    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>--}}
+{{--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--}}
+{{--    <![endif]-->--}}
+
+
+{{--</head>--}}
+{{--<body>--}}
+{{--<section id="aa-signin">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-md-12">--}}
+{{--                <div class="aa-signin-area">--}}
+{{--                    <div class="aa-signin-form">--}}
+{{--                        <div class="aa-signin-form-title">--}}
+{{--                            <a class="aa-property-home" href="/">Home</a>--}}
+{{--                            <h4>Sign in to your account</h4>--}}
+
+{{--                        </div>--}}
+{{--                        <form method="POST" action="{{ route('login') }}" class="contactform">--}}
+{{--                            @csrf--}}
+{{--                            <div class="aa-single-field">--}}
+{{--                                <label for="email">Email <span class="required">*</span></label>--}}
+{{--                                <input type="email" required="required" aria-required="true" value="" name="email">--}}
+{{--                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>--}}
+{{--                                @if ($errors->has('email'))--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('email') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                            <div class="aa-single-field">--}}
+{{--                                <label for="password">Password <span class="required">*</span></label>--}}
+{{--                                <input type="password" name="password">--}}
+{{--                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
+{{--                                @if ($errors->has('password'))--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                            <div class="aa-single-field">--}}
+
+{{--                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
+{{--                                <label class="form-check-label" for="remember">--}}
+{{--                                    {{ __('Remember Me') }}--}}
+{{--                                </label>--}}
+
+{{--                            </div>--}}
+{{--                            <div class="aa-single-submit">--}}
+{{--                                <button type="submit" class="btn btn-primary">--}}
+{{--                                    {{ __('Login') }}--}}
+{{--                                </button>--}}
+
+{{--                                @if (Route::has('password.request'))--}}
+{{--                                    <a class="btn btn-link" href="{{ route('password.request') }}">--}}
+{{--                                        {{ __('Forgot Your Password?') }}--}}
+{{--                                    </a>--}}
+{{--                                @endif--}}
+{{--                                <p>Don't Have A Account Yet? <a href="user/register">CREATE NOW!</a></p>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+
+{{--<script src="{{ asset('js/libs.js') }}"></script>--}}
+
+{{--</body>--}}
+{{--</html>--}}

@@ -159,10 +159,10 @@
                 <li><a class="mobile-font" href="/">Homepage</a></li>
                 <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
                 <li><a class="active mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
-                <li><a class="mobile-font" href="contact.html">Contact</a></li>
+                <li><a class="mobile-font" href="{{route('contact.contact')}}">Contact</a></li>
                 <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="signIn.html" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="register.html" class="register">Register</a></li>
+                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
             </ul>
         </nav>
 
@@ -272,6 +272,8 @@
 {{--                <p class="p-lead">9</p>--}}
 {{--                <img src="img/right-arrow-angle-white-red.svg" class="pagination-right" alt="">--}}
 {{--            </div>--}}
+
+                {{$restaurants->onEachSide(1)->links()}}
 
         </div>
     </div>
