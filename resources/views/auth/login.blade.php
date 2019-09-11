@@ -124,10 +124,10 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-                <li><a class="mobile-font" href="index.html">Homepage</a></li>
-                <li><a class="mobile-font" href="plans&pricing.html">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="restaurants.html">Restaurants</a></li>
-                <li><a class="mobile-font" href="contact.html">Contact</a></li>
+                <li><a class="mobile-font" href="/">Homepage</a></li>
+                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
+                <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
                 <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>

@@ -38,7 +38,7 @@
 <section id="footer">
     <div class="container">
         <div class="footer-left">
-            <img src="img/logo-white.svg" alt="">
+            <img src="{{asset('img/logo-white.svg')}}" alt="">
             <p class="p-lead">Subscribe to our newsletter</p>
             <i class="far fa-envelope"></i>
             <input type="text" class="newsletter-input">
@@ -47,10 +47,10 @@
         <div class="footer-right">
             <div class="footer-menu">
                 <ol>
-                    <li><a href="index.html">Homepage</a></li>
-                    <li><a href="plans&pricing.html">Plans&Pricing</a></li>
-                    <li><a href="restaurants.html">Restaurants</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/">Homepage</a></li>
+                    <li><a href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
+                    <li><a href="{{route('restaurants.showAll')}}">Restaurants</a></li>
+                    <li><a href="{{route('contact.contact')}}">Contact</a></li>
                 </ol>
             </div>
             <div class="footer-social-icon">

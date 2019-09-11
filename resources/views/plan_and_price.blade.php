@@ -304,7 +304,7 @@
                     <p class="p-lead"><i class="fas fa-times"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Deal Actions</p>
-                    <a href="">Register</a>
+                    <a href="{{route('register.index')}}">Register</a>
                 </div>
             </div>
             <div id="silver">
@@ -336,7 +336,7 @@
                     <p class="p-lead"><i class="fas fa-times"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Deal Actions</p>
-                    <a href="">Register</a>
+                    <a href="{{route('register.index')}}">Register</a>
                 </div>
             </div>
         </div>
@@ -370,7 +370,7 @@
                     <p class="p-lead"><i class="fas fa-times"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Deal Actions</p>
-                    <a href="">Register</a>
+                    <a href="{{route('register.index')}}">Register</a>
                 </div>
             </div>
             <div id="platinum">
@@ -402,7 +402,7 @@
                     <p class="p-lead"><i class="fas fa-check"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Deal Actions</p>
-                    <a href="">Register</a>
+                    <a href="{{route('register.index')}}">Register</a>
                 </div>
             </div>
         </div>
