@@ -674,7 +674,7 @@
                 @foreach($restaurants as $restaurant)
                     <div>
                         <div class="recently-box">
-                            <a href="singlePage.html">
+                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
                                 <div class="cube-box">
                                     <img src="img/recent_place.png" alt="">
                                 </div>
@@ -690,138 +690,46 @@
 
         </div>
         <div class="slider slider-nav2-s">
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
+
+            @if($restaurants)
+                @foreach($restaurants as $restaurant)
+                    <div>
+                        <div class="recently-box">
+                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                <div class="cube-box">
+                                    <img src="img/recent_place.png" alt="">
+                                </div>
+                                <div class="cube-box-footer">
+                                    <h4>{{$restaurant->title}}</h4>
+                                    <img src="img/location-minify.svg" class="svg location" alt=""><p>{{$restaurant->location->name}}</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City, Some Address</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                    </div>
+                @endforeach
+            @endif
+
         </div>
         <div class="slider slider-nav2-r">
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
+
+            @if($restaurants)
+                @foreach($restaurants as $restaurant)
+                    <div>
+                        <div class="recently-box">
+                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                <div class="cube-box">
+                                    <img src="img/recent_place.png" alt="">
+                                </div>
+                                <div class="cube-box-footer">
+                                    <h4>{{$restaurant->title}}</h4>
+                                    <img src="img/location-minify.svg" class="svg location" alt=""><p>{{$restaurant->location->name}}</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City<span class="mobile-none2">, Some Address</span></p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City<span class="mobile-none2">, Some Address</span></p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City<span class="mobile-none2">, Some Address</span></p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City<span class="mobile-none2">, Some Address</span></p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="recently-box">
-                    <a href="singlePage.html">
-                        <div class="cube-box">
-                            <img src="img/recent_place.png" alt="">
-                        </div>
-                        <div class="cube-box-footer">
-                            <h4>Carpe diem</h4>
-                            <img src="img/location-minify.svg" class="svg location" alt=""><p>Some City<span class="mobile-none2">, Some Address</span></p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                    </div>
+                @endforeach
+            @endif
+
         </div>
 
     </div>
