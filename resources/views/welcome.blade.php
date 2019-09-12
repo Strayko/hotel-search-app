@@ -977,7 +977,7 @@
             <p class="p-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur magni repellat voluptas voluptatem. Aliquam labore quod sed sit unde.</p>
         </div>
         <div class="community-right">
-            <a href="register.html">Register now</a>
+            <a href="{{route('register.index')}}">Register now</a>
         </div>
     </div>
 </section>
