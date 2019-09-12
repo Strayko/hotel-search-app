@@ -30,10 +30,10 @@
                     <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
                         <li><a href="/">HOME</a></li>
 
-                        <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>
-                        <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>
-                        <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>
-                        <li><a href="{{route('contact.contact')}}">CONTACT</a></li>
+{{--                        <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>--}}
+{{--                        <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>--}}
+{{--                        <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>--}}
+{{--                        <li><a href="{{route('contact.contact')}}">CONTACT</a></li>--}}
 
                     </ul>
                 </div><!--/.nav-collapse -->

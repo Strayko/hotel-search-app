@@ -23,7 +23,7 @@ class SubscriberPlanController extends Controller
 	    $data = $request->all();
 
 	    Mail::send('email', $data, function($message) use ($data) {
-		    $message->to($data['email'], $data['author'])->subject($data['subject']);
+		    $message->to($data['email'], $data['author'])->subject($data['firma']);
 	    });
 
 	    Session::flash('form_submitted', 'Form is sent!');

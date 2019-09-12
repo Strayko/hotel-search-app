@@ -1876,6 +1876,10 @@
         width: 30%;
     }
 
+    .leave-a-comment textarea {
+        width: 100%!important;
+    }
+
     .contact-restaurant-content .p-title-2 {
         margin-left: 24% !important;
     }
