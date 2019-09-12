@@ -1810,7 +1810,7 @@ body {
     clear: both;
 }
 .leave-a-comment textarea {
-    width: 93%;
+    width: 100%;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;

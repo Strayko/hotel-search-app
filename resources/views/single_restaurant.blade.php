@@ -501,6 +501,9 @@
         margin-left: 211px!important;
         position: absolute!important;
     }
+    .title-address .p-lead-light {
+        display: inline-block;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -613,7 +616,7 @@
                         </div>
                     @endforeach
 
-                    
+
                 </div>
             </div>
             <div class="pagination pagination-last-bottom">
@@ -629,49 +632,47 @@
             <div class="restaurant-comments">
                 <h2>Comments</h2>
                 <img class="comments-icon" src="{{asset('img/chat-minify.svg')}}" alt="">
-                <p class="p-lead">34 Comments</p>
+                <p class="p-lead">{{$restaurant->comments->count()}} Comments</p>
             </div>
-            <div class="comments-section">
-                <div class="comments-image">
-                    <img src="{{asset('img/testimonial3.png')}}" alt="">
-                </div>
-                <div class="comments-title-body">
-                    <p class="p-title">Lorem Ipsum</p>
-                    <p class="p-lead">2 days ago</p>
-                    <p class="p-lead p-lead-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi atque blanditiis dicta doloribus ex magni maxime minima nam natus temporibus!</p>
-                </div>
-            </div>
-            <div class="hr-spacing">
-                <hr>
-            </div>
-            <div class="comments-section">
-                <div class="comments-image">
-                    <img src="{{asset('img/testimonial3.png')}}" alt="">
-                </div>
-                <div class="comments-title-body">
-                    <p class="p-title">Lorem Ipsum</p>
-                    <p class="p-lead">2 days ago</p>
-                    <p class="p-lead p-lead-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi atque blanditiis dicta doloribus ex magni maxime minima nam natus temporibus!</p>
-                </div>
-            </div>
-            <div class="hr-spacing">
-                <hr>
-            </div>
-            <div class="comments-section">
-                <div class="comments-image">
-                    <img src="{{asset('img/testimonial3.png')}}" alt="">
-                </div>
-                <div class="comments-title-body">
-                    <p class="p-title">Lorem Ipsum</p>
-                    <p class="p-lead">2 days ago</p>
-                    <p class="p-lead p-lead-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi atque blanditiis dicta doloribus ex magni maxime minima nam natus temporibus!</p>
-                </div>
-            </div>
-            <div class="leave-a-comment">
-                <i class="fas fa-pencil-alt"></i>
-                <textarea name="" id="" placeholder="Leave a comment"></textarea>
-                <input class="post-submit" type="submit" value="Post">
-            </div>
+
+            @if(count($comments) > 0)
+                @foreach($comments as $comment)
+                    <div class="comments-section">
+                        <div class="comments-image">
+                            <img src="{{$comment->photo}}" alt="">
+                        </div>
+                        <div class="comments-title-body">
+                            <p class="p-title">{{$comment->author}}</p>
+                            <p class="p-lead">{{$comment->created_at->diffForHumans()}}</p>
+                            <p class="p-lead p-lead-body">{{$comment->body}}</p>
+                        </div>
+                    </div>
+                    <div class="hr-spacing">
+                        <hr>
+                    </div>
+                @endforeach
+            @endif
+
+
+
+
+            @if(Auth::check())
+                {!! Form::open(['method'=>'POST', 'action'=>'RestaurantCommentController@store']) !!}
+                    <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
+                    <div class="leave-a-comment">
+                        <i class="fas fa-pencil-alt"></i>
+                        <textarea name="body" id="body" required="required" aria-required="true" placeholder="Leave a comment"></textarea>
+                        <input class="post-submit" name="submit" type="submit" value="Post">
+                    </div>
+                {!! Form::close() !!}
+            @else
+                <h3 class="required">Login/Register to see form</h3>
+            @endif
+
+
+
+
+
         </div>
 
 
@@ -679,76 +680,73 @@
         <div class="restaurant-right-box">
             <div class="restaurant-category">
                 <h3>Cities</h3>
-                <p class="p-lead">Furth</p>
-                <p class="p-lead">Munchen</p>
-                <p class="p-lead">Wurzburg</p>
-                <p class="p-lead">Aschaffenburg</p>
-                <p class="p-lead">Nuremberg</p>
-                <p class="p-lead">Ingolstadt</p>
-                <p class="p-lead">Passau</p>
-                <p class="p-lead">Augsburg</p>
-                <p class="p-lead">Bayreuth</p>
-                <p class="p-lead">Kempten</p>
-                <p class="p-lead">Rosenheim</p>
-                <p class="p-lead">Rogensburg</p>
+
+
+                @if($locations)
+                    @foreach($locations as $location)
+                        <p class="p-lead">{{$location->name}}</p>
+{{--                        <li><a href="{{route('single_location.locationCategory', $location->id)}}">{{$location->name}}</a></li>--}}
+                    @endforeach
+                @endif
+
+
+{{--                <p class="p-lead">Furth</p>--}}
+{{--                <p class="p-lead">Munchen</p>--}}
+{{--                <p class="p-lead">Wurzburg</p>--}}
+{{--                <p class="p-lead">Aschaffenburg</p>--}}
+{{--                <p class="p-lead">Nuremberg</p>--}}
+{{--                <p class="p-lead">Ingolstadt</p>--}}
+{{--                <p class="p-lead">Passau</p>--}}
+{{--                <p class="p-lead">Augsburg</p>--}}
+{{--                <p class="p-lead">Bayreuth</p>--}}
+{{--                <p class="p-lead">Kempten</p>--}}
+{{--                <p class="p-lead">Rosenheim</p>--}}
+{{--                <p class="p-lead">Rogensburg</p>--}}
+
+
             </div>
             <div class="restaurant-recently-added">
                 <h3>Recently added</h3>
-                <div class="recently-single-restaurant">
-                    <div class="recently-img">
-                        <img src="{{asset('img/gallery.png')}}" alt="">
-                    </div>
-                    <div class="title-address">
-                        <p class="p-lead">Carpe diem</p>
-                        <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">Some City</p>
-                    </div>
-                </div>
-                <div class="recently-divider"></div>
-                <hr>
-                <div class="recently-single-restaurant">
-                    <div class="recently-img">
-                        <img src="{{asset('img/gallery.png')}}" alt="">
-                    </div>
-                    <div class="title-address">
-                        <p class="p-lead">Carpe diem</p>
-                        <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">Some City</p>
-                    </div>
-                </div>
-                <div class="recently-divider"></div>
-                <hr>
-                <div class="recently-single-restaurant">
-                    <div class="recently-img">
-                        <img src="{{asset('img/gallery.png')}}" alt="">
-                    </div>
-                    <div class="title-address">
-                        <p class="p-lead">Carpe diem</p>
-                        <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">Some City</p>
-                    </div>
-                </div>
-                <div class="recently-divider"></div>
+
+                @if($restaurantRecents)
+                    @foreach($restaurantRecents as $restaurantRecent)
+                        <div class="recently-single-restaurant">
+                            <div class="recently-img">
+                                <img src="{{$restaurantRecent->photo ? $restaurantRecent->photo->file : $restaurantRecent->singleRestaurant()}}" alt="">
+                            </div>
+                            <div class="title-address">
+                                <p class="p-lead">{{$restaurantRecent->title}}</p>
+                                <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">{{$restaurant->location->name}}</p>
+                            </div>
+                        </div>
+                        <div class="recently-divider"></div>
+                        <hr>
+                    @endforeach
+                @endif
+
+
             </div>
             <div class="restaurant-recently-added">
                 <h3>Related</h3>
-                <div class="recently-single-restaurant">
-                    <div class="recently-img">
-                        <img src="{{asset('img/gallery.png')}}" alt="">
-                    </div>
-                    <div class="title-address">
-                        <p class="p-lead">Carpe diem</p>
-                        <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">Some City</p>
-                    </div>
-                </div>
-                <div class="recently-divider"></div>
-                <hr>
-                <div class="recently-single-restaurant">
-                    <div class="recently-img">
-                        <img src="{{asset('img/gallery.png')}}" alt="">
-                    </div>
-                    <div class="title-address">
-                        <p class="p-lead">Carpe diem</p>
-                        <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">Some City</p>
-                    </div>
-                </div>
+
+                @if($relateds)
+                    @foreach($relateds as $related)
+                        <div class="recently-single-restaurant">
+                            <div class="recently-img">
+                                <img src="{{$related->photo ? $related->photo->file : $related->photoHome()}}" alt="">
+                            </div>
+                            <div class="title-address">
+                                <p class="p-lead">{{$related->title}}</p>
+                                <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">{{$restaurant->location->name}}</p>
+                            </div>
+                        </div>
+                        <div class="recently-divider"></div>
+                        <hr>
+                    @endforeach
+                @endif
+
+
+
                 <div class="recently-divider"></div>
 
             </div>
