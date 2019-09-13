@@ -135,15 +135,15 @@
                 <i class="fas fa-envelope"></i><input class="signin-input{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{old('email')}}" required autofocus placeholder="Email">
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
                 @endif
 
                 <i class="fas fa-lock"></i><input name="password" class="signin-input{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" required placeholder="Password">
                 @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
                 @endif
 
                 <label class="checkbox-container"> {{ __('Remember Me') }}

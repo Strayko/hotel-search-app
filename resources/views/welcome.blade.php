@@ -453,8 +453,8 @@
 @extends('layouts.frontend-thema')
 <title>Top Restaurant</title>
 <style>
-    .slick-slide {
-
+    .search input {
+        font-size-adjust:0.5;
     }
 </style>
 @section('content')
