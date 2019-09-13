@@ -30,10 +30,10 @@
 {{--                    <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">--}}
 {{--                        <li><a href="/">HOME</a></li>--}}
 
-{{--                                                <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>--}}
-{{--                                                <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>--}}
-{{--                                                <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>--}}
-{{--                                                <li><a href="{{route('contact.contact')}}">CONTACT</a></li>--}}
+{{--                        --}}{{--                        <li><a href="{{route('plan_and_price.planAndPrice')}}">PLAN AND PRICE</a></li>--}}
+{{--                        --}}{{--                        <li><a href="{{route('show_all.showAll')}}">SHOW ALL</a></li>--}}
+{{--                        --}}{{--                        <li><a href="{{route('locations.locations')}}">LOCATIONS</a></li>--}}
+{{--                        --}}{{--                        <li><a href="{{route('contact.contact')}}">CONTACT</a></li>--}}
 
 {{--                    </ul>--}}
 {{--                </div><!--/.nav-collapse -->--}}
@@ -71,11 +71,11 @@
 {{--                    <span></span>--}}
 {{--                    @if(isset($details))--}}
 {{--                        <p>The Search results for your query <b>{{$query}}</b> are :</p>--}}
-{{--                    @endif--}}
+
 {{--                </div>--}}
 {{--                <div class="aa-latest-properties-content">--}}
 {{--                    <div class="row">--}}
-{{--                        @if(isset($details))--}}
+{{--                        --}}{{--@if(isset($details))--}}
 {{--                        @foreach($details as $user)--}}
 {{--                            <div class="col-md-4">--}}
 {{--                                <article class="aa-properties-item">--}}
@@ -123,11 +123,11 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
 
-{{--                    <div class="row">--}}
-{{--                    <div class="col-sm-12 text-center">--}}
-{{--                    {{$details->onEachSide(1)->links()}}--}}
-{{--                    </div>--}}
-{{--                    </div>--}}
+{{--                    --}}{{--<div class="row">--}}
+{{--                    --}}{{--<div class="col-sm-12 text-center">--}}
+{{--                    --}}{{--{{$details->onEachSide(1)->links()}}--}}
+{{--                    --}}{{--</div>--}}
+{{--                    --}}{{--</div>--}}
 {{--                </div>--}}
 
 
@@ -350,85 +350,106 @@
 
 
 @extends('layouts.frontend-thema')
-
+<title>Search</title>
+<style>
+    .hidden-a-link {
+        color: #fff;
+        margin-right: 10px;
+    }
+    .search-restaurant-margin {
+        margin-top: 50px;
+        margin-bottom: 70px;
+    }
+    .restaurant-search-bottom-space {
+        margin-bottom: 30px;
+    }
+</style>
 @section('content')
-<!-- START LOGO AND MENU -->
-<section id="menu" class="menu">
-    <div class="container-menu">
+    <!-- START LOGO AND MENU -->
+    <section id="menu" class="menu">
+        <div class="container-menu">
 
-        <div class="logo alignLeft center-response">
-            <a href="/"><img src="img/logo.svg" class="logo-img" alt=""></a>
+            <div class="logo alignLeft center-response">
+                <a href="/"><img src="img/logo.svg" class="logo-img" alt=""></a>
+            </div>
+
+            <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
+                <i class="fas fa-bars"></i>
+            </a>
+
+            <nav class="navbar" id="navbar">
+                <!--<div class="burger-nav"></div>-->
+                <ul class="nav alignRight center-response">
+                    <li><a class="mobile-font" href="index.html">Homepage</a></li>
+                    <li><a class="mobile-font" href="plans&pricing.html">Plans&Pricing</a></li>
+                    <li><a class="mobile-font" href="restaurants.html">Restaurants</a></li>
+                    <li><a class="mobile-font" href="contact.html">Contact</a></li>
+                    <li class="menu-buttons-block">
+                    <li class="menu-collapse"><a href="signIn.html" class="sign-in">Sign in</a></li>
+                    <li class="menu-collapse top-distance-mobile"><a href="register.html" class="register">Register</a></li>
+                </ul>
+            </nav>
+
         </div>
+    </section>
+    <!-- END LOGO AND MENU -->
 
-        <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
-            <i class="fas fa-bars"></i>
-        </a>
-
-        <nav class="navbar" id="navbar">
-            <!--<div class="burger-nav"></div>-->
-            <ul class="nav alignRight center-response">
-                <li><a class="mobile-font" href="index.html">Homepage</a></li>
-                <li><a class="mobile-font" href="plans&pricing.html">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="restaurants.html">Restaurants</a></li>
-                <li><a class="mobile-font" href="contact.html">Contact</a></li>
-                <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="signIn.html" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="register.html" class="register">Register</a></li>
-            </ul>
-        </nav>
-
-    </div>
-</section>
-<!-- END LOGO AND MENU -->
-
-<!-- START HEADER -->
-<section id="header">
-    <div class="container">
-        <h2>Plans & Pricing</h2>
-        <p class="p-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio nisi nostrum nulla, omnis temporibus voluptatem.</p>
-    </div>
-</section>
-<!-- END HEADER -->
+    <!-- START HEADER -->
+    <section id="header">
+        <div class="container">
+            <h2>Restaurants search result</h2>
+            <p class="p-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio nisi nostrum nulla, omnis temporibus voluptatem.</p>
+        </div>
+    </section>
+    <!-- END HEADER -->
 
     <div class="container">
+
+        @if(isset($details))
+            <p>The Search results for your query <b>"{{$query}}"</b> are :</p>
+        @endif
+
         <h2 id="message2" style="margin-top:20px; text-align:center;"></h2>
         <div id="mappers" style="width: 100%; height: 400px; margin-top: 5rem;">{!! Mapper::render() !!}</div>
 
 
-        @if(isset($details))
-            @foreach($details as $user)
+        <div class="search-restaurant-margin">
+            @if(isset($details))
+                @foreach($details as $user)
 
-                <a href="">
-                    <div class="restaurant-box">
-                        <div class="pic-box">
-                            <img src="img/popular_place.png" class="imgs" alt="">
-                        </div>
-                        <div class="container-box">
-                            <div class="container-box-header">
-                                <h4>{{$user->title}}</h4>
-                                <img src="img/star.svg" class="svg star" alt="">
-                                <img src="img/star.svg" class="svg star" alt="">
-                                <img src="img/star.svg" class="svg star" alt="">
-                                <img src="img/star.svg" class="svg star" alt="">
-                                <img src="img/star.svg" class="svg star" alt="">
+                    <a class="hidden-a-link" href="{{route('single_restaurant.restaurant', $user->slug)}}">
+                        <div class="restaurant-box restaurant-search-bottom-space">
+                            <div class="pic-box">
+                                <img src="img/popular_place.png" class="imgs" alt="">
                             </div>
-                            <div class="container-box-footer">
-                                <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$user->location->name}}</p>
-                                <hr>
-                                <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
+                            <div class="container-box">
+                                <div class="container-box-header">
+                                    <h4>{{$user->title}}</h4>
+                                    <img src="img/star.svg" class="svg star" alt="">
+                                    <img src="img/star.svg" class="svg star" alt="">
+                                    <img src="img/star.svg" class="svg star" alt="">
+                                    <img src="img/star.svg" class="svg star" alt="">
+                                    <img src="img/star.svg" class="svg star" alt="">
+                                </div>
+                                <div class="container-box-footer">
+                                    <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$user->location->name}}</p>
+                                    <hr>
+                                    <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
 
-            @endforeach
-        @elseif(isset($message))
-            <h2>{{$message}}</h2>
+                @endforeach
+            @elseif(isset($message))
+                <h2>{{$message}}</h2>
 
-        @endif
+            @endif
+        </div>
+
     </div>
 
-{{--            {{$details->onEachSide(1)->links()}}--}}
+{{--    {{$details->onEachSide(1)->links()}}--}}
 
 
 @endsection

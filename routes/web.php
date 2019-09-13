@@ -154,6 +154,8 @@ Route::post('/search', function() {
 
 
 
+
+
     switch($name) {
         case '2':
             Mapper::location('Fürth')->map($bodyMap);
