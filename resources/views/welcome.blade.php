@@ -451,14 +451,19 @@
 
 
 @extends('layouts.frontend-thema')
+<title>Top Restaurant</title>
+<style>
+    .slick-slide {
 
+    }
+</style>
 @section('content')
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="index.html"><img src="img/logo.svg" class="logo-img" alt=""></a>
+            <a href="/"><img src="img/logo.svg" class="logo-img" alt=""></a>
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">

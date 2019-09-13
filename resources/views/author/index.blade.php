@@ -122,14 +122,14 @@
 
 
 @extends('layouts.frontend-thema')
-
+<title>Register</title>
 @section('content')
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="index.html"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            <a href=""><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">

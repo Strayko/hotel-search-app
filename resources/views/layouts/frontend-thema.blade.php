@@ -9,11 +9,12 @@
     <!-- CUSTOM STYLE -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/styleMediaQuery.css')}}">
+    <link rel="stylesheet" href="{{asset('css/slickMin.css')}}">
 
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/003e33b51d.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
 
     <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
