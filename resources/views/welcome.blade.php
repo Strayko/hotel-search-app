@@ -457,6 +457,7 @@
         font-size-adjust:0.5;
     }
 </style>
+<link rel="stylesheet" href="{{asset('css/slickMin.css')}}">
 @section('content')
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">

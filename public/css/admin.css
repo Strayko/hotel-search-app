@@ -1,0 +1,1023 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/*RESET CSS BEGIN*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/*RESET CSS END*/
+
+/*HELPER CLASSES BEGIN*/
+.alignLeft {
+    float: left;
+}
+.alignRight {
+    float: right;
+}
+.active {
+    background-color: #7dcbc2;
+}
+strong,
+b {
+    font-weight: 700;
+}
+em,
+i {
+    font-style: italic;
+}
+p,
+ul li,
+ol li {
+    font-size: 17px;
+    line-height: 23px;
+}
+/*HELPER CLASSES END*/
+
+/*FONT*/
+@font-face {
+    font-family: 'AvenirNextLTPro-Regular';
+    src: local('AvenirNextLTPro-Regular.otf'), url('AvenirNextLTPro-Regular.otf') format('opentype');
+}
+@font-face {
+    font-family: 'AvenirNextLTPro-Bold';
+    src: local('AvenirNextLTPro-Bold.otf'), url('AvenirNextLTPro-Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'AvenirNextLTPro-Medium';
+    src: local('AvenirNextLTPro-Medium.otf'), url('AvenirNextLTPro-Medium.otf') format('opentype');
+}
+@font-face {
+    font-family: 'AvenirNextLTPro-Demi';
+    src: local('AvenirNextLTPro-Demi.otf'), url('AvenirNextLTPro-Demi.otf') format('opentype');
+}
+/*END FONT*/
+
+/*GENERAL RULES*/
+/*START DASHBOARD*/
+body {
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
+}
+#admin2-dashboard {
+    width: 100%;
+    height: 100%;
+}
+.admin2-menu {
+    width: 13%;
+    height: 933px;
+    background-color: #1a2628;
+    color: white;
+    display: inline-block;
+}
+.admin2-menu .p-lead {
+    font-size: 14px;
+    padding: 15px 5px 15px 5px;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.admin2-menu .p-lead:hover {
+    background-color: #7dcbc2;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.admin2-menu ol a {
+    color: white;
+    text-decoration: none;
+}
+.admin2-menu ol a li i {
+    font-size: 20px;
+    width: 23px;
+    margin-right: 10px;
+}
+.admin2-menu ol a li img {
+    padding: 20px 5px 15px 0;
+    width: 90%;
+}
+.admin2-menu ol hr {
+    margin: 0;
+    opacity: 0.5;
+}
+.admin2-dashboard-content {
+    display: inline-block;
+    width: 87%;
+    float: right;
+}
+.dashboard-header {
+    height: 73px;
+}
+.dashboard-header h2 {
+    font-size: 30px;
+    color: #2B2A2A;
+    margin: 19px 0 19px 10px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-home {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-utensils {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-box {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-map-marker-alt {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-hamburger {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-camera {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-users {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-paste {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-wallet {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-font-awesome-flag {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-blogger-b {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header .fa-comments {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+.dashboard-header img {
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 15px 10px 15px 0;
+    display: inline-block;
+    float: right;
+}
+.dashboard-header .p-lead {
+    float: right;
+    margin-right: 20px;
+    margin-top: 23px;
+    font-size: 15px;
+    color: #2B2A2A;
+}
+.dashboard-header a p i {
+    font-size: 15px;
+}
+.dashboard-content {
+    background-color: #f1f1f1;
+    position: relative;
+    clear: both;
+    height: 800px;
+    padding: 10px 10px 50px 10px;
+}
+.dashboard-table {
+    width: 900px;
+    background-color: white;
+    margin: 40px 0 0 40px;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 15px;
+    display: inline-block;
+}
+.dashboard-table table tr th {
+    text-align: left;
+    color: #909090;
+    padding: 10px 10px 20px 10px;
+}
+.dashboard-table table {
+    width: 100%;
+}
+.dashboard-table table tr td {
+    color: #2B2A2A;
+    padding: 10px;
+    vertical-align: middle;
+    font-size: 14px;
+    height: 52.5px;
+}
+.dashboard-table tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+.dashboard-table table tr td img {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.dashboard-table table tr td a {
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 5px 20px 5px 20px;
+    background-color: #F46767;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-table table tr td a:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-right-box {
+    display: inline-block;
+    position: absolute;
+    margin-top: 65px;
+    margin-left: 20px;
+}
+.dashboard-right-box .green-box {
+    background-color: #3fd49c;
+    width: 180px;
+    height: 110px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+}
+.dashboard-right-box .blue-box {
+    background-color: #69b5f7;
+    width: 180px;
+    height: 110px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+}
+.dashboard-right-box .yellow-box {
+    background-color: #f7b407;
+    width: 180px;
+    height: 110px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+.dashboard-right-box .green-box .p-lead {
+    padding-top: 20px;
+}
+.dashboard-right-box .green-box .p-lead-number {
+    margin-top: 4px;
+    font-weight: 700;
+}
+.dashboard-right-box .green-box .p-lead-all {
+    font-size: 12px;
+    display: inline-block;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-right-box .green-box .p-lead-all:hover {
+    font-size: 15px;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-right-box .green-box a {
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard-right-box .blue-box .p-lead {
+    padding-top: 20px;
+}
+.dashboard-right-box .blue-box .p-lead-number {
+    margin-top: 4px;
+    font-weight: 700;
+}
+.dashboard-right-box .blue-box .p-lead-all {
+    font-size: 12px;
+    display: inline-block;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-right-box .blue-box .p-lead-all:hover {
+    font-size: 15px;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-right-box .blue-box a {
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard-right-box .yellow-box .p-lead {
+    padding-top: 20px;
+}
+.dashboard-right-box .yellow-box .p-lead-number {
+    margin-top: 4px;
+    font-weight: 700;
+}
+.dashboard-right-box .yellow-box .p-lead-all {
+    font-size: 12px;
+    display: inline-block;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-right-box .yellow-box .p-lead-all:hover {
+    font-size:15px;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.dashboard-right-box .yellow-box a {
+    color: white;
+    text-decoration: none;
+}
+/*END DASHBOARD*/
+
+/*START INDEX RESTAURANT*/
+#restaurants-table {
+    width: 91%;
+    background-color: white;
+    margin: 40px 0 0 40px;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 15px;
+    display: inline-block;
+    z-index: 8888;
+}
+#restaurants-table table tr td .blue {
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 5px 20px 5px 20px;
+    background-color: #77a1ee;
+    border-radius: unset;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+    margin-right: 10px;
+    font-size: 15px;
+}
+#restaurants-table table tr td .blue-input {
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 5px 8px 5px 8px;
+    background-color: #77a1ee;
+    border-radius: unset;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+    margin-right: 10px;
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
+    cursor: pointer;
+}
+#restaurants-table table tr td .blue:hover {
+    background-color: #5e79bb;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+#restaurants-table table tr td .blue-input:hover {
+    background-color: #5e79bb;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+#restaurants-table table tr td .red {
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    background-color: #F46767;
+    border-radius: unset;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+#restaurants-table table tr td .red-input {
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    background-color: #F46767;
+    border-radius: unset;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+    margin-right: 10px;
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+}
+#restaurants-table table tr td .red-input:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+#restaurants-table table tr td .red:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.search-inputs .search {
+    margin-top: 20px;
+    margin-left: 40px;
+    border: none;
+    padding: 13px 13px 13px 40px;
+    width: 49%;
+}
+.search-inputs .search-2 {
+    margin-top: 20px;
+    margin-left: 40px;
+    border: none;
+    padding: 13px 13px 13px 40px;
+    width: 340px;
+}
+.search-inputs .header-inputs-red {
+    text-decoration: none;
+    color: white;
+    width: 84%;
+    text-align: center;
+    display: block;
+    padding: 17px 14px 14px 14px;
+    background-color: #F46767;
+    font-size: 12px;
+    margin-left: 10px;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.search-inputs .header-inputs-red:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.search-inputs .header-inputs-tirkiz {
+    text-decoration: none;
+    color: white;
+    width: 84%;
+    text-align: center;
+    display: block;
+    padding: 17px 14px 14px 14px;
+    background-color: #7dcbc2;
+    font-size: 12px;
+    margin-left: 10px;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.search-inputs .header-inputs-tirkiz:hover {
+    background-color: #63a49b;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.search-inputs .fa-search {
+    position: absolute;
+    margin-top: 34px;
+    margin-left: 55px;
+    color: #2a2a2a;
+}
+.add-button-box {
+    display: inline-block;
+    width: 19.5%;
+}
+.sorting-button-box {
+    display: inline-block;
+    width: 19.5%;
+}
+/*END INDEX RESTAURANT*/
+
+/*START CREATE RESTAURANT*/
+.create-form {
+    width: 86%;
+    background-color: white;
+    margin: 67px 0 0 40px;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 50px;
+    display: inline-block;
+    color: #2B2A2A;
+}
+.create-form .p-lead-h4 {
+    font-size: 21px;
+    margin-bottom: 55px;
+}
+.create-form .create-form-input {
+    border: none;
+    background-color: #f1f1f1;
+    width: 400px;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+.create-form .create-form-select {
+    border: none;
+    background-color: #f1f1f1;
+    width: 420px;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+.create-form .create-form-textarea {
+    border: none;
+    background-color: #f1f1f1;
+    width: 401px;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    height: 110px;
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
+    font-size: 14px;
+}
+.create-form .label-grey-small {
+    font-size: 14px;
+    color: #8d8d8d;
+}
+.create-form .label-grey-image {
+    font-size: 14px;
+    color: #8d8d8d;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.create-form .label-grey-image-r {
+    font-size: 14px;
+    color: #8d8d8d;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 24px;
+}
+#image-r {
+    margin-right: 0!important;
+}
+.form-left {
+    float: left;
+}
+.form-right {
+    float: left;
+    margin-left: 80px;
+    margin-top: 100px;
+}
+.form-right .google-maps {
+    width: 200px;
+    height: 100px;
+    background-color: #f1f1f1;
+    display: inline-block;
+}
+.form-right .picture-of-restaurant {
+    width: 200px;
+    height: 100px;
+    background-color: #f1f1f1;
+    display: inline-block;
+    margin-right: 44px;
+}
+.create-form .upload-image {
+    margin-top: 40px;
+}
+
+.input-file {
+    position: relative;
+    overflow: hidden;
+    width: 110px;
+    height: 35px;
+    border: none;
+    margin-left: 200px;
+    background-color: #77a1ee;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,.5);
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+.input-file:hover {
+    background-color: #5e79bb;
+    cursor: pointer;
+}
+.input-file [type = file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.input-file label {
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
+    color: #F1F1F1;
+    font-size: 13px;
+    cursor: pointer;
+}
+.upload-image .between-fields {
+    opacity: 0.1;
+}
+.form-buttons .form-previous {
+    border: none;
+    color: white;
+    background-color: grey;
+    padding: 10px 40px 10px 40px;
+    margin-right: 10px;
+    cursor: pointer;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.form-buttons .form-previous:hover {
+    background-color: #5f5f5f;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.form-buttons .form-next {
+    border: none;
+    color: white;
+    background-color: #F46767;
+    padding: 10px 52px 10px 52px;
+    cursor: pointer;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.form-buttons .form-next:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.form-buttons {
+    margin-top: 100px;
+}
+/*END CREATE RESTAURANT*/
+
+/*START EDIT RESTAURANT*/
+.dashboard-table .center-buttons {
+    text-align: end;
+}
+.create-form .form-left .create-input-button {
+    border: none;
+    padding: 10px 50px 10px 50px;
+    background-color: #F46767;
+    float: right;
+    margin-top: 10px;
+    color: white;
+    cursor: pointer;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.create-form .form-left .create-input-button:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+/*END EDIT RESTAURANT*/
+.replies {
+    background-color: transparent!important;
+    color: #3530b7 !important;
+    padding: 0!important;
+    cursor: pointer;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.replies:hover {
+    color: #2B2A2A!important;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.checkb {
+    width: 36px!important;
+}
+#restaurants-table .media-submit {
+    border: none;
+    background-color: #77a1ee;
+    color: #fff;
+    padding: 10px 25px 10px 25px;
+    cursor: pointer;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+#restaurants-table .media-submit:hover {
+    background-color: #5e79bb;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+#restaurants-table .media-select {
+    border: none;
+    background-color: #f1f1f1;
+    color: #2b2a2a;
+    padding: 10px 14px 10px 14px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.dashboard-header .fa-calendar-alt {
+    margin: 16px 0 16px 35px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+input[type=file] {
+    display: none;
+}
+
+label[for=upload] {
+    text-decoration: none;
+    color: white;
+    width: 84%;
+    text-align: center;
+    display: block;
+    padding: 18px 14px 14px 14px;
+    background-color: #F46767;
+    font-size: 12px;
+    margin-left: 10px;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+    cursor: pointer;
+}
+label[for=upload]:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.search-inputs .header-inputs-tirkiz-3 {
+    text-decoration: none;
+    color: white;
+    width: 96%;
+    text-align: center;
+    display: block;
+    padding: 15px 14px 14px 14px;
+    background-color: #77a1ee;
+    font-size: 12px;
+    margin-left: 10px;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+    cursor: pointer;
+    border: none;
+}
+.search-inputs .header-inputs-tirkiz-3:hover {
+    background-color: #5e79bb;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.create-form .form-left .p-lead {
+    font-size: 14px;
+}
+.hr-reservation {
+    opacity: 0.1;
+}
+#form-left {
+    width: 37%;
+}
+.time-ago {
+    font-size: 14px;
+    color: #8d8d8d;
+    margin-top: 20px;
+}
+.back-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #77a1ee;
+    padding: 10px 50px 10px 50px;
+    margin-left: 40px;
+    margin-top: 10px;
+    position: absolute;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
+    font-size: 15px;
+}
+.back-button:hover {
+    background-color: #5e79bb;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+.delete-button {
+    position: absolute;
+    margin-left: 188px;
+    margin-top: 10px;
+    border: none;
+    background-color: #F46767;
+    color: #fff;
+    padding: 7px 50px 7px 50px;
+    cursor: pointer;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
+    font-size: 15px;
+}
+.delete-button:hover {
+    background-color: #c45555;
+    -webkit-transition: 0.3s!important;
+    -moz-transition: 0.3s!important;
+    -ms-transition: 0.3s!important;
+    -o-transition: 0.3s!important;
+    transition: 0.3s!important;
+}
+#back-button {
+    padding: 10px 30px 10px 30px;
+}
+.toggle-menu-link {
+    display: none;
+}
+.admin-menu-name {
+    display: none;
+}
+.logout-menu-show {
+    display: none;
+}
+.home-menu-toggle {
+    display: none;
+}
+.mobile-browse {
+    display: none;
+}

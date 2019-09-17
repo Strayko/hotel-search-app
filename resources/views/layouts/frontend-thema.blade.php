@@ -9,7 +9,6 @@
     <!-- CUSTOM STYLE -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/styleMediaQuery.css')}}">
-    <link rel="stylesheet" href="{{asset('css/slickMin.css')}}">
 
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/003e33b51d.js"></script>
