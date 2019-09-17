@@ -6,22 +6,22 @@
         <td>{{Str::limit($event->body, 10)}}</td>
         <td>{{$event->created_at->diffForHumans()}}</td>
         <td>{{$event->updated_at->diffForHumans()}}</td>
-        <td>
+        <td class="center-buttons">
             @if($event->is_active == 1)
                 {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
                 <input type="hidden" name="is_active" value="0">
-                {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
+                {!! Form::submit('Un-approve', ['class'=>'blue-input', 'id'=>'blue-input-user-admin']) !!}
                 {!! Form::close() !!}
             @else
                 {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
                 <input type="hidden" name="is_active" value="1">
-                {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
+                {!! Form::submit('Approve', ['class'=>'blue-input', 'id'=>'blue-input-user-admin']) !!}
                 {!! Form::close() !!}
             @endif
         </td>
         <td>
-            <a href="{{route('event.edit', $event->id)}}" class="btn btn-secondary">
-                <i class="fas fa-calendar-alt"></i> Edit/Delete
+            <a href="{{route('event.edit', $event->id)}}" class="blue" id="blue-user-admin">
+                Edit/Delete
             </a>
         </td>
     </tr>

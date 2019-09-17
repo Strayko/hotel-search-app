@@ -72,8 +72,14 @@ class AuthorEventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'restaurant_id'=>'required'
+        ]);
         $input = $request->all();
         $user = Auth::user();
         if($file = $request->file('photo_id')) {

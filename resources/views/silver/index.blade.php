@@ -222,7 +222,7 @@
     <div class="admin2-menu">
         <ol>
             <a href="/"><li><img src="{{asset('img/logo-white.svg')}}" alt=""></li></a>
-            <a href="../index.html"><li class="p-lead home-menu-toggle">Home</li></a>
+            <a href="/"><li class="p-lead home-menu-toggle">Home</li></a>
             <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead admin-menu-name">{{Auth::user()->name}}</p></a>
             <hr>
             <a href="/admin"><li class="p-lead active"><i class="fas fa-home"></i> Dashboard</li></a>
