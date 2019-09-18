@@ -7,15 +7,15 @@
         <td>{{$item->time}}</td>
         <td>{{$item->created_at->diffForHumans()}}</td>
         <td>{{$item->party}}</td>
-        <td>
-            <a href="{{route('bookingEdit', $item->id)}}" class="btn btn-secondary">
-                <i class="fas fa-calendar-check"></i> Show
+        <td class="center-buttons">
+            <a href="{{route('bookingEdit', $item->id)}}" class="blue" id="blue-input-booking">
+                 Show
             </a>
-            <a href="#" class="d-inline-block mt-1">
-                {!! Form::open(['method'=>'DELETE', 'action'=>['OnlineBookingController@destroy', $item->id]]) !!}
-                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
+
+                {!! Form::open(['method'=>'DELETE', 'action'=>['OnlineBookingController@destroy', $item->id], 'id'=>'booking-delete-button']) !!}
+                 <input type="submit" class="red-input" id="red-input-booking" value="Delete">
                 {!! Form::close() !!}
-            </a>
+
         </td>
     </tr>
 @endforeach
@@ -26,3 +26,5 @@
         </div>
     </td>
 </tr>
+
+{{--<td class="center-buttons"><a class="blue" id="blue-input-booking" href="edit.html">Show</a> <input type="submit" class="red-input" id="red-input-booking" value="Delete"></td>--}}
