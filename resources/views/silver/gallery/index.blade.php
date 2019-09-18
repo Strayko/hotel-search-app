@@ -134,11 +134,11 @@
 {{--                        <input type="text" name="serach" id="serach" class="form-control" placeholder="Search Gallery...">--}}
 {{--                    </div>--}}
 {{--                </div>--}}
-{{--                --}}{{--<div class="col-md-3">--}}
-{{--                    --}}{{--<a href="{{route('event.create')}}" class="btn btn-secondary btn-block">--}}
-{{--                        --}}{{--<i class="fas fa-plus"></i> Add Event--}}
-{{--                    --}}{{--</a>--}}
-{{--                --}}{{--</div>--}}
+{{--                <div class="col-md-3">--}}
+{{--                    <a href="{{route('event.create')}}" class="btn btn-secondary btn-block">--}}
+{{--                        <i class="fas fa-plus"></i> Add Event--}}
+{{--                    </a>--}}
+{{--                </div>--}}
 
 {{--            </div>--}}
 {{--        </div>--}}
@@ -274,22 +274,24 @@
 
 
 @extends('layouts.admin-thema')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">
     <div class="admin2-menu">
         <ol>
-            <a href="../../index.html"><li><img src="../../img/logo-white.svg" alt=""></li></a>
-            <a href="../../index.html"><li class="p-lead home-menu-toggle">Home</li></a>
-            <a href="../users/edit.html"><p class="p-lead admin-menu-name">Mark Gomez</p></a>
+            <a href="/"><li><img src="{{asset('img/logo-white.svg')}}" alt=""></li></a>
+            <a href="/"><li class="p-lead home-menu-toggle">Home</li></a>
+            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead admin-menu-name">{{Auth::user()->name}}</p></a>
             <hr>
-            <a href="../dashboard.html"><li class="p-lead"><i class="fas fa-home"></i> Dashboard</li></a>
-            <a href="../restaurants/index.html"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>
-            <a href="../events/index.html"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
-            <a href="index.html"><li class="p-lead active"><i class="fas fa-camera"></i> Gallery</li></a>
-            <a href="../booking/index.html"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
-            <a href="../actions/index.html"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
+            <a href="/admin"><li class="p-lead"><i class="fas fa-home"></i> Dashboard</li></a>
+            <a href="{{route('restaurant.index')}}"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>
+                <a href="{{route('event.index')}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
+                <a href="{{route('gallery.index')}}"><li class="p-lead active"><i class="fas fa-camera"></i> Gallery</li></a>
+                <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
+            @if($platinium)
+                <a href="{{route('actions.index')}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
+            @endif
             <a href="#"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> Logout</p></a>
         </ol>
     </div>
@@ -304,35 +306,42 @@
                 <i class="fas fa-bars"></i>
             </a>
 
-            <a href="#"><p class="p-lead"><i class="fas fa-sign-out-alt"></i> Logout</p></a>
-            <a href="../users/edit.html"><p class="p-lead">Mark Gomez</p> <img src="../../img/testimonial2.png" alt=""></a>
+            <a href="{{route('logout')}}" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+                <p class="p-lead"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
         </div>
         <div class="dashboard-content">
             <div class="search-inputs">
                 <i class="fas fa-search"></i>
-                <input class="search" type="text" placeholder="Search photo ...">
+                <input class="search" name="serach" id="serach" type="text" placeholder="Search photo ...">
                 <div class="sorting-button-box" id="sorting-button-box">
-                    <a class="header-inputs-tirkiz" href="#"><i class="fas fa-camera"></i> SORTING PHOTOS</a>
+                    <a class="header-inputs-tirkiz sorting" data-sorting_type="asc" data-column_name="id" href="#"><i class="fas fa-camera"></i> SORTING PHOTOS</a>
                 </div>
             </div>
             <div class="dashboard-table" id="restaurants-table">
-                <table>
+                @if(count($restaurants) > 0)
+                <table class="table table-striped">
+                    <thead>
                     <tr>
                         <th>RESTAURANT</th>
                         <th>COUNT</th>
                     </tr>
-                    <tr>
-                        <td>Carpe diem</td>
-                        <td>7</td>
-                        <td class="center-buttons"><a class="blue" href="edit.html">Upload/Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>Carpe diem</td>
-                        <td>11</td>
-                        <td class="center-buttons"><a class="blue" href="edit.html">Upload/Delete</a></td>
-                    </tr>
-
+                    </thead>
+                    <tbody>
+                    @include('silver.ajax.restaurants_choose_data')
+                    @else
+                        <h1 class="text-center">First add restaurant</h1>
+                    @endif
+                    </tbody>
                 </table>
+                    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+                    <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />
+                    <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
             </div>
 
         </div>
@@ -342,5 +351,74 @@
 @endsection
 
 @section('footer')
+    <script>
+        $(document).ready(function(){
 
+            function clear_icon()
+            {
+                $('#id_icon').html('');
+                $('#post_title_icon').html('');
+            }
+
+            function fetch_data(page, sort_type, sort_by, query)
+            {
+                $.ajax({
+                    url:"/admin/gallery/jLYZFd64ggZe3s8f?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    success:function(data)
+                    {
+                        $('tbody').html('');
+                        $('tbody').html(data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#serach', function(){
+                var query = $('#serach').val();
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+                var page = $('#hidden_page').val();
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+            $(document).on('click', '.sorting', function(){
+                var column_name = $(this).data('column_name');
+                var order_type = $(this).data('sorting_type');
+                var reverse_order = '';
+                if(order_type == 'asc')
+                {
+                    $(this).data('sorting_type', 'desc');
+                    reverse_order = 'desc';
+                    clear_icon();
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
+                }
+                if(order_type == 'desc')
+                {
+                    $(this).data('sorting_type', 'asc');
+                    reverse_order = 'asc';
+                    clear_icon
+                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
+                }
+                $('#hidden_column_name').val(column_name);
+                $('#hidden_sort_type').val(reverse_order);
+                var page = $('#hidden_page').val();
+                var query = $('#serach').val();
+                fetch_data(page, reverse_order, column_name, query);
+            });
+
+            $(document).on('click', '.pagination a', function(event){
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                $('#hidden_page').val(page);
+                var column_name = $('#hidden_column_name').val();
+                var sort_type = $('#hidden_sort_type').val();
+
+                var query = $('#serach').val();
+
+                $('li').removeClass('active');
+                $(this).parent().addClass('active');
+                fetch_data(page, sort_type, column_name, query);
+            });
+
+        });
+    </script>
 @endsection

@@ -887,7 +887,7 @@ body {
 }
 
 
-label[for=upload] {
+label[for=file] {
     text-decoration: none;
     color: white;
     width: 84%;
@@ -904,7 +904,7 @@ label[for=upload] {
     transition: 0.3s!important;
     cursor: pointer;
 }
-label[for=upload]:hover {
+label[for=file]:hover {
     background-color: #c45555;
     -webkit-transition: 0.3s!important;
     -moz-transition: 0.3s!important;

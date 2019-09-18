@@ -28,7 +28,7 @@ class AuthorGalleryController extends Controller
         return view('silver.gallery.index', compact('restaurants', 'notifications', 'platinium'));
     }
 
-    function fetch_data(Request $request)
+    function fetch_data(Request $request, $id)
     {
         if($request->ajax())
         {
@@ -90,6 +90,8 @@ class AuthorGalleryController extends Controller
             ->where('is_read', 1)
             ->get();
 
+
+
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $restaurants = Restaurant::findOrFail($id);
         $restaurant_id = $restaurants['id'];
@@ -97,10 +99,15 @@ class AuthorGalleryController extends Controller
         return view('silver.gallery.edit', compact('restaurants', 'gallerys', 'notifications', 'platinium'));
     }
 
+
+
     function fetch_data2(Request $request)
     {
+
         if($request->ajax())
         {
+//            $restaurant = Restaurant::findOrFail($id);
+//            dd($restaurant['id']);
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
@@ -109,6 +116,7 @@ class AuthorGalleryController extends Controller
                 ->orWhere('photo', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
                 ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
                 ->paginate(5);
+
             return view('silver.ajax.gallerys_data', compact('gallerys'))->render();
         }
     }

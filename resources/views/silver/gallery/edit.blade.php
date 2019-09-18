@@ -200,11 +200,11 @@
                             <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />
                             <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
                         </form>
-                        {{--<div class="row">--}}
-                            {{--<div class="col-12 d-flex justify-content-center">--}}
-                                {{--{{$photos->onEachSide(1)->links()}}--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+{{--                                {{$gallerys->onEachSide(1)->links()}}--}}
+                            </div>
+                        </div>
 
 
                     </div>
@@ -331,3 +331,209 @@
     </script>
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+{{--@extends('layouts.admin-thema')--}}
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
+{{--<style>--}}
+{{--    #upload-form-buttons {--}}
+{{--        display: inline;--}}
+{{--    }--}}
+{{--</style>--}}
+{{--@section('content')--}}
+{{--<!-- START MENU -->--}}
+{{--<section id="admin2-dashboard">--}}
+{{--    <div class="admin2-menu">--}}
+{{--        <ol>--}}
+{{--            <a href="/"><li><img src="{{asset('img/logo-white.svg')}}" alt=""></li></a>--}}
+{{--            <a href="/"><li class="p-lead home-menu-toggle">Home</li></a>--}}
+{{--            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead admin-menu-name">{{Auth::user()->name}}</p></a>--}}
+{{--            <hr>--}}
+{{--            <a href="/admin"><li class="p-lead"><i class="fas fa-home"></i> Dashboard</li></a>--}}
+{{--            <a href="{{route('restaurant.index')}}"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>--}}
+{{--            <a href="{{route('event.index')}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>--}}
+{{--            <a href="{{route('gallery.index')}}"><li class="p-lead active"><i class="fas fa-camera"></i> Gallery</li></a>--}}
+{{--            <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>--}}
+{{--            @if($platinium)--}}
+{{--                <a href="{{route('actions.index')}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>--}}
+{{--            @endif--}}
+{{--            <a href="#"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> Logout</p></a>--}}
+{{--        </ol>--}}
+{{--    </div>--}}
+{{--    <!-- END MENU -->--}}
+
+{{--    <!-- START PACKAGE CONTENT -->--}}
+{{--    <div class="admin2-dashboard-content">--}}
+{{--        <div class="dashboard-header">--}}
+{{--            <i class="fas fa-camera"></i><h2>Photos</h2>--}}
+
+{{--            <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">--}}
+{{--                <i class="fas fa-bars"></i>--}}
+{{--            </a>--}}
+
+{{--            <a href="{{route('logout')}}" onclick="event.preventDefault();--}}
+{{--            document.getElementById('logout-form').submit();">--}}
+{{--                <p class="p-lead"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>--}}
+{{--            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+{{--                @csrf--}}
+{{--            </form>--}}
+
+{{--            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>--}}
+{{--        </div>--}}
+{{--        <div class="dashboard-content">--}}
+
+
+
+{{--            <div class="search-inputs">--}}
+{{--                <i class="fas fa-search"></i>--}}
+{{--                <input class="search-2" id="serach" name="serach" type="text" placeholder="Search photo ...">--}}
+
+{{--                {{ Form::model($restaurants, ['method'=>'PUT', 'id'=>'upload-form-buttons', 'action'=>['AuthorGalleryController@update', $restaurants->id], 'files'=>true]) }}--}}
+{{--                <div class="add-button-box add-button-all only-width">--}}
+{{--                {{ Form::label('file', 'Browse...', ['class'=>'custom-file-label'])}}--}}
+{{--                {{ Form::file('file[]', array('multiple'=>true,'accept'=>'image/*','id'=>'upload'))  }}--}}
+{{--                </div>--}}
+{{--                <div class="add-button-box add-button-all add-margin-left only-upload-width">--}}
+{{--                    {{ Form::submit('Upload', ['class'=>'header-inputs-tirkiz-3'])  }}--}}
+{{--                </div>--}}
+{{--                {{ Form::close()  }}--}}
+
+{{--                <div class="sorting-button-box add-button-all add-margin-left last-margin-left only-width">--}}
+{{--                    <a class="header-inputs-tirkiz sorting" data-sorting_type="asc" data-column_name="id" href="#"><i class="fas fa-camera"></i> SORTING PHOTOS</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="dashboard-table" id="restaurants-table">--}}
+{{--                <form action="delete/gallery" method="post" class="form-inline">--}}
+{{--                {{csrf_field()}}--}}
+{{--                {{method_field('delete')}}--}}
+{{--                    <select class="media-select" name="checkBoxArray" id="">--}}
+{{--                        <option>DELETE</option>--}}
+{{--                    </select>--}}
+{{--                    <input class="media-submit" name="delete_all" type="submit" value="Submit">--}}
+{{--                    @if(count($gallerys) > 0)--}}
+{{--                    <table class="table table-striped">--}}
+{{--                    <thead class="thead-dark">--}}
+{{--                    <tr>--}}
+{{--                        <th class="checkb"><input type="checkbox"></th>--}}
+{{--                        <th>ID</th>--}}
+{{--                        <th>PICTURE</th>--}}
+{{--                        <th>CREATED</th>--}}
+{{--                    </tr>--}}
+{{--                    </thead>--}}
+{{--                    <tbody>--}}
+{{--                    @include('silver.ajax.gallerys_data')--}}
+{{--                    @else--}}
+{{--                        <h1 class="text-center">Upload your gallery</h1>--}}
+{{--                    @endif--}}
+{{--                    </tbody>--}}
+{{--                </table>--}}
+{{--                <input type="hidden" name="hidden_page" id="hidden_page" value="1" />--}}
+{{--                <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />--}}
+{{--                <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />--}}
+{{--                </form>--}}
+{{--                --}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+{{--<!-- END PACKAGE CONTENT -->--}}
+{{--@endsection--}}
+
+{{--@section('footer')--}}
+{{--    <script>--}}
+{{--        $(document).ready(function() {--}}
+{{--            $('#options').click(function() {--}}
+{{--                if(this.checked) {--}}
+{{--                    $('.checkBoxes').each(function() {--}}
+{{--                        this.checked = true;--}}
+{{--                    })--}}
+{{--                } else {--}}
+{{--                    $('.checkBoxes').each(function() {--}}
+{{--                        this.checked = false;--}}
+{{--                    });--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--    <script>--}}
+{{--        $(document).ready(function(){--}}
+
+{{--            function clear_icon()--}}
+{{--            {--}}
+{{--                $('#id_icon').html('');--}}
+{{--                $('#post_title_icon').html('');--}}
+{{--            }--}}
+
+{{--            function fetch_data(page, sort_type, sort_by, query)--}}
+{{--            {--}}
+{{--                $.ajax({--}}
+{{--                    url:"/admin/gallery/{id}/cKS3dpqP6xF6qZEf?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,--}}
+{{--                    success:function(data)--}}
+{{--                    {--}}
+{{--                        $('tbody').html('');--}}
+{{--                        $('tbody').html(data);--}}
+{{--                    }--}}
+{{--                })--}}
+{{--            }--}}
+
+{{--            $(document).on('keyup', '#serach', function(){--}}
+{{--                var query = $('#serach').val();--}}
+{{--                var column_name = $('#hidden_column_name').val();--}}
+{{--                var sort_type = $('#hidden_sort_type').val();--}}
+{{--                var page = $('#hidden_page').val();--}}
+{{--                fetch_data(page, sort_type, column_name, query);--}}
+{{--            });--}}
+
+{{--            $(document).on('click', '.sorting', function(){--}}
+{{--                var column_name = $(this).data('column_name');--}}
+{{--                var order_type = $(this).data('sorting_type');--}}
+{{--                var reverse_order = '';--}}
+{{--                if(order_type == 'asc')--}}
+{{--                {--}}
+{{--                    $(this).data('sorting_type', 'desc');--}}
+{{--                    reverse_order = 'desc';--}}
+{{--                    clear_icon();--}}
+{{--                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');--}}
+{{--                }--}}
+{{--                if(order_type == 'desc')--}}
+{{--                {--}}
+{{--                    $(this).data('sorting_type', 'asc');--}}
+{{--                    reverse_order = 'asc';--}}
+{{--                    clear_icon--}}
+{{--                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');--}}
+{{--                }--}}
+{{--                $('#hidden_column_name').val(column_name);--}}
+{{--                $('#hidden_sort_type').val(reverse_order);--}}
+{{--                var page = $('#hidden_page').val();--}}
+{{--                var query = $('#serach').val();--}}
+{{--                fetch_data(page, reverse_order, column_name, query);--}}
+{{--            });--}}
+
+{{--            $(document).on('click', '.pagination a', function(event){--}}
+{{--                event.preventDefault();--}}
+{{--                var page = $(this).attr('href').split('page=')[1];--}}
+{{--                $('#hidden_page').val(page);--}}
+{{--                var column_name = $('#hidden_column_name').val();--}}
+{{--                var sort_type = $('#hidden_sort_type').val();--}}
+
+{{--                var query = $('#serach').val();--}}
+
+{{--                $('li').removeClass('active');--}}
+{{--                $(this).parent().addClass('active');--}}
+{{--                fetch_data(page, sort_type, column_name, query);--}}
+{{--            });--}}
+
+{{--        });--}}
+{{--    </script>--}}
+{{--@endsection--}}
