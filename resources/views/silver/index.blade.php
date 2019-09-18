@@ -286,7 +286,7 @@
             <div class="dashboard-right-box" id="user-dashboard-right-box">
                 <div class="blue-box" id="user-blue-box">
                     <p class="p-lead">Package</p>
-                    <p class="p-lead-number">Platinium</p>
+                    <p class="p-lead-number">{{$user->package ? $user->package->name : 'Uncategorized'}}</p>
                 </div>
             </div>
         </div>

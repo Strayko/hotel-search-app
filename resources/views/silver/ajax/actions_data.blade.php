@@ -5,22 +5,22 @@
         <td>{{Str::limit($action->body, 10)}}</td>
         <td>{{$action->created_at->diffForHumans()}}</td>
         <td>{{$action->updated_at->diffForHumans()}}</td>
-        <td>
+        <td class="center-buttons">
             @if($action->is_active == 1)
                 {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorActionsController@updateActions', $action->id]]) !!}
                 <input type="hidden" name="is_active" value="0">
-                {!! Form::submit('Un-approve', ['class'=>'btn btn-success']) !!}
+                {!! Form::submit('Un-approve', ['class'=>'blue-input', 'id'=>'blue-input-user-admin']) !!}
                 {!! Form::close() !!}
             @else
                 {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorActionsController@updateActions', $action->id]]) !!}
                 <input type="hidden" name="is_active" value="1">
-                {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
+                {!! Form::submit('Approve', ['class'=>'blue-input', 'id'=>'blue-input-user-admin']) !!}
                 {!! Form::close() !!}
             @endif
         </td>
         <td>
-            <a href="{{route('actions.edit', $action->id)}}" class="btn btn-secondary">
-                <i class="fas fa-calendar-alt"></i> Edit/Delete
+            <a href="{{route('actions.edit', $action->id)}}" class="blue" id="blue-user-admin">
+                 Edit/Delete
             </a>
         </td>
     </tr>
