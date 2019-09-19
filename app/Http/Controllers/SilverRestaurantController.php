@@ -91,6 +91,7 @@ class SilverRestaurantController extends Controller
      */
     public function store(SilverRequest $request)
     {
+
 	    $input = $request->all();
 
         if(!Auth::user()->isFrei()) {
