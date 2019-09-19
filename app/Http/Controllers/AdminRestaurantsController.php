@@ -35,6 +35,7 @@ class AdminRestaurantsController extends Controller
     {
         if($request->ajax())
         {
+
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');

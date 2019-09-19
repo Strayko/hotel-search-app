@@ -177,6 +177,7 @@
                                 <div class="form-group">
                                     <input type="submit" name="delete_all" class="btn btn-primary px-5" value="Submit">
                                 </div>
+                            </form>
                         </div>
                         @if(count($gallerys) > 0)
                         <table class="table table-striped">

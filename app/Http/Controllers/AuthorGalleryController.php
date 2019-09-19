@@ -108,6 +108,9 @@ class AuthorGalleryController extends Controller
         {
 //            $restaurant = Restaurant::findOrFail($id);
 //            dd($restaurant['id']);
+
+
+
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
