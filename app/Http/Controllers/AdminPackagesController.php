@@ -43,7 +43,7 @@ class AdminPackagesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.package.create');
     }
 
     /**

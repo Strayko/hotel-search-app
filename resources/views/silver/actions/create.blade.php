@@ -231,7 +231,11 @@
             <a href="{{route('gallery.index')}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
             <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
             <a href="{{route('actions.index')}}"><li class="p-lead active"><i class="fas fa-wallet"></i> Actions</li></a>
-            <a href="#"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> Logout</p></a>
+            <a href="{{route('logout')}}" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </ol>
     </div>
     <!-- END MENU -->
