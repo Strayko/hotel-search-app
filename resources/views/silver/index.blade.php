@@ -217,86 +217,86 @@
 @extends('layouts.admin-thema')
 
 @section('content')
-<!-- START MENU -->
-<section id="admin2-dashboard">
-    <div class="admin2-menu">
-        <ol>
-            <a href="/"><li><img src="{{asset('img/logo-white.svg')}}" alt=""></li></a>
-            <a href="/"><li class="p-lead home-menu-toggle">Home</li></a>
-            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead admin-menu-name">{{Auth::user()->name}}</p></a>
-            <hr>
-            <a href="/admin"><li class="p-lead active"><i class="fas fa-home"></i> Dashboard</li></a>
-            <a href="{{route('restaurant.index')}}"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>
-            @if($platinium || $gold)
-            <a href="{{route('event.index')}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
-            <a href="{{route('gallery.index')}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
-            <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
-            @endif
-            @if($platinium)
-            <a href="{{route('actions.index')}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
-            @endif
-            <a href="{{route('logout')}}" onclick="event.preventDefault();
+    <!-- START MENU -->
+    <section id="admin2-dashboard">
+        <div class="admin2-menu">
+            <ol>
+                <a href="/"><li><img src="{{asset('img/logo-white.svg')}}" alt=""></li></a>
+                <a href="/"><li class="p-lead home-menu-toggle">Home</li></a>
+                <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead admin-menu-name">{{Auth::user()->name}}</p></a>
+                <hr>
+                <a href="/admin"><li class="p-lead active"><i class="fas fa-home"></i> Dashboard</li></a>
+                <a href="{{route('restaurant.index')}}"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>
+                @if($platinium || $gold)
+                    <a href="{{route('event.index')}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
+                    <a href="{{route('gallery.index')}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
+                    <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
+                @endif
+                @if($platinium)
+                    <a href="{{route('actions.index')}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
+                @endif
+                <a href="{{route('logout')}}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </ol>
-    </div>
-    <!-- END MENU -->
-
-    <!-- START DASHBOARD CONTENT -->
-    <div class="admin2-dashboard-content">
-        <div class="dashboard-header">
-            <i class="fas fa-home"></i><h2>Dashboard</h2>
-
-            <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
-                <i class="fas fa-bars"></i>
-            </a>
-
-            <a href="{{route('logout')}}" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">
-            <p class="p-lead"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-
-            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </ol>
         </div>
-        <div class="dashboard-content">
-            <div class="dashboard-table" id="user-admin-dashboard">
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>RESTAURANT</th>
-                        <th>BODY</th>
-                        <th>COMMENTS</th>
-                        <th>CREATED</th>
-                    </tr>
-                    @if($restaurants)
-                        @foreach($restaurants as $restaurant)
-                            <tr>
-                                <td>1</td>
-                                <td>{{$restaurant->title}}</td>
-                                <td>{{$restaurant->body}}</td>
-                                <td>{{$restaurant->comments->count()}}</td>
-                                <td>{{$restaurant->created_at->diffForHumans()}}</td>
-                                <td class="center-buttons"><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">View</a></td>
-                            </tr>
-                        @endforeach
-                    @endif
+        <!-- END MENU -->
 
-                </table>
+        <!-- START DASHBOARD CONTENT -->
+        <div class="admin2-dashboard-content">
+            <div class="dashboard-header">
+                <i class="fas fa-home"></i><h2>Dashboard</h2>
+
+                <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
+                    <i class="fas fa-bars"></i>
+                </a>
+
+                <a href="{{route('logout')}}" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+                    <p class="p-lead"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+                <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
             </div>
-            <div class="dashboard-right-box" id="user-dashboard-right-box">
-                <div class="blue-box" id="user-blue-box">
-                    <p class="p-lead">Package</p>
-                    <p class="p-lead-number">{{$user->package ? $user->package->name : 'Uncategorized'}}</p>
+            <div class="dashboard-content">
+                <div class="dashboard-table" id="user-admin-dashboard">
+                    <table>
+                        <tr>
+
+                            <th>RESTAURANT</th>
+                            <th>BODY</th>
+                            <th>COMMENTS</th>
+                            <th>CREATED</th>
+                        </tr>
+                        @if($restaurants)
+                            @foreach($restaurants as $restaurant)
+                                <tr>
+
+                                    <td>{{$restaurant->title}}</td>
+                                    <td>{{$restaurant->body}}</td>
+                                    <td>{{$restaurant->comments->count()}}</td>
+                                    <td>{{$restaurant->created_at->diffForHumans()}}</td>
+                                    <td class="center-buttons"><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">View</a></td>
+                                </tr>
+                            @endforeach
+                        @endif
+
+                    </table>
+                </div>
+                <div class="dashboard-right-box" id="user-dashboard-right-box">
+                    <div class="blue-box" id="user-blue-box">
+                        <p class="p-lead">Package</p>
+                        <p class="p-lead-number">{{$user->package ? $user->package->name : 'Uncategorized'}}</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- END DASHBOARD CONTENT -->
+    </section>
+    <!-- END DASHBOARD CONTENT -->
 @endsection
 
 @section('footer')

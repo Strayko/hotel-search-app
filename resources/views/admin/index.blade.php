@@ -447,7 +447,7 @@
                 @csrf
             </form>
 
-            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
+            <a href="{{route('users.edit', Auth::user()->id)}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
         </div>
         <div class="dashboard-content">
             <div class="dashboard-table dashboard-table-top-margin">
