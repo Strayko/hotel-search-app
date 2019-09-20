@@ -28,7 +28,7 @@ class AuthorGalleryController extends Controller
         return view('silver.gallery.index', compact('restaurants', 'notifications', 'platinium'));
     }
 
-    function fetch_data(Request $request, $id)
+    function fetch_data(Request $request)
     {
         if($request->ajax())
         {

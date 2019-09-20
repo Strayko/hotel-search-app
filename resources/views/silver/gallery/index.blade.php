@@ -275,6 +275,18 @@
 
 @extends('layouts.admin-thema')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<style>
+    .page-item {
+        display: inline-block;
+    }
+    .page-item.disabled {
+        padding: 5px 20px 5px 20px;
+        background-color: #c45555;
+    }
+    .active .page-link {
+        padding: 20px;
+    }
+</style>
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">

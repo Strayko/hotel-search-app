@@ -183,6 +183,7 @@ class SilverRestaurantController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request->all());
 	    $input = $request->all();
 	    $restaurant = Restaurant::findOrFail($id);
 

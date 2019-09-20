@@ -460,15 +460,7 @@
         .tab {
             display: none;
         }
-        button {
-            background-color: #4CAF50;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 17px;
-            font-family: Raleway;
-            cursor: pointer;
-        }
+
         button:hover {
             opacity: 0.8;
         }
@@ -489,7 +481,7 @@
             opacity: 1;
         }
         .step.finish {
-            background-color: #4CAF50;
+            background-color: #77a1ee;
         }
         #yourBox {
             -ms-transform: scale(0.7); /* IE */
@@ -524,6 +516,12 @@
         .label-grey-size {
             font-size: 12px!important;
             float: right;
+        }
+        .form-buttons .form-next {
+            font-family: AvenirNextLTPro-Regular, 'sans-serif';
+        }
+        .form-buttons .form-previous {
+            font-family: AvenirNextLTPro-Regular, 'sans-serif';
         }
     </style>
 
@@ -678,11 +676,11 @@
                         <hr class="between-fields">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         {!! Form::label('lat', 'Lat:') !!}
                         {!! Form::text('lat', null) !!}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         {!! Form::label('lng', 'Lng:') !!}
                         {!! Form::text('lng', null) !!}
                     </div>

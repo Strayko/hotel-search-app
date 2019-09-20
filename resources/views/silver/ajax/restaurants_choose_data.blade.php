@@ -4,7 +4,7 @@
         <td>{{$restaurant->title}}</td>
         <td>{{$restaurant->gallery->count()}}</td>
 
-        <td class="d-flex justify-content-center">
+        <td class="d-flex justify-content-center" style="text-align: center;">
             <a href="{{route('gallery.edit', $restaurant->id)}}" class="btn btn-secondary">
                 <i class="fas fa-images"></i> Upload/Delete
             </a>
