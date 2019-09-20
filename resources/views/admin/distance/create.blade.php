@@ -1,5 +1,7 @@
 @extends('layouts.admin-thema')
+<style>
 
+</style>
 @section('content')
     <!-- START MENU -->
     <section id="admin2-dashboard">
@@ -11,13 +13,13 @@
                 <hr>
                 <a href="/admin2"><li class="p-lead"><i class="fas fa-home"></i> Dashboard</li></a>
                 <a href="{{route('restaurants.index')}}"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>
-                <a href="{{route('packages.index')}}"><li class="p-lead active"><i class="fas fa-box"></i> Packages</li></a>
+                <a href="{{route('packages.index')}}"><li class="p-lead"><i class="fas fa-box"></i> Packages</li></a>
                 <a href="{{route('users.index')}}"><li class="p-lead"><i class="fas fa-users"></i> Users</li></a>
                 <a href="{{route('media.index')}}"><li class="p-lead"><i class="fas fa-camera"></i> Media</li></a>
                 <a href="{{route('comments.index')}}"><li class="p-lead"><i class="fas fa-comments"></i> Comments</li></a>
                 <a href="{{route('locations.index')}}"><li class="p-lead"><i class="fas fa-map-marker-alt"></i> Locations</li></a>
                 <a href="{{route('foods.index')}}"><li class="p-lead"><i class="fas fa-hamburger"></i> Foods</li></a>
-                <a href="{{route('distance.index')}}"><li class="p-lead"><i class="fab fa-font-awesome-flag"></i> Distances</li></a>
+                <a href="{{route('distance.index')}}"><li class="p-lead active"><i class="fab fa-font-awesome-flag"></i> Distances</li></a>
                 <a href="{{route('blog.index')}}"><li class="p-lead"><i class="fab fa-blogger-b"></i> Blog</li></a>
                 <a href="{{route('logout')}}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
@@ -31,7 +33,7 @@
         <!-- START PACKAGE CONTENT -->
         <div class="admin2-dashboard-content">
             <div class="dashboard-header">
-                <i class="fas fa-box"></i><h2>Packages</h2>
+                <i class="fab fa-font-awesome-flag"></i><h2>Distances</h2>
 
                 <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
                     <i class="fas fa-bars"></i>
@@ -59,14 +61,14 @@
                                 </ul>
                             </div>
                         @endif
-                        <p class="p-lead-h4">Create a new package</p>
+                        <p class="p-lead-h4">Create a new distance</p>
 
-                        {!! Form::open(['method'=>'POST', 'action'=>'AdminPackagesController@store']) !!}
+                        {!! Form::open(['method'=>'POST', 'action'=>'AdminRadiusController@store']) !!}
                         {{csrf_field()}}
-                        {!! Form::label('name', 'NAME', ['class'=>'label-grey-small']) !!}
-                        {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
+                        {!! Form::label('distance', 'NAME', ['class'=>'label-grey-small']) !!}
+                        {!! Form::text('distance', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
 
-                        <button class="create-input-button" type="submit"><i class="fas fa-box"></i> CREATE</button>
+                        <button class="create-input-button" type="submit"><i class="fab fa-font-awesome-flag"></i> CREATE</button>
                         {!! Form::close() !!}
                     </div>
 
