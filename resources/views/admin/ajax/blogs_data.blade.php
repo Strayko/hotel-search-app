@@ -5,15 +5,15 @@
         <td>{{$blog->title}}</td>
         <td>{{$blog->body}}</td>
         <td>{{$blog->created_at->diffForHumans()}}</td>
-        <td class="d-flex justify-content-center">
-            <a href="{{route('blog.edit', $blog->id)}}" class="btn btn-secondary mr-1">
-                <i class="fas fa-utensils"></i> Edit
+        <td class="center-buttons">
+            <a href="{{route('blog.edit', $blog->id)}}" class="blue">
+                 Edit
             </a>
-            <a href="#" class="d-inline-block">
-                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminBlogController@destroy', $blog->id]]) !!}
-                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
+
+                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminBlogController@destroy', $blog->id], 'class'=>'form-inline']) !!}
+            <input type="submit" class="red-input" value="Delete">
                 {!! Form::close() !!}
-            </a>
+
         </td>
     </tr>
 @endforeach
@@ -24,3 +24,8 @@
         </div>
     </td>
 </tr>
+
+
+
+
+
