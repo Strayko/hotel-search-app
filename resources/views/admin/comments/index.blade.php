@@ -261,6 +261,12 @@
 
 @extends('layouts.admin-thema')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<style>
+    #comment-link-restaurant {
+        background-color: transparent;
+        color: #1a82e2 ;
+    }
+</style>
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">

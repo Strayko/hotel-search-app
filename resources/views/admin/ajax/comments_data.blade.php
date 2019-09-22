@@ -4,7 +4,7 @@
         <td>{{$comment->author}}</td>
         <td>{{$comment->email}}</td>
         <td>{{Str::limit($comment->body, 15)}}</td>
-        <td><a href="{{route('single_restaurant.restaurant', $comment->restaurant->slug)}}">{{$comment->restaurant->title}}</a></td>
+        <td><a id="comment-link-restaurant" href="{{route('single_restaurant.restaurant', $comment->restaurant->slug)}}">{{$comment->restaurant->title}}</a></td>
 
         <td class="center-buttons">
             @if($comment->is_active == 1)

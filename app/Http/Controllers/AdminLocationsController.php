@@ -45,7 +45,7 @@ class AdminLocationsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.locations.create');
     }
 
     /**

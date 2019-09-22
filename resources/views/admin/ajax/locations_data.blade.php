@@ -7,15 +7,15 @@
             <td>{{$location->created_at->diffForHumans()}}</td>
             <td>{{$location->updated_at->diffForHumans()}}</td>
 
-            <td class="d-flex justify-content-end">
-                <a href="{{route('locations.edit', $location->id)}}" class="btn btn-secondary">
-                    <i class="fas fa-map-marker-alt"></i> Edit
+            <td class="center-buttons">
+                <a href="{{route('locations.edit', $location->id)}}" class="blue">
+                     Edit
                 </a>
-                <a href="#" class="d-inline-block ml-1">
-                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminLocationsController@destroy', $location->id]]) !!}
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
+
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminLocationsController@destroy', $location->id], 'class'=>'form-inline']) !!}
+                    <input type="submit" class="red-input" value="Delete">
                     {!! Form::close() !!}
-                </a>
+
             </td>
         </tr>
     @endforeach
@@ -27,3 +27,4 @@
         </div>
     </td>
 </tr>
+
