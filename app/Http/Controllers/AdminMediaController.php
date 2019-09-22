@@ -32,10 +32,19 @@ class AdminMediaController extends Controller
     }
 
     public function store(Request $request) {
+
     	$file = $request->file('file');
-    	$name = time() . $file->getClientOriginalName();
-    	$file->move('images', $name);
-    	Photo::create(['file'=>$name]);
+    	if($request->hasFile('file')) {
+            foreach($file as $fil) {
+                $name = time(). $fil->getClientOriginalName();
+                $fil->move('images', $name);
+                Photo::create(['file'=>$name]);
+            }
+        }
+    	return redirect()->back();
+//    	$name = time() . $file->getClientOriginalName();
+//    	$file->move('images', $name);
+//    	Photo::create(['file'=>$name]);
     }
 
     public function destroy($id) {
