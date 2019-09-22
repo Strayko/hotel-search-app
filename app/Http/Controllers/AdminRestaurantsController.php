@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Distance;
 use App\Food;
 use App\Http\Requests\RestaurantCreateRequest;
@@ -10,6 +11,7 @@ use App\Package;
 use App\Pdf;
 use App\Photo;
 use App\Restaurant;
+use App\Social;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -74,6 +76,25 @@ class AdminRestaurantsController extends Controller
     {
 	    $input = $request->all();
 	    $user = Auth::user();
+
+        $social_network = Social::create([
+            'facebook'=>$input['facebook'],
+            'twitter'=>$input['twitter'],
+            'instagram'=>$input['instagram'],
+            'google'=>$input['google']
+        ]);
+        $input['social_network_id'] = $social_network->id;
+
+        $contact_information = Contact::create([
+            'address2'=>$input['address2'],
+            'email'=>$input['email'],
+            'telephone'=>$input['telephone'],
+            'mobile'=>$input['mobile'],
+            'opening'=>$input['opening'],
+            'closing'=>$input['closing']
+        ]);
+        $input['contact_id'] = $contact_information->id;
+
 	    if($file = $request->file('photo_id')) {
 		    $name = time() . $file->getClientOriginalName();
 		    $file->move('images', $name);
@@ -129,6 +150,25 @@ class AdminRestaurantsController extends Controller
     {
     	$restaurant = Restaurant::findOrFail($id);
         $input = $request->all();
+
+        $social_network = Social::create([
+            'facebook'=>$input['facebook'],
+            'twitter'=>$input['twitter'],
+            'instagram'=>$input['instagram'],
+            'google'=>$input['google']
+        ]);
+        $input['social_network_id'] = $social_network->id;
+
+        $contact_information = Contact::create([
+            'address2'=>$input['address2'],
+            'email'=>$input['email'],
+            'telephone'=>$input['telephone'],
+            'mobile'=>$input['mobile'],
+            'opening'=>$input['opening'],
+            'closing'=>$input['closing']
+        ]);
+        $input['contact_id'] = $contact_information->id;
+
         if($file = $request->file('photo_id')) {
 			$name = time() . $file->getClientOriginalName();
 			$file->move('images', $name);

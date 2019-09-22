@@ -212,11 +212,9 @@ class SilverRestaurantController extends Controller
         $contact_information->save();
 
 	    if($file = $request->file('photo_id')) {
-		    $name = time() . $file->getClientOriginalName();
-		    $file->move('images', $name);
-		    $photo = Photo::find($restaurant->photo->id);
-		    $photo->file = $name;
-            $photo->save();
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id;
 	    }
 
