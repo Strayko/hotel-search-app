@@ -61,14 +61,14 @@
                                 </ul>
                             </div>
                         @endif
-                        <p class="p-lead-h4">Edit food</p>
+                        <p class="p-lead-h4">Create a new food</p>
 
-                        {!! Form::model($food, ['method'=>'PATCH', 'action'=>['AdminFoodController@update', $food->id]]) !!}
+                        {!! Form::open(['method'=>'POST', 'action'=>'AdminFoodController@store']) !!}
                         {{csrf_field()}}
                         {!! Form::label('name', 'NAME', ['class'=>'label-grey-small']) !!}
                         {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
 
-                        <button class="create-input-button" type="submit"><i class="fas fa-hamburger"></i> UPDATE</button>
+                        <button class="create-input-button" type="submit"><i class="fas fa-hamburger"></i> CREATE</button>
                         {!! Form::close() !!}
                     </div>
 

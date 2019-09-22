@@ -42,7 +42,7 @@ class AdminFoodController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.foods.create');
     }
 
     /**

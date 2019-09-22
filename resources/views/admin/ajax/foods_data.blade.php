@@ -5,15 +5,15 @@
         <td>{{$food->created_at->diffForHumans()}}</td>
         <td>{{$food->updated_at->diffForHumans()}}</td>
 
-        <td class="d-flex justify-content-end">
-            <a href="{{route('foods.edit', $food->id)}}" class="btn btn-secondary">
-                <i class="fas fa-pepper-hot"></i> Edit
+        <td class="center-buttons">
+            <a href="{{route('foods.edit', $food->id)}}" class="blue">
+              Edit
             </a>
-            <a href="#" class="d-inline-block ml-1">
-                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminFoodController@destroy', $food->id]]) !!}
-                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i> Delete</button>
+
+                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminFoodController@destroy', $food->id], 'class'=>'form-inline']) !!}
+                 <input type="submit" class="red-input" value="Delete">
                 {!! Form::close() !!}
-            </a>
+
         </td>
     </tr>
 @endforeach
