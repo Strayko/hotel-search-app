@@ -74,8 +74,9 @@ class AdminUsersController extends Controller
     public function create()
     {
 
-
-        return view('admin.users.create');
+        $roles = Role::pluck('name', 'id')->all();
+        $packages = Package::pluck('name', 'id')->all();
+        return view('admin.users.create', compact('roles', 'packages'));
     }
 
     /**
@@ -86,6 +87,8 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
+
+
 	    if(trim($request->password) == '') {
 		    $input = $request->except('password');
 	    } else {

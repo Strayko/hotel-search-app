@@ -9,16 +9,16 @@
         <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
         <td>{{$user->created_at->diffForHumans()}}</td>
 
-        <td>
-            <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">
-                <i class="fas fa-user-edit"></i> Edit
+        <td class="center-buttons">
+            <a href="{{route('users.edit', $user->id)}}" class="blue">
+                 Edit
             </a>
-            <a href="#" class="d-inline-block mt-1">
-                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
-                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> Delete</button>
+
+                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id], 'class'=>'form-inline']) !!}
+                <input type="submit" class="red-input" value="Delete">
                 {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
                 {!! Form::close() !!}
-            </a>
+
         </td>
     </tr>
 @endforeach
@@ -29,3 +29,4 @@
         </div>
     </td>
 </tr>
+
