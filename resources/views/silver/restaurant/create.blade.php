@@ -662,7 +662,6 @@
                     <div class="upload-image">
                         <p class="label-grey-image-r">UPLOAD IMAGE</p>
                         <button type="button" class="input-file">
-
                             {!! Form::file('photo_id', null, ['class'=>'custom-file-input', 'id'=>'file-input']) !!}
                             {!! Form::label('photo_id', 'BROWSE', ['class'=>'custom-file-label', 'id'=>'pointers']) !!}
                         </button>

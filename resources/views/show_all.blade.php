@@ -139,6 +139,76 @@
     .page-item {
         display: inline-block;
     }
+    @media screen and (max-width: 550px) {
+        .restaurants-h4-page {
+            font-size: 15px!important;
+        }
+    }
+    /*#restaurants-h4-id {*/
+    /*    font-size: 15px!important;*/
+    /*}*/
+    /*#restaurants-h4-id2 {*/
+    /*    font-size: 15px!important;*/
+    /*}*/
+    @media screen and (max-width: 494px) {
+        #restaurants-h4-id {
+            font-size: 13px!important;
+        }
+        #restaurants-h4-id2 {
+            font-size: 13px!important;
+        }
+    }
+    @media screen and (max-width: 494px) {
+        .mobile-font {
+            font-size: 11px!important;
+        }
+    }
+    @media screen and (max-width: 440px) {
+        #restaurants-h4-id {
+            white-space: nowrap!important;
+            overflow: hidden!important;
+            text-overflow: ellipsis!important;
+            max-width: 150px!important;
+        }
+        #restaurants-h4-id2 {
+            white-space: nowrap!important;
+            overflow: hidden!important;
+            text-overflow: ellipsis!important;
+            max-width: 150px!important;
+        }
+    }
+    a[rel~="prev"] {
+        font-size: 48px;
+        margin-top: -17px;
+        position: absolute;
+    }
+    a[rel~="next"] {
+        font-size: 48px;
+        margin-top: -17px;
+        position: absolute;
+    }
+
+    .page-item {
+        display: inline-block;
+        color: #e24f4c;
+        padding: 5px 12px 5px 12px;
+    }
+    .page-item.disabled {
+
+    }
+    .page-link {
+        color: #e24f4c;
+        text-decoration: none;
+        margin-left: -16px;
+    }
+    .active .page-link {
+        -webkit-border-radius: 50px!important;
+        -moz-border-radius: 50px!important;
+        border-radius: 50px!important;
+        color: white;
+        background-color: #e24f4c;
+        padding: 5px 12px 5px 12px;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -197,17 +267,17 @@
                             </div>
                             <div class="container-box">
                                 <div class="container-box-header">
-                                    <h4>{{$restaurant->title}}</h4>
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
+                                    <h4 id="restaurants-h4-id2" class="restaurants-h4-page">{{Str::limit($restaurant->title, 20)}}</h4>
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
                                 </div>
                                 <div class="container-box-footer">
-                                    <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$restaurant->location->name}}</p>
+                                    <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p class="mobile-font">{{$restaurant->location->name}}</p>
                                     <hr>
-                                    <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p>34 Commnets</p>
+                                    <img src="img/chat-minify.svg" class="svg locationAndStar" alt=""><p class="mobile-font">34 Commnets</p>
                                 </div>
                             </div>
                         </div>
@@ -244,12 +314,12 @@
                             </div>
                             <div class="container-box">
                                 <div class="container-box-header">
-                                    <h4>{{$restaurant->title}}</h4>
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
-                                    <img src="img/star.svg" class="svg star" alt="">
+                                    <h4 id="restaurants-h4-id" class="restaurants-h4-page">{{Str::limit($restaurant->title, 20)}}</h4>
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
+                                    <img src="img/star.svg" class="svg star star-float-left" alt="">
                                 </div>
                                 <div class="container-box-footer">
                                     <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$restaurant->location->name}}</p>

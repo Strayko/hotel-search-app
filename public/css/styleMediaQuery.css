@@ -11,6 +11,9 @@
     }
 }
 @media screen and (max-width: 1200px) {
+    /*.container-box h4 {*/
+    /*    font-size: 14px;*/
+    /*}*/
     .main-slider {
         width: 80%;
     }
@@ -19,7 +22,6 @@
     }
     .restaurant-box {
         width: 90%;
-        height: 100%;
     }
     .right-circle {
         margin-right: -67px;
@@ -93,8 +95,18 @@
 }
 @media screen and (max-width: 1100px) {
     .search input {
-        font-size: 14px;
+        font-size: 15px;
 
+    }
+}
+@media screen and (max-width: 1074px) {
+    .container-box h4 {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 953px) {
+    .container-box h4 {
+        font-size: 16px;
     }
 }
 @media screen and (max-width: 945px) {
@@ -103,10 +115,10 @@
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
         border-radius: 50px;
-        width: 61%;
+        width: 66%;
         margin: 0 auto 10px auto;
         padding: 15px!important;
-        height: 18px!important;
+        height: 48px!important;
     }
     .search {
         margin-top: 47px;
@@ -163,6 +175,63 @@
         width: 80%;
     }
 }
+@media screen and (max-width: 849px) {
+    .container-box h4 {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .container-box h4 {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 757px) {
+    .container-box h4 {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 709px) {
+    .container-box h4 {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 690px) {
+    .container-box h4 {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 628px) {
+    .container-box h4 {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .container-box h4 {
+        font-size: 19px!important;
+    }
+}
+@media screen and (max-width: 464px) {
+    .container-box h4 {
+        font-size: 15px!important;
+    }
+}
+@media screen and (max-width: 386px) {
+    .container-box h4 {
+        font-size: 13px!important;
+    }
+}
+@media screen and (max-width: 334px) {
+    .container-box h4 {
+        font-size: 12px!important;
+    }
+}
+/*@media screen and (max-width: 507px) {*/
+/*    .container-box h4 {*/
+/*        font-size: 13px!important;*/
+/*    }*/
+/*}*/
+
+
 @media screen and (max-width: 830px) {
     .menu-buttons-block {
         display: block!important;
@@ -218,7 +287,7 @@
 }
 @media screen and (max-width: 660px) {
     .search input {
-        width: 82%;
+        width: 89%;
     }
     #location {
         width: 89%;
@@ -248,6 +317,9 @@
     }
 }
 @media screen and (max-width: 520px) {
+    .search input {
+        width: 91%;
+    }
     #location {
         width: 91%;
     }
@@ -262,6 +334,9 @@
     }
 }
 @media screen and (max-width: 496px) {
+    .search input {
+        width: 92%;
+    }
     #location {
         width: 92%;
     }
@@ -276,6 +351,9 @@
     }
 }
 @media screen and (max-width: 450px) {
+    .search input {
+        width: 93%;
+    }
     #location {
         width: 93%;
     }
@@ -291,7 +369,7 @@
 }
 @media screen and (max-width: 410px) {
     .search input {
-        width: 83%;
+        width: 94%;
     }
     #location {
         width: 94%;
@@ -308,7 +386,7 @@
 }
 @media screen and (max-width: 366px) {
     .search input {
-        width: 83%;
+        width: 95%!important;
     }
     #location {
         width: 95%;
@@ -324,6 +402,9 @@
     }
 }
 @media screen and (max-width: 350px) {
+    .search input {
+        width: 97%!important;
+    }
     #location {
         width: 97%;
     }
@@ -541,6 +622,7 @@
         width: 85%;
         margin-left: 26px;
     }
+
 }
 @media screen and (max-width: 410px) {
     .mobile-none-p {
@@ -782,6 +864,9 @@
     }
     .testimonials-pic {
         width: 170px;
+        margin-top: 95px;
+        height: 75%;
+        margin-left: 9px;
     }
     .slider.slider-nav-3-r.slick-initialized.slick-slider {
         margin-left: 127px!important;
@@ -819,6 +904,19 @@
     }
     .slider-for-3 {
         margin-top: 225px!important;
+    }
+}
+@media screen and (max-width: 398px) {
+    .testimonials-pic {
+        height: 64%;
+        margin-top: 120px;
+    }
+}
+@media screen and (max-width: 332px) {
+    .testimonials-pic {
+        height: 52%;
+        margin-top: 149px;
+        margin-left: 4px;
     }
 }
 @media screen and (max-width: 387px) {
@@ -1366,6 +1464,9 @@
     .container {
         width: 82%!important;
     }
+    .container-box .star {
+        display: none;
+    }
 }
 @media screen and (max-width: 400px) {
     .container-inside-form .submit {
@@ -1752,6 +1853,14 @@
         width: 100%;
         margin-top: -1px!important;
     }
+    .restaurants-h4-page {
+        font-size: 17px!important;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .restaurants-h4-page {
+        font-size: 15px!important;
+    }
 }
 @media screen and (max-width: 1052px) {
     .title-address {
@@ -1763,6 +1872,25 @@
     .recently-img {
         float: none;
         display: block;
+    }
+}
+@media screen and (max-width: 910px) {
+    .star-float-left {
+        float: left;
+    }
+    .restaurants-h4-page {
+        text-align: start;
+        font-size: 22px!important;
+    }
+}
+@media screen and (max-width: 716px) {
+    .restaurants-h4-page {
+        font-size: 19px!important;
+    }
+}
+@media screen and (max-width: 622px) {
+    .restaurants-h4-page {
+        font-size: 16px!important;
     }
 }
 @media screen and (max-width: 917px) {
@@ -1798,6 +1926,9 @@
     .d-block {
         position: absolute;
         margin-top: 34px;
+    }
+    .restaurants-h4-page {
+        font-size: 16px!important;
     }
 }
 @media screen and (max-width: 700px) {
@@ -2119,4 +2250,5 @@
         }
     }
 }
+
 /*END RESTAURANT DETAILS MEDIA QUERY*/

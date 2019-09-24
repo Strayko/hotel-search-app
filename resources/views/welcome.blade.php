@@ -572,12 +572,14 @@
                                         </div>
                                         <div class="container-box">
                                             <div class="container-box-header">
-                                                <h4>{{$restaurant->title}}</h4>
+
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
+
+                                                <h4>{{Str::limit($restaurant->title, 20)}}</h4>
                                             </div>
                                             <div class="container-box-footer">
                                                 <img src="img/location-minify.svg" class="svg locationAndStar" alt=""><p>{{$restaurant->location->name}}</p>
@@ -608,7 +610,7 @@
                                         </div>
                                         <div class="container-box">
                                             <div class="container-box-header">
-                                                <h4>{{$restaurant->title}}</h4>
+                                                <h4>{{Str::limit($restaurant->title, 20)}}</h4>
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
@@ -640,7 +642,7 @@
                                         </div>
                                         <div class="container-box">
                                             <div class="container-box-header">
-                                                <h4>{{$restaurant->title}}</h4>
+                                                <h4>{{Str::limit($restaurant->title, 20)}}</h4>
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
                                                 <img src="img/star.svg" class="svg star" alt="">
@@ -685,7 +687,7 @@
                                     <img src="img/recent_place.png" alt="">
                                 </div>
                                 <div class="cube-box-footer">
-                                    <h4>{{$restaurant->title}}</h4>
+                                    <h4>{{Str::limit($restaurant->title, 15)}}</h4>
                                     <img src="img/location-minify.svg" class="svg location" alt=""><p>{{$restaurant->location->name}}</p>
                                 </div>
                             </a>
@@ -706,7 +708,7 @@
                                     <img src="img/recent_place.png" alt="">
                                 </div>
                                 <div class="cube-box-footer">
-                                    <h4>{{$restaurant->title}}</h4>
+                                    <h4>{{Str::limit($restaurant->title, 15)}}</h4>
                                     <img src="img/location-minify.svg" class="svg location" alt=""><p>{{$restaurant->location->name}}</p>
                                 </div>
                             </a>
@@ -727,7 +729,7 @@
                                     <img src="img/recent_place.png" alt="">
                                 </div>
                                 <div class="cube-box-footer">
-                                    <h4>{{$restaurant->title}}</h4>
+                                    <h4>{{Str::limit($restaurant->title, 15)}}</h4>
                                     <img src="img/location-minify.svg" class="svg location" alt=""><p>{{$restaurant->location->name}}</p>
                                 </div>
                             </a>
