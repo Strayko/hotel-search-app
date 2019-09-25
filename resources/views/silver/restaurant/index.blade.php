@@ -365,7 +365,7 @@
         <div class="dashboard-content">
             <div class="search-inputs">
                 <i class="fas fa-search"></i>
-                <input class="search" type="text" name="serach" id="serach" placeholder="Search restaurants ...">
+                <input class="search search-responsive-admin" type="text" name="serach" id="serach" placeholder="Search restaurants ...">
                 <div class="add-button-box">
                     <a class="header-inputs-red" href="{{route('restaurant.create')}}"><i class="fas fa-plus"></i> ADD RESTAURANT</a>
                 </div>

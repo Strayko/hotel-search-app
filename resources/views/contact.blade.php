@@ -195,15 +195,15 @@
 
                     {!! Form::open(['url'=>'contact', 'class'=>'contactform']) !!}
                     <div class="form-input-first">
-                        <i class="fas fa-user"></i><input type="text" name="author" class="input-style" placeholder="Name">
-                        <i class="fas fa-home"></i><input type="text" name="firma" class="input-style input-style-margin" placeholder="Firma">
+                        <i class="fas fa-user"></i><input type="text" name="author" class="input-style input-responsive-contact" placeholder="Name">
+                        <i class="fas fa-home icon-display-block"></i><input type="text" name="firma" class="input-style input-responsive-contact input-style-margin" placeholder="Firma">
                     </div>
                     <div class="form-input-second">
-                        <i class="fas fa-envelope"></i><input type="text" name="email" aria-required="true" required="required" class="input-style" placeholder="Email">
-                        <i class="fas fa-phone-alt"></i><input type="text" name="telefonnumber" class="input-style input-style-margin" placeholder="Telefonnumber">
+                        <i class="fas fa-envelope"></i><input type="text" name="email" aria-required="true" required="required" class="input-style input-responsive-contact" placeholder="Email">
+                        <i class="fas fa-phone-alt icon-display-block"></i><input type="text" name="telefonnumber" class="input-style input-responsive-contact input-style-margin" placeholder="Telefonnumber">
                     </div>
                     <div class="form-textarea">
-                        <i class="fas fa-pencil-alt"></i><textarea name="comment" id="" cols="30" rows="10" placeholder="Ihre Nachricht"></textarea>
+                        <i class="fas fa-pencil-alt"></i><textarea class="textarea-responsive-contact" name="comment" id="textarea-responsive-contact" cols="30" rows="10" placeholder="Ihre Nachricht"></textarea>
                     </div>
                     <input type="submit" name="submit" class="submit" value="Send">
                     {!! Form::close() !!}

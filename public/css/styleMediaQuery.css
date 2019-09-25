@@ -77,6 +77,15 @@
     #contact {
         height: 900px;
     }
+    .icon-display-block {
+        display: block!important;
+    }
+    .input-responsive-contact {
+        width: 100%!important;
+    }
+    .textarea-responsive-contact {
+        width: 99.9%!important;
+    }
 }
 @media screen and (max-width: 1150px) {
     .container {
@@ -96,7 +105,9 @@
 @media screen and (max-width: 1100px) {
     .search input {
         font-size: 15px;
-
+    }
+    .signin-input-responsive {
+        width: 79%!important;
     }
 }
 @media screen and (max-width: 1074px) {
@@ -1016,6 +1027,14 @@
         margin-top: 10px;
         width: 150px;
     }
+    .footer-left i {
+        margin-top: 20px!important;
+    }
+}
+@media screen and (max-width: 442px) {
+    .footer-left i {
+        margin-top: 12px!important;
+    }
 }
 @media screen and (max-width: 390px) {
     .footer-left .newsletter-input {
@@ -1219,20 +1238,44 @@
     .container-inside-form .submit {
         margin-right: -8px;
     }
+    .input-responsive-contact {
+        width: 102%!important;
+    }
+    #textarea-responsive-contact {
+        width: 102%!important;
+    }
 }
 @media screen and (max-width: 1020px) {
     .container-inside-form .submit {
         margin-right: -10px;
+    }
+    .input-responsive-contact {
+        width: 102.5%!important;
+    }
+    #textarea-responsive-contact {
+        width: 102.5%!important;
     }
 }
 @media screen and (max-width: 988px) {
     .container-inside-form .submit {
         margin-right: -12px;
     }
+    .input-responsive-contact {
+        width: 103%!important;
+    }
+    #textarea-responsive-contact {
+        width: 103%!important;
+    }
 }
 @media screen and (max-width: 900px) {
     .container-inside-form .submit {
         margin-right: -20px!important;
+    }
+    .input-responsive-contact {
+        width: 106.4%!important;
+    }
+    #textarea-responsive-contact {
+        width: 106.4%!important;
     }
 }
 @media screen and (max-width: 972px) {
@@ -1243,6 +1286,12 @@
 @media screen and (max-width: 836px) {
     .container-inside-form .submit {
         margin-right: -25px!important;
+    }
+    .input-responsive-contact {
+        width: 100%!important;
+    }
+    #textarea-responsive-contact {
+        width: 100%!important;
     }
     .contact-form-left {
         width: 100%;
@@ -1321,10 +1370,19 @@
     .container-inside-form .submit {
         margin-right: -2px!important;
     }
+    .input-responsive-contact {
+        width: 100.5%!important;
+    }
+    #textarea-responsive-contact {
+        width: 100.5%!important;
+    }
 }
 @media screen and (max-width: 778px) {
     .container-inside-form .submit {
         margin-right: -10px!important;
+    }
+    .input-responsive-contact {
+        width: 102%!important;
     }
 }
 @media screen and (max-width: 694px) {
@@ -1334,15 +1392,33 @@
     .container-inside-form {
         margin-left: 54px!important;
     }
+    .input-responsive-contact {
+        width: 102.5%!important;
+    }
+    #textarea-responsive-contact {
+        width: 102.5%!important;
+    }
 }
 @media screen and (max-width: 646px) {
     .container-inside-form .submit {
         margin-right: -18px!important;
     }
+    .input-responsive-contact {
+        width: 104.5%!important;
+    }
+    #textarea-responsive-contact {
+        width: 104.5%!important;
+    }
 }
 @media screen and (max-width: 592px) {
     .container-inside-form .submit {
         margin-right: -23px!important;
+    }
+    .input-responsive-contact {
+        width: 106.5%!important;
+    }
+    #textarea-responsive-contact {
+        width: 106.5%!important;
     }
 }
 @media screen and (max-width: 545px) {
@@ -1353,6 +1429,12 @@
         margin-right: -28px!important;
         width: 110%;
     }
+    .input-responsive-contact {
+        width: 108.5%!important;
+    }
+    #textarea-responsive-contact {
+        width: 108.5%!important;
+    }
 }
 @media screen and (max-width: 469px) {
     .container-inside-form {
@@ -1361,6 +1443,12 @@
     .container-inside-form .submit {
         margin-right: -33px!important;
         width: 115%;
+    }
+    .input-responsive-contact {
+        width: 111.9%!important;
+    }
+    #textarea-responsive-contact {
+        width: 111.9%!important;
     }
 }
 @media screen and (max-width: 403px) {
@@ -1371,6 +1459,12 @@
         margin-right: -39px!important;
         width: 119%;
     }
+    .input-responsive-contact {
+        width: 117%!important;
+    }
+    #textarea-responsive-contact {
+        width: 117%!important;
+    }
 }
 @media screen and (max-width: 353px) {
     .container-inside-form {
@@ -1380,10 +1474,22 @@
         margin-right: -42px!important;
         width: 125%;
     }
+    .input-responsive-contact {
+        width: 122%!important;
+    }
+    #textarea-responsive-contact {
+        width: 122%!important;
+    }
 }
 @media screen and (max-width: 323px) {
     .container-inside-form .submit {
         width: 128%;
+    }
+    .input-responsive-contact {
+        width: 125.5%!important;
+    }
+    #textarea-responsive-contact {
+        width: 125.5%!important;
     }
 }
 @media screen and (max-width: 493px) {
@@ -1527,6 +1633,15 @@
     .login-content-btn {
         width: 80%;
     }
+    .textarea-responsive-contact {
+        width: 100%!important;
+    }
+    .signin-input-responsive {
+        width: 79.1%!important;
+    }
+    .input-register-responsive {
+
+    }
 }
 @media screen and (max-width: 698px) {
     .signin-container {
@@ -1539,11 +1654,14 @@
         width: 81%;
         margin-right: 20%!important;
     }
+    .signin-input-responsive {
+        width: 80%!important;
+    }
 }
 @media screen and (max-width: 538px) {
     .login-content-btn {
-        width: 82%!important;
-        margin-right: 17%!important;
+        width: 80%!important;
+        margin-right: 20%!important;
     }
 }
 @media screen and (max-width: 458px) {
@@ -1553,6 +1671,9 @@
     .login-content-btn {
         width: 84%!important;
         margin-right: 15%!important;
+    }
+    .signin-input-responsive {
+        width: 86%!important;
     }
 }
 @media screen and (max-width: 458px) {
@@ -1572,6 +1693,9 @@
     .content-signin {
         margin-left: 13%;
     }
+    .signin-input-responsive {
+        width: 87%!important;
+    }
 }
 @media screen and (max-width: 354px) {
     .login-content-btn {
@@ -1580,6 +1704,9 @@
     }
     .content-signin {
         margin-left: 11%!important;
+    }
+    .signin-input-responsive {
+        width: 88%!important;
     }
 }
 @media screen and (max-width: 328px) {
@@ -1610,10 +1737,16 @@
     .register-container select {
         width: 100%;
     }
+    .input-register-responsive {
+        width: 100%!important;
+    }
 }
 @media screen and (max-width: 640px) {
     .register-container select {
         width: 101%;
+    }
+    .input-register-responsive {
+        width: 102%!important;
     }
 }
 @media screen and (max-width: 640px) {
@@ -1624,6 +1757,9 @@
 @media screen and (max-width: 587px) {
     .register-container select {
         width: 97%;
+    }
+    .input-register-responsive {
+        width: 97%!important;
     }
     .register-content {
         height: 643px;
@@ -1664,6 +1800,9 @@
     .register-container select {
         width: 98.2%;
     }
+    .input-register-responsive {
+        width: 99.2%!important;
+    }
 }
 @media screen and (max-width: 551px) {
     .register-container .register-submit {
@@ -1685,6 +1824,9 @@
     }
     .register-container select {
         width: 100.2%;
+    }
+    .input-register-responsive {
+        width: 100.2%!important;
     }
 }
 @media screen and (max-width: 426px) {

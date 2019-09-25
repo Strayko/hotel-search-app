@@ -8,7 +8,7 @@
         <td>{{$restaurant->updated_at->diffForHumans()}}</td>
         <td>
             <a href="{{route('restaurant.edit', $restaurant->id)}}" class="btn btn-secondary">
-                <i class="fas fa-utensils"></i> Edit/Delete
+                 Edit/Delete
             </a>
         </td>
     </tr>

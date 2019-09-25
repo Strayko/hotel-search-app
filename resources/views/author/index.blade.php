@@ -129,7 +129,7 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href=""><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            <a href="/"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -162,9 +162,9 @@
                 <h4>Create an account and stay with us</h4>
                 {!! Form::open(['method'=>'POST', 'action'=>'AuthorUsersController@store', 'files'=>true]) !!}
                 <input type="hidden" name="package_expiry">
-                <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input', 'placeholder'=>'Name']) !!}
-                <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input', 'placeholder'=>'Email']) !!}
-                <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'register-input', 'placeholder'=>'Password']) !!}
+                <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input input-register-responsive', 'placeholder'=>'Name']) !!}
+                <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input input-register-responsive', 'placeholder'=>'Email']) !!}
+                <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'register-input input-register-responsive', 'placeholder'=>'Password']) !!}
                 <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package']) !!}
                 <div class="upload-btn-wrapper">
                     <button class="btn">Upload picture</button>

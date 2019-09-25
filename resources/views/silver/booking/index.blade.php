@@ -356,7 +356,7 @@
         <div class="dashboard-content">
             <div class="search-inputs">
                 <i class="fas fa-search"></i>
-                <input class="search" name="serach" id="serach" type="text" placeholder="Search reservations ...">
+                <input class="search search-responsive-admin" name="serach" id="serach" type="text" placeholder="Search reservations ...">
                 <div class="sorting-button-box" id="sorting-button-box">
                     <a class="header-inputs-tirkiz sorting" data-sorting_type="asc" data-column_name="id" href="#"><i class="fas fa-utensils"></i> SORTING RESERVATIONS</a>
                 </div>

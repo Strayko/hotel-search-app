@@ -2075,4 +2075,17 @@ body {
 .info-3 {
     display: none;
 }
+.input-responsive-contact {
+    width: 268px!important;
+}
+.textarea-responsive-contact {
+    width: 560px!important;
+}
+.signin-input-responsive {
+    width: 352px!important;
+}
+.input-register-responsive {
+    width: 352px!important;
+}
+
 /*END GENERAL RULES*/

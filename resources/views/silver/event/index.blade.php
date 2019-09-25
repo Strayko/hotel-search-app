@@ -342,7 +342,7 @@
         <div class="dashboard-content">
             <div class="search-inputs">
                 <i class="fas fa-search"></i>
-                <input class="search" name="serach" id="serach" type="text" placeholder="Search events ...">
+                <input class="search search-responsive-admin" name="serach" id="serach" type="text" placeholder="Search events ...">
                 <div class="add-button-box">
                     <a class="header-inputs-red" href="{{route('event.create')}}"><i class="fas fa-plus"></i> ADD EVENT</a>
                 </div>

@@ -337,7 +337,7 @@
         <div class="dashboard-content">
             <div class="search-inputs">
                 <i class="fas fa-search"></i>
-                <input class="search" name="serach" id="serach" type="text" placeholder="Search actions ...">
+                <input class="search search-responsive-admin" name="serach" id="serach" type="text" placeholder="Search actions ...">
                 <div class="add-button-box">
                     <a class="header-inputs-red" href="{{route('actions.create')}}"><i class="fas fa-plus"></i> ADD ACTION</a>
                 </div>

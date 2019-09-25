@@ -132,6 +132,7 @@
         padding-left: 0;
     }
 }
+
 @media screen and (max-width: 539px) {
     .dashboard-right-box .green-box {
         width: 99%;
@@ -532,6 +533,9 @@
     .search-inputs .search {
         width: 81%;
     }
+    .search-responsive-admin {
+        width: 88.5%!important;
+    }
     #restaurants-table {
         width: 85%;
     }
@@ -800,6 +804,11 @@
         width: 104%;
     }
 }
+@media screen and (max-width: 714px) {
+    .search-responsive-admin {
+        width: 88.9%!important;
+    }
+}
 @media screen and (max-width: 692px) {
     .create-form {
         width: 72%;
@@ -949,6 +958,7 @@
         width: 91%!important;
     }
 }
+
 @media screen and (max-width: 385px) {
     .create-form {
         width: 65%;
@@ -1863,7 +1873,11 @@
     #sorting-button-box {
         width: 102.3%!important;
     }
+    .search-responsive-admin {
+        width: 93%!important;
+    }
 }
+
 @media screen and (max-width: 443px) {
     #sorting-button-box {
         width: 102.5%!important;
@@ -2069,6 +2083,19 @@
     .search-inputs .header-inputs-tirkiz-3 {
         margin-left: 15px;
     }
+    .search-responsive-admin {
+        width: 89.4%!important;
+    }
+}
+@media screen and (max-width: 652px) {
+    .search-responsive-admin {
+        width: 89.6%!important;
+    }
+}
+@media screen and (max-width: 637px) {
+    .search-responsive-admin {
+        width: 89.9%!important;
+    }
 }
 @media screen and (max-width: 648px) {
     .add-button-all {
@@ -2092,6 +2119,14 @@
     .add-margin-left {
         margin-left: 10px!important;
     }
+    .search-responsive-admin {
+        width: 90.3%!important;
+    }
+}
+@media screen and (max-width: 568px) {
+    .search-responsive-admin {
+        width: 90.7%!important;
+    }
 }
 @media screen and (max-width: 550px) {
     .add-button-all {
@@ -2103,6 +2138,14 @@
     }
     .last-margin-left {
         margin-left: 27px!important;
+    }
+    .search-responsive-admin {
+        width: 91.5%!important;
+    }
+}
+@media screen and (max-width: 520px) {
+    .search-responsive-admin {
+        width: 92%!important;
     }
 }
 @media screen and (max-width: 538px) {
@@ -2117,6 +2160,13 @@
     .only-width {
         width: 103%!important;
     }
+    .search-responsive-admin {
+        width: 92.5%!important;
+    }
+    .search-responsive-admin {
+        width: 93%!important;
+    }
+
 }
 @media screen and (max-width: 467px) {
     .only-width {
@@ -2286,6 +2336,75 @@
 @media screen and (max-width: 280px) {
     .only-upload-width {
         width: 105%!important;
+    }
+}
+@media screen and (max-width: 446px) {
+    .search-responsive-admin {
+        width: 93.5%!important;
+    }
+}
+@media screen and (max-width: 446px) {
+    .search-responsive-admin {
+        width: 94%!important;
+    }
+}
+@media screen and (max-width: 393px) {
+    .search-responsive-admin {
+        width: 94.6%!important;
+    }
+}
+@media screen and (max-width: 376px) {
+    .search-responsive-admin {
+        width: 94.9%!important;
+    }
+}
+@media screen and (max-width: 370px) {
+    .search-responsive-admin {
+        width: 95.9%!important;
+    }
+}
+@media screen and (max-width: 345px) {
+    .search-responsive-admin {
+        width: 96.8%!important;
+    }
+}
+@media screen and (max-width: 325px) {
+    .search-responsive-admin {
+        width: 97.5%!important;
+    }
+}
+@media screen and (max-width: 320px) {
+    .search-responsive-admin {
+        width: 97.9%!important;
+    }
+}
+@media screen and (max-width: 302px) {
+    .search-responsive-admin {
+        width: 98.5%!important;
+    }
+}
+@media screen and (max-width: 290px) {
+    .search-responsive-admin {
+        width: 99%!important;
+    }
+}
+@media screen and (max-width: 280px) {
+    .search-responsive-admin {
+        width: 100.5%!important;
+    }
+}
+@media screen and (max-width: 1248px) {
+    .ajax-input-2 {
+        padding-top: 5px!important;
+        padding-bottom: 5px!important;
+    }
+    .ajax-input {
+        margin-top: -6px!important;
+    }
+}
+@media screen and (max-width: 1015px) {
+    .ajax-input {
+        margin-bottom: 0!important;
     }
 }
 /*END USER ADMIN PANEL*/

@@ -209,6 +209,9 @@
         background-color: #e24f4c;
         padding: 5px 12px 5px 12px;
     }
+    .font-size-menu-font {
+        font-size: 19px!important;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -226,10 +229,10 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-                <li><a class="mobile-font" href="/">Homepage</a></li>
-                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
-                <li><a class="active mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
-                <li><a class="mobile-font" href="{{route('contact.contact')}}">Contact</a></li>
+                <li><a class="mobile-font font-size-menu-font" href="/">Homepage</a></li>
+                <li><a class="mobile-font font-size-menu-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
+                <li><a class="active mobile-font font-size-menu-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
+                <li><a class="mobile-font font-size-menu-font" href="{{route('contact.contact')}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
                 <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
