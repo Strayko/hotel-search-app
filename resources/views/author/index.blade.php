@@ -123,6 +123,24 @@
 
 @extends('layouts.frontend-thema')
 <title>Register</title>
+<style>
+    .help-block {
+        margin-top: -16px;
+        margin-left: 10px;
+        font-size: 12px;
+        position: absolute;
+        color: red;
+    }
+    #file-upload-filename {
+        font-size: 12px;
+        margin-left: 5px;
+        margin-top: 7px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+</style>
 @section('content')
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
@@ -159,16 +177,39 @@
         <div class="register-content">
             <div class="register-container">
                 <img src="{{asset('img/logo.svg')}}" alt="">
+{{--                @include('includes.frontend_form_error')--}}
                 <h4>Create an account and stay with us</h4>
                 {!! Form::open(['method'=>'POST', 'action'=>'AuthorUsersController@store', 'files'=>true]) !!}
                 <input type="hidden" name="package_expiry">
                 <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input input-register-responsive', 'placeholder'=>'Name']) !!}
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
                 <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input input-register-responsive', 'placeholder'=>'Email']) !!}
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
                 <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'register-input input-register-responsive', 'placeholder'=>'Password']) !!}
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
                 <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package']) !!}
+                @if ($errors->has('package_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('package_id') }}</strong>
+                    </span>
+                @endif
+
                 <div class="upload-btn-wrapper">
                     <button class="btn">Upload picture</button>
-                    {!! Form::file('photo_id', null, ['class'=>'form-controlsa']) !!}
+                        <input type="file" name="photo_id" id="file-upload" />
+                        <div id="file-upload-filename"></div>
                 </div>
                 <div class="aa-single-field{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                     <div class="col-md-6" style="margin-left: -14px!important;">
@@ -190,5 +231,22 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+        var input = document.getElementById( 'file-upload' );
+        var infoArea = document.getElementById( 'file-upload-filename' );
+        input.addEventListener( 'change', showFileName );
+        function showFileName( event ) {
+            var input = event.srcElement;
+            var fileName = input.files[0].name;
+            infoArea.textContent = fileName;
+        }
+
+    </script>
 @endsection

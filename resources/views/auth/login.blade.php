@@ -88,6 +88,13 @@
         font-size: 13px;
         display: block;
     }
+    .help-block {
+        margin-top: -16px;
+        margin-left: 10px;
+        font-size: 12px;
+        position: absolute;
+        color: red;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -132,18 +139,18 @@
 
                 <form method="POST" action="{{ route('login') }}" class="contactform">
                 @csrf
-                <i class="fas fa-envelope"></i><input class="signin-input signin-input-responsive{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{old('email')}}" required autofocus placeholder="Email">
+                <i class="fas fa-envelope"></i><input class="signin-input signin-input-responsive{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{old('email')}}" autofocus placeholder="Email">
                 @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
+                    <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
                 @endif
 
-                <i class="fas fa-lock"></i><input name="password" class="signin-input signin-input-responsive{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" required placeholder="Password">
+                <i class="fas fa-lock"></i><input name="password" class="signin-input signin-input-responsive{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" placeholder="Password">
                 @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
+                    <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
                 @endif
 
                 <label class="checkbox-container"> {{ __('Remember Me') }}
@@ -222,7 +229,17 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+
+
+    </script>
 @endsection
 
 

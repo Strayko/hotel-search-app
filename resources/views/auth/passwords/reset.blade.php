@@ -213,8 +213,6 @@
                 <h4>New Password</h4>
 
 
-
-
                     <form method="POST" action="{{ route('password.update') }}" class="contactform">
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
@@ -230,8 +228,6 @@
                             </span>
                         @endif
 
-
-
                         <i class="fas fa-lock"></i>
                         <input id="password" type="password" class="reset-email-input{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="New Password" required>
                         @if ($errors->has('password'))
@@ -240,20 +236,13 @@
                             </span>
                         @endif
 
-
-
                         <i class="fas fa-lock"></i>
                         <input id="password-confirm" type="password" name="password_confirmation" class="reset-email-input" placeholder="Confirm Password" required>
-
-
 
                         <input class="send-link-input" type="submit" value="Send link">
 
 
                 </form>
-
-
-
 
 {{--                <i class="fas fa-envelope"></i>--}}
 {{--                <input class="reset-email-input" type="email" placeholder="Email">--}}

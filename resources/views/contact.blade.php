@@ -146,6 +146,16 @@
 
 @extends('layouts.frontend-thema')
 <title>Contact</title>
+<style>
+    .help-block {
+        margin-top: 44px;
+        margin-left: -257px;
+        font-size: 12px;
+        position: absolute;
+        color: red;
+    }
+
+</style>
 @section('content')
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
@@ -196,11 +206,21 @@
                     {!! Form::open(['url'=>'contact', 'class'=>'contactform']) !!}
                     <div class="form-input-first">
                         <i class="fas fa-user"></i><input type="text" name="author" class="input-style input-responsive-contact" placeholder="Name">
-                        <i class="fas fa-home icon-display-block"></i><input type="text" name="firma" class="input-style input-responsive-contact input-style-margin" placeholder="Firma">
+                        @if ($errors->has('author'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('author') }}</strong>
+                            </span>
+                        @endif
+                        <i class="fas fa-home icon-display-block"></i><input type="text" name="firma" class="input-style input-responsive-contact input-contact-space input-style-margin" placeholder="Firma">
                     </div>
                     <div class="form-input-second">
-                        <i class="fas fa-envelope"></i><input type="text" name="email" aria-required="true" required="required" class="input-style input-responsive-contact" placeholder="Email">
-                        <i class="fas fa-phone-alt icon-display-block"></i><input type="text" name="telefonnumber" class="input-style input-responsive-contact input-style-margin" placeholder="Telefonnumber">
+                        <i class="fas fa-envelope"></i><input type="text" name="email" aria-required="true" class="input-style input-responsive-contact" placeholder="Email">
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                        <i class="fas fa-phone-alt icon-display-block"></i><input type="text" name="telefonnumber" class="input-style input-contact-space input-responsive-contact input-style-margin" placeholder="Telefonnumber">
                     </div>
                     <div class="form-textarea">
                         <i class="fas fa-pencil-alt"></i><textarea class="textarea-responsive-contact" name="comment" id="textarea-responsive-contact" cols="30" rows="10" placeholder="Ihre Nachricht"></textarea>
@@ -250,6 +270,14 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+    </script>
 @endsection
 

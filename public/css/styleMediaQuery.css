@@ -1244,6 +1244,10 @@
     #textarea-responsive-contact {
         width: 102%!important;
     }
+    .help-block {
+        margin-top: 0;
+        margin-left: 0;
+    }
 }
 @media screen and (max-width: 1020px) {
     .container-inside-form .submit {
@@ -1997,6 +2001,18 @@
     }
     .restaurants-h4-page {
         font-size: 17px!important;
+    }
+    .input-contact-space {
+        margin-top: 15px!important;
+    }
+    .fas.fa-home.icon-display-block {
+        margin-top: 31px!important;
+    }
+    .fas.fa-phone-alt.icon-display-block {
+        margin-top: 31px!important;
+    }
+    .help-block {
+        margin-left: 14px!important;
     }
 }
 @media screen and (max-width: 1000px) {

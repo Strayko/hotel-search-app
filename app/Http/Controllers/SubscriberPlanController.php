@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SendContactForm;
 use App\Location;
 use App\Restaurant;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class SubscriberPlanController extends Controller
     	return view('contact');
     }
 
-    public function contactSend(Request $request) {
+    public function contactSend(SendContactForm $request) {
 	    $data = $request->all();
 
 	    Mail::send('email', $data, function($message) use ($data) {
@@ -47,8 +48,6 @@ class SubscriberPlanController extends Controller
     	$restaurantLocation = $location->restaurant;
     	return view('single_location', compact('location', 'restaurantLocation'));
 	}
-
-
 
 
 
