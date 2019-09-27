@@ -10,6 +10,8 @@ use App\User;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthorUsersController extends Controller
 {
@@ -21,10 +23,15 @@ class AuthorUsersController extends Controller
     public function index()
     {
 
-	    $users = User::all();
-	    $packages = Package::pluck('name', 'id')->all();
+        if(!Auth::check()) {
+            $users = User::all();
+            $packages = Package::pluck('name', 'id')->all();
 
-        return view('author.index', compact('users', 'packages', 'restaurants'));
+            return view('author.index', compact('users', 'packages', 'restaurants'));
+        } else {
+            return redirect('/')->with('account-renew-successful', 'IT WORKS');
+        }
+
     }
 
     /**

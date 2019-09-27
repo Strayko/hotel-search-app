@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\RenewAccount;
 use App\Renew;
 use App\Restaurant;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class RenewAccountController extends Controller
 {
@@ -19,14 +22,25 @@ class RenewAccountController extends Controller
         return view('renew_account', compact('packages'));
     }
 
-    public function store(Request $request)
+    public function store(RenewAccount $request)
     {
 
 
 
+
         $user = User::where('email', Input::get('email'))->first();
+        $bcryptPass = $user['password'];
+        $password = Input::get('passwordrenew');
+
+
+        $passwordCompare = Hash::check($password, $bcryptPass);
+
+
+
+
         $user_id = $user['id'];
-        if($user) {
+        if($user && $passwordCompare) {
+
             $input = $request->all();
             $input['is_active'] = 1;
 
@@ -52,8 +66,9 @@ class RenewAccountController extends Controller
             }
             Restaurant::where('user_id', $user_id)->restore();
             $user->update($input);
-            return redirect('/login');
+            return redirect('/')->with('account-renew-successful', 'Your account is up to date!');
         } else {
+            Session::flash('renew-user', 'Invalid email od password');
             return redirect('/renew-account');
         }
 

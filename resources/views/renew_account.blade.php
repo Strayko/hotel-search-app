@@ -91,9 +91,45 @@
 
 
 
-@extends('layouts.frontend-thema')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-@section('content')
+    <!-- CUSTOM STYLE -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/styleMediaQuery.css')}}">
+
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/003e33b51d.js"></script>
+
+    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
+
+    <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjscloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjscloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .help-block {
+            margin-top: 4px;
+            margin-left: 10px;
+            font-size: 12px;
+            position: absolute;
+            color: red;
+        }
+    </style>
+
+    <title>Renew Account</title>
+</head>
+<body>
+
+
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
     <div class="container-menu">
@@ -114,8 +150,33 @@
                 <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
                 <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                @if (Route::has('login'))
+                    {{--<div class="top-right links">--}}
+                    @auth
+
+                        <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
+
+                        <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
+                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="aa-login">
+
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                    @else
+                        <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+
+
+                        @if (Route::has('register'))
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+
+                        @endif
+                    @endauth
+                    {{--</div>--}}
+                @endif
             </ul>
         </nav>
 
@@ -135,7 +196,29 @@
                 <input type="hidden" name="package_expiry">
                 <input type="hidden" name="is_active">
                 {!! Form::email('email', null, ['class'=>'reset-email-input', 'placeholder'=>'Email']) !!}
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+                @if(Session::has('renew-user'))
+                    <span class="help-block">
+                        <strong>{{session('renew-user')}}</strong>
+                    </span>
+                @endif
+                {!! Form::password('passwordrenew', ['class'=>'reset-email-input', 'placeholder'=>'Password']) !!}
+                @if ($errors->has('passwordrenew'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('passwordrenew') }}</strong>
+                    </span>
+                @endif
+
                 <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package']) !!}
+                @if ($errors->has('package_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('package_id') }}</strong>
+                    </span>
+                @endif
                 <div class="aa-single-submit">
                     {!! Form::submit('Renew Account', ['class'=>'send-link-input']) !!}
                 </div>
@@ -146,8 +229,51 @@
     </div>
 </section>
 <!-- END NEW RENEW ACCOUNT -->
-@endsection
 
-@section('footer')
 
-@endsection
+<section id="footer">
+    <div class="container">
+        <div class="footer-left">
+            <img src="{{asset('img/logo-white.svg')}}" alt="">
+            <p class="p-lead">Subscribe to our newsletter</p>
+            <i class="far fa-envelope"></i>
+            <input type="text" class="newsletter-input">
+            <input type="submit" class="newsletter-submit" value="Send">
+        </div>
+        <div class="footer-right">
+            <div class="footer-menu">
+                <ol>
+                    <li><a href="/">Homepage</a></li>
+                    <li><a href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
+                    <li><a href="{{route('restaurants.showAll')}}">Restaurants</a></li>
+                    <li><a href="{{route('contact.contact')}}">Contact</a></li>
+                </ol>
+            </div>
+            <div class="footer-social-icon">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Created by Swisswebprofi &copy; 2019</p>
+    </div>
+</section>
+<!-- END FOOTER -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
+<script src="{{ asset('js/script.js') }}"></script>
+<script>
+    $('.toggle-menu-link').click( function() {
+        $("#navbar").toggleClass("navbar").css({"display": "block!important"});
+    } );
+    $("document").ready(function(){
+        setTimeout(function(){
+            $(".help-block").fadeOut(1000, function() {$(this).remove()});
+        }, 5000 );
+    });
+</script>
+
+</body>
+</html>

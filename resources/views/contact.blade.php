@@ -154,9 +154,27 @@
         position: absolute;
         color: red;
     }
-
+    .form-flex-message {
+        display: flex;
+        justify-content: center;
+        background-color: green;
+        color: #fff;
+        height: 81px;
+        align-items: center;
+        top: 0;
+        z-index: 99999;
+        position: sticky;
+    }
+    #form-is-send {
+        display: flex;
+    }
 </style>
 @section('content')
+    @if(Session::has('form_submitted'))
+    <div class="form-flex-message">
+            <p id="form-is-send">{{session('form_submitted')}}</p>
+    </div>
+    @endif
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
     <div class="container-menu">
@@ -177,8 +195,33 @@
                 <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                 <li><a class="active mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
                 <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                @if (Route::has('login'))
+                    {{--<div class="top-right links">--}}
+                    @auth
+
+                        <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
+
+                        <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
+                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="aa-login">
+
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                    @else
+                        <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+
+
+                        @if (Route::has('register'))
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+
+                        @endif
+                    @endauth
+                    {{--</div>--}}
+                @endif
             </ul>
         </nav>
 
@@ -214,7 +257,7 @@
                         <i class="fas fa-home icon-display-block"></i><input type="text" name="firma" class="input-style input-responsive-contact input-contact-space input-style-margin" placeholder="Firma">
                     </div>
                     <div class="form-input-second">
-                        <i class="fas fa-envelope"></i><input type="text" name="email" aria-required="true" class="input-style input-responsive-contact" placeholder="Email">
+                        <i class="fas fa-envelope"></i><input type="email" name="email" aria-required="true" class="input-style input-responsive-contact" placeholder="Email">
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -278,6 +321,12 @@
             }, 5000 );
         });
 
+        setTimeout(function(){
+            $(".form-flex-message").fadeOut(1000, function() {$(this).remove()});
+        }, 5000 );
+
     </script>
+
+
 @endsection
 

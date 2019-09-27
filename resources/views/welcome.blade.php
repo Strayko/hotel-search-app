@@ -456,9 +456,30 @@
     .search input {
         font-size-adjust:0.5;
     }
+    .alert-renew-successful {
+        display: flex;
+    }
+    .success-message-alert {
+        display: flex;
+        justify-content: center;
+        background-color: green;
+        color: #fff;
+        height: 81px;
+        align-items: center;
+        top: 0;
+        z-index: 99999;
+        position: sticky;
+    }
 </style>
 <link rel="stylesheet" href="{{asset('css/slickMin.css')}}">
 @section('content')
+    @if(session()->has('account-renew-successful'))
+    <div class="success-message-alert">
+        <div class="alert-renew-successful">
+            {{ session()->get('account-renew-successful') }}
+        </div>
+    </div>
+    @endif
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
     <div class="container-menu">
@@ -930,5 +951,14 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".success-message-alert").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+
+    </script>
 @endsection

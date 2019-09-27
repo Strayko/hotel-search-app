@@ -210,7 +210,7 @@
         padding: 5px 12px 5px 12px;
     }
     .font-size-menu-font {
-        font-size: 19px!important;
+        font-size: 17px!important;
     }
 </style>
 @section('content')
@@ -234,8 +234,33 @@
                 <li><a class="active mobile-font font-size-menu-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                 <li><a class="mobile-font font-size-menu-font" href="{{route('contact.contact')}}">Contact</a></li>
                 <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                @if (Route::has('login'))
+                    {{--<div class="top-right links">--}}
+                    @auth
+
+                        <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
+
+                        <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
+                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="aa-login">
+
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                    @else
+                        <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+
+
+                        @if (Route::has('register'))
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+
+                        @endif
+                    @endauth
+                    {{--</div>--}}
+                @endif
             </ul>
         </nav>
 
