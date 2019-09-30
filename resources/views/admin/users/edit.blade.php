@@ -525,7 +525,15 @@
 
 
 @extends('layouts.admin-thema')
-
+@section('title', 'Edit User')
+@section('style', '
+        .help-block {
+            margin-top: -10px;
+            font-size: 12px;
+            float: right;
+            color: red;
+        }
+')
 @section('content')
     <!-- START MENU -->
     <section id="admin2-dashboard">
@@ -576,36 +584,46 @@
             <div class="dashboard-content">
                 <div class="create-form">
                     <div class="form-left">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li style="color: red;">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+{{--                        @if ($errors->any())--}}
+{{--                            <div class="alert alert-danger">--}}
+{{--                                <ul>--}}
+{{--                                    @foreach ($errors->all() as $error)--}}
+{{--                                        <li style="color: red;">{{ $error }}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                         <p class="p-lead-h4">Edit user</p>
 
                         {!! Form::model($user, ['method'=>'PATCH', 'action'=>['AdminUsersController@update', $user->id], 'files'=>true]) !!}
                         {{csrf_field()}}
                         {!! Form::label('name', 'NAME', ['class'=>'label-grey-small']) !!}
                         {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
 
                         {!! Form::label('email', 'EMAIL', ['class'=>'label-grey-small']) !!}
-                        {!! Form::email('email', null, ['class'=>'create-form-input']) !!}
+                        {!! Form::email('email', null, ['class'=>'create-form-input', 'required']) !!}
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
 
                         {!! Form::label('password', 'PASSWORD', ['class'=>'label-grey-small']) !!}
                         {!! Form::password('password', ['class'=>'create-form-input']) !!}
 
                         {!! Form::label('role_id', 'ROLE:', ['class'=>'label-grey-small']) !!}
-                        {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'create-form-select']) !!}
+                        {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'create-form-select', 'required']) !!}
 
                         {!! Form::label('package_id', 'PACKAGE', ['class'=>'label-grey-small']) !!}
                         {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'create-form-select']) !!}
 
-                        {!! Form::label('is_active', 'Status:', ['class'=>'label-grey-small']) !!}
-                        {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'create-form-select']) !!}
+                        {!! Form::label('is_active', 'STATUS', ['class'=>'label-grey-small']) !!}
+                        {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), null, ['class'=>'create-form-select']) !!}
 
                         <div class="upload-image upload-user-image">
                             <p id="image-r" class="label-grey-image-r">UPLOAD IMAGE</p>
@@ -631,5 +649,14 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+
+    </script>
 @endsection

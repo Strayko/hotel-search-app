@@ -1,7 +1,14 @@
 @extends('layouts.admin-thema')
-<style>
+@section('title', 'Create Package')
+@section('style', '
+        .help-block {
+            margin-top: -10px;
+            font-size: 12px;
+            position: absolute;
+            color: red;
+        }
+')
 
-</style>
 @section('content')
     <!-- START MENU -->
     <section id="admin2-dashboard">
@@ -52,21 +59,26 @@
             <div class="dashboard-content">
                 <div class="create-form">
                     <div class="form-left">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li style="color: red;">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+{{--                        @if ($errors->any())--}}
+{{--                            <div class="alert alert-danger">--}}
+{{--                                <ul>--}}
+{{--                                    @foreach ($errors->all() as $error)--}}
+{{--                                        <li style="color: red;">{{ $error }}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                         <p class="p-lead-h4">Create a new distance</p>
 
                         {!! Form::open(['method'=>'POST', 'action'=>'AdminRadiusController@store']) !!}
                         {{csrf_field()}}
                         {!! Form::label('distance', 'NAME', ['class'=>'label-grey-small']) !!}
-                        {!! Form::text('distance', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
+                        {!! Form::text('distance', null, ['class'=>'create-form-input', 'id'=>'name']) !!}
+                        @if ($errors->has('distance'))
+                            <span class="help-block">
+                            <strong>{{ $errors->first('distance') }}</strong>
+                        </span>
+                        @endif
 
                         <button class="create-input-button" type="submit"><i class="fab fa-font-awesome-flag"></i> CREATE</button>
                         {!! Form::close() !!}
@@ -83,5 +95,14 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+
+    </script>
 @endsection

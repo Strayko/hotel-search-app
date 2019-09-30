@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,11 +20,13 @@
     <script src="https://cdnjscloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <title>Dashboard</title>
+    <style>@yield('style')</style>
+    <title>@yield('title')</title>
+
 </head>
 <body>
-
 @yield('content')
+
 
 
 

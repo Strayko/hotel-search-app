@@ -525,7 +525,15 @@
 
 
 @extends('layouts.admin-thema')
-
+@section('title', 'Create User')
+@section('style', '
+        .help-block {
+            margin-top: -10px;
+            font-size: 12px;
+            float: right;
+            color: red;
+        }
+')
 @section('content')
     <!-- START MENU -->
     <section id="admin2-dashboard">
@@ -576,30 +584,50 @@
             <div class="dashboard-content">
                 <div class="create-form">
                     <div class="form-left">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li style="color: red;">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+{{--                        @if ($errors->any())--}}
+{{--                            <div class="alert alert-danger">--}}
+{{--                                <ul>--}}
+{{--                                    @foreach ($errors->all() as $error)--}}
+{{--                                        <li style="color: red;">{{ $error }}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                         <p class="p-lead-h4">Create a new user</p>
 
                         {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
                         {{csrf_field()}}
                         {!! Form::label('name', 'NAME', ['class'=>'label-grey-small']) !!}
-                        {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
+                        {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name']) !!}
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
 
                         {!! Form::label('email', 'EMAIL', ['class'=>'label-grey-small']) !!}
                         {!! Form::email('email', null, ['class'=>'create-form-input']) !!}
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
 
                         {!! Form::label('password', 'PASSWORD', ['class'=>'label-grey-small']) !!}
                         {!! Form::password('password', ['class'=>'create-form-input']) !!}
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
 
                         {!! Form::label('role_id', 'ROLE:', ['class'=>'label-grey-small']) !!}
                         {!! Form::select('role_id', ['' => 'Choose Options'] + $roles, null, ['class'=>'create-form-select']) !!}
+                        @if ($errors->has('role_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('role_id') }}</strong>
+                            </span>
+                        @endif
 
                         {!! Form::label('package_id', 'PACKAGE', ['class'=>'label-grey-small']) !!}
                         {!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['class'=>'create-form-select']) !!}
@@ -631,5 +659,14 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+
+    </script>
 @endsection

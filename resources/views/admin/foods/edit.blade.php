@@ -1,7 +1,5 @@
 @extends('layouts.admin-thema')
-<style>
 
-</style>
 @section('content')
     <!-- START MENU -->
     <section id="admin2-dashboard">

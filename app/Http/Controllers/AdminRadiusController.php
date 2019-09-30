@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Distance;
+use App\Http\Requests\AdminDistanceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -51,7 +52,7 @@ class AdminRadiusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminDistanceRequest $request)
     {
         Distance::create($request->all());
         return redirect('/admin2/distance');

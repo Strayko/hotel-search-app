@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminLocationRequest;
 use App\Location;
 use App\Photo;
 use Illuminate\Http\Request;
@@ -54,7 +55,7 @@ class AdminLocationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminLocationRequest $request)
     {
 
 	    $input = $request->all();

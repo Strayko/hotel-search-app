@@ -24,11 +24,12 @@
 
     <title>Homepage</title>
 </head>
+
 <body>
-
-
-
 @yield('content')
+
+
+
 
 
 

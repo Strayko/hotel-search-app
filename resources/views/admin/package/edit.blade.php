@@ -175,7 +175,15 @@
 
 
 @extends('layouts.admin-thema')
-
+@section('title', 'Create Package')
+@section('style', '
+        .help-block {
+            margin-top: -10px;
+            font-size: 12px;
+            position: absolute;
+            color: red;
+        }
+')
 @section('content')
     <!-- START MENU -->
     <section id="admin2-dashboard">
@@ -226,21 +234,26 @@
             <div class="dashboard-content">
                 <div class="create-form">
                     <div class="form-left">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li style="color: red;">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+{{--                        @if ($errors->any())--}}
+{{--                            <div class="alert alert-danger">--}}
+{{--                                <ul>--}}
+{{--                                    @foreach ($errors->all() as $error)--}}
+{{--                                        <li style="color: red;">{{ $error }}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                         <p class="p-lead-h4">Edit package</p>
 
                         {!! Form::model($package, ['method'=>'PATCH', 'action'=>['AdminPackagesController@update', $package->id]]) !!}
                         {{csrf_field()}}
                         {!! Form::label('name', 'NAME', ['class'=>'label-grey-small']) !!}
-                        {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
+                        {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name']) !!}
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
 
                         <button class="create-input-button" type="submit"><i class="fas fa-box"></i> UPDATE</button>
                         {!! Form::close() !!}
@@ -257,5 +270,14 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+
+    </script>
 @endsection

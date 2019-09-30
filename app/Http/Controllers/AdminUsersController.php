@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminEditRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Package;
@@ -133,7 +134,8 @@ class AdminUsersController extends Controller
     	$user = User::findOrFail($id);
 	    $roles = Role::pluck('name', 'id')->all();
 	    $packages = Package::pluck('name', 'id')->all();
-        return view('admin.users.edit', compact('roles', 'user', 'packages'));
+	    $user_status = User::pluck('is_active', 'id')->all();
+        return view('admin.users.edit', compact('roles', 'user', 'packages', 'user_status'));
     }
 
     /**
@@ -143,7 +145,7 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserEditRequest $request, $id)
+    public function update(AdminEditRequest $request, $id)
     {
         $user = User::findOrFail($id);
 	    if(trim($request->password) == '') {
