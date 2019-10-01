@@ -353,6 +353,16 @@
     #file {
         display: none;
     }
+    .page-item {
+        display: inline-block;
+    }
+    .page-item.disabled {
+        padding: 5px 20px 5px 20px;
+        background-color: #c45555;
+    }
+    .active .page-link {
+        padding: 20px;
+    }
 </style>
 @section('content')
 <!-- START MENU -->
@@ -404,7 +414,7 @@
 
                 {{ Form::model($restaurants, ['method'=>'PUT', 'id'=>'upload-form-buttons', 'action'=>['AuthorGalleryController@update', $restaurants->id], 'files'=>true]) }}
                 <div class="add-button-box add-button-all only-width">
-                {{ Form::label('file', 'Browse...', ['class'=>'custom-file-label'])}}
+                {{ Form::label('file', 'Browse...', ['class'=>'custom-file-label only-left-correction'])}}
                 {{ Form::file('file[]', array('multiple'=>true,'accept'=>'image/*','id'=>'file'))  }}
                 </div>
                 <div class="add-button-box add-button-all add-margin-left only-upload-width">

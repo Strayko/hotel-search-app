@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions;
 use App\Booking;
+use App\Http\Requests\UserAuctionsRequest;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,7 +66,7 @@ class AuthorActionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserAuctionsRequest $request)
     {
         $input = $request->all();
         $user = Auth::user();

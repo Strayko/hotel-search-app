@@ -219,7 +219,15 @@
 
 
 @extends('layouts.admin-thema')
-
+@section('title', 'Create Event')
+@section('style', '
+        .help-block {
+            margin-top: -10px;
+            font-size: 12px;
+            float: right;
+            color: red;
+        }
+')
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">
@@ -270,27 +278,42 @@
         <div class="dashboard-content">
             <div class="create-form">
                 <div class="form-left">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li style="color: red;">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+{{--                    @if ($errors->any())--}}
+{{--                        <div class="alert alert-danger">--}}
+{{--                            <ul>--}}
+{{--                                @foreach ($errors->all() as $error)--}}
+{{--                                    <li style="color: red;">{{ $error }}</li>--}}
+{{--                                @endforeach--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
                     <p class="p-lead-h4">Create a new event</p>
 
                     {!! Form::open(['method'=>'POST', 'action'=>'AuthorEventController@store', 'files'=>true]) !!}
                     {{csrf_field()}}
                     {!! Form::label('title', 'NAME', ['class'=>'label-grey-small']) !!}
-                    {!! Form::text('title', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
+                    {!! Form::text('title', null, ['class'=>'create-form-input', 'id'=>'name']) !!}
+                    @if($errors->has('title'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('title')}}</strong>
+                        </span>
+                    @endif
 
                     {!! Form::label('body', 'EVENT DESCRIPTION', ['class'=>'label-grey-small']) !!}
-                    {!! Form::textarea('body', null, ['class'=>'create-form-textarea', 'id'=>'description', 'rows'=>3, 'required']) !!}
+                    {!! Form::textarea('body', null, ['class'=>'create-form-textarea', 'id'=>'description', 'rows'=>3]) !!}
+                    @if($errors->has('body'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('body')}}</strong>
+                        </span>
+                    @endif
 
                     {!! Form::label('restaurant_id', 'RESTAURANT', ['class'=>'label-grey-small']) !!}
-                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant', 'required']) !!}
+                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant']) !!}
+                    @if($errors->has('restaurant_id'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('restaurant_id')}}</strong>
+                        </span>
+                    @endif
 
 
                     <div class="upload-image upload-user-image">
@@ -317,5 +340,14 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".help-block").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+
+    </script>
 @endsection

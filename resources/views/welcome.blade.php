@@ -548,7 +548,18 @@
             <form action="{{URL::to('/search')}}" method="POST" role="search">
             {{csrf_field()}}
             <input type="text" name="q" id="address" class="first-input" placeholder="What are you looking for?">
-            {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control', 'id'=>'location']) !!}
+
+                <?php
+
+                    foreach($locations as $loc) {
+                        echo "ds";
+                    }
+
+
+
+                ?>
+
+{{--            {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control', 'id'=>'location']) !!}--}}
             {!! Form::select('food', [''=>'Choose Food'] + $foods, null, ['class'=>'form-control', 'id'=>'category']) !!}
             {!! Form::select('distance', [100=>'Choose Distance'] + $distance, null, ['class'=>'last-input', 'id'=>'distance']) !!}
             <input type="submit" value="Search" id="submit">

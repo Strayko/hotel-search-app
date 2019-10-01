@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Event;
+use App\Http\Requests\UserEventRequest;
 use App\Photo;
 use App\Restaurant;
 use App\User;
@@ -73,13 +74,8 @@ class AuthorEventController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(UserEventRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            'restaurant_id'=>'required'
-        ]);
         $input = $request->all();
         $user = Auth::user();
         if($file = $request->file('photo_id')) {

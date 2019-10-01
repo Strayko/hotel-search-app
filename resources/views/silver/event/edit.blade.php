@@ -222,6 +222,15 @@
 
 
 @extends('layouts.admin-thema')
+@section('title', 'Edit Event')
+@section('style', '
+        .help-block {
+            margin-top: -10px;
+            font-size: 12px;
+            float: right;
+            color: red;
+        }
+')
 
 @section('content')
 <!-- START MENU -->
@@ -284,13 +293,13 @@
                     {!! Form::model($events, ['method'=>'PATCH', 'action'=>['AuthorEventController@update', $events->id], 'files'=>true]) !!}
 
                     {!! Form::label('title', 'NAME', ['class'=>'label-grey-small']) !!}
-                    {!! Form::text('title', null, ['class'=>'create-form-input', 'id'=>'name']) !!}
+                    {!! Form::text('title', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
 
                     {!! Form::label('body', 'DESCRIPTION', ['class'=>'label-grey-small']) !!}
-                    {!! Form::textarea('body', null, ['class'=>'create-form-textarea', 'id'=>'description', 'rows'=>3]) !!}
+                    {!! Form::textarea('body', null, ['class'=>'create-form-textarea', 'id'=>'description', 'rows'=>3, 'required']) !!}
 
                     {!! Form::label('restaurant_id', 'RESTAURANT', ['label-grey-small']) !!}
-                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant']) !!}
+                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant', 'required']) !!}
 
                     <div class="upload-image upload-user-image">
                         <p id="image-r" class="label-grey-image-r">UPLOAD IMAGE</p>

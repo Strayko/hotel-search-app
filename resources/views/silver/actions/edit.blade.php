@@ -217,7 +217,7 @@
 
 
 @extends('layouts.admin-thema')
-
+@section('title', 'Edit Auctions')
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">
@@ -275,16 +275,18 @@
                     {{csrf_field()}}
 
                     {!! Form::label('title', 'NAME', ['class'=>'label-grey-small']) !!}
-                    {!! Form::text('title', null, ['class'=>'create-form-input', 'id'=>'name']) !!}
+                    {!! Form::text('title', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
 
                     {!! Form::label('body', 'ACTION DESCRIPTION', ['class'=>'label-grey-small']) !!}
                     {!! Form::textarea('body', null, ['class'=>'create-form-textarea', 'id'=>'description', 'rows'=>3]) !!}
 
+                    {!! Form::label('restaurant_id', 'RESTAURANT', ['class'=>'label-grey-small']) !!}
+                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant', 'required']) !!}
+
                     {!! Form::label('benefits', 'BENEFITS', ['class'=>'label-grey-small']) !!}
                     {!! Form::text('benefits', null, ['class'=>'create-form-input', 'id'=>'benefits']) !!}
 
-                    {!! Form::label('restaurant_id', 'RESTAURANT', ['class'=>'label-grey-small']) !!}
-                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant']) !!}
+
 
                     <button class="create-input-button" type="submit"><i class="fas fa-wallet"></i> UPDATE</button>
                 </div>

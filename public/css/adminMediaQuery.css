@@ -2407,4 +2407,190 @@
         margin-bottom: 0!important;
     }
 }
+@media screen and (max-width: 1108px) {
+    .search-inputs .search-2 {
+        width: 30%!important;
+    }
+}
+@media screen and (max-width: 1083px) {
+    .search-inputs .search-2 {
+        width: 91%!important;
+    }
+}
+@media screen and (max-width: 1083px) {
+    .search-inputs .search-2 {
+        width: 91.1%!important;
+    }
+}
+@media screen and (max-width: 1059px) {
+    .search-inputs .search-2 {
+        width: 91.4%!important;
+    }
+}
+@media screen and (max-width: 1009px) {
+    .search-inputs .search-2 {
+        width: 91.6%!important;
+    }
+}
+@media screen and (max-width: 986px) {
+    .search-inputs .search-2 {
+        width: 91.9%!important;
+    }
+}
+@media screen and (max-width: 943px) {
+    .search-inputs .search-2 {
+        width: 92.1%!important;
+    }
+}
+@media screen and (max-width: 920px) {
+    .search-inputs .search-2 {
+        width: 91.3%!important;
+    }
+}
+@media screen and (max-width: 896px) {
+    .search-inputs .search-2 {
+        width: 91.5%!important;
+    }
+}
+@media screen and (max-width: 868px) {
+    .search-inputs .search-2 {
+        width: 91.7%!important;
+    }
+}
+@media screen and (max-width: 835px) {
+    .search-inputs .search-2 {
+        width: 91.9%!important;
+    }
+}
+@media screen and (max-width: 822px) {
+    .search-inputs .search-2 {
+        width: 91%!important;
+    }
+}
+@media screen and (max-width: 796px) {
+    .search-inputs .search-2 {
+        width: 91.4%!important;
+    }
+}
+
+@media screen and (max-width: 751px) {
+    .search-inputs .search-2 {
+        width: 90.4%!important;
+    }
+}
+@media screen and (max-width: 739px) {
+    .search-inputs .search-2 {
+        width: 89.3%!important;
+    }
+}
+@media screen and (max-width: 721px) {
+    .search-inputs .search-2 {
+        width: 89.7%!important;
+    }
+}
+@media screen and (max-width: 689px) {
+    .search-inputs .search-2 {
+        width: 89.9%!important;
+    }
+}
+@media screen and (max-width: 680px) {
+    .search-inputs .search-2 {
+        width: 89.3%!important;
+    }
+}
+@media screen and (max-width: 669px) {
+    .search-inputs .search-2 {
+        width: 89.5%!important;
+    }
+}
+@media screen and (max-width: 658px) {
+    .search-inputs .search-2 {
+        width: 89.7%!important;
+    }
+}
+@media screen and (max-width: 627px) {
+    .search-inputs .search-2 {
+        width: 89.9%!important;
+    }
+}
+@media screen and (max-width: 600px) {
+    .search-inputs .search-2 {
+        width: 89.4%!important;
+    }
+}
+@media screen and (max-width: 581px) {
+    .search-inputs .search-2 {
+        width: 89.6%!important;
+    }
+}
+@media screen and (max-width: 559px) {
+    .search-inputs .search-2 {
+        width: 89.9%!important;
+    }
+}
+@media screen and (max-width: 550px) {
+    .search-inputs .search-2 {
+        width: 92.5%!important;
+    }
+}
+@media screen and (max-width: 489px) {
+    .search-inputs .search-2 {
+        width: 92.9%!important;
+    }
+}
+@media screen and (max-width: 467px) {
+    .search-inputs .search-2 {
+        width: 93.5%!important;
+    }
+}
+@media screen and (max-width: 460px) {
+    .search-inputs .search-2 {
+        width: 93.9%!important;
+    }
+}
+@media screen and (max-width: 420px) {
+    .search-inputs .search-2 {
+        width: 94.3%!important;
+    }
+}
+@media screen and (max-width: 398px) {
+    .search-inputs .search-2 {
+        width: 94.9%!important;
+    }
+}
+@media screen and (max-width: 380px) {
+    .search-inputs .search-2 {
+        width: 95.3%!important;
+    }
+}
+@media screen and (max-width: 370px) {
+    .search-inputs .search-2 {
+        width: 96%!important;
+    }
+}
+@media screen and (max-width: 359px) {
+    .search-inputs .search-2 {
+        width: 96.4%!important;
+    }
+}
+@media screen and (max-width: 359px) {
+    .search-inputs .search-2 {
+        width: 96.9%!important;
+    }
+}
+@media screen and (max-width: 327px) {
+    .search-inputs .search-2 {
+        width: 97.5%!important;
+    }
+}
+@media screen and (max-width: 320px) {
+    .search-inputs .search-2 {
+        width: 97.9%!important;
+    }
+}
+@media screen and (max-width: 300px) {
+    .search-inputs .search-2 {
+        width: 100.9%!important;
+    }
+}
 /*END USER ADMIN PANEL*/

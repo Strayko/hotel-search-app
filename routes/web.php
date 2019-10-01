@@ -28,7 +28,19 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 --------------------------*/
 Route::get('/', function () {
     $restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
-    $locations = Location::pluck('name', 'id')->all();
+
+    $locations = Location::all();
+    foreach($locations as $location) {
+        echo $location['name'];
+    }
+
+
+
+//    foreach ($locations as $location) {
+//        echo $location->name;
+//    }
+
+
     $locationss = Location::limit(8)->get();
     $foods = Food::pluck('name', 'id')->all();
     $distance = Distance::pluck('id', 'distance')->all();
@@ -123,114 +135,7 @@ Route::group(['middleware'=>'auth'], function () {
 
 
 
-/*------------------------------------------
-  ---> SINGLE PAGE FRONTEND SEARCH ONLY <---
--------------------------------------------*/
-Route::post('/search', function() {
-    $name = Input::get('name');
-    $food = Input::get('food');
-    $distance = Input::get('distance');
-    $bodyMap = [
-        'zoom' => 14,
-        'center' => true,
-        'marker' => false,
-        'eventAfterLoad' => 'onMapLoad(maps[0].map);'
-    ];
 
-
-
-    $name = Input::get('name');
-    $food = Input::get('food');
-    $distance = Input::get('distance');
-    $restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
-        ->where('food_id', 'LIKE', '%' . $food . '%')
-        ->get();
-
-
-    $lnglat = null;
-    foreach($restos as $resto){
-        $lng = $resto['lng'];
-        $lat = $resto['lat'];
-        $lnglat[] = array('lng'=>$lng, 'lat'=>$lat);
-    }
-    $json = json_encode($lnglat);
-
-
-
-
-
-
-    switch($name) {
-        case '2':
-            Mapper::location('Fürth')->map($bodyMap);
-            break;
-        case '3':
-            Mapper::location('München')->map($bodyMap);
-            break;
-        case '4':
-            Mapper::location('Würzburg')->map($bodyMap);
-            break;
-        case '5':
-            Mapper::location('Aschaffenburg')->map($bodyMap);
-            break;
-        case '6':
-            Mapper::location('Nüremberg')->map($bodyMap);
-            break;
-        case '7':
-            Mapper::location('Ingolstadt')->map($bodyMap);
-            break;
-        case '8':
-            Mapper::location('Passau')->map($bodyMap);
-//			->polyline([['latitude' => 48.5667364, 'longitude' => 13.431946599999947], ['latitude' => 48.5707981, 'longitude' => 13.431985299999951]]);
-            break;
-        case '9':
-            Mapper::location('Augsburg')->map($bodyMap);
-            break;
-        case '10':
-            Mapper::location('Bayreuth')->map($bodyMap);
-            break;
-        case '13':
-            Mapper::location('Kempten')->map($bodyMap);
-            break;
-        case '14':
-            Mapper::location('Rosenheim')->map($bodyMap);
-            break;
-        case '18':
-            Mapper::location('Rogensburg')->map($bodyMap);
-            break;
-        case '19':
-            Mapper::location('Zavidovići')->map($bodyMap);
-            break;
-        case '20':
-            Mapper::location('Sarajevo')->map($bodyMap);
-            break;
-        default:
-            Mapper::location('Schweiz')->map(
-                [
-                    'zoom' => 8,
-                    'draggable' => false,
-                    'marker' => false,
-                    'eventAfterLoad' =>
-                        'circleListener(maps[0].shapes[0].circle_0);'
-                ]
-            );
-    }
-
-    $q = Input::get('q');
-
-
-    if($q != ' ') {
-        $restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
-            ->where('title', 'LIKE', '%' .$q . '%')
-            ->where('food_id', 'LIKE', '%' . $food . '%')
-            ->get();
-        if(count($restaurant) > 0) {
-            return view('search', compact('distance', 'json'))->withDetails($restaurant)->withQuery($q);
-        }
-    }
-    return view('search', compact('distance', 'json'))->withMessage('No restaurant could not be found!');
-
-});
 
 
 
@@ -296,4 +201,117 @@ Route::group(['middleware'=>'goldandplatinium'], function() {
 Route::group(['middleware'=>'auth'], function() {
     Route::post('comment/reply', 'CommentRepliesController@createReply');
     Route::post('comment', 'RestaurantCommentController@store');
+});
+
+
+
+/*------------------------------------------
+  ---> SINGLE PAGE FRONTEND SEARCH ONLY <---
+-------------------------------------------*/
+Route::post('/search', function() {
+    $name = Input::get('name');
+    $food = Input::get('food');
+    $distance = Input::get('distance');
+    $bodyMap = [
+        'zoom' => 14,
+        'center' => true,
+        'marker' => false,
+        'eventAfterLoad' => 'onMapLoad(maps[0].map);'
+    ];
+
+
+
+    $name = Input::get('name');
+    $food = Input::get('food');
+    $distance = Input::get('distance');
+    $restos = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
+        ->where('food_id', 'LIKE', '%' . $food . '%')
+        ->get();
+
+
+    $lnglat = null;
+    foreach($restos as $resto){
+        $lng = $resto['lng'];
+        $lat = $resto['lat'];
+        $lnglat[] = array('lng'=>$lng, 'lat'=>$lat);
+    }
+    $json = json_encode($lnglat);
+
+
+
+dd($name);
+
+
+    switch($name) {
+        case '2':
+            Mapper::location('Fürth')->map($bodyMap);
+            break;
+        case '3':
+            Mapper::location('München')->map($bodyMap);
+            break;
+        case '4':
+            Mapper::location('Würzburg')->map($bodyMap);
+            break;
+        case '5':
+            Mapper::location('Aschaffenburg')->map($bodyMap);
+            break;
+        case '6':
+            Mapper::location('Nüremberg')->map($bodyMap);
+            break;
+        case '7':
+            Mapper::location('Ingolstadt')->map($bodyMap);
+            break;
+        case '8':
+            Mapper::location('Passau')->map($bodyMap);
+//			->polyline([['latitude' => 48.5667364, 'longitude' => 13.431946599999947], ['latitude' => 48.5707981, 'longitude' => 13.431985299999951]]);
+            break;
+        case '9':
+            Mapper::location('Augsburg')->map($bodyMap);
+            break;
+        case '10':
+            Mapper::location('Bayreuth')->map($bodyMap);
+            break;
+        case '13':
+            Mapper::location('Kempten')->map($bodyMap);
+            break;
+        case '14':
+            Mapper::location('Rosenheim')->map($bodyMap);
+            break;
+        case '18':
+            Mapper::location('Rogensburg')->map($bodyMap);
+            break;
+        case '19':
+            Mapper::location('Zavidovići')->map($bodyMap);
+            break;
+        case '20':
+            Mapper::location('Sarajevo')->map($bodyMap);
+            break;
+        default:
+            Mapper::location('Schweiz')->map(
+                [
+                    'zoom' => 8,
+                    'draggable' => false,
+                    'marker' => false,
+                    'eventAfterLoad' =>
+                        'circleListener(maps[0].shapes[0].circle_0);'
+                ]
+            );
+    }
+
+
+
+    $q = Input::get('q');
+
+
+    if($q != ' ') {
+        $restaurant = Restaurant::where('location_id', 'LIKE', '%' . $name . '%')
+            ->where('title', 'LIKE', '%' .$q . '%')
+            ->where('food_id', 'LIKE', '%' . $food . '%')
+            ->get();
+        if(count($restaurant) > 0) {
+            return view('search', compact('distance', 'json'))->withDetails($restaurant)->withQuery($q);
+        }
+    }
+    return view('search', compact('distance', 'json'))->withMessage('No restaurant could not be found!');
+
 });

@@ -206,7 +206,7 @@
 
 
 @extends('layouts.admin-thema')
-
+@section('title', 'Show Booking')
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">

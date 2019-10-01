@@ -7,6 +7,7 @@ use App\Location;
 use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminLocationsController extends Controller
@@ -18,7 +19,7 @@ class AdminLocationsController extends Controller
      */
     public function index()
     {
-    	$locations = Location::orderBy('id', 'asc')->paginate(5);
+    	$locations = Location::orderBy('id', 'asc')->paginate(8);
 
         return view('admin.locations.index', compact('locations'));
     }
@@ -34,7 +35,7 @@ class AdminLocationsController extends Controller
             $locations = Location::where('id', 'like', '%'.$query.'%')
                 ->orWhere('name', 'like', '%'.$query.'%')
                 ->orderBy($sort_by, $sort_type)
-                ->paginate(5);
+                ->paginate(8);
             return view('admin.ajax.locations_data', compact('locations'))->render();
         }
     }
@@ -127,7 +128,10 @@ class AdminLocationsController extends Controller
     public function destroy($id)
     {
         $location = Location::findOrFail($id);
-        unlink(public_path() . $location->photo->file);
+        if($location->photo_id != 5) {
+            unlink(public_path() . $location->photo->file);
+            DB::delete('delete from photos where id = ?',[$location->photo_id]);
+        }
         $location->delete();
         Session::flash('deleted_location', 'The Location has ben deleted');
         return redirect('/admin2/locations');

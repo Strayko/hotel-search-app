@@ -215,7 +215,15 @@
 
 
 @extends('layouts.admin-thema')
-
+@section('title', 'Create Auctions')
+@section('style', '
+        .help-block {
+            margin-top: -10px;
+            font-size: 12px;
+            float: right;
+            color: red;
+        }
+')
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">
@@ -269,15 +277,27 @@
 
                     {!! Form::label('title', 'NAME', ['class'=>'label-grey-small']) !!}
                     {!! Form::text('title', null, ['class'=>'create-form-input', 'id'=>'name']) !!}
+                    @if($errors->has('title'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('title')}}</strong>
+                        </span>
+                    @endif
 
                     {!! Form::label('body', 'ACTION DESCRIPTION', ['class'=>'label-grey-small']) !!}
                     {!! Form::textarea('body', null, ['class'=>'create-form-textarea', 'id'=>'description', 'rows'=>3]) !!}
 
+                    {!! Form::label('restaurant_id', 'RESTAURANT', ['class'=>'label-grey-small']) !!}
+                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant']) !!}
+                    @if($errors->has('restaurant_id'))
+                        <span class="help-block">
+                            <strong>{{$errors->first('restaurant_id')}}</strong>
+                        </span>
+                    @endif
+
                     {!! Form::label('benefits', 'BENEFITS', ['class'=>'label-grey-small']) !!}
                     {!! Form::text('benefits', null, ['class'=>'create-form-input', 'id'=>'benefits']) !!}
 
-                    {!! Form::label('restaurant_id', 'RESTAURANT', ['class'=>'label-grey-small']) !!}
-                    {!! Form::select('restaurant_id', ['' => 'Choose Restaurant'] + $restaurants, null, ['class'=>'create-form-select', 'id'=>'restaurant']) !!}
+
 
                     <button class="create-input-button" type="submit"><i class="fas fa-wallet"></i> CREATE</button>
                 </div>
@@ -293,5 +313,14 @@
 @endsection
 
 @section('footer')
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
+{{--    <script>--}}
+{{--        $("document").ready(function(){--}}
+{{--            setTimeout(function(){--}}
+{{--                $(".help-block").fadeOut(1000, function() {$(this).remove()});--}}
+{{--            }, 5000 );--}}
+{{--        });--}}
 
+
+{{--    </script>--}}
 @endsection
