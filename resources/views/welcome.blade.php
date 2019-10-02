@@ -549,17 +549,9 @@
             {{csrf_field()}}
             <input type="text" name="q" id="address" class="first-input" placeholder="What are you looking for?">
 
-                <?php
-
-                    foreach($locations as $loc) {
-                        echo "ds";
-                    }
 
 
-
-                ?>
-
-{{--            {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control', 'id'=>'location']) !!}--}}
+            {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control', 'id'=>'location']) !!}
             {!! Form::select('food', [''=>'Choose Food'] + $foods, null, ['class'=>'form-control', 'id'=>'category']) !!}
             {!! Form::select('distance', [100=>'Choose Distance'] + $distance, null, ['class'=>'last-input', 'id'=>'distance']) !!}
             <input type="submit" value="Search" id="submit">

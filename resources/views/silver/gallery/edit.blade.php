@@ -408,9 +408,9 @@
 
 
 
-            <div class="search-inputs">
-                <i class="fas fa-search"></i>
-                <input class="search-2" id="serach" name="serach" type="text" placeholder="Search photo ...">
+            <div class="search-inputs gallery-search">
+{{--                <i class="fas fa-search"></i>--}}
+{{--                <input class="search-2" id="serach" name="serach" type="text" placeholder="Search photo ...">--}}
 
                 {{ Form::model($restaurants, ['method'=>'PUT', 'id'=>'upload-form-buttons', 'action'=>['AuthorGalleryController@update', $restaurants->id], 'files'=>true]) }}
                 <div class="add-button-box add-button-all only-width">
@@ -422,9 +422,9 @@
                 </div>
                 {{ Form::close()  }}
 
-                <div class="sorting-button-box add-button-all add-margin-left last-margin-left only-width">
-                    <a class="header-inputs-tirkiz sorting" data-sorting_type="asc" data-column_name="id" href="#"><i class="fas fa-camera"></i> SORTING PHOTOS</a>
-                </div>
+{{--                <div class="sorting-button-box add-button-all add-margin-left last-margin-left only-width">--}}
+{{--                    <a class="header-inputs-tirkiz sorting" data-sorting_type="asc" data-column_name="id" href="#"><i class="fas fa-camera"></i> SORTING PHOTOS</a>--}}
+{{--                </div>--}}
             </div>
             <div class="dashboard-table" id="restaurants-table">
                 <form action="delete/gallery" method="post" class="form-inline">
@@ -444,15 +444,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @include('silver.ajax.gallerys_data')
+                    @foreach($gallerys as $gallery)
+                        <tr>
+                            <td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$gallery->id}}"></td>
+                            <td><img src="{{URL::asset('/gallery/' . $gallery->photo)}}" alt="" height="100" width="100"></td>
+                            {{--<td><img height="50" src="{{$restaurant->file}}" alt=""></td>--}}
+                            <td>{{$gallery->created_at ? $gallery->created_at->diffForHumans() : 'no data'}}</td>
+                            <td class="d-flex justify-content-end">
+
+                            </td>
+                        </tr>
+                    @endforeach
+                    <tr>
+                        <td colspan="10" align="center">
+                            <div style="display: inline-flex">
+                                {{ $gallerys->onEachSide(1)->links() }}
+                            </div>
+                        </td>
+                    </tr>
                     @else
                         <h1 class="text-center">Upload your gallery</h1>
                     @endif
                     </tbody>
                 </table>
-                <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
-                <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="id" />
-                <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
+
                 </form>
 
             </div>
@@ -479,74 +494,5 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function(){
 
-            function clear_icon()
-            {
-                $('#id_icon').html('');
-                $('#post_title_icon').html('');
-            }
-
-            function fetch_data(page, sort_type, sort_by, query)
-            {
-                $.ajax({
-                    url:"/admin/gallery/{id}/cKS3dpqP6xF6qZEf?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
-                    success:function(data)
-                    {
-                        $('tbody').html('');
-                        $('tbody').html(data);
-                    }
-                })
-            }
-
-            $(document).on('keyup', '#serach', function(){
-                var query = $('#serach').val();
-                var column_name = $('#hidden_column_name').val();
-                var sort_type = $('#hidden_sort_type').val();
-                var page = $('#hidden_page').val();
-                fetch_data(page, sort_type, column_name, query);
-            });
-
-            $(document).on('click', '.sorting', function(){
-                var column_name = $(this).data('column_name');
-                var order_type = $(this).data('sorting_type');
-                var reverse_order = '';
-                if(order_type == 'asc')
-                {
-                    $(this).data('sorting_type', 'desc');
-                    reverse_order = 'desc';
-                    clear_icon();
-                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-bottom"></span>');
-                }
-                if(order_type == 'desc')
-                {
-                    $(this).data('sorting_type', 'asc');
-                    reverse_order = 'asc';
-                    clear_icon
-                    $('#'+column_name+'_icon').html('<span class="glyphicon glyphicon-triangle-top"></span>');
-                }
-                $('#hidden_column_name').val(column_name);
-                $('#hidden_sort_type').val(reverse_order);
-                var page = $('#hidden_page').val();
-                var query = $('#serach').val();
-                fetch_data(page, reverse_order, column_name, query);
-            });
-
-            $(document).on('click', '.pagination a', function(event){
-                event.preventDefault();
-                var page = $(this).attr('href').split('page=')[1];
-                $('#hidden_page').val(page);
-                var column_name = $('#hidden_column_name').val();
-                var sort_type = $('#hidden_sort_type').val();
-
-                var query = $('#serach').val();
-
-                $('li').removeClass('active');
-                $(this).parent().addClass('active');
-                fetch_data(page, sort_type, column_name, query);
-            });
-
-        });
-    </script>
 @endsection

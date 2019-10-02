@@ -2593,4 +2593,9 @@
         width: 100.9%!important;
     }
 }
+@media screen and (max-width: 1083px) {
+    .search-inputs.gallery-search {
+        margin-left: 0!important;
+    }
+}
 /*END USER ADMIN PANEL*/

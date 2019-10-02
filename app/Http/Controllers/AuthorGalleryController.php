@@ -85,6 +85,7 @@ class AuthorGalleryController extends Controller
      */
     public function edit($id)
     {
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
@@ -101,28 +102,39 @@ class AuthorGalleryController extends Controller
 
 
 
-    function fetch_data2(Request $request)
-    {
-
-        if($request->ajax())
-        {
-//            $restaurant = Restaurant::findOrFail($id);
-//            dd($restaurant['id']);
-
-
-
-            $sort_by = $request->get('sortby');
-            $sort_type = $request->get('sorttype');
-            $query = $request->get('query');
-            $query = str_replace(" ", "%", $query);
-            $gallerys = Gallery::where('id', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
-                ->orWhere('photo', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
-                ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
-                ->paginate(5);
-
-            return view('silver.ajax.gallerys_data', compact('gallerys'))->render();
-        }
-    }
+//    public function fetch_data2(Request $request)
+//    {
+//
+//
+//
+//
+//        if($request->ajax())
+//        {
+////            $restaurant = Restaurant::findOrFail($id);
+////            dd($restaurant);
+////
+////
+////            $restaurants = Restaurant::all();
+////            dd($restaurants[$id]);
+////
+////            $restaurant_id = $restaurants['id'];
+////            $gallerys = $restaurants->gallery()->where('restaurant_id', $restaurant_id)->orderBy('id', 'asc')->paginate(5);
+//
+//
+//
+//
+//            $sort_by = $request->get('sortby');
+//            $sort_type = $request->get('sorttype');
+//            $query = $request->get('query');
+//            $query = str_replace(" ", "%", $query);
+//            $gallerys = Gallery::where('id', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+//                ->orWhere('photo', 'like', '%'.$query.'%')->where('user_id', \Auth::user()->id)
+//                ->orderBy($sort_by, $sort_type)->where('user_id', \Auth::user()->id)
+//                ->paginate(5);
+//
+//            return view('silver.ajax.gallerys_data', compact('gallerys'))->render();
+//        }
+//    }
 
     /**
      * Update the specified resource in storage.

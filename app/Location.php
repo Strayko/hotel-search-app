@@ -8,7 +8,8 @@ class Location extends Model
 {
     protected $fillable = [
         'name',
-	    'photo_id'
+	    'photo_id',
+        'value'
     ];
 
     public function photo() {

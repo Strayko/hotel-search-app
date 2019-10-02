@@ -19,7 +19,7 @@ class AdminLocationsController extends Controller
      */
     public function index()
     {
-    	$locations = Location::orderBy('id', 'asc')->paginate(8);
+    	$locations = Location::orderBy('id', 'asc')->paginate(5);
 
         return view('admin.locations.index', compact('locations'));
     }
@@ -35,7 +35,7 @@ class AdminLocationsController extends Controller
             $locations = Location::where('id', 'like', '%'.$query.'%')
                 ->orWhere('name', 'like', '%'.$query.'%')
                 ->orderBy($sort_by, $sort_type)
-                ->paginate(8);
+                ->paginate(5);
             return view('admin.ajax.locations_data', compact('locations'))->render();
         }
     }

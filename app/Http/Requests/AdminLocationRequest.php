@@ -24,14 +24,16 @@ class AdminLocationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:locations'
+            'name' => 'required|unique:locations',
+            'value' => 'required|unique:locations'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Name is required'
+            'name.required' => 'Name is required',
+            'value.required' => 'Value is required'
         ];
     }
 }

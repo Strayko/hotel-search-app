@@ -29,16 +29,12 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 Route::get('/', function () {
     $restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
 
-    $locations = Location::all();
-    foreach($locations as $location) {
-        echo $location['name'];
-    }
+    $locations = Location::pluck('name', 'value')->all();
 
-
-
-//    foreach ($locations as $location) {
-//        echo $location->name;
+//    foreach($locations as $location) {
+//        echo $location;
 //    }
+
 
 
     $locationss = Location::limit(8)->get();
@@ -145,7 +141,7 @@ Route::group(['middleware'=>'auth'], function () {
 Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fetch_data');
 Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
 Route::get('/admin/gallery/jLYZFd64ggZe3s8f', 'AuthorGalleryController@fetch_data');
-Route::get('/admin/gallery/{id}/cKS3dpqP6xF6qZEf', 'AuthorGalleryController@fetch_data2');
+//Route::get('/admin/gallery/{id}/cKS3dpqP6xF6qZEf', 'AuthorGalleryController@fetch_data2');
 Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
 Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_data');
 
@@ -238,65 +234,90 @@ Route::post('/search', function() {
     $json = json_encode($lnglat);
 
 
+    $locationsCase = Location::all();
 
-dd($name);
 
-
-    switch($name) {
-        case '2':
-            Mapper::location('Fürth')->map($bodyMap);
-            break;
-        case '3':
-            Mapper::location('München')->map($bodyMap);
-            break;
-        case '4':
-            Mapper::location('Würzburg')->map($bodyMap);
-            break;
-        case '5':
-            Mapper::location('Aschaffenburg')->map($bodyMap);
-            break;
-        case '6':
-            Mapper::location('Nüremberg')->map($bodyMap);
-            break;
-        case '7':
-            Mapper::location('Ingolstadt')->map($bodyMap);
-            break;
-        case '8':
-            Mapper::location('Passau')->map($bodyMap);
-//			->polyline([['latitude' => 48.5667364, 'longitude' => 13.431946599999947], ['latitude' => 48.5707981, 'longitude' => 13.431985299999951]]);
-            break;
-        case '9':
-            Mapper::location('Augsburg')->map($bodyMap);
-            break;
-        case '10':
-            Mapper::location('Bayreuth')->map($bodyMap);
-            break;
-        case '13':
-            Mapper::location('Kempten')->map($bodyMap);
-            break;
-        case '14':
-            Mapper::location('Rosenheim')->map($bodyMap);
-            break;
-        case '18':
-            Mapper::location('Rogensburg')->map($bodyMap);
-            break;
-        case '19':
-            Mapper::location('Zavidovići')->map($bodyMap);
-            break;
-        case '20':
-            Mapper::location('Sarajevo')->map($bodyMap);
-            break;
-        default:
-            Mapper::location('Schweiz')->map(
-                [
-                    'zoom' => 8,
-                    'draggable' => false,
-                    'marker' => false,
-                    'eventAfterLoad' =>
-                        'circleListener(maps[0].shapes[0].circle_0);'
-                ]
-            );
+    if($name) {
+        foreach($locationsCase as $case) {
+            switch($name) {
+                case $case->value:
+                    Mapper::location($case->value)->map($bodyMap);
+                    break;
+            }
+        }
+    } else {
+        Mapper::location('Schweiz')->map(
+            [
+                'zoom' => 8,
+                'draggable' => false,
+                'marker' => false,
+                'eventAfterLoad' =>
+                    'circleListener(maps[0].shapes[0].circle_0);'
+            ]
+        );
     }
+
+
+
+
+
+
+
+//    switch($name) {
+//        case '2':
+//            Mapper::location('Fürth')->map($bodyMap);
+//            break;
+//        case '3':
+//            Mapper::location('München')->map($bodyMap);
+//            break;
+//        case '4':
+//            Mapper::location('Würzburg')->map($bodyMap);
+//            break;
+//        case '5':
+//            Mapper::location('Aschaffenburg')->map($bodyMap);
+//            break;
+//        case '6':
+//            Mapper::location('Nüremberg')->map($bodyMap);
+//            break;
+//        case '7':
+//            Mapper::location('Ingolstadt')->map($bodyMap);
+//            break;
+//        case '8':
+//            Mapper::location('Passau')->map($bodyMap);
+////			->polyline([['latitude' => 48.5667364, 'longitude' => 13.431946599999947], ['latitude' => 48.5707981, 'longitude' => 13.431985299999951]]);
+//            break;
+//        case '9':
+//            Mapper::location('Augsburg')->map($bodyMap);
+//            break;
+//        case '10':
+//            Mapper::location('Bayreuth')->map($bodyMap);
+//            break;
+//        case '13':
+//            Mapper::location('Kempten')->map($bodyMap);
+//            break;
+//        case '14':
+//            Mapper::location('Rosenheim')->map($bodyMap);
+//            break;
+//        case '18':
+//            Mapper::location('Rogensburg')->map($bodyMap);
+//            break;
+//        case '19':
+//            Mapper::location('Zavidovići')->map($bodyMap);
+//            break;
+//        case '20':
+//            Mapper::location('Sarajevo')->map($bodyMap);
+//            break;
+//        default:
+//            Mapper::location('Schweiz')->map(
+//                [
+//                    'zoom' => 8,
+//                    'draggable' => false,
+//                    'marker' => false,
+//                    'eventAfterLoad' =>
+//                        'circleListener(maps[0].shapes[0].circle_0);'
+//                ]
+//            );
+//    }
 
 
 

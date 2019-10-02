@@ -4,7 +4,7 @@
         .help-block {
             margin-top: -10px;
             font-size: 12px;
-            position: absolute;
+            float: right;
             color: red;
         }
 ')
@@ -77,6 +77,14 @@
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
+                        @endif
+
+                        {!! Form::label('value', 'VALUE', ['class'=>'label-grey-small']) !!}
+                        {!! Form::text('value', null, ['class'=>'create-form-input', 'id'=>'value', 'placeholder'=>'Same as name']) !!}
+                        @if($errors->has('value'))
+                            <span class="help-block">
+                                <strong>{{$errors->first('value')}}</strong>
+                            </span>
                         @endif
 
                         <div class="upload-image upload-user-image">

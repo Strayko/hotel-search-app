@@ -261,6 +261,9 @@
                         {!! Form::label('name', 'NAME', ['class'=>'label-grey-small']) !!}
                         {!! Form::text('name', null, ['class'=>'create-form-input', 'id'=>'name', 'required']) !!}
 
+                        {!! Form::label('value', 'VALUE', ['class'=>'label-grey-small']) !!}
+                        {!! Form::text('value', null, ['class'=>'create-form-input', 'id'=>'value', 'required', 'placeholder'=>'Same as name']) !!}
+
                         <div class="upload-image upload-user-image">
                             <p id="image-r" class="label-grey-image-r">UPLOAD IMAGE</p>
                             <button type="button" class="input-file">

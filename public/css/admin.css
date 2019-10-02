@@ -1023,3 +1023,6 @@ label[for=file]:hover {
     padding-top: 6px!important;
     padding-bottom: 6px!important;
 }
+.search-inputs.gallery-search {
+    margin-left: 30px;
+}
