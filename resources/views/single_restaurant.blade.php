@@ -549,7 +549,7 @@
                 <img src="{{$restaurant->photo ? $restaurant->photo->file : $restaurant->photoPlaceholder()}}" alt="">
             </div>
             <div class="title-body">
-                <h2>{{$restaurant->title}}</h2>
+                <h2 class="css-limit-text">{{$restaurant->title}}</h2>
                 <img src="{{asset('img/star.svg')}}" class="star" alt="">
                 <img src="{{asset('img/star.svg')}}" class="star" alt="">
                 <img src="{{asset('img/star.svg')}}" class="star" alt="">
@@ -708,11 +708,11 @@
                 @if($restaurantRecents)
                     @foreach($restaurantRecents as $restaurantRecent)
                         <div class="recently-single-restaurant">
-                            <div class="recently-img">
+                            <div class="recently-img restaurant-height-pic">
                                 <img src="{{$restaurantRecent->photo ? $restaurantRecent->photo->file : $restaurantRecent->singleRestaurant()}}" alt="">
                             </div>
                             <div class="title-address">
-                                <p class="p-lead">{{$restaurantRecent->title}}</p>
+                                <p class="p-lead restaurant-p-lead">{{Str::limit($restaurantRecent->title, 14)}}</p>
                                 <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">{{$restaurant->location->name}}</p>
                             </div>
                         </div>
@@ -729,11 +729,11 @@
                 @if($relateds)
                     @foreach($relateds as $related)
                         <div class="recently-single-restaurant">
-                            <div class="recently-img">
+                            <div class="recently-img restaurant-height-pic">
                                 <img src="{{$related->photo ? $related->photo->file : $related->photoHome()}}" alt="">
                             </div>
                             <div class="title-address">
-                                <p class="p-lead">{{$related->title}}</p>
+                                <p class="p-lead restaurant-p-lead">{{Str::limit($related->title, 14)}}</p>
                                 <img src="{{asset('img/location-minify.svg')}}" alt=""><p class="p-lead-light">{{$restaurant->location->name}}</p>
                             </div>
                         </div>

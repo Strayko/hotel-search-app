@@ -27,7 +27,7 @@ class AuthorRestaurantController extends Controller
     	$comments = $restaurant->comments()->whereIsActive(1)->paginate(5);
     	$commentss = $restaurant->comments()->whereIsActive(1)->get();
     	$relateds = Restaurant::orderBy(DB::raw('RAND()'))->limit(2)->get();
-    	$locations = Location::all();
+    	$locations = Location::orderBy(DB::raw('RAND()'))->limit(14)->get();
     	$foods = Food::all();
 	    $restaurantRecents = Restaurant::orderBy('id', 'desc')->limit(3)->get();
 	    $actions = $restaurant->actions()->orderBy('id', 'desc')->whereIsActive(1)->first();

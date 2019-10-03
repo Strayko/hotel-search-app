@@ -2393,7 +2393,7 @@
 
         .recently-img {
             width: 80%;
-            height: 80%;
+
         }
     }
     @media screen and (max-width: 533px) {
@@ -2408,5 +2408,32 @@
         }
     }
 }
-
+@media screen and (max-width: 917px) {
+    .restaurant-right-box {
+        width: 100%;
+    }
+    .restaurant-category .p-lead {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .recently-single-restaurant {
+        display: inline-block;
+        width: 30%;
+    }
+    .recently-divider {
+        display: none;
+    }
+    .restaurant-recently-added hr {
+        display: none;
+    }
+    
+}
+@media screen and (max-width: 505px) {
+    .restaurant-p-lead {
+        white-space: nowrap!important;
+        overflow: hidden!important;
+        text-overflow: ellipsis!important;
+        max-width: 100px!important;
+    }
+}
 /*END RESTAURANT DETAILS MEDIA QUERY*/
