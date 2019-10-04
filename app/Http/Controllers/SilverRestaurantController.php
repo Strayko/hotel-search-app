@@ -187,11 +187,13 @@ class SilverRestaurantController extends Controller
 	    $input = $request->all();
 	    $restaurant = Restaurant::findOrFail($id);
 
-	    $restaurantImage = public_path($restaurant->photo->file);
 
-        if(File::exists($restaurantImage) && $restaurant->photo_id != 2) {
-            unlink($restaurantImage);
-        }
+	    // replace image in a same id and not needed but not working properly (fix bug)
+//	    $restaurantImage = public_path($restaurant->photo->file);
+//
+//        if(File::exists($restaurantImage) && $restaurant->photo_id != 2) {
+//            unlink($restaurantImage);
+//        }
 
         if(!Auth::user()->isFrei()) {
             $social_network = Social::find($restaurant->social->id);

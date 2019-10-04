@@ -1,8 +1,8 @@
 @foreach($actions as $action)
     <tr>
-        <td>{{$action->restaurant->title}}</td>
-        <td>{{Str::limit($action->title, 15)}}</td>
-        <td>{{Str::limit($action->body, 10)}}</td>
+        <td>{{Str::limit($action->restaurant->title, 20)}}</td>
+        <td>{{Str::limit($action->title, 20)}}</td>
+        <td>{{Str::limit($action->body, 20)}}</td>
         <td>{{$action->created_at->diffForHumans()}}</td>
         <td>{{$action->updated_at->diffForHumans()}}</td>
         <td class="center-buttons">

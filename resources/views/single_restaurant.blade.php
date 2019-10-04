@@ -501,14 +501,71 @@
     .title-address .p-lead-light {
         display: inline-block;
     }
+    .required {
+        color: red;
+    }
+    .restaurant-comments {
+        margin-top: 20px;
+    }
+    a[rel~="prev"] {
+        font-size: 48px;
+        margin-top: -17px;
+        position: absolute;
+    }
+    a[rel~="next"] {
+        font-size: 48px;
+        margin-top: -17px;
+        position: absolute;
+    }
+
+    .page-item {
+        display: inline-block;
+        color: #e24f4c;
+        padding: 5px 12px 5px 12px;
+    }
+    .page-item.disabled {
+
+    }
+    .page-link {
+        color: #e24f4c;
+        text-decoration: none;
+        margin-left: -16px;
+    }
+    .active .page-link {
+        -webkit-border-radius: 50px!important;
+        -moz-border-radius: 50px!important;
+        border-radius: 50px!important;
+        color: white;
+        background-color: #e24f4c;
+        padding: 5px 12px 5px 12px;
+    }
+    .form-flex-message {
+        display: flex;
+        justify-content: center;
+        background-color: green;
+        color: #fff;
+        height: 81px;
+        align-items: center;
+        top: 0;
+        z-index: 99999;
+        position: sticky;
+    }
+    #form-is-send {
+        display: flex;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
+@if(Session::has('comment_message'))
+    <div class="form-flex-message">
+        <p id="form-is-send">{{session('comment_message')}}</p>
+    </div>
+@endif
 <section id="menu" class="menu">
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="index.html"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            <a href="/"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -523,8 +580,33 @@
                 <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
                 <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                @if (Route::has('login'))
+                    {{--<div class="top-right links">--}}
+                    @auth
+
+                        <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
+
+                        <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
+                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" class="aa-login">
+
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                    @else
+                        <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+
+
+                        @if (Route::has('register'))
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+
+                        @endif
+                    @endauth
+                    {{--</div>--}}
+                @endif
             </ul>
         </nav>
 
@@ -550,6 +632,7 @@
             </div>
             <div class="title-body">
                 <h2 class="css-limit-text">{{$restaurant->title}}</h2>
+
                 <img src="{{asset('img/star.svg')}}" class="star" alt="">
                 <img src="{{asset('img/star.svg')}}" class="star" alt="">
                 <img src="{{asset('img/star.svg')}}" class="star" alt="">
@@ -579,7 +662,7 @@
             </div>
             <div class="contact-restaurant-content">
                 <div class="contact-title">
-                    <p class="p-title"><b>{{$restaurant->title}}</b></p>
+                    <p class="p-title"><b>{{Str::limit($restaurant->title, 20)}}</b></p>
                     <p class="p-title-2"><b>Social:</b></p>
                 </div>
                 <div class="contact-email-social">
@@ -587,9 +670,9 @@
                     <p class="p-lead">{{$restaurant->contact->telephone}}</p>
                 </div>
                 <div class="contact-email-social-2">
-                    <a href="{{$restaurant->social->facebook}}"><i class="fab fa-facebook-f"></i></a>
-                    <a href="{{$restaurant->social->instagram}}"><i class="fab fa-instagram"></i></a>
-                    <a href="{{$restaurant->social->google}}"><i class="fab fa-twitter"></i></a>
+                    <a target="_blank" href="{{$restaurant->social->facebook}}"><i class="fab fa-facebook-f"></i></a>
+                    <a target="_blank" href="{{$restaurant->social->instagram}}"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" href="{{$restaurant->social->google}}"><i class="fab fa-twitter"></i></a>
                 </div>
                 <div class="contact-address">
                     <p class="p-lead">{{$restaurant->location->name}}</p>
@@ -597,12 +680,29 @@
                 </div>
                 <div class="contact-pdf">
                     @if(!empty($restaurant->documents->document))
-                        <a href="{{ asset('documents/' . $restaurant->documents->document) }}" target="_blank"><h2 style="display: inline-block;">{{$restaurant->documents->document}} <i class="fas fa-file-pdf"></i></h2></a>
-                    @else
-                        <p>You dont have pdf</p>
+                        <a href="{{ asset('documents/' . $restaurant->documents->document) }}" target="_blank"><h2 style="display: inline-block;">{{Str::limit($restaurant->documents->document, 15)}} <i class="fas fa-file-pdf"></i></h2></a>
                     @endif
                 </div>
             </div>
+
+
+            @if(isset($event->is_active))
+               @if($event->is_active != 0)
+                    <div class="event">
+                        <h2>Event</h2>
+                        <h3>{{$event->title}}</h3>
+                        <br>
+                        <div class="event-pic">
+                            <img alt="img" class="event-pic-src" src="{{$event->photo ? $restaurant->photo->file : $restaurant->photoPlaceholder()}}">
+                        </div>
+                        <br>
+                        <p class="p-lead">{{$event->body}}</p>
+                    </div>
+               @endif
+            @endif
+
+
+            @if($gallerys->count() > 0)
             <div class="gallery">
                 <h2>Gallery</h2>
                 <div class="gallery-img">
@@ -616,16 +716,17 @@
 
                 </div>
             </div>
-            <div class="pagination pagination-last-bottom">
-                <img src="{{asset('img/left-arrow-angle-white-red.svg')}}" class="pagination-left" alt="">
-                <p class="p-lead p-circle">1</p>
-                <p class="p-lead">2</p>
-                <p class="p-lead pagi-none">3</p>
-                <p class="p-lead pagi-none">4</p>
-                <p class="p-lead">...</p>
-                <p class="p-lead">9</p>
-                <img src="{{asset('img/right-arrow-angle-white-red.svg')}}" class="pagination-right" alt="">
-            </div>
+            @endif
+{{--            <div class="pagination pagination-last-bottom">--}}
+{{--                <img src="{{asset('img/left-arrow-angle-white-red.svg')}}" class="pagination-left" alt="">--}}
+{{--                <p class="p-lead p-circle">1</p>--}}
+{{--                <p class="p-lead">2</p>--}}
+{{--                <p class="p-lead pagi-none">3</p>--}}
+{{--                <p class="p-lead pagi-none">4</p>--}}
+{{--                <p class="p-lead">...</p>--}}
+{{--                <p class="p-lead">9</p>--}}
+{{--                <img src="{{asset('img/right-arrow-angle-white-red.svg')}}" class="pagination-right" alt="">--}}
+{{--            </div>--}}
             <div class="restaurant-comments">
                 <h2>Comments</h2>
                 <img class="comments-icon" src="{{asset('img/chat-minify.svg')}}" alt="">
@@ -650,7 +751,7 @@
                 @endforeach
             @endif
 
-
+            {{ $comments->onEachSide(1)->links() }}
 
 
             @if(Auth::check())
@@ -757,5 +858,13 @@
 @endsection
 
 @section('footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                $(".form-flex-message").fadeOut(1000, function() {$(this).remove()});
+            }, 5000 );
+        });
 
+    </script>
 @endsection

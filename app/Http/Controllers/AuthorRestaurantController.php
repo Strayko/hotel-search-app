@@ -11,6 +11,7 @@ use App\Restaurant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AuthorRestaurantController extends Controller
 {
@@ -40,6 +41,7 @@ class AuthorRestaurantController extends Controller
         $data = $request->all();
         Booking::create($data);
         $request->session()->flash('online_booking', 'Your request for reservation is sent and we will contact you');
+
         return redirect()->back();
     }
 

@@ -276,8 +276,8 @@
                             @foreach($restaurants as $restaurant)
                                 <tr>
 
-                                    <td>{{$restaurant->title}}</td>
-                                    <td>{{$restaurant->body}}</td>
+                                    <td>{{Str::limit($restaurant->title, 20)}}</td>
+                                    <td>{{Str::limit($restaurant->body, 40)}}</td>
                                     <td>{{$restaurant->comments->count()}}</td>
                                     <td>{{$restaurant->created_at->diffForHumans()}}</td>
                                     <td class="center-buttons"><a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">View</a></td>

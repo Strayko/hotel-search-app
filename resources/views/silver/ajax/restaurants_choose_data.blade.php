@@ -1,7 +1,7 @@
 @foreach($restaurants as $restaurant)
     <tr>
 
-        <td>{{$restaurant->title}}</td>
+        <td>{{Str::limit($restaurant->title, 40)}}</td>
         <td>{{$restaurant->gallery->count()}}</td>
 
         <td class="d-flex justify-content-center" style="text-align: center;">

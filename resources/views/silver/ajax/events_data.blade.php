@@ -1,9 +1,9 @@
 @foreach($events as $event)
     <tr>
         <td><img height="50" width="50" src="{{$event->photo ? $event->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
-        <td>{{$event->restaurant->title}}</td>
+        <td>{{Str::limit($event->restaurant->title, 15)}}</td>
         <td>{{Str::limit($event->title, 15)}}</td>
-        <td>{{Str::limit($event->body, 10)}}</td>
+        <td>{{Str::limit($event->body, 15)}}</td>
         <td>{{$event->created_at->diffForHumans()}}</td>
         <td>{{$event->updated_at->diffForHumans()}}</td>
         <td class="center-buttons">

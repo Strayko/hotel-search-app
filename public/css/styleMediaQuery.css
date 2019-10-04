@@ -2074,7 +2074,7 @@
     }
     .gallery-img .single-img {
         width: 31.7%;
-        height: 93%;
+        height: 20%;
     }
 }
 @media screen and (max-width: 550px) {
@@ -2144,26 +2144,26 @@
     }
 }
 @media screen and (max-width: 626px) {
-    .contact-email-social-2 {
-        width: 28%;
-    }
+    /*.contact-email-social-2 {*/
+    /*    width: 28%;*/
+    /*}*/
     .contact-restaurant-content .p-title-2 {
         margin-left: 23%!important;
     }
-    .contact-pdf a {
-        margin-left: 46%;
-        float: none;
-    }
+    /*.contact-pdf a {*/
+    /*    margin-left: 46%;*/
+    /*    float: none;*/
+    /*}*/
 }
 @media screen and (max-width: 626px) {
-    .contact-email-social-2 {
-        width: 29%;
-    }
+    /*.contact-email-social-2 {*/
+    /*    width: 29%;*/
+    /*}*/
 }
 @media screen and (max-width: 584px) {
-    .contact-email-social-2 {
-        width: 30%;
-    }
+    /*.contact-email-social-2 {*/
+    /*    width: 30%;*/
+    /*}*/
 
     .leave-a-comment textarea {
         width: 100%!important;
@@ -2174,63 +2174,73 @@
     }
 
     @media screen and (max-width: 552px) {
-        .contact-email-social-2 {
-            width: 31%;
-        }
+        /*.contact-email-social-2 {*/
+        /*    width: 31%;*/
+        /*}*/
 
         .contact-restaurant-content .p-title-2 {
             margin-left: 24.5% !important;
         }
     }
     @media screen and (max-width: 528px) {
-        .contact-email-social-2 {
-            width: 32%;
-        }
+        /*.contact-email-social-2 {*/
+        /*    width: 32%;*/
+        /*}*/
 
         .contact-restaurant-content .p-title-2 {
             margin-left: 25% !important;
         }
     }
     @media screen and (max-width: 500px) {
-        .contact-email-social-2 {
-            width: 33%;
-        }
+        /*.contact-email-social-2 {*/
+        /*    width: 33%;*/
+        /*}*/
 
         .contact-restaurant-content .p-title-2 {
             margin-left: 25.5% !important;
         }
     }
     @media screen and (max-width: 480px) {
-        .contact-email-social-2 {
-            width: 34%;
-        }
+        /*.contact-email-social-2 {*/
+        /*    width: 34%;*/
+        /*}*/
 
         .contact-restaurant-content .p-title-2 {
             margin-left: 26% !important;
         }
     }
     @media screen and (max-width: 460px) {
-        .contact-email-social-2 {
-            width: 35%;
-        }
+        /*.contact-email-social-2 {*/
+        /*    width: 35%;*/
+        /*}*/
 
         .contact-restaurant-content .p-title-2 {
             margin-left: 27% !important;
         }
     }
     @media screen and (max-width: 440px) {
-        .contact-email-social-2 {
-            width: 36%;
-        }
+        /*.contact-email-social-2 {*/
+        /*    width: 36%;*/
+        /*}*/
 
         .contact-restaurant-content .p-title-2 {
             margin-left: 27.5% !important;
         }
     }
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 432px) {
         .contact-email-social-2 {
-            width: 37%;
+            display: block;
+            margin-top: 2px;
+            position: absolute;
+            margin-left: -20px;
+            width: auto;
+            height: auto;
         }
+    }
+    @media screen and (max-width: 420px) {
+        /*.contact-email-social-2 {*/
+        /*    width: 37%;*/
+        /*}*/
 
         .contact-restaurant-content .p-title-2 {
             margin-left: 28% !important;
@@ -2255,7 +2265,8 @@
         .contact-pdf a {
             margin-left: 0;
             margin-top: 72px;
-            position: absolute;
+            /*position: absolute;*/
+            float: right;
         }
     }
     @media screen and (max-width: 400px) {
@@ -2274,7 +2285,7 @@
         }
 
         .contact-address {
-            margin-top: -10px;
+            margin-top: 20px;
         }
     }
     @media screen and (max-width: 572px) {
@@ -2434,6 +2445,19 @@
         overflow: hidden!important;
         text-overflow: ellipsis!important;
         max-width: 100px!important;
+    }
+}
+@media screen and (max-width: 400px) {
+    .contact-email-social-2 {
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 700px) {
+    .event h3 {
+        font-size: 20px!important;
+    }
+    .event-pic {
+        width: 100%;
     }
 }
 /*END RESTAURANT DETAILS MEDIA QUERY*/

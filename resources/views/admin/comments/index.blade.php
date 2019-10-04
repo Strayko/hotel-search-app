@@ -266,6 +266,16 @@
         background-color: transparent;
         color: #1a82e2 ;
     }
+    .page-item {
+        display: inline-block;
+    }
+    .page-item.disabled {
+        padding: 5px 20px 5px 20px;
+        background-color: #c45555;
+    }
+    .active .page-link {
+        padding: 20px;
+    }
 </style>
 @section('content')
 <!-- START MENU -->

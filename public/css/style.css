@@ -1667,6 +1667,7 @@ body {
     margin-top: 10px;
     width: 230px;
     height: 39px;
+    float: right;
 }
 .contact-address {
     margin-top: 20px;
@@ -1677,8 +1678,9 @@ body {
 }
 .contact-pdf {
     width: 500px;
-    position: absolute;
+    /*position: absolute;*/
     margin-top: -50px;
+    float: right;
 }
 .contact-pdf a {
     float: right;
@@ -1722,7 +1724,7 @@ body {
     transition: 0.3s!important;
 }
 .gallery {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .gallery .gallery-img {
     margin-top: 40px;
@@ -1734,7 +1736,7 @@ body {
 }
 .gallery-img .single-img {
     width: 230px;
-    height: 268px;
+    height: 219px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -2096,4 +2098,38 @@ body {
     text-overflow: ellipsis!important;
     max-width: 500px!important;
 }
+.contact-restaurant-content .p-title-2 {
+    display: none!important;
+}
+.event {
+    margin-top: 50px;
+}
+.event h2 {
+    font-family: 'AvenirNextLTPro-Medium', sans-serif;
+    font-size: 40px;
+    color: #2B2A2A;
+}
+.event .p-lead {
+    color: #7d7d7d;
+    font-size: 17px;
+    margin-top: 10px;
+}
+.event h3 {
+    font-size: 30px;
+    color: #7d7d7d;
+    white-space: nowrap!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+    max-width: 500px!important;
+}
+.event-pic {
+    width: 50%;
+}
+.event-pic-src {
+    width: 100%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 /*END GENERAL RULES*/
