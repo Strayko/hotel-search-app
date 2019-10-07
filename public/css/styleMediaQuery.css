@@ -2460,4 +2460,9 @@
         width: 100%;
     }
 }
+@media screen and (max-width: 900px) {
+    .modal-content {
+        width: 90%;
+    }
+}
 /*END RESTAURANT DETAILS MEDIA QUERY*/

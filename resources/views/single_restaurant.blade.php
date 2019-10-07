@@ -553,12 +553,157 @@
     #form-is-send {
         display: flex;
     }
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 99999; /* Sit on top */
+        padding-top: 70px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 50%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: -5px;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header {
+        padding: 16px 16px;
+        background-color: #F46767;
+        color: white;
+    }
+
+    .modal-body {
+        padding-top: 10px;
+        padding-bottom: 25px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .modal-footer {
+        padding: 16px 16px;
+        background-color: #F46767;
+        color: white;
+        height: 37px;
+    }
+    #myBtn {
+        margin-top: 20px;
+        background-color: white;
+        border: 1px solid #F46767;
+        padding: 10px 40px 10px 40px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        color: #F46767;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+    #myBtn:hover {
+        color: #fff;
+        background-color: #f46767;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+    .send-reservation {
+        float: right;
+        background-color: #f46767;
+        border: 1px solid #fff;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        color: #fff;
+        padding: 10px 40px 10px 40px;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+    .send-reservation:hover {
+        background-color: #fff;
+        color: #f46767;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+    .form-control {
+        border: 1px solid #f46767;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        padding: 10px;
+        display: block;
+        width: 100%;
+    }
+    .m-l-reservation {
+        margin-left: 15px;
+        margin-top: 10px;
+        display: inline-block;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
 @if(Session::has('comment_message'))
     <div class="form-flex-message">
         <p id="form-is-send">{{session('comment_message')}}</p>
+    </div>
+@endif
+@if(Session::has('reservation-send'))
+    <div class="form-flex-message">
+        <p id="form-is-send">{{session('reservation-send')}}</p>
     </div>
 @endif
 <section id="menu" class="menu">
@@ -684,6 +829,87 @@
                     @endif
                 </div>
             </div>
+
+
+
+            <button id="myBtn">Reservation</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <h2>Book a table</h2>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="comment-reply">
+                            {!! Form::open(['method'=>'POST', 'action'=>'AuthorRestaurantController@store']) !!}
+                            {{csrf_field()}}
+                            <input type="hidden" name="user_id" value="{{$restaurant->user->id}}">
+                            <input type="hidden" name="restaurant_title" value="{{$restaurant->title}}">
+
+
+                            <div class="form-group">
+                                {!! Form::label('date', 'Date:', ['class'=>'col-2 col-form-label m-l-reservation']) !!}
+                                <div class="col-10">
+                                    <input type="date" class="form-control" style="line-height: 20px" required name="date" min="2018-01-01" max="2040-12-31">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('time', 'Time:', ['class'=>'col-2 col-form-label m-l-reservation']) !!}
+                                <div class="col-10">
+                                    {!! Form::time('time', null, ['class'=>'form-control', 'style'=>'line-height: 20px;', 'required']) !!}
+                                </div>
+                            </div>
+                            {!! Form::label('party', 'Party:', ['class'=>'m-l-reservation']) !!}
+                            <select required class="form-control" name="party">
+                                <option></option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+{{--                            <h3>Contact Details:</h3>--}}
+                            <div class="form-group">
+                                {!! Form::label('name', 'Name:', ['class'=>'m-l-reservation']) !!}
+                                {!! Form::text('name', null, ['class'=>'form-control', 'required']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('email', 'Email:', ['class'=>'m-l-reservation']) !!}
+                                {!! Form::email('email', null, ['class'=>'form-control', 'required']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('phone', 'Phone:', ['class'=>'m-l-reservation']) !!}
+                                {!! Form::text('phone', null, ['class'=>'form-control', 'required']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('body', 'Description:', ['class'=>'m-l-reservation']) !!}
+                                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('Send Reservation', ['class'=>'send-reservation']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+
+            </div>
+
+
+
 
 
             @if(isset($event->is_active))
@@ -865,6 +1091,28 @@
                 $(".form-flex-message").fadeOut(1000, function() {$(this).remove()});
             }, 5000 );
         });
+
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        };
+        span.onclick = function() {
+            modal.style.display = "none";
+        };
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+
+
+
+
+
 
     </script>
 @endsection

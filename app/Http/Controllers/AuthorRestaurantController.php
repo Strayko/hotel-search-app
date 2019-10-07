@@ -40,8 +40,7 @@ class AuthorRestaurantController extends Controller
 
         $data = $request->all();
         Booking::create($data);
-        $request->session()->flash('online_booking', 'Your request for reservation is sent and we will contact you');
-
+        $request->session()->flash('reservation-send', 'Your request for reservation is sent and we will contact you');
         return redirect()->back();
     }
 

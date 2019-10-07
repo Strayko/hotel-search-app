@@ -207,6 +207,14 @@
 
 @extends('layouts.admin-thema')
 @section('title', 'Show Booking')
+@section('style', '
+        .css-limit-txt {
+            white-space: nowrap!important;
+            overflow: hidden!important;
+            text-overflow: ellipsis!important;
+            max-width: 400px!important;
+        }
+')
 @section('content')
 <!-- START MENU -->
 <section id="admin2-dashboard">
@@ -264,13 +272,13 @@
                     <p class="p-lead-h4">Reservation</p>
 
                     <label class="label-grey-small">RESTAURANT</label>
-                    <p class="p-lead">{{$booking->restaurant_title}}</p>
+                    <p class="p-lead css-limit-txt">{{$booking->restaurant_title, 40}}</p>
                     <hr class="hr-reservation">
                     <label class="label-grey-small">NAME</label>
-                    <p class="p-lead">{{$booking->name}}</p>
+                    <p class="p-lead css-limit-txt">{{$booking->name, 40}}</p>
                     <hr class="hr-reservation">
                     <label class="label-grey-small">EMAIL</label>
-                    <p class="p-lead">{{$booking->email}}</p>
+                    <p class="p-lead css-limit-txt">{{$booking->email, 40}}</p>
                     <hr class="hr-reservation">
                     <label class="label-grey-small">PHONE</label>
                     <p class="p-lead">{{$booking->phone}}</p>
