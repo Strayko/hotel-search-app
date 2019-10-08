@@ -4,9 +4,10 @@ use App\Http\Requests;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 
-use Validator;
+use Illuminate\Support\Facades\Session;
+
 use URL;
-use Session;
+
 use Redirect;
 use Input;
 use App\User;
@@ -21,15 +22,9 @@ class MoneySetupController extends Controller
     public function postPaymentStripe(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'card_no' => 'required',
-            'ccExpiryMonth' => 'required',
-            'ccExpiryYear' => 'required',
-            'cvvNumber' => 'required',
-            //'amount' => 'required',
-        ]);
+
         $input = $request->all();
-        if ($validator->passes()) {
+
             $input = array_except($input,array('_token'));
 
             $stripe = Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -59,22 +54,22 @@ class MoneySetupController extends Controller
                 if($charge['status'] == 'succeeded') {
                     echo "<pre>";
 //                    print_r($charge);exit();
-                    \Session::put('payment-success', 'Payment successfully completed');
+                    Session::flash('payment-success2', 'Payment successfully completed!');
                     return redirect()->route('addmoney.paystripe');
                 } else {
-                    \Session::put('error','Money not add in wallet!!');
+                    Session::flash('error','Money not add in wallet!!');
                     return redirect()->route('addmoney.paystripe');
                 }
             } catch (Exception $e) {
-                \Session::put('error',$e->getMessage());
+                Session::flash('error',$e->getMessage());
                 return redirect()->route('addmoney.paystripe');
             } catch(\Cartalyst\Stripe\Exception\CardErrorException $e) {
-                \Session::put('error',$e->getMessage());
+                Session::flash('error',$e->getMessage());
                 return redirect()->route('addmoney.paystripe');
             } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e) {
-                \Session::put('error',$e->getMessage());
+                Session::flash('error',$e->getMessage());
                 return redirect()->route('addmoney.paystripe');
             }
-        }
+
     }
 }
