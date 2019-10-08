@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 	    Collective\Html\HtmlServiceProvider::class,
 	    Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -232,7 +233,7 @@ return [
 	    'Html' => Collective\Html\HtmlFacade::class,
 	    'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
-
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
 
     ],
 

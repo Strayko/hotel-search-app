@@ -201,6 +201,17 @@ Route::group(['middleware'=>'auth'], function() {
 
 
 
+
+
+/*------------------------------------------
+  ---> PAYMENT METHOD <---
+-------------------------------------------*/
+Route::get('addmoney/stripe', array('as' => 'addmoney.paystripe','uses' => 'MoneySetupController@PaymentStripe'));
+Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'MoneySetupController@postPaymentStripe'));
+
+
+
+
 /*------------------------------------------
   ---> SINGLE PAGE FRONTEND SEARCH ONLY <---
 -------------------------------------------*/
