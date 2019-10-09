@@ -140,6 +140,41 @@
         text-overflow: ellipsis;
         max-width: 150px;
     }
+    input.invalid {
+        background-color: #ffdddd!important;
+    }
+    select.invalid {
+        background-color: #ffdddd!important;
+    }
+    textarea.invalid {
+        background-color: #ffdddd!important;
+    }
+    .tab {
+        display: none;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+    .step.active {
+        opacity: 1;
+    }
+    .step.finish {
+        background-color: #77a1ee;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -179,21 +214,23 @@
                 <img src="{{asset('img/logo.svg')}}" alt="">
 {{--                @include('includes.frontend_form_error')--}}
                 <h4>Create an account and stay with us</h4>
-                {!! Form::open(['method'=>'POST', 'action'=>'AuthorUsersController@store', 'files'=>true]) !!}
+                {!! Form::open(['method'=>'POST', 'action'=>'AuthorUsersController@store', 'files'=>true, 'id'=>'regForm']) !!}
+                {{csrf_field()}}
+                <div class="tab">
                 <input type="hidden" name="package_expiry">
-                <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input input-register-responsive', 'placeholder'=>'Name']) !!}
+                <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input check input-register-responsive', 'placeholder'=>'Name', 'oninput'=>'this.className = "check input-register-responsive register-input"']) !!}
                 @if ($errors->has('name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
                 @endif
-                <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input input-register-responsive', 'placeholder'=>'Email']) !!}
+                <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input check input-register-responsive', 'placeholder'=>'Email', 'oninput'=>'this.className = "check register-input input-register-responsive"']) !!}
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                 @endif
-                <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'register-input input-register-responsive', 'placeholder'=>'Password']) !!}
+                <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'check register-input input-register-responsive', 'placeholder'=>'Password', 'oninput'=>'this.className = "check register-input input-register-responsive"']) !!}
                 @if ($errors->has('password'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -211,18 +248,77 @@
                         <input type="file" name="photo_id" id="file-upload" />
                         <div id="file-upload-filename"></div>
                 </div>
-                <div class="aa-single-field{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                    <div class="col-md-6" style="margin-left: -14px!important;">
-                        {!! NoCaptcha::display() !!}
-                        @if ($errors->has('g-recaptcha-response'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
                 </div>
-                {!! Form::submit('Register', ['class'=>'register-submit']) !!}
+                <div class="tab">
+                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!!route('addmoney.stripe')!!}" >
+                        {{ csrf_field() }}
+                        <div class='form-row'>
+                            <div class='col-xs-12 form-group card required'>
+                                <label class='control-label'>Card Number</label>
+                                <input autocomplete='off' class='form-control card-number' size='20' type='text' name="card_no" id="card_no">
+                            </div>
+                        </div>
+                        <div class='form-row'>
+                            <div class='col-xs-4 form-group cvc required'>
+                                <label class='control-label'>CVV</label>
+                                <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvvNumber" id="cvvNumber">
+                            </div>
+                            <div class='col-xs-4 form-group expiration required'>
+                                <label class='control-label'>Expiration</label>
+                                <input class='form-control card-expiry-month' placeholder='MM' size='4' type='text' name="ccExpiryMonth" id="ccExpiryMonth">
+                            </div>
+                            <div class='col-xs-4 form-group expiration required'>
+                                <label class='control-label'> </label>
+                                <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' name="ccExpiryYear" id="ccExpiryYear">
+                                <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='hidden' name="amount" value="300">
+                            </div>
+                        </div>
+                        <div class='form-row'>
+                            <div class='col-md-12' style="margin-left:-10px;">
+                                <div class='form-control total btn btn-primary' >
+                                    Total:
+                                    <span class='amount'>$20.49</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='form-row'>
+                            <div class='col-md-12 form-group'>
+                                <button class='form-control btn btn-success submit-button' type='submit'>Pay »</button>
+                            </div>
+                        </div>
+                        <div class='form-row'>
+                            <div class='col-md-12 error form-group hide'>
+                                <div class='alert-danger alert'>
+                                    Please correct the errors and try again.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+{{--                <div class="aa-single-field{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">--}}
+{{--                    <div class="col-md-6" style="margin-left: -14px!important;">--}}
+{{--                        {!! NoCaptcha::display() !!}--}}
+{{--                        @if ($errors->has('g-recaptcha-response'))--}}
+{{--                            <span class="help-block">--}}
+{{--                                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>--}}
+{{--                            </span>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                {!! Form::submit('Register', ['class'=>'register-submit']) !!}--}}
+                <div style="text-align:center;margin-top:40px;">
+                    <span class="step"></span>
+                    <span class="step"></span>
+
+                </div>
+
                 {!! Form::close() !!}
+                <div class="form-buttons">
+                    <button id="prevBtn" onclick="nextPrev(-1)" class="form-previous"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button id="nextBtn" onclick="nextPrev(1)" class="form-next">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -246,6 +342,63 @@
             var input = event.srcElement;
             var fileName = input.files[0].name;
             infoArea.textContent = fileName;
+        }
+
+        var currentTab = 0;
+        showTab(currentTab);
+
+        function showTab(n) {
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Submit";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            var x = document.getElementsByClassName("tab");
+            var y = document.getElementsByClassName("check");
+
+            if (n == 1 && !validateForm()) return false;
+            x[currentTab].style.display = "none";
+            currentTab = currentTab + n;
+            if (currentTab >= x.length) {
+                document.getElementById("regForm").submit();
+                return false;
+            }
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByClassName("check");
+            for (i = 0; i < y.length; i++) {
+                if (y[i].value == "") {
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+            }
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid;
+        }
+
+        function fixStepIndicator(n) {
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            x[n].className += " active";
         }
 
     </script>
