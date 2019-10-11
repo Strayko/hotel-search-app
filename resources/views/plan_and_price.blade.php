@@ -342,7 +342,7 @@
                 <div class="content">
                     <p class="p-lead"><strong>30</strong> Show</p>
                     <p class="p-lead"><strong>Publishing</strong> Admin Moderation</p>
-                    <p class="p-lead"><strong>Period</strong> 30 Days</p>
+                    <p class="p-lead"><strong>Period</strong> 365 Days</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Main Image</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Contact Information</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Description</p>
@@ -374,9 +374,9 @@
                     <p class="p-lead">&euro; 46</p>
                 </div>
                 <div class="content">
-                    <p class="p-lead"><strong>30</strong> Show</p>
+                    <p class="p-lead"><strong>100</strong> Show</p>
                     <p class="p-lead"><strong>Publishing</strong> Admin Moderation</p>
-                    <p class="p-lead"><strong>Period</strong> 30 Days</p>
+                    <p class="p-lead"><strong>Period</strong> 365 Days</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Main Image</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Contact Information</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Description</p>
@@ -406,9 +406,9 @@
                     <p class="p-lead">&euro; 52</p>
                 </div>
                 <div class="content">
-                    <p class="p-lead"><strong>30</strong> Show</p>
+                    <p class="p-lead"><strong>100</strong> Show</p>
                     <p class="p-lead"><strong>Publishing</strong> Admin Moderation</p>
-                    <p class="p-lead"><strong>Period</strong> 30 Days</p>
+                    <p class="p-lead"><strong>Period</strong> 365 Days</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Main Image</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Contact Information</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Description</p>

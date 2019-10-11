@@ -175,6 +175,61 @@
     .step.finish {
         background-color: #77a1ee;
     }
+    #nextBtn {
+        padding: 10px 20px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        border: 1px solid #F46767;
+        background-color: #F46767;
+        color: #fff;
+        cursor: pointer;
+    }
+    #prevBtn {
+        padding: 10px 20px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        border: 1px solid #F46767;
+        background-color: #F46767;
+        color: #fff;
+        cursor: pointer;
+    }
+    #card_no {
+        display: block;
+        border: 1px solid grey;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding: 5px;
+        width: 280px;
+        margin-bottom: 20px;
+    }
+    .card-style-input {
+        padding: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 1px solid grey;
+        display: block;
+        width: 80px;
+    }
+    .card-group-inline-block {
+        display: inline-block;
+    }
+    .card-total {
+        margin-top: 25px;
+        padding: 6px;
+        width: 268px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: lightblue; /* For browsers that do not support gradients */
+        background-image: linear-gradient(royalblue, steelblue);
+        color: white;
+    } /* Standard syntax (must be last) *
+
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -236,7 +291,7 @@
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                 @endif
-                <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package']) !!}
+                <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package', 'class'=>'check', 'oninput'=>'this.className = "check"']) !!}
                 @if ($errors->has('package_id'))
                     <span class="help-block">
                         <strong>{{ $errors->first('package_id') }}</strong>
@@ -245,55 +300,51 @@
 
                 <div class="upload-btn-wrapper">
                     <button class="btn">Upload picture</button>
-                        <input type="file" name="photo_id" id="file-upload" />
-                        <div id="file-upload-filename"></div>
+                    <input type="file" name="photo_id" id="file-upload" />
+                    <div id="file-upload-filename"></div>
                 </div>
                 </div>
                 <div class="tab">
-                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!!route('addmoney.stripe')!!}" >
+{{--                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!!route('addmoney.stripe')!!}" >--}}
                         {{ csrf_field() }}
                         <div class='form-row'>
                             <div class='col-xs-12 form-group card required'>
                                 <label class='control-label'>Card Number</label>
-                                <input autocomplete='off' class='form-control card-number' size='20' type='text' name="card_no" id="card_no">
+                                <input autocomplete='off' class='form-control check card-number' oninput="this.className='form-control check card-number'" size='20' type='text' name="card_no" id="card_no">
                             </div>
                         </div>
                         <div class='form-row'>
-                            <div class='col-xs-4 form-group cvc required'>
+                            <div class='col-xs-4 form-group cvc required card-group-inline-block'>
                                 <label class='control-label'>CVV</label>
-                                <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvvNumber" id="cvvNumber">
+                                <input autocomplete='off' class='form-control check card-style-input card-cvc' oninput="this.className='form-control check card-style-input card-cvc'" placeholder='ex. 311' size='4' type='text' name="cvvNumber" id="cvvNumber">
                             </div>
-                            <div class='col-xs-4 form-group expiration required'>
+                            <div class='col-xs-4 form-group expiration required card-group-inline-block'>
                                 <label class='control-label'>Expiration</label>
-                                <input class='form-control card-expiry-month' placeholder='MM' size='4' type='text' name="ccExpiryMonth" id="ccExpiryMonth">
+                                <input class='form-control card-style-input check card-expiry-month' oninput="this.className='form-control card-style-input check card-expiry-month'" placeholder='MM' size='4' type='text' name="ccExpiryMonth" id="ccExpiryMonth">
                             </div>
-                            <div class='col-xs-4 form-group expiration required'>
+                            <div class='col-xs-4 form-group expiration required card-group-inline-block'>
                                 <label class='control-label'> </label>
-                                <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' name="ccExpiryYear" id="ccExpiryYear">
+                                <input class='form-control check card-style-input card-expiry-year' oninput="this.className='form-control check card-style-input card-expiry-year'" placeholder='YYYY' size='4' type='text' name="ccExpiryYear" id="ccExpiryYear">
                                 <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='hidden' name="amount" value="300">
                             </div>
                         </div>
                         <div class='form-row'>
-                            <div class='col-md-12' style="margin-left:-10px;">
-                                <div class='form-control total btn btn-primary' >
+                            <div class='col-md-12'>
+                                <div class='card-total' >
                                     Total:
-                                    <span class='amount'>$20.49</span>
+                                    <span id="amount" class='amount'></span>
                                 </div>
                             </div>
                         </div>
-                        <div class='form-row'>
-                            <div class='col-md-12 form-group'>
-                                <button class='form-control btn btn-success submit-button' type='submit'>Pay »</button>
-                            </div>
-                        </div>
-                        <div class='form-row'>
-                            <div class='col-md-12 error form-group hide'>
-                                <div class='alert-danger alert'>
-                                    Please correct the errors and try again.
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+
+{{--                        <div class='form-row'>--}}
+{{--                            <div class='col-md-12 error form-group hide'>--}}
+{{--                                <div class='alert-danger alert'>--}}
+{{--                                    Please correct the errors and try again.--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
                 </div>
 {{--                <div class="aa-single-field{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">--}}
 {{--                    <div class="col-md-6" style="margin-left: -14px!important;">--}}
@@ -315,7 +366,7 @@
 
                 {!! Form::close() !!}
                 <div class="form-buttons">
-                    <button id="prevBtn" onclick="nextPrev(-1)" class="form-previous"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button id="prevBtn" onclick="nextPrev(-1)" class="form-previous">Previous</button>
                     <button id="nextBtn" onclick="nextPrev(1)" class="form-next">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
 
@@ -344,6 +395,29 @@
             infoArea.textContent = fileName;
         }
 
+        var packageName = document.getElementById('register-package');
+        var displayPackage = document.getElementById('amount');
+        packageName.addEventListener('change', showPackageName);
+        function showPackageName(event) {
+            var packageName = event.srcElement;
+            var packageShow = packageName.value;
+            switch (packageShow) {
+                case '1':
+                    displayPackage.textContent = "Free";
+                break;
+                case '2':
+                    displayPackage.textContent = "€ 28";
+                break;
+                case '3':
+                    displayPackage.textContent = "€ 46";
+                break;
+                case '4':
+                    displayPackage.textContent = "€ 52";
+                break;
+            }
+        }
+
+
         var currentTab = 0;
         showTab(currentTab);
 
@@ -356,9 +430,9 @@
                 document.getElementById("prevBtn").style.display = "inline";
             }
             if (n == (x.length - 1)) {
-                document.getElementById("nextBtn").innerHTML = "Submit";
+                document.getElementById("nextBtn").innerHTML = "Purchase";
             } else {
-                document.getElementById("nextBtn").innerHTML = "Next";
+                document.getElementById("nextBtn").innerHTML = "Process to payment";
             }
             fixStepIndicator(n)
         }

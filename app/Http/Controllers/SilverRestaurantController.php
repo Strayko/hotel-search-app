@@ -91,7 +91,7 @@ class SilverRestaurantController extends Controller
      */
     public function store(SilverRequest $request)
     {
-
+//dd($request->all());
 	    $input = $request->all();
 
         if(!Auth::user()->isFrei()) {
@@ -104,15 +104,29 @@ class SilverRestaurantController extends Controller
             $input['social_network_id'] = $social_network->id;
         }
 
-        $contact_information = Contact::create([
-            'address2'=>$input['address2'],
-            'email'=>$input['email'],
-            'telephone'=>$input['telephone'],
-            'mobile'=>$input['mobile'],
-            'opening'=>$input['opening'],
-            'closing'=>$input['closing']
-        ]);
-        $input['contact_id'] = $contact_information->id;
+
+
+        if(isset($input['opening']) && isset($input['closing'])) {
+            $contact_information = Contact::create([
+                'address2'=>$input['address2'],
+                'email'=>$input['email'],
+                'telephone'=>$input['telephone'],
+                'mobile'=>$input['mobile'],
+                'opening'=>$input['opening'],
+                'closing'=>$input['closing']
+            ]);
+            $input['contact_id'] = $contact_information->id;
+        }else{
+            $contact_information = Contact::create([
+                'address2'=>$input['address2'],
+                'email'=>$input['email'],
+                'telephone'=>$input['telephone'],
+                'mobile'=>$input['mobile']
+            ]);
+            $input['contact_id'] = $contact_information->id;
+        }
+
+
 
 	    $user = Auth::user();
 	    if($file = $request->file('photo_id')) {
