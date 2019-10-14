@@ -27,16 +27,20 @@ class RenewAccountController extends Controller
 
 
 
+        $packageId = $request->package_id;
+
+        $restaurant = Restaurant::where('user_id', Auth::user()->id)->get();
+
+        foreach ($restaurant as $key => $object) {
+            $object->package_id = $packageId;
+            $object->save();
+        }
 
         $user = User::where('email', Input::get('email'))->first();
         $bcryptPass = $user['password'];
         $password = Input::get('passwordrenew');
 
-
         $passwordCompare = Hash::check($password, $bcryptPass);
-
-
-
 
         $user_id = $user['id'];
         if($user && $passwordCompare) {
@@ -64,6 +68,7 @@ class RenewAccountController extends Controller
                     $input['package_expiry'] = $dateTime;
                     break;
             }
+
             Restaurant::where('user_id', $user_id)->restore();
             $user->update($input);
             return redirect('/')->with('account-renew-successful', 'Your account is up to date!');

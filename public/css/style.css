@@ -2131,5 +2131,9 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+.benefits-red {
+    color: #f46767;
+    font-size: 20px;
+}
 
 /*END GENERAL RULES*/

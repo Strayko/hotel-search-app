@@ -910,6 +910,17 @@
 
 
 
+            @if(isset($actions->is_active))
+                @if($actions->is_active != 0)
+                <div class="event">
+                <h2>Actions</h2>
+                <h3>{{$actions->title}}</h3>
+                <p>{{$actions->body}}</p>
+                <p class="benefits-red">{{$actions->benefits}}</p>
+                </div>
+                @endif
+            @endif
+
 
 
             @if(isset($event->is_active))

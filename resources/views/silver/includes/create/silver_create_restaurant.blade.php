@@ -103,4 +103,5 @@
         {!! Form::label('lng', 'Lng:') !!}
         {!! Form::text('lng', null) !!}
     </div>
+    <input type="hidden" name="package_id" id="package_id" value="{{Auth::user()->package_id}}">
 {!! Form::close() !!}

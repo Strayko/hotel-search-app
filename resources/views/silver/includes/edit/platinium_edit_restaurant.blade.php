@@ -103,4 +103,5 @@
         {!! Form::label('lng', 'Lng:') !!}
         {!! Form::text('lng', null) !!}
     </div>
+
 {!! Form::close() !!}
