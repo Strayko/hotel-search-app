@@ -219,14 +219,25 @@ class SilverRestaurantController extends Controller
             $social_network->save();
         }
 
-        $contact_information = Contact::find($restaurant->contact->id);
-        $contact_information['address2'] = $input['address2'];
-        $contact_information['email'] = $input['email'];
-        $contact_information['telephone'] = $input['telephone'];
-        $contact_information['mobile'] = $input['mobile'];
-        $contact_information['opening'] = $input['opening'];
-        $contact_information['closing'] = $input['closing'];
-        $contact_information->save();
+        if(isset($input['opening']) && isset($input['closing'])) {
+            $contact_information = Contact::create([
+                'address2'=>$input['address2'],
+                'email'=>$input['email'],
+                'telephone'=>$input['telephone'],
+                'mobile'=>$input['mobile'],
+                'opening'=>$input['opening'],
+                'closing'=>$input['closing']
+            ]);
+            $input['contact_id'] = $contact_information->id;
+        }else{
+            $contact_information = Contact::create([
+                'address2'=>$input['address2'],
+                'email'=>$input['email'],
+                'telephone'=>$input['telephone'],
+                'mobile'=>$input['mobile']
+            ]);
+            $input['contact_id'] = $contact_information->id;
+        }
 
 	    if($file = $request->file('photo_id')) {
             $name = time() . $file->getClientOriginalName();
