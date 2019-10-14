@@ -19,9 +19,10 @@ class SilverAdminIndex extends Controller
 
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $gold = User::where('package_id', Auth::user()->isGold())->first();
+        $silver = User::where('package_id', Auth::user()->isSilver())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
 		$user = User::where('id', Auth::user()->id)->first();
 
-	    return view('silver.index', compact('restaurants', 'user', 'platinium', 'gold', 'notifications'));
+	    return view('silver.index', compact('restaurants', 'user', 'platinium', 'silver', 'gold', 'notifications'));
     }
 }

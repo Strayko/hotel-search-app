@@ -175,15 +175,17 @@ Route::group(['middleware'=>'platinium'], function() {
 ----------------------------------------------*/
 Route::group(['middleware'=>'goldandplatinium'], function() {
 
-    Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');
-    Route::post('admin/booking', 'OnlineBookingController@update')->name('booking');
-    Route::get('admin/booking/{id}/edit', 'OnlineBookingController@edit')->name('bookingEdit');
-    Route::delete('admin/booking/{id}', 'OnlineBookingController@destroy')->name('bookingDestroy');
-
     Route::resource('admin/event', 'AuthorEventController');
     Route::patch('admin/event/{id}/update', 'AuthorEventController@updateEvent');
     Route::resource('admin/gallery', 'AuthorGalleryController');
     Route::delete('admin/gallery/{id}/delete/gallery', 'AuthorGalleryController@deleteGallery');
+});
+
+Route::group(['middleware'=>'silvergoldandplatinium'], function() {
+    Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');
+    Route::post('admin/booking', 'OnlineBookingController@update')->name('booking');
+    Route::get('admin/booking/{id}/edit', 'OnlineBookingController@edit')->name('bookingEdit');
+    Route::delete('admin/booking/{id}', 'OnlineBookingController@destroy')->name('bookingDestroy');
 });
 
 

@@ -15,12 +15,14 @@ class OnlineBookingController extends Controller
         $user = Auth::user();
         $booking = Booking::where('user_id', $user->id)->orderBy('id', 'asc')->paginate(5);
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
+        $gold = User::where('package_id', Auth::user()->isGold())->first();
+        $silver = User::where('package_id', Auth::user()->isSilver())->first();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
             ->get();
 
 
-        return view('silver.booking.index', compact('booking', 'notifications', 'platinium'));
+        return view('silver.booking.index', compact('booking', 'notifications', 'platinium', 'silver', 'gold'));
     }
 
     public function update() {
@@ -47,7 +49,9 @@ class OnlineBookingController extends Controller
             ->get();
 
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
-        return view('silver.booking.edit', compact('booking', 'notifications', 'platinium'));
+        $gold = User::where('package_id', Auth::user()->isGold())->first();
+        $silver = User::where('package_id', Auth::user()->isSilver())->first();
+        return view('silver.booking.edit', compact('booking', 'notifications', 'platinium', 'silver', 'gold'));
     }
 
     public function destroy($id) {

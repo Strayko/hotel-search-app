@@ -34,9 +34,10 @@ class SilverRestaurantController extends Controller
             ->get();
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $gold = User::where('package_id', Auth::user()->isGold())->first();
+        $silver = User::where('package_id', Auth::user()->isSilver())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
 
-        return view('silver.restaurant.index', compact('restaurants', 'platinium', 'gold', 'notifications'));
+        return view('silver.restaurant.index', compact('restaurants', 'platinium', 'silver', 'gold', 'notifications'));
     }
 
     function fetch_data(Request $request)

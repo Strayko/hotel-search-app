@@ -70,9 +70,10 @@ class SilverUserController extends Controller
             ->get();
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $gold = User::where('package_id', Auth::user()->isGold())->first();
+        $silver = User::where('package_id', Auth::user()->isSilver())->first();
 	    $user = User::findOrFail($id);
 	    $packages = Package::pluck('name', 'id')->all();
-	    return view('silver.user.edit', compact ('user', 'packages', 'platinium', 'gold', 'notifications'));
+	    return view('silver.user.edit', compact ('user', 'packages', 'platinium', 'silver', 'gold', 'notifications'));
     }
 
     /**

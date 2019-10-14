@@ -536,6 +536,8 @@
             @if($platinium || $gold)
                 <a href="{{route('event.index')}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
                 <a href="{{route('gallery.index')}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
+            @endif
+            @if($platinium || $gold || $silver)
                 <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
             @endif
             @if($platinium)
