@@ -814,11 +814,13 @@
                     <p class="p-lead">{{$restaurant->contact->email}}</p>
                     <p class="p-lead">{{$restaurant->contact->telephone}}</p>
                 </div>
+                @if($restaurant->package_id != 1)
                 <div class="contact-email-social-2">
                     <a target="_blank" href="{{$restaurant->social->facebook}}"><i class="fab fa-facebook-f"></i></a>
                     <a target="_blank" href="{{$restaurant->social->instagram}}"><i class="fab fa-instagram"></i></a>
                     <a target="_blank" href="{{$restaurant->social->google}}"><i class="fab fa-twitter"></i></a>
                 </div>
+                @endif
                 <div class="contact-address">
                     <p class="p-lead">{{$restaurant->location->name}}</p>
                     <p class="p-lead">{{$restaurant->contact->address2}}</p>
@@ -831,7 +833,7 @@
             </div>
 
 
-
+            @if($restaurant->package_id != 1)
             <button id="myBtn">Reservation</button>
 
             <!-- The Modal -->
@@ -907,6 +909,7 @@
                 </div>
 
             </div>
+            @endif
 
 
 
@@ -964,46 +967,49 @@
 {{--                <p class="p-lead">9</p>--}}
 {{--                <img src="{{asset('img/right-arrow-angle-white-red.svg')}}" class="pagination-right" alt="">--}}
 {{--            </div>--}}
-            <div class="restaurant-comments">
-                <h2>Comments</h2>
-                <img class="comments-icon" src="{{asset('img/chat-minify.svg')}}" alt="">
-                <p class="p-lead">{{$restaurant->comments->count()}} Comments</p>
-            </div>
+            @if($restaurant->package_id == 3 || $restaurant->package_id == 4)
+                <div class="restaurant-comments">
+                    <h2>Comments</h2>
+                    <img class="comments-icon" src="{{asset('img/chat-minify.svg')}}" alt="">
+                    <p class="p-lead">{{$restaurant->comments->count()}} Comments</p>
+                </div>
 
-            @if(count($comments) > 0)
-                @foreach($comments as $comment)
-                    <div class="comments-section">
-                        <div class="comments-image">
-                            <img src="{{$comment->photo}}" alt="">
+
+                @if(count($comments) > 0)
+                    @foreach($comments as $comment)
+                        <div class="comments-section">
+                            <div class="comments-image">
+                                <img src="{{$comment->photo}}" alt="">
+                            </div>
+                            <div class="comments-title-body">
+                                <p class="p-title">{{$comment->author}}</p>
+                                <p class="p-lead">{{$comment->created_at->diffForHumans()}}</p>
+                                <p class="p-lead p-lead-body">{{$comment->body}}</p>
+                            </div>
                         </div>
-                        <div class="comments-title-body">
-                            <p class="p-title">{{$comment->author}}</p>
-                            <p class="p-lead">{{$comment->created_at->diffForHumans()}}</p>
-                            <p class="p-lead p-lead-body">{{$comment->body}}</p>
+                        <div class="hr-spacing">
+                            <hr>
                         </div>
-                    </div>
-                    <div class="hr-spacing">
-                        <hr>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
+
+
+                {{ $comments->onEachSide(1)->links() }}
+
+
+                @if(Auth::check())
+                    {!! Form::open(['method'=>'POST', 'action'=>'RestaurantCommentController@store']) !!}
+                        <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
+                        <div class="leave-a-comment">
+                            <i class="fas fa-pencil-alt"></i>
+                            <textarea name="body" id="body" required="required" aria-required="true" placeholder="Leave a comment"></textarea>
+                            <input class="post-submit" name="submit" type="submit" value="Post">
+                        </div>
+                    {!! Form::close() !!}
+                @else
+                    <h3 class="required">Login/Register to see form</h3>
+                @endif
             @endif
-
-            {{ $comments->onEachSide(1)->links() }}
-
-
-            @if(Auth::check())
-                {!! Form::open(['method'=>'POST', 'action'=>'RestaurantCommentController@store']) !!}
-                    <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
-                    <div class="leave-a-comment">
-                        <i class="fas fa-pencil-alt"></i>
-                        <textarea name="body" id="body" required="required" aria-required="true" placeholder="Leave a comment"></textarea>
-                        <input class="post-submit" name="submit" type="submit" value="Post">
-                    </div>
-                {!! Form::close() !!}
-            @else
-                <h3 class="required">Login/Register to see form</h3>
-            @endif
-
 
 
 

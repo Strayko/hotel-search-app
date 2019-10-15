@@ -131,6 +131,13 @@
         position: absolute;
         color: red;
     }
+    .help-block2 {
+        margin-top: -16px;
+        margin-left: 10px;
+        font-size: 12px;
+        position: absolute;
+        color: red;
+    }
     #file-upload-filename {
         font-size: 12px;
         margin-left: 5px;
@@ -273,25 +280,29 @@
                 {{csrf_field()}}
                 <div class="tab">
                 <input type="hidden" name="package_expiry">
-                <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input check input-register-responsive', 'placeholder'=>'Name', 'oninput'=>'this.className = "check input-register-responsive register-input"']) !!}
-                @if ($errors->has('name'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                @endif
-                <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input check input-register-responsive', 'placeholder'=>'Email', 'oninput'=>'this.className = "check register-input input-register-responsive"']) !!}
+                <i class="fas fa-user"></i>{!! Form::text('name', null, ['class'=>'register-input checkName input-register-responsive', 'id'=>'nameValidateInput', 'placeholder'=>'Name', 'oninput'=>'this.className = "checkName input-register-responsive register-input"']) !!}
+                <span class="help-block2" id="nameValidateSpan"></span>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                <i class="fas fa-envelope"></i>{!! Form::email('email', null, ['class'=>'register-input checkEmail input-register-responsive', 'id'=>'emailValidateInput', 'placeholder'=>'Email', 'oninput'=>'this.className = "checkEmail register-input input-register-responsive"']) !!}
+                <span class="help-block2" id="emailValidateSpan"></span>
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                 @endif
-                <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'check register-input input-register-responsive', 'placeholder'=>'Password', 'oninput'=>'this.className = "check register-input input-register-responsive"']) !!}
+                <i class="fas fa-lock"></i>{!! Form::password('password', ['class'=>'checkPassword register-input input-register-responsive', 'id'=>'passwordValidateInput', 'placeholder'=>'Password', 'oninput'=>'this.className = "checkPassword register-input input-register-responsive"']) !!}
+                <span class="help-block2" id="passwordValidateSpan"></span>
                 @if ($errors->has('password'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                 @endif
-                <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package', 'class'=>'check', 'oninput'=>'this.className = "check"']) !!}
+                <i class="fas fa-box"></i>{!! Form::select('package_id', ['' => 'Choose Packages'] + $packages, null, ['id'=>'register-package', 'class'=>'checkPackage', 'oninput'=>'this.className = "checkPackage"']) !!}
+                <span class="help-block2" id="packageValidateSpan"></span>
                 @if ($errors->has('package_id'))
                     <span class="help-block">
                         <strong>{{ $errors->first('package_id') }}</strong>
@@ -455,6 +466,55 @@
             var x, y, i, valid = true;
             x = document.getElementsByClassName("tab");
             y = x[currentTab].getElementsByClassName("check");
+            var checkName = x[currentTab].getElementsByClassName("checkName");
+            for (i = 0; i < checkName.length; i++) {
+                if (checkName[i].value.length < 6) {
+                    checkName[i].className += " invalid";
+                    document.getElementById("nameValidateSpan").textContent = "Minimum 6 characters";
+                    document.getElementById("nameValidateInput").style.border = "1px solid #f46767";
+                    valid = false;
+                } else {
+                    document.getElementById("nameValidateSpan").textContent = "";
+                    document.getElementById("nameValidateInput").style.border = "1px solid green";
+                }
+            }
+            var checkEmail = x[currentTab].getElementsByClassName("checkEmail");
+            for (i = 0; i < checkEmail.length; i++) {
+                if (checkEmail[i].value.indexOf("@") < 1) {
+                    console.log(checkEmail[i].value);
+                    checkEmail[i].className += " invalid";
+                    document.getElementById("emailValidateSpan").textContent = "Incorrect format";
+                    document.getElementById("emailValidateInput").style.border = "1px solid #f46767";
+                    valid = false;
+                } else {
+                    document.getElementById("emailValidateSpan").textContent = "";
+                    document.getElementById("emailValidateInput").style.border = "1px solid green";
+                }
+            }
+            var checkPassword = x[currentTab].getElementsByClassName("checkPassword");
+            for (i = 0; i < checkPassword.length; i++) {
+                if (checkPassword[i].value.length < 8) {
+                    checkPassword[i].className += " invalid";
+                    document.getElementById("passwordValidateSpan").textContent = "Minimum 8 characters";
+                    document.getElementById("passwordValidateInput").style.border = "1px solid #f46767";
+                    valid = false;
+                } else {
+                    document.getElementById("passwordValidateSpan").textContent = "";
+                    document.getElementById("passwordValidateInput").style.border = "1px solid green";
+                }
+            }
+            var checkPackage = x[currentTab].getElementsByClassName("checkPackage");
+            for (i = 0; i < checkPackage.length; i++) {
+                if (checkPackage[i].value.length == "") {
+                    checkPackage[i].className += " invalid";
+                    document.getElementById("packageValidateSpan").textContent = "Select package";
+                    document.getElementById("register-package").style.border = "1px solid #f46767";
+                    valid = false;
+                } else {
+                    document.getElementById("packageValidateSpan").textContent = "";
+                    document.getElementById("register-package").style.border = "1px solid green";
+                }
+            }
             for (i = 0; i < y.length; i++) {
                 if (y[i].value == "") {
                     y[i].className += " invalid";
