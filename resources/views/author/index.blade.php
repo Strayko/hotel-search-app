@@ -317,17 +317,19 @@
                 </div>
                 <div class="tab">
 {{--                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!!route('addmoney.stripe')!!}" >--}}
-                        {{ csrf_field() }}
+{{--                        {{ csrf_field() }}--}}
                         <div class='form-row'>
                             <div class='col-xs-12 form-group card required'>
                                 <label class='control-label'>Card Number</label>
-                                <input autocomplete='off' class='form-control check card-number' oninput="this.className='form-control check card-number'" size='20' type='text' name="card_no" id="card_no">
+                                <input autocomplete='off' class='form-control checkCardNumber card-number' oninput="this.className='form-control checkCardNumber card-number'" size='20' type='text' name="card_no" id="card_no">
+                                <span class="help-block2" id="cardNumberValidateSpan"></span>
                             </div>
                         </div>
                         <div class='form-row'>
                             <div class='col-xs-4 form-group cvc required card-group-inline-block'>
                                 <label class='control-label'>CVV</label>
                                 <input autocomplete='off' class='form-control check card-style-input card-cvc' oninput="this.className='form-control check card-style-input card-cvc'" placeholder='ex. 311' size='4' type='text' name="cvvNumber" id="cvvNumber">
+
                             </div>
                             <div class='col-xs-4 form-group expiration required card-group-inline-block'>
                                 <label class='control-label'>Expiration</label>
@@ -481,7 +483,6 @@
             var checkEmail = x[currentTab].getElementsByClassName("checkEmail");
             for (i = 0; i < checkEmail.length; i++) {
                 if (checkEmail[i].value.indexOf("@") < 1) {
-                    console.log(checkEmail[i].value);
                     checkEmail[i].className += " invalid";
                     document.getElementById("emailValidateSpan").textContent = "Incorrect format";
                     document.getElementById("emailValidateInput").style.border = "1px solid #f46767";
@@ -513,6 +514,19 @@
                 } else {
                     document.getElementById("packageValidateSpan").textContent = "";
                     document.getElementById("register-package").style.border = "1px solid green";
+                }
+            }
+            var checkCardNumber = x[currentTab].getElementsByClassName("checkCardNumber");
+            for (i = 0; i < checkCardNumber.length; i++) {
+                if (checkCardNumber[i].value.length < 8) {
+                    console.log(checkCardNumber[i].value);
+                    checkCardNumber[i].className += " invalid";
+                    document.getElementById("cardNumberValidateSpan").textContent = "Minimum 8 characters";
+                    document.getElementById("card_no").style.border = "1px solid #f46767";
+                    valid = false;
+                } else {
+                    document.getElementById("cardNumberValidateSpan").textContent = "";
+                    document.getElementById("card_no").style.border = "1px solid green";
                 }
             }
             for (i = 0; i < y.length; i++) {
