@@ -95,6 +95,10 @@
         position: absolute;
         color: red;
     }
+    #selectorLng {
+        border: 1px solid #F46767;
+        border-radius: 15px;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -102,7 +106,7 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href=""><img src="img/logo.svg" class="logo-img" alt=""></a>
+            <a href="/"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -112,12 +116,20 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-                <li><a class="mobile-font" href="/">Homepage</a></li>
+                @foreach (config('app.available_locales') as $locale)
+                    <li class="nav-item">
+                        <a class="nav-link"
+
+                           href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                           @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                    </li>
+                @endforeach
+                <li><a class="mobile-font" href="/">{{__('login.Homepage')}}</a></li>
                 <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
                 <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
                 <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+                <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
                 <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
             </ul>
         </nav>
@@ -131,13 +143,14 @@
     <div class="container">
         <div class="signin-container">
             <div class="content-signin">
-                <img src="img/logo.svg" alt="">
+
+                <img src="{{asset('img/logo.svg')}}" alt="">
                 <h4>Sign In</h4>
 
 
 
 
-                <form method="POST" action="{{ route('login') }}" class="contactform">
+                <form method="POST" action="{{ route('login', app()->getLocale()) }}" class="contactform">
                 @csrf
                 <i class="fas fa-envelope"></i><input class="signin-input signin-input-responsive{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{old('email')}}" autofocus placeholder="Email">
                 @if ($errors->has('email'))
@@ -159,7 +172,7 @@
                 </label>
 
                 @if (Route::has('password.request'))
-                    <a class="signin-forgot-pass" href="{{ route('password.request') }}">
+                    <a class="signin-forgot-pass" href="{{ route('password.request', app()->getLocale()) }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif

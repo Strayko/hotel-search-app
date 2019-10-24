@@ -470,6 +470,10 @@
         z-index: 99999;
         position: sticky;
     }
+    #selectorLng {
+        border: 1px solid #F46767;
+        border-radius: 15px;
+    }
 </style>
 <link rel="stylesheet" href="{{asset('css/slickMin.css')}}">
 @section('content')
@@ -488,6 +492,14 @@
             <a href="/"><img src="img/logo.svg" class="logo-img" alt=""></a>
         </div>
 
+{{--        <ul class="navbar-nav ml-auto">--}}
+
+{{--                <li class="nav-item">--}}
+{{--                    --}}
+{{--                </li>--}}
+
+{{--        </ul>--}}
+
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
             <i class="fas fa-bars"></i>
         </a>
@@ -495,10 +507,22 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-                <li><a class="active mobile-font" href="/">Homepage</a></li>
-                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
-                <li><a class="mobile-font" href="{{route('contact.contact')}}">Contact</a></li>
+            @if($parametar == 'de')
+                    <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                        <option value="/de">DE</option>
+                        <option value="/en">EN</option>
+                    </select>
+            @elseif($parametar == 'en')
+                    <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                        <option value="/en">EN</option>
+                        <option value="/de">DE</option>
+                    </select>
+            @endif
+
+                <li><a class="active mobile-font" href="/">{{__('home.Homepage')}}</a></li>
+                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
+                <li><a class="mobile-font" href="{{route('contact.contact', app()->getLocale())}}">Contact</a></li>
                 <li class="menu-buttons-block">
 
                     @if (Route::has('login'))
@@ -518,7 +542,7 @@
                             </form>
 
                         @else
-                            <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+                            <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
 
 
                             @if (Route::has('register'))

@@ -26,23 +26,40 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 /*-------------------------
   ---> HOME PAGE <---
 --------------------------*/
-Route::get('/', function () {
-    $restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
+Route::group(['prefix' => '{locale}',
+    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'middleware' => 'setlocale'], function() {
+    Route::get('/', function ($request) {
 
-    $locations = Location::pluck('name', 'value')->all();
+        $parametar = $request;
+
+        $restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
+
+        $locations = Location::pluck('name', 'value')->all();
 
 //    foreach($locations as $location) {
 //        echo $location;
 //    }
 
+        $locationss = Location::limit(8)->get();
+        $foods = Food::pluck('name', 'id')->all();
+        $distance = Distance::pluck('id', 'distance')->all();
+        return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss', 'distance', 'parametar'));
+    });
+    Auth::routes();
 
-
-    $locationss = Location::limit(8)->get();
-    $foods = Food::pluck('name', 'id')->all();
-    $distance = Distance::pluck('id', 'distance')->all();
-    return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss', 'distance'));
 });
-Auth::routes();
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
+
+
+
+
+
+
+
+
 
 
 

@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'goldandplatinium' => \App\Http\Middleware\GoldAndPlatinium::class,
         'platinium' => \App\Http\Middleware\Platinium::class,
         'silvergoldandplatinium' => \App\Http\Middleware\SilverGoldAndPlatinium::class,
+        'setlocale' => \App\Http\Middleware\SetLocale::class,
     ];
 
     /**
