@@ -30,6 +30,7 @@ Route::group(['prefix' => '{locale}',
     'where' => ['locale' => '[a-zA-Z]{2}'],
     'middleware' => 'setlocale'], function() {
     Route::resource('user/register', 'AuthorUsersController');
+    Route::get('/plans-and-pricing', ['as'=>'plans-and-pricing.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
     Route::get('/', function ($request) {
 
         $parametar = $request;
@@ -133,7 +134,7 @@ Route::group(['middleware'=>'protected'], function() {
 
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
 Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
-Route::get('/plans-and-pricing', ['as'=>'plans-and-pricing.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
+
 Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contact']);
 Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);
 Route::get('/restaurants', ['as'=>'restaurants.showAll', 'uses'=>'SubscriberPlanController@showAll']);

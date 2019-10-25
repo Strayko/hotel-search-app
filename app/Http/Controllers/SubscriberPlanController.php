@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\Session;
 
 class SubscriberPlanController extends Controller
 {
-    public function planAndPrice() {
-
-    	return view('plan_and_price');
+    public function planAndPrice(Request $request) {
+        $parametar = $request->getRequestUri();
+        dd($parametar);
+        $parametarExport = substr($parametar, 1, 2);
+        dd($parametarExport);
+    	return view('plan_and_price', compact('parametarExport'));
     }
 
     public function contact() {

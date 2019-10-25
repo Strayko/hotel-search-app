@@ -233,6 +233,12 @@
 
 @extends('layouts.frontend-thema')
 <title>Plans and Pricing</title>
+<style>
+    #selectorLng {
+        border: 1px solid #F46767;
+        border-radius: 15px;
+    }
+</style>
 @section('content')
 <!-- START LOGO AND MENU -->
 <section id="menu" class="menu">
@@ -249,8 +255,27 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
+                <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                    @if($parametarExport == 'de')
+                        @foreach (config('app.available_locales') as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @elseif($parametarExport == 'en')
+                        @foreach (array_reverse(config('app.available_locales')) as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
                 <li><a class="mobile-font" href="/">Homepage</a></li>
-                <li><a class="active mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
+                <li><a class="active mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
                 <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route('contact.contact')}}">Contact</a></li>
                 <li class="menu-buttons-block">
@@ -271,11 +296,11 @@
                         </form>
 
                     @else
-                        <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+                        <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
 
 
                         @if (Route::has('register'))
-                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index', app()->getLocale())}}" class="register">Register</a></li>
 
                         @endif
                     @endauth
@@ -329,7 +354,7 @@
                     <p class="p-lead"><i class="fas fa-times"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Deal Actions</p>
-                    <a href="{{route('register.index')}}">Register</a>
+                    <a href="{{route('register.index', app()->getLocale())}}">Register</a>
                 </div>
             </div>
             <div id="silver">
@@ -361,7 +386,7 @@
                     <p class="p-lead"><i class="fas fa-times"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Deal Actions</p>
-                    <a href="{{route('register.index')}}">Register</a>
+                    <a href="{{route('register.index', app()->getLocale())}}">Register</a>
                 </div>
             </div>
         </div>
@@ -395,7 +420,7 @@
                     <p class="p-lead"><i class="fas fa-times"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-times"></i> Deal Actions</p>
-                    <a href="{{route('register.index')}}">Register</a>
+                    <a href="{{route('register.index', app()->getLocale())}}">Register</a>
                 </div>
             </div>
             <div id="platinum">
@@ -427,7 +452,7 @@
                     <p class="p-lead"><i class="fas fa-check"></i> (So top contribution on homepage)</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Competition System</p>
                     <p class="p-lead"><i class="fas fa-check"></i> Deal Actions</p>
-                    <a href="{{route('register.index')}}">Register</a>
+                    <a href="{{route('register.index', app()->getLocale())}}">Register</a>
                 </div>
             </div>
         </div>

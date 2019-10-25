@@ -49,7 +49,7 @@
             <div class="footer-menu">
                 <ol>
                     <li><a href="/">Homepage</a></li>
-                    <li><a href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
+                    <li><a href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
                     <li><a href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                     <li><a href="{{route('contact.contact')}}">Contact</a></li>
                 </ol>
