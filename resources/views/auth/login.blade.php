@@ -99,6 +99,10 @@
         border: 1px solid #F46767;
         border-radius: 15px;
     }
+    #selectorLng {
+        border: 1px solid #F46767;
+        border-radius: 15px;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -106,7 +110,11 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="/"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @if($parametar == 'en')
+            <a href="/en"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @else
+            <a href="/de"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @endif
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -116,21 +124,36 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-                @foreach (config('app.available_locales') as $locale)
-                    <li class="nav-item">
-                        <a class="nav-link"
-
-                           href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
-                           @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
-                    </li>
-                @endforeach
-                <li><a class="mobile-font" href="/">{{__('login.Homepage')}}</a></li>
+                <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                    @if($parametar == 'de')
+                        @foreach (config('app.available_locales') as $locale)
+                                <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                                </option>
+                        @endforeach
+                    @elseif($parametar == 'en')
+                        @foreach (array_reverse(config('app.available_locales')) as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @if($parametar == 'en')
+                    <li><a class="active mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
+                @else
+                    <li><a class="active mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
+                @endif
                 <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
                 <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index', app()->getLocale())}}" class="register">Register</a></li>
             </ul>
         </nav>
 

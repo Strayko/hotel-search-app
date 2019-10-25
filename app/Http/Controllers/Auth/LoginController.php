@@ -30,6 +30,7 @@ class LoginController extends Controller
 
     public function showLoginForm($request) {
         $parametar = $request;
+
         return view('auth.login', compact('parametar'));
     }
 

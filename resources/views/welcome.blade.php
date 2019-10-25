@@ -489,7 +489,11 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="/"><img src="img/logo.svg" class="logo-img" alt=""></a>
+            @if($parametar == 'en')
+                <a href="/en"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @else
+                <a href="/de"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @endif
         </div>
 
 {{--        <ul class="navbar-nav ml-auto">--}}
@@ -507,19 +511,31 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-            @if($parametar == 'de')
-                    <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
-                        <option value="/de">DE</option>
-                        <option value="/en">EN</option>
-                    </select>
-            @elseif($parametar == 'en')
-                    <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
-                        <option value="/en">EN</option>
-                        <option value="/de">DE</option>
-                    </select>
-            @endif
+                <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                    @if($parametar == 'de')
+                        @foreach (config('app.available_locales') as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @elseif($parametar == 'en')
+                        @foreach (array_reverse(config('app.available_locales')) as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @if($parametar == 'en')
+                    <li><a class="active mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
+                @else
+                    <li><a class="active mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
+                @endif
 
-                <li><a class="active mobile-font" href="/">{{__('home.Homepage')}}</a></li>
                 <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
                 <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route('contact.contact', app()->getLocale())}}">Contact</a></li>
@@ -546,7 +562,7 @@
 
 
                             @if (Route::has('register'))
-                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index', app()->getLocale())}}" class="register">Register</a></li>
 
                 @endif
                 @endauth
@@ -970,7 +986,7 @@
             <p class="p-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur magni repellat voluptas voluptatem. Aliquam labore quod sed sit unde.</p>
         </div>
         <div class="community-right">
-            <a href="{{route('register.index')}}">Register now</a>
+            <a href="{{route('register.index', app()->getLocale())}}">Register now</a>
         </div>
     </div>
 </section>

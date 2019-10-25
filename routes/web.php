@@ -29,6 +29,7 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 Route::group(['prefix' => '{locale}',
     'where' => ['locale' => '[a-zA-Z]{2}'],
     'middleware' => 'setlocale'], function() {
+    Route::resource('user/register', 'AuthorUsersController');
     Route::get('/', function ($request) {
 
         $parametar = $request;
@@ -45,7 +46,7 @@ Route::group(['prefix' => '{locale}',
         $foods = Food::pluck('name', 'id')->all();
         $distance = Distance::pluck('id', 'distance')->all();
         return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss', 'distance', 'parametar'));
-    });
+    })->name('/');
     Auth::routes();
 
 });
@@ -129,7 +130,7 @@ Route::group(['middleware'=>'protected'], function() {
 /*------------------------------
   ---> SINGLE PAGE FRONTEND <---
 -------------------------------*/
-Route::resource('user/register', 'AuthorUsersController');
+
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
 Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
 Route::get('/plans-and-pricing', ['as'=>'plans-and-pricing.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
