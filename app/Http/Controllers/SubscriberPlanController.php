@@ -13,9 +13,7 @@ class SubscriberPlanController extends Controller
 {
     public function planAndPrice(Request $request) {
         $parametar = $request->getRequestUri();
-        dd($parametar);
         $parametarExport = substr($parametar, 1, 2);
-        dd($parametarExport);
     	return view('plan_and_price', compact('parametarExport'));
     }
 
@@ -34,9 +32,11 @@ class SubscriberPlanController extends Controller
 	    return redirect()->back();
     }
 
-	public function showAll() {
+	public function showAll(Request $request) {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1, 2);
 		$restaurants = Restaurant::orderBy('id', 'desc')->paginate(3);
-    	return view('show_all', compact('restaurants'));
+    	return view('show_all', compact('restaurants', 'parametarExport'));
 	}
 
 	public function locations() {

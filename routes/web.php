@@ -31,6 +31,7 @@ Route::group(['prefix' => '{locale}',
     'middleware' => 'setlocale'], function() {
     Route::resource('user/register', 'AuthorUsersController');
     Route::get('/plans-and-pricing', ['as'=>'plans-and-pricing.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
+    Route::get('/restaurants', ['as'=>'restaurants.showAll', 'uses'=>'SubscriberPlanController@showAll']);
     Route::get('/', function ($request) {
 
         $parametar = $request;
@@ -137,7 +138,7 @@ Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRest
 
 Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contact']);
 Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);
-Route::get('/restaurants', ['as'=>'restaurants.showAll', 'uses'=>'SubscriberPlanController@showAll']);
+
 Route::get('/locations', ['as'=>'locations.locations', 'uses'=>'SubscriberPlanController@locations']);
 Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>'SubscriberPlanController@locationCategory']);
 

@@ -144,12 +144,12 @@
                     @endif
                 </select>
                 @if($parametar == 'en')
-                    <li><a class="active mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
+                    <li><a class="mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
                 @else
-                    <li><a class="active mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
+                    <li><a class="mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
                 @endif
-                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
+                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>

@@ -245,7 +245,11 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="/"><img src="img/logo.svg" class="logo-img" alt=""></a>
+            @if($parametarExport == 'en')
+                <a href="/en"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @else
+                <a href="/de"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @endif
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -274,9 +278,13 @@
                         @endforeach
                     @endif
                 </select>
-                <li><a class="mobile-font" href="/">Homepage</a></li>
+                @if($parametarExport == 'en')
+                    <li><a class="mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
+                @else
+                    <li><a class="mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
+                @endif
                 <li><a class="active mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route('contact.contact')}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 @if (Route::has('login'))
