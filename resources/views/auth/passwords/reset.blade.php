@@ -217,7 +217,7 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="index.html"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -228,12 +228,12 @@
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
                 <li><a class="mobile-font" href="/">Homepage</a></li>
-                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
-                <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
+                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
+                <li><a class="mobile-font" href="{{route("contact.contact", app()->getLocale())}}">Contact</a></li>
                 <li class="menu-buttons-block">
-                <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
-                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
+                <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index', app()->getLocale())}}" class="register">Register</a></li>
             </ul>
         </nav>
 
@@ -249,7 +249,7 @@
                 <h4>New Password</h4>
 
 
-                    <form method="POST" action="{{ route('password.update') }}" class="contactform">
+                    <form method="POST" action="{{ route('password.update', app()->getLocale()) }}" class="contactform">
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
 
@@ -308,9 +308,9 @@
             <div class="footer-menu">
                 <ol>
                     <li><a href="/">Homepage</a></li>
-                    <li><a href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
-                    <li><a href="{{route('restaurants.showAll')}}">Restaurants</a></li>
-                    <li><a href="{{route('contact.contact')}}">Contact</a></li>
+                    <li><a href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
+                    <li><a href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
+                    <li><a href="{{route('contact.contact', app()->getLocale())}}">Contact</a></li>
                 </ol>
             </div>
             <div class="footer-social-icon">

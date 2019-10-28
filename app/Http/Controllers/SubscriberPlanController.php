@@ -17,8 +17,10 @@ class SubscriberPlanController extends Controller
     	return view('plan_and_price', compact('parametarExport'));
     }
 
-    public function contact() {
-    	return view('contact');
+    public function contact(Request $request) {
+        $parametar = $request->getRequestUri();
+        $parametarExport= substr($parametar, 1,2);
+    	return view('contact', compact('parametarExport'));
     }
 
     public function contactSend(SendContactForm $request) {

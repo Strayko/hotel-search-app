@@ -489,7 +489,7 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            @if($parametar == 'en')
+            @if($parametarExport == 'en')
                 <a href="/en"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
             @else
                 <a href="/de"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
@@ -512,7 +512,7 @@
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
                 <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
-                    @if($parametar == 'de')
+                    @if($parametarExport == 'de')
                         @foreach (config('app.available_locales') as $locale)
                             <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
                                 <a class="nav-link"
@@ -520,7 +520,7 @@
                                    @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
                             </option>
                         @endforeach
-                    @elseif($parametar == 'en')
+                    @elseif($parametarExport == 'en')
                         @foreach (array_reverse(config('app.available_locales')) as $locale)
                             <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
                                 <a class="nav-link"
@@ -530,7 +530,7 @@
                         @endforeach
                     @endif
                 </select>
-                @if($parametar == 'en')
+                @if($parametarExport == 'en')
                     <li><a class="active mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
                 @else
                     <li><a class="active mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
@@ -547,13 +547,13 @@
 
                             <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
 
-                            <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                            <li class="menu-collapse"><a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
-                            <a href="{{route('logout')}}" onclick="event.preventDefault();
+                            <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="aa-login">
 
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
 

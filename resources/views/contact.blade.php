@@ -168,6 +168,10 @@
     #form-is-send {
         display: flex;
     }
+    #selectorLng {
+        border: 1px solid #F46767;
+        border-radius: 15px;
+    }
 </style>
 @section('content')
     @if(Session::has('form_submitted'))
@@ -180,7 +184,11 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="/"><img src="img/logo.svg" class="logo-img" alt=""></a>
+            @if($parametarExport == 'en')
+                <a href="/en"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @else
+                <a href="/de"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @endif
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -190,10 +198,33 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-                <li><a class="mobile-font" href="/">Homepage</a></li>
-                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
-                <li><a class="active mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
+                <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                    @if($parametarExport == 'de')
+                        @foreach (config('app.available_locales') as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @elseif($parametarExport == 'en')
+                        @foreach (array_reverse(config('app.available_locales')) as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @if($parametarExport == 'en')
+                    <li><a class="mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
+                @else
+                    <li><a class="mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
+                @endif
+                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
+                <li><a class="active mobile-font" href="{{route("contact.contact", app()->getLocale())}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 @if (Route::has('login'))
                     {{--<div class="top-right links">--}}
@@ -201,22 +232,22 @@
 
                         <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
 
-                        <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                        <li class="menu-collapse"><a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
-                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                        <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="aa-login">
 
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
 
                     @else
-                        <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+                        <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
 
 
                         @if (Route::has('register'))
-                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index', app()->getLocale())}}" class="register">Register</a></li>
 
                         @endif
                     @endauth
@@ -238,7 +269,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur consequuntur earum, labore maxime nam natus quas quos repudiandae tenetur unde!</p>
             </div>
             <div class="contact-right">
-                <img src="img/logo-white.svg" alt="">
+                <img src="{{asset('img/logo-white.svg')}}" alt="">
             </div>
         </div>
         <div class="contact-form">

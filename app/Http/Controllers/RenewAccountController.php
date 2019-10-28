@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Session;
 
 class RenewAccountController extends Controller
 {
-    public function renewAccount() {
-
+    public function renewAccount(Request $request) {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1, 2);
         $packages = Renew::pluck('name', 'id')->all();
-        return view('renew_account', compact('packages'));
+        return view('renew_account', compact('packages', 'parametarExport'));
     }
 
     public function store(RenewAccount $request)

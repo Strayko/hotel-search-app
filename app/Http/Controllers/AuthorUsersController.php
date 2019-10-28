@@ -21,14 +21,15 @@ class AuthorUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($request)
+    public function index(Request $request)
     {
 
         if(!Auth::check()) {
             $users = User::all();
             $packages = Package::pluck('name', 'id')->all();
-            $parametar = $request;
-            return view('author.index', compact('users', 'packages', 'restaurants', 'parametar'));
+            $parametar = $request->getRequestUri();
+            $parametarExport = substr($parametar, 1,2);
+            return view('author.index', compact('users', 'packages', 'restaurants', 'parametarExport'));
         } else {
             return redirect('/')->with('account-renew-successful', 'IT WORKS');
         }

@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -14,6 +15,7 @@ class PasswordReset extends Notification
 
 	private static $toMailCallback;
     public $token;
+    public $parametarExport;
 
     /**
      * Create a new notification instance.
@@ -45,13 +47,16 @@ class PasswordReset extends Notification
     public function toMail($notifiable)
     {
 
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $parametarExport = substr($actual_link, 18, 2);
+
 	    if (static::$toMailCallback) {
 		    return call_user_func(static::$toMailCallback, $notifiable, $this->token);
 	    }
 
 	    return (new MailMessage)
-		    ->view(
-			    'auth.emails.password', ['token' => $this->token]
+            ->view(
+			    'auth.emails.password', ['token' => $this->token, 'parametarExport' => $parametarExport]
 		    )
 		    ->subject(Lang::getFromJson('Reset Password Notification'))
 		    ->from(Lang::getFromJson('info@example.com'));

@@ -110,7 +110,7 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            @if($parametar == 'en')
+            @if($parametarExport == 'en')
             <a href="/en"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
             @else
             <a href="/de"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
@@ -125,7 +125,7 @@
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
                 <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
-                    @if($parametar == 'de')
+                    @if($parametarExport == 'de')
                         @foreach (config('app.available_locales') as $locale)
                                 <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
                                 <a class="nav-link"
@@ -133,7 +133,7 @@
                                    @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
                                 </option>
                         @endforeach
-                    @elseif($parametar == 'en')
+                    @elseif($parametarExport == 'en')
                         @foreach (array_reverse(config('app.available_locales')) as $locale)
                             <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
                                 <a class="nav-link"
@@ -143,14 +143,14 @@
                         @endforeach
                     @endif
                 </select>
-                @if($parametar == 'en')
+                @if($parametarExport == 'en')
                     <li><a class="mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
                 @else
                     <li><a class="mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
                 @endif
                 <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
                 <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
-                <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
+                <li><a class="mobile-font" href="{{route("contact.contact", app()->getLocale())}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
                 <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index', app()->getLocale())}}" class="register">Register</a></li>

@@ -19,6 +19,7 @@ use App\Package;
 use App\Restaurant;
 use App\Role;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
 use Cornford\Googlmapper\Facades\MapperFacade;
@@ -26,15 +27,25 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 /*-------------------------
   ---> HOME PAGE <---
 --------------------------*/
+Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);
+Route::post('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@store']);
+
 Route::group(['prefix' => '{locale}',
     'where' => ['locale' => '[a-zA-Z]{2}'],
     'middleware' => 'setlocale'], function() {
     Route::resource('user/register', 'AuthorUsersController');
     Route::get('/plans-and-pricing', ['as'=>'plans-and-pricing.planAndPrice', 'uses'=>'SubscriberPlanController@planAndPrice']);
     Route::get('/restaurants', ['as'=>'restaurants.showAll', 'uses'=>'SubscriberPlanController@showAll']);
-    Route::get('/', function ($request) {
+    Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contact']);
 
-        $parametar = $request;
+    Route::group(['middleware'=>'auth'], function () {
+        Route::get('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@renewAccount']);
+    });
+
+    Route::get('/', function (Request $request) {
+
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1, 2);
 
         $restaurants = Restaurant::orderBy('id', 'desc')->limit(6)->get();
 
@@ -47,7 +58,7 @@ Route::group(['prefix' => '{locale}',
         $locationss = Location::limit(8)->get();
         $foods = Food::pluck('name', 'id')->all();
         $distance = Distance::pluck('id', 'distance')->all();
-        return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss', 'distance', 'parametar'));
+        return view('welcome', compact('restaurants', 'locations', 'foods', 'locationss', 'distance', 'parametarExport'));
     })->name('/');
     Auth::routes();
 
@@ -55,6 +66,8 @@ Route::group(['prefix' => '{locale}',
 Route::get('/', function () {
     return redirect(app()->getLocale());
 });
+
+
 
 
 
@@ -136,17 +149,13 @@ Route::group(['middleware'=>'protected'], function() {
 Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
 Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
 
-Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contact']);
-Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);
+
 
 Route::get('/locations', ['as'=>'locations.locations', 'uses'=>'SubscriberPlanController@locations']);
 Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>'SubscriberPlanController@locationCategory']);
 
 
-Route::group(['middleware'=>'auth'], function () {
-    Route::post('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@store']);
-    Route::get('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@renewAccount']);
-});
+
 
 
 

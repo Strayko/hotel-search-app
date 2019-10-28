@@ -285,7 +285,7 @@
                 @endif
                 <li><a class="active mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
                 <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
-                <li><a class="mobile-font" href="{{route('contact.contact')}}">Contact</a></li>
+                <li><a class="mobile-font" href="{{route('contact.contact', app()->getLocale())}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 @if (Route::has('login'))
                     {{--<div class="top-right links">--}}
@@ -293,13 +293,13 @@
 
                         <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
 
-                        <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                        <li class="menu-collapse"><a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
-                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                        <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="aa-login">
 
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
 
