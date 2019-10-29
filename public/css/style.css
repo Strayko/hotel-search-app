@@ -2135,5 +2135,10 @@ body {
     color: #f46767;
     font-size: 20px;
 }
-
+.search-title {
+    white-space: nowrap!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+    max-width: 500px!important;
+}
 /*END GENERAL RULES*/

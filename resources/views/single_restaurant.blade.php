@@ -721,9 +721,9 @@
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
                 <li><a class="mobile-font" href="/">Homepage</a></li>
-                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice')}}">Plans&Pricing</a></li>
-                <li><a class="mobile-font" href="{{route('restaurants.showAll')}}">Restaurants</a></li>
-                <li><a class="mobile-font" href="{{route("contact.contact")}}">Contact</a></li>
+                <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
+                <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
+                <li><a class="mobile-font" href="{{route("contact.contact", app()->getLocale())}}">Contact</a></li>
                 <li class="menu-buttons-block">
                 @if (Route::has('login'))
                     {{--<div class="top-right links">--}}
@@ -742,11 +742,11 @@
                         </form>
 
                     @else
-                        <li class="menu-collapse"><a href="{{route('login')}}" class="sign-in">Sign in</a></li>
+                        <li class="menu-collapse"><a href="{{route('login', app()->getLocale())}}" class="sign-in">Sign in</a></li>
 
 
                         @if (Route::has('register'))
-                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index')}}" class="register">Register</a></li>
+                            <li class="menu-collapse top-distance-mobile"><a href="{{route('register.index', app()->getLocale())}}" class="register">Register</a></li>
 
                         @endif
                     @endauth

@@ -585,12 +585,9 @@
         <!-- START MAIN SEARCH -->
         <div class="search">
             <h1>Discover great restaurants</h1>
-            <form action="{{URL::to('/search')}}" method="POST" role="search">
+            <form action="{{URL::to('/'.$parametarExport.'/search')}}" method="GET" role="search">
             {{csrf_field()}}
             <input type="text" name="q" id="address" class="first-input" placeholder="What are you looking for?">
-
-
-
             {!! Form::select('name', [''=>'Choose Location'] + $locations, null, ['class'=>'form-control', 'id'=>'location']) !!}
             {!! Form::select('food', [''=>'Choose Food'] + $foods, null, ['class'=>'form-control', 'id'=>'category']) !!}
             {!! Form::select('distance', [100=>'Choose Distance'] + $distance, null, ['class'=>'last-input', 'id'=>'distance']) !!}
@@ -658,7 +655,7 @@
                     @if($restaurants)
                         @foreach($restaurants as $restaurant)
                             <div>
-                                <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                <a href="{{route('single_restaurant.restaurant', [app()->getLocale(), $restaurant->slug])}}">
                                     <div class="restaurant-box">
                                         <div class="pic-box">
                                             <img src="img/popular_place.png" class="imgs" alt="">
@@ -696,7 +693,7 @@
                     @if($restaurants)
                         @foreach($restaurants as $restaurant)
                             <div>
-                                <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                <a href="{{route('single_restaurant.restaurant', [app()->getLocale(), $restaurant->slug])}}">
                                     <div class="restaurant-box">
                                         <div class="pic-box">
                                             <img src="img/popular_place.png" class="imgs" alt="">
@@ -728,7 +725,7 @@
                     @if($restaurants)
                         @foreach($restaurants as $restaurant)
                             <div>
-                                <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                                <a href="{{route('single_restaurant.restaurant', [app()->getLocale(), $restaurant->slug])}}">
                                     <div class="restaurant-box">
                                         <div class="pic-box">
                                             <img src="img/popular_place.png" class="imgs" alt="">
@@ -775,7 +772,7 @@
                 @foreach($restaurants as $restaurant)
                     <div>
                         <div class="recently-box">
-                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                            <a href="{{route('single_restaurant.restaurant', [app()->getLocale(), $restaurant->slug])}}">
                                 <div class="cube-box">
                                     <img src="img/recent_place.png" alt="">
                                 </div>
@@ -796,7 +793,7 @@
                 @foreach($restaurants as $restaurant)
                     <div>
                         <div class="recently-box">
-                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                            <a href="{{route('single_restaurant.restaurant', [app()->getLocale() ,$restaurant->slug])}}">
                                 <div class="cube-box">
                                     <img src="img/recent_place.png" alt="">
                                 </div>
@@ -817,7 +814,7 @@
                 @foreach($restaurants as $restaurant)
                     <div>
                         <div class="recently-box">
-                            <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                            <a href="{{route('single_restaurant.restaurant', [app()->getLocale(), $restaurant->slug])}}">
                                 <div class="cube-box">
                                     <img src="img/recent_place.png" alt="">
                                 </div>
