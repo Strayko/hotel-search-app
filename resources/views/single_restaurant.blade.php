@@ -693,6 +693,10 @@
         margin-top: 10px;
         display: inline-block;
     }
+    #selectorLng {
+        border: 1px solid #F46767;
+        border-radius: 15px;
+    }
 </style>
 @section('content')
 <!-- START LOGO AND MENU -->
@@ -710,7 +714,11 @@
     <div class="container-menu">
 
         <div class="logo alignLeft center-response">
-            <a href="/"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @if($parametarExport == 'en')
+                <a href="/en"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @else
+                <a href="/de"><img src="{{asset('img/logo.svg')}}" class="logo-img" alt=""></a>
+            @endif
         </div>
 
         <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
@@ -720,7 +728,30 @@
         <nav class="navbar" id="navbar">
             <!--<div class="burger-nav"></div>-->
             <ul class="nav alignRight center-response">
-                <li><a class="mobile-font" href="/">Homepage</a></li>
+                <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                    @if($parametarExport == 'de')
+                        @foreach (config('app.available_locales') as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), [$locale, $slug]) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), [$locale, $slug]) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @elseif($parametarExport == 'en')
+                        @foreach (array_reverse(config('app.available_locales')) as $locale)
+                            <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), [$locale, $slug]) }}">
+                                <a class="nav-link"
+                                   href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), [$locale, $slug]) }}"
+                                   @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @if($parametarExport == 'en')
+                    <li><a class="mobile-font" href="/en">{{__('home.Homepage')}}</a></li>
+                @else
+                    <li><a class="mobile-font" href="/de">{{__('home.Homepage')}}</a></li>
+                @endif
                 <li><a class="mobile-font" href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
                 <li><a class="mobile-font" href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
                 <li><a class="mobile-font" href="{{route("contact.contact", app()->getLocale())}}">Contact</a></li>

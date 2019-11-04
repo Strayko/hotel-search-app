@@ -15,9 +15,14 @@ use Illuminate\Support\Facades\Session;
 
 class AuthorRestaurantController extends Controller
 {
-    public function restaurant($slug) {
+    public function restaurant(Request $request, $locale, $id) {
 
-    	$restaurant = Restaurant::findBySlugOrFail($slug);
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1, 2);
+
+        $restaurant = Restaurant::findBySlugOrFail($id);
+        $slug = $restaurant->slug;
+
     	$restaurant_id = $restaurant['id'];
 
     	$times = Carbon::now();
@@ -33,7 +38,7 @@ class AuthorRestaurantController extends Controller
 	    $restaurantRecents = Restaurant::orderBy('id', 'desc')->limit(3)->get();
 	    $actions = $restaurant->actions()->orderBy('id', 'desc')->whereIsActive(1)->first();
 
-    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents', 'event', 'gallerys', 'time', 'actions'));
+    	return view('single_restaurant', compact('restaurant', 'comments', 'relateds', 'commentss', 'locations', 'foods', 'restaurantRecents', 'event', 'gallerys', 'time', 'actions', 'parametarExport', 'slug'));
     }
 
     public function store(Request $request) {
