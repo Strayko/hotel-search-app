@@ -39,9 +39,11 @@ class ResetPasswordController extends Controller
      */
 
     public function showResetForm(Request $request) {
+
         $getParametar = $request->getRequestUri();
+        $parametarExport = substr($getParametar,1,2);
         $token = substr($getParametar, 19);
-        return view('auth.passwords.reset', compact('token'));
+        return view('auth.passwords.reset', compact('token', 'parametarExport'));
     }
 
 //    public function reset(Request $request) {

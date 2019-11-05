@@ -48,11 +48,7 @@
         <div class="footer-right">
             <div class="footer-menu">
                 <ol>
-                    @if($parametarExport == 'en')
-                        <li><a href="/en">{{__('home.Homepage')}}</a></li>
-                    @else
-                        <li><a href="/de">{{__('home.Homepage')}}</a></li>
-                    @endif
+                    <li><a href="/{{$parametarExport}}">{{__('home.Homepage')}}</a></li>
                     <li><a href="{{route('plans-and-pricing.planAndPrice', app()->getLocale())}}">Plans&Pricing</a></li>
                     <li><a href="{{route('restaurants.showAll', app()->getLocale())}}">Restaurants</a></li>
                     <li><a href="{{route('contact.contact', app()->getLocale())}}">Contact</a></li>

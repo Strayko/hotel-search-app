@@ -291,7 +291,11 @@
                     {{--<div class="top-right links">--}}
                     @auth
 
-                        <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
+                        @if($parametarExport == 'en')
+                            <li class="menu-collapse"><a href="/en/admin" class="sign-in">Admin</a></li>
+                        @else
+                            <li class="menu-collapse"><a href="/de/admin" class="sign-in">Admin</a></li>
+                        @endif
 
                         <li class="menu-collapse"><a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>

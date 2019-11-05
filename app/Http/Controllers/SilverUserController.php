@@ -62,8 +62,12 @@ class SilverUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
@@ -73,7 +77,7 @@ class SilverUserController extends Controller
         $silver = User::where('package_id', Auth::user()->isSilver())->first();
 	    $user = User::findOrFail($id);
 	    $packages = Package::pluck('name', 'id')->all();
-	    return view('silver.user.edit', compact ('user', 'packages', 'platinium', 'silver', 'gold', 'notifications'));
+	    return view('silver.user.edit', compact ('user', 'packages', 'platinium', 'silver', 'gold', 'notifications', 'parametarExport'));
     }
 
     /**
@@ -109,20 +113,23 @@ class SilverUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
 	    $user = User::findOrFail($id);
 	    if($user->photo_id == 1) {
 	        DB::delete('delete from events where user_id = ?', [$user->id]);
 		    $user->forceDelete();
 		    Session::flash('deleted_user', 'The User has been deleted');
-		    return redirect('/admin2/users');
+		    return redirect("/$parametarExport");
 	    } else {
             DB::delete('delete from events where user_id = ?', [$user->id]);
 		    unlink( public_path() . $user->photo->file );
 		    $user->forceDelete();
 		    Session::flash('deleted_user', 'The User has been deleted');
-		    return redirect('/admin2/users');
+		    return redirect("/$parametarExport");
 	    }
 
     }

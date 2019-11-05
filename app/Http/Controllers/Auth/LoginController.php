@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -30,7 +32,9 @@ class LoginController extends Controller
      */
 //    protected $redirectTo = '/admin';
 
-    public function login(Request $request) {
+    public function login(LoginRequest $request) {
+
+
 
         $parametar = $request->getRequestUri();
         $parametarExport = substr($parametar, 1,2);
@@ -40,9 +44,15 @@ class LoginController extends Controller
             'password' => Input::get('password')
         );
 
-        if(Auth::attempt($credentials)) {
+        $remember = false;
+        if(isset($request->remember)) {
+            $remember = true;
+        }
+
+        if(Auth::attempt($credentials, $remember)) {
             return redirect($parametarExport.'/admin');
         } else {
+            Session::flash('loginFailed', 'Credentials failed');
             return redirect($parametarExport.'/login');
         }
 
@@ -60,9 +70,11 @@ class LoginController extends Controller
         $parametarExport = substr($parametar, 1,2);
 
         if($parametarExport == 'en') {
+            Session::flush();
             Auth::logout();
             return redirect('/en');
         } else {
+            Session::flush();
             Auth::logout();
             return redirect('/de');
         }

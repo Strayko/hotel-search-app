@@ -760,15 +760,19 @@
                     {{--<div class="top-right links">--}}
                     @auth
 
-                        <li class="menu-collapse"><a href="/admin" class="sign-in">Admin</a></li>
+                        @if($parametarExport == 'en')
+                            <li class="menu-collapse"><a href="/en/admin" class="sign-in">Admin</a></li>
+                        @else
+                            <li class="menu-collapse"><a href="/de/admin" class="sign-in">Admin</a></li>
+                        @endif
 
-                        <li class="menu-collapse"><a href="{{route('logout')}}" onclick="event.preventDefault();
+                        <li class="menu-collapse"><a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>
-                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                        <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="aa-login">
 
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
 

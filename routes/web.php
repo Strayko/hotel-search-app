@@ -28,7 +28,6 @@ use Cornford\Googlmapper\Facades\MapperFacade;
   ---> HOME PAGE <---
 --------------------------*/
 Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);
-Route::post('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@store']);
 Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
 
 
@@ -47,6 +46,7 @@ Route::group(['prefix' => '{locale}',
     Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
 
     Route::group(['middleware'=>'auth'], function () {
+        Route::post('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@store']);
         Route::get('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@renewAccount']);
     });
 

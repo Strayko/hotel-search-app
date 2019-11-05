@@ -181,6 +181,11 @@
                     <strong>{{ $errors->first('email') }}</strong>
                 </span>
                 @endif
+                @if(Session::has('loginFailed'))
+                    <span class="help-block">
+                    <strong>{{session('loginFailed')}}</strong>
+                </span>
+                @endif
 
                 <i class="fas fa-lock"></i><input name="password" class="signin-input signin-input-responsive{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" placeholder="Password">
                 @if ($errors->has('password'))
