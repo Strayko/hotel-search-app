@@ -44,13 +44,24 @@ Route::group(['prefix' => '{locale}',
     Route::get('/restaurants', ['as'=>'restaurants.showAll', 'uses'=>'SubscriberPlanController@showAll']);
     Route::get('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contact']);
 
+    Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
+
     Route::group(['middleware'=>'auth'], function () {
         Route::get('/renew-account', ['as' => 'renew_account.renewAccount', 'uses' => 'RenewAccountController@renewAccount']);
     });
 
 
 
-    Route::get('/restaurant/{id}', ['as'=>'single_restaurant.restaurant', 'uses'=>'AuthorRestaurantController@restaurant']);
+    /*---------------------------
+      ---> MIDDLEWARE AUTHOR <---
+    ----------------------------*/
+    Route::group(['middleware'=>'author'], function() {
+
+        Route::get('/admin', ['as'=>'silver.index.locations', 'uses'=>'SilverAdminIndex@index']);
+
+        Route::resource('admin/user', 'SilverUserController');
+        Route::resource('admin/restaurant', 'SilverRestaurantController');
+    });
 
 
 
@@ -326,16 +337,7 @@ Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_dat
 Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_data');
 
 
-/*---------------------------
-  ---> MIDDLEWARE AUTHOR <---
-----------------------------*/
-Route::group(['middleware'=>'author'], function() {
 
-    Route::get('/admin', ['as'=>'silver.index.locations', 'uses'=>'SilverAdminIndex@index']);
-
-    Route::resource('admin/user', 'SilverUserController');
-    Route::resource('admin/restaurant', 'SilverRestaurantController');
-});
 
 
 

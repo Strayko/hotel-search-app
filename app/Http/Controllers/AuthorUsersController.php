@@ -55,7 +55,8 @@ class AuthorUsersController extends Controller
     public function store(UserRegisterRequest $request)
     {
 
-
+    $parametar = $request->getRequestUri();
+    $parametarExport = substr($parametar, 1, 2);
 
 
 
@@ -153,20 +154,20 @@ class AuthorUsersController extends Controller
                 User::create($input);
 //                    print_r($charge);exit();
                 Session::flash('payment-success2', 'Payment successfully completed!');
-                return redirect('/login');
+                return redirect($parametarExport.'/login');
             } else {
                 Session::flash('error','Money not add in wallet!!');
-                return redirect('/user/register');
+                return redirect($parametarExport.'/user/register');
             }
         } catch (Exception $e) {
             Session::flash('error',$e->getMessage());
-            return redirect('/user/register');
+            return redirect($parametarExport.'/user/register');
         } catch(\Cartalyst\Stripe\Exception\CardErrorException $e) {
             Session::flash('error',$e->getMessage());
-            return redirect('/user/register');
+            return redirect($parametarExport.'/user/register');
         } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e) {
             Session::flash('error',$e->getMessage());
-            return redirect('/user/register');
+            return redirect($parametarExport.'/user/register');
         }
 
 

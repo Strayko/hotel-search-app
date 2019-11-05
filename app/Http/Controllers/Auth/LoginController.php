@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class LoginController extends Controller
 {
@@ -27,7 +28,25 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+//    protected $redirectTo = '/admin';
+
+    public function login(Request $request) {
+
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
+        $credentials = array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password')
+        );
+
+        if(Auth::attempt($credentials)) {
+            return redirect($parametarExport.'/admin');
+        } else {
+            return redirect($parametarExport.'/login');
+        }
+
+    }
 
     public function showLoginForm(Request $request) {
         $parametar = $request->getRequestUri();

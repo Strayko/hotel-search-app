@@ -319,7 +319,7 @@
 
             @if($restaurants)
                 @foreach($restaurants as $restaurant)
-                    <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                    <a href="{{route('single_restaurant.restaurant', ['locale'=>app()->getLocale(), 'id'=>$restaurant->slug])}}">
                         <div class="restaurant-box">
                             <div class="pic-box">
                                 <img src="{{asset('img/popular_place.png')}}" class="imgs" alt="">
@@ -366,7 +366,7 @@
 
             @if($restaurants)
                 @foreach($restaurants as $restaurant)
-                    <a href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">
+                    <a href="{{route('single_restaurant.restaurant', ['locale'=>app()->getLocale(), 'id'=>$restaurant->slug])}}">
                         <div class="restaurant-box">
                             <div class="pic-box">
                                 <img src="{{asset('img/popular_place.png')}}" class="imgs" alt="">
