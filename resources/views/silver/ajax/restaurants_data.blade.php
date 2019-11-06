@@ -3,11 +3,11 @@
         <td><img height="50" width="50" src="{{$restaurant->photo ? $restaurant->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
         <td>{{Str::limit($restaurant->title, 15)}}</td>
         <td>{{Str::limit($restaurant->body, 10)}}</td>
-        <td><a class="replies" href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
+        <td><a class="replies" href="{{route('single_restaurant.restaurant', [app()->getLocale(), $restaurant->slug])}}">Restaurant</a></td>
         <td>{{$restaurant->created_at->diffForHumans()}}</td>
         <td>{{$restaurant->updated_at->diffForHumans()}}</td>
         <td>
-            <a href="{{route('restaurant.edit', $restaurant->id)}}" class="btn btn-secondary">
+            <a href="{{route('restaurant.edit', [app()->getLocale(), $restaurant->id])}}" class="btn btn-secondary">
                  Edit/Delete
             </a>
         </td>

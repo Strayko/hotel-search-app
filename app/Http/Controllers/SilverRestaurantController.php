@@ -14,6 +14,7 @@ use App\Photo;
 use App\Restaurant;
 use App\Social;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,8 +27,11 @@ class SilverRestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
@@ -37,13 +41,23 @@ class SilverRestaurantController extends Controller
         $silver = User::where('package_id', Auth::user()->isSilver())->first();
 	    $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
 
-        return view('silver.restaurant.index', compact('restaurants', 'platinium', 'silver', 'gold', 'notifications'));
+        return view('silver.restaurant.index', compact('restaurants', 'platinium', 'silver', 'gold', 'notifications', 'parametarExport'));
     }
 
     function fetch_data(Request $request)
     {
+
         if($request->ajax())
         {
+            $referer = $_SERVER['HTTP_REFERER'];
+            if(strpos($referer, 'en')) {
+                $referer = 'en';
+            } else {
+                $referer = 'de';
+            }
+            $setCarbon = Carbon::setLocale($referer);
+
+
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
@@ -62,8 +76,11 @@ class SilverRestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
@@ -81,7 +98,7 @@ class SilverRestaurantController extends Controller
 	    $distance = Distance::pluck('distance', 'id')->all();
 
 
-        return view('silver.restaurant.create', compact('restaurants', 'locations', 'foods', 'platinium', 'gold', 'silver', 'distance', 'frei', 'notifications'));
+        return view('silver.restaurant.create', compact('restaurants', 'locations', 'foods', 'platinium', 'gold', 'silver', 'distance', 'frei', 'notifications', 'parametarExport'));
     }
 
     /**
@@ -92,6 +109,9 @@ class SilverRestaurantController extends Controller
      */
     public function store(SilverRequest $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
 //dd($request->all());
 	    $input = $request->all();
 
@@ -148,7 +168,7 @@ class SilverRestaurantController extends Controller
 
 
 	    $user->restaurants()->create($input);
-	    return redirect('/admin/restaurant');
+	    return redirect('/'.$parametarExport.'/admin/restaurant');
     }
 
     /**
@@ -168,8 +188,11 @@ class SilverRestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
@@ -186,7 +209,7 @@ class SilverRestaurantController extends Controller
         $frei = User::where('package_id', Auth::user()->isFrei())->first();
 
 //	    $silver = DB::table('users')->where('package_id', '=', '3')->value('package_id');
-	    return view('silver.restaurant.edit', compact('restaurants', 'platinium', 'silver', 'gold', 'locations', 'foods', 'frei', 'notifications'));
+	    return view('silver.restaurant.edit', compact('restaurants', 'platinium', 'silver', 'gold', 'locations', 'foods', 'frei', 'notifications', 'parametarExport'));
     }
 
     /**
@@ -196,9 +219,11 @@ class SilverRestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $locale, $id)
     {
-//        dd($request->all());
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
 	    $input = $request->all();
 	    $restaurant = Restaurant::findOrFail($id);
 
@@ -256,7 +281,7 @@ class SilverRestaurantController extends Controller
         }
 
 	    Auth::user()->restaurants()->whereId($id)->first()->update($input);
-	    return redirect('/admin/restaurant');
+	    return redirect('/'.$parametarExport.'/admin/restaurant');
     }
 
     /**
@@ -265,8 +290,11 @@ class SilverRestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
 	    $restaurant = Restaurant::findOrFail($id);
         $resto = $restaurant->events;
         $gallerys = $restaurant->gallery;
@@ -294,7 +322,7 @@ class SilverRestaurantController extends Controller
             DB::delete('delete from social_networks where id = ?', [$restaurant->social_network_id]);
 	        DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
 		    $restaurant->forceDelete();
-		    return redirect('/admin/restaurant');
+		    return redirect('/'.$parametarExport.'/admin/restaurant');
 	    } else {
 		    unlink(public_path() . $restaurant->photo->file);
             foreach($resto as $rest){
@@ -314,7 +342,7 @@ class SilverRestaurantController extends Controller
             DB::delete('delete from events where restaurant_id = ?', [$restaurant->id]);
             DB::delete('delete from photos where id = ?',[$restaurant->photo_id]);
 		    $restaurant->forceDelete();
-		    return redirect('/admin/restaurant');
+		    return redirect('/'.$parametarExport.'/admin/restaurant');
 	    }
     }
 }

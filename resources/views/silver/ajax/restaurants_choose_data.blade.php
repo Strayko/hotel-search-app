@@ -5,7 +5,7 @@
         <td>{{$restaurant->gallery->count()}}</td>
 
         <td class="d-flex justify-content-center" style="text-align: center;">
-            <a href="{{route('gallery.edit', $restaurant->id)}}" class="btn btn-secondary">
+            <a href="{{route('gallery.edit', [app()->getLocale(), $restaurant->id])}}" class="btn btn-secondary">
                Upload/Delete
             </a>
         </td>

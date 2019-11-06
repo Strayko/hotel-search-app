@@ -1,4 +1,4 @@
-{!! Form::open(['method'=>'POST', 'action'=>'SilverRestaurantController@store', 'files'=>true, 'id'=>'regForm']) !!}
+{!! Form::open(['method'=>'POST', 'action'=>['SilverRestaurantController@store', app()->getLocale()], 'files'=>true, 'id'=>'regForm']) !!}
 {{csrf_field()}}
 <div class="tab">
 

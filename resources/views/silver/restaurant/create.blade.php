@@ -523,6 +523,11 @@
         .form-buttons .form-previous {
             font-family: AvenirNextLTPro-Regular, 'sans-serif';
         }
+        #selectorLng {
+            border: 1px solid #CACACA;
+            border-radius: 15px;
+            float: right;
+        }
     </style>
 
     <title>Dashboard</title>
@@ -533,15 +538,15 @@
 <section id="admin2-dashboard">
     <div class="admin2-menu">
         <ol>
-            <a href="/"><li><img src="{{asset('img/logo-white.svg')}}" alt=""></li></a>
-            <a href="/"><li class="p-lead home-menu-toggle">Home</li></a>
-            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead admin-menu-name">{{Auth::user()->name}}</p></a>
+            <a href="/{{$parametarExport}}"><li><img src="{{asset('img/logo-white.svg')}}" alt=""></li></a>
+            <a href="/{{$parametarExport}}"><li class="p-lead home-menu-toggle">Home</li></a>
+            <a href="{{route('user.edit', [app()->getLocale(), Auth::user()->id])}}"><p class="p-lead admin-menu-name">{{Auth::user()->name}}</p></a>
             <hr>
-            <a href="/admin"><li class="p-lead"><i class="fas fa-home"></i> Dashboard</li></a>
-            <a href="{{route('restaurant.index')}}"><li class="p-lead active"><i class="fas fa-utensils"></i> Restaurants</li></a>
+            <a href="/{{$parametarExport}}/admin"><li class="p-lead"><i class="fas fa-home"></i> Dashboard</li></a>
+            <a href="{{route('restaurant.index', app()->getLocale())}}"><li class="p-lead active"><i class="fas fa-utensils"></i> Restaurants</li></a>
             @if($platinium || $gold)
-                <a href="{{route('event.index')}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
-                <a href="{{route('gallery.index')}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
+                <a href="{{route('event.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
+                <a href="{{route('gallery.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
             @endif
             @if($platinium || $gold || $silver)
                 <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
@@ -549,9 +554,9 @@
             @if($platinium)
                 <a href="{{route('actions.index')}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
             @endif
-            <a href="{{route('logout')}}" onclick="event.preventDefault();
+            <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </ol>
@@ -567,16 +572,35 @@
                 <i class="fas fa-bars"></i>
             </a>
 
-            <a href="{{route('logout')}}" onclick="event.preventDefault();
+            <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
                 <p class="p-lead"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
                 @csrf
             </form>
 
-            <a href="{{route('user.edit', Auth::user()->id)}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
+            <a href="{{route('user.edit', [app()->getLocale(), Auth::user()->id])}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
         </div>
         <div class="dashboard-content" id="user-admin-create-restaurant">
+            <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
+                @if($parametarExport == 'de')
+                    @foreach (config('app.available_locales') as $locale)
+                        <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                            <a class="nav-link"
+                               href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                               @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </option>
+                    @endforeach
+                @elseif($parametarExport == 'en')
+                    @foreach (array_reverse(config('app.available_locales')) as $locale)
+                        <option value="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}">
+                            <a class="nav-link"
+                               href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(), $locale) }}"
+                               @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                        </option>
+                    @endforeach
+                @endif
+            </select>
 
             <div class="create-form">
                 <div class="form-left">

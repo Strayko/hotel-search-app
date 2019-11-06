@@ -1,4 +1,4 @@
-{!! Form::model($restaurants, ['method'=>'PATCH', 'action'=>['SilverRestaurantController@update', $restaurants->id], 'files'=>true, 'id'=>'regForm']) !!}
+{!! Form::model($restaurants, ['method'=>'PATCH', 'action'=>['SilverRestaurantController@update', app()->getLocale(), $restaurants->id], 'files'=>true, 'id'=>'regForm']) !!}
     {{csrf_field()}}
     <div class="tab">
 

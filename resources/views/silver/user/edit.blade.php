@@ -352,8 +352,6 @@
             border: 1px solid #CACACA;
             border-radius: 15px;
             float: right;
-            margin-top: 25px;
-            margin-right: 10px;
         }
 ')
 @section('content')
@@ -368,8 +366,8 @@
             <a href="/{{$parametarExport}}/admin"><li class="p-lead"><i class="fas fa-home"></i> Dashboard</li></a>
             <a href="{{route('restaurant.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>
             @if($platinium || $gold)
-                <a href="{{route('event.index')}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
-                <a href="{{route('gallery.index')}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
+                <a href="{{route('event.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
+                <a href="{{route('gallery.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
             @endif
             @if($platinium || $gold || $silver)
                 <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
@@ -391,6 +389,22 @@
     <div class="admin2-dashboard-content">
         <div class="dashboard-header">
             <i class="fas fa-users"></i><h2>Users</h2>
+
+            <a class="toggle-menu-link" href="javascript:void(0);" onclick="myFunction()">
+                <i class="fas fa-bars"></i>
+            </a>
+
+            <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+                <p class="p-lead"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
+            <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <a href="{{route('user.edit', [app()->getLocale(), Auth::user()->id])}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
+
+        </div>
+        <div class="dashboard-content">
             <select name="selectorLng" id="selectorLng" onchange="location = this.value;">
                 @if($parametarExport == 'de')
                     @foreach (config('app.available_locales') as $locale)
@@ -410,18 +424,6 @@
                     @endforeach
                 @endif
             </select>
-            <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">
-                <p class="p-lead"><i class="fas fa-sign-out-alt"></i> {{__('Logout')}}</p></a>
-            <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-
-            <a href="{{route('user.edit', [app()->getLocale(), Auth::user()->id])}}"><p class="p-lead">{{Auth::user()->name}}</p> <img src="{{Auth::user()->photo->file}}" alt=""></a>
-
-        </div>
-        <div class="dashboard-content">
-
             <a href="/{{$parametarExport}}/admin" id="back-button" class="back-button">Dashboard</a>
             {!! Form::open(['method'=>'DELETE', 'action'=>['SilverUserController@destroy', app()->getLocale(), $user->id]]) !!}
             <input type="submit" class="delete-button" value="Delete">

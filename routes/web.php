@@ -29,7 +29,8 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 --------------------------*/
 Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);
 Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
-
+Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fetch_data');
+Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
 
 
 Route::group(['prefix' => '{locale}',
@@ -61,6 +62,19 @@ Route::group(['prefix' => '{locale}',
 
         Route::resource('admin/user', 'SilverUserController');
         Route::resource('admin/restaurant', 'SilverRestaurantController');
+    });
+
+
+
+    /*---------------------------------------------
+    ---> MIDDLEWARE PREMIUM AND GOLD PACKAGE <---
+    ----------------------------------------------*/
+    Route::group(['middleware'=>'goldandplatinium'], function() {
+
+        Route::resource('admin/event', 'AuthorEventController');
+        Route::patch('admin/event/{id}/update', 'AuthorEventController@updateEvent');
+        Route::resource('admin/gallery', 'AuthorGalleryController');
+        Route::delete('admin/gallery/{id}/delete/gallery', 'AuthorGalleryController@deleteGallery');
     });
 
 
@@ -329,8 +343,8 @@ Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>
 /*---------------------------------------------
   ---> AJAX FETCHING DATA USER ADMIN PANEL <---
 ---------------------------------------------*/
-Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fetch_data');
-Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
+
+
 Route::get('/admin/gallery/jLYZFd64ggZe3s8f', 'AuthorGalleryController@fetch_data');
 //Route::get('/admin/gallery/{id}/cKS3dpqP6xF6qZEf', 'AuthorGalleryController@fetch_data2');
 Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
@@ -352,16 +366,7 @@ Route::group(['middleware'=>'platinium'], function() {
 
 
 
-/*---------------------------------------------
-  ---> MIDDLEWARE PREMIUM AND GOLD PACKAGE <---
-----------------------------------------------*/
-Route::group(['middleware'=>'goldandplatinium'], function() {
 
-    Route::resource('admin/event', 'AuthorEventController');
-    Route::patch('admin/event/{id}/update', 'AuthorEventController@updateEvent');
-    Route::resource('admin/gallery', 'AuthorGalleryController');
-    Route::delete('admin/gallery/{id}/delete/gallery', 'AuthorGalleryController@deleteGallery');
-});
 
 Route::group(['middleware'=>'silvergoldandplatinium'], function() {
     Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');

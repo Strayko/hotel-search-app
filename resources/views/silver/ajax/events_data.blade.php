@@ -8,19 +8,19 @@
         <td>{{$event->updated_at->diffForHumans()}}</td>
         <td class="center-buttons">
             @if($event->is_active == 1)
-                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
+                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', app()->getLocale(), $event->id]]) !!}
                 <input type="hidden" name="is_active" value="0">
                 {!! Form::submit('Un-approve', ['class'=>'blue-input ajax-input', 'id'=>'blue-input-user-admin']) !!}
                 {!! Form::close() !!}
             @else
-                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', $event->id]]) !!}
+                {!! Form::open(['method'=>'PATCH', 'action'=>['AuthorEventController@updateEvent', app()->getLocale(), $event->id]]) !!}
                 <input type="hidden" name="is_active" value="1">
                 {!! Form::submit('Approve', ['class'=>'blue-input ajax-input', 'id'=>'blue-input-user-admin']) !!}
                 {!! Form::close() !!}
             @endif
         </td>
         <td>
-            <a href="{{route('event.edit', $event->id)}}" class="blue ajax-input-2" id="blue-user-admin">
+            <a href="{{route('event.edit', [app()->getLocale(), $event->id])}}" class="blue ajax-input-2" id="blue-user-admin">
                 Edit/Delete
             </a>
         </td>

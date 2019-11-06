@@ -17,15 +17,18 @@ class AuthorGalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
             ->get();
         $platinium = User::where('package_id', Auth::user()->isPlatinium())->first();
         $restaurants = Restaurant::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.gallery.index', compact('restaurants', 'notifications', 'platinium'));
+        return view('silver.gallery.index', compact('restaurants', 'notifications', 'platinium', 'parametarExport'));
     }
 
     function fetch_data(Request $request)
@@ -83,8 +86,11 @@ class AuthorGalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
 
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
@@ -97,7 +103,7 @@ class AuthorGalleryController extends Controller
         $restaurants = Restaurant::findOrFail($id);
         $restaurant_id = $restaurants['id'];
         $gallerys = $restaurants->gallery()->where('restaurant_id', $restaurant_id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.gallery.edit', compact('restaurants', 'gallerys', 'notifications', 'platinium'));
+        return view('silver.gallery.edit', compact('restaurants', 'gallerys', 'notifications', 'platinium', 'parametarExport'));
     }
 
 
@@ -143,7 +149,7 @@ class AuthorGalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$locale, $id)
     {
         $user = Auth::user();
         $restaurant = Restaurant::findOrFail($id);
