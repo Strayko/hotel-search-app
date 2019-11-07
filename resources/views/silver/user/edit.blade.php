@@ -370,10 +370,10 @@
                 <a href="{{route('gallery.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-camera"></i> Gallery</li></a>
             @endif
             @if($platinium || $gold || $silver)
-                <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
+                <a href="{{route('booking', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
             @endif
             @if($platinium)
-                <a href="{{route('actions.index')}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
+                <a href="{{route('actions.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
             @endif
 
             <a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();

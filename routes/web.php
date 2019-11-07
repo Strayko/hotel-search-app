@@ -31,6 +31,8 @@ Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanControl
 Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
 Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fetch_data');
 Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
+Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
+Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_data');
 
 
 Route::group(['prefix' => '{locale}',
@@ -77,6 +79,24 @@ Route::group(['prefix' => '{locale}',
         Route::delete('admin/gallery/{id}/delete/gallery', 'AuthorGalleryController@deleteGallery');
     });
 
+
+
+    Route::group(['middleware'=>'silvergoldandplatinium'], function() {
+        Route::post('admin/booking', 'OnlineBookingController@update')->name('booking');
+        Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');
+        Route::get('admin/booking/{id}/edit', 'OnlineBookingController@edit')->name('bookingEdit');
+        Route::delete('admin/booking/{id}', 'OnlineBookingController@destroy')->name('bookingDestroy');
+    });
+
+
+
+    /*---------------------------------------------
+     ---> MIDDLEWARE PREMIUM PACKAGE <---
+    ----------------------------------------------*/
+    Route::group(['middleware'=>'platinium'], function() {
+        Route::resource('admin/actions', 'AuthorActionsController');
+        Route::patch('admin/actions/{id}/update', 'AuthorActionsController@updateActions');
+    });
 
 
 
@@ -347,8 +367,6 @@ Route::get('/location/{id}', ['as'=>'single_location.locationCategory', 'uses'=>
 
 Route::get('/admin/gallery/jLYZFd64ggZe3s8f', 'AuthorGalleryController@fetch_data');
 //Route::get('/admin/gallery/{id}/cKS3dpqP6xF6qZEf', 'AuthorGalleryController@fetch_data2');
-Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
-Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_data');
 
 
 
@@ -356,24 +374,15 @@ Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_dat
 
 
 
-/*---------------------------------------------
-  ---> MIDDLEWARE PREMIUM PACKAGE <---
-----------------------------------------------*/
-Route::group(['middleware'=>'platinium'], function() {
-    Route::resource('admin/actions', 'AuthorActionsController');
-    Route::patch('admin/actions/{id}/update', 'AuthorActionsController@updateActions');
-});
 
 
 
 
 
-Route::group(['middleware'=>'silvergoldandplatinium'], function() {
-    Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');
-    Route::post('admin/booking', 'OnlineBookingController@update')->name('booking');
-    Route::get('admin/booking/{id}/edit', 'OnlineBookingController@edit')->name('bookingEdit');
-    Route::delete('admin/booking/{id}', 'OnlineBookingController@destroy')->name('bookingDestroy');
-});
+
+
+
+
 
 
 

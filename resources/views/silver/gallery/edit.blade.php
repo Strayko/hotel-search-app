@@ -382,9 +382,9 @@
             <a href="{{route('restaurant.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-utensils"></i> Restaurants</li></a>
             <a href="{{route('event.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-calendar-alt"></i> Events</li></a>
             <a href="{{route('gallery.index', app()->getLocale())}}"><li class="p-lead active"><i class="fas fa-camera"></i> Gallery</li></a>
-            <a href="{{route('booking')}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
+            <a href="{{route('booking', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-paste"></i> Booking</li></a>
             @if($platinium)
-                <a href="{{route('actions.index')}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
+                <a href="{{route('actions.index', app()->getLocale())}}"><li class="p-lead"><i class="fas fa-wallet"></i> Actions</li></a>
             @endif
             <a href="#"><p class="p-lead logout-menu-show"><i class="fas fa-sign-out-alt"></i> Logout</p></a>
         </ol>

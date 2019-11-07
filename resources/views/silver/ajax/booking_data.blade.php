@@ -8,11 +8,11 @@
         <td>{{$item->created_at->diffForHumans()}}</td>
         <td>{{$item->party}}</td>
         <td class="center-buttons">
-            <a href="{{route('bookingEdit', $item->id)}}" class="blue" id="blue-input-booking">
+            <a href="{{route('bookingEdit', [app()->getLocale(), $item->id])}}" class="blue" id="blue-input-booking">
                  Show
             </a>
 
-                {!! Form::open(['method'=>'DELETE', 'action'=>['OnlineBookingController@destroy', $item->id], 'id'=>'booking-delete-button']) !!}
+                {!! Form::open(['method'=>'DELETE', 'action'=>['OnlineBookingController@destroy', app()->getLocale(), $item->id], 'id'=>'booking-delete-button']) !!}
                  <input type="submit" class="red-input" id="red-input-booking" value="Delete">
                 {!! Form::close() !!}
 

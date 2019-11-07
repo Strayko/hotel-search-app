@@ -6,6 +6,7 @@ use App\Actions;
 use App\Booking;
 use App\Http\Requests\UserAuctionsRequest;
 use App\Restaurant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,20 +17,31 @@ class AuthorActionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
             ->get();
         $actions = Actions::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
-        return view('silver.actions.index', compact('notifications', 'actions'));
+        return view('silver.actions.index', compact('notifications', 'actions', 'parametarExport'));
     }
 
     function fetch_data(Request $request)
     {
         if($request->ajax())
         {
+            $referer = $_SERVER['HTTP_REFERER'];
+            if(strpos($referer, 'en')) {
+                $referer = 'en';
+            } else {
+                $referer = 'de';
+            }
+            $setCarbon = Carbon::setLocale($referer);
+
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
@@ -49,15 +61,18 @@ class AuthorActionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
             ->get();
         $user_id = Auth::user()->id;
         $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
-        return view('silver.actions.create', compact('notifications', 'restaurants'));
+        return view('silver.actions.create', compact('notifications', 'restaurants', 'parametarExport'));
     }
 
     /**
@@ -74,7 +89,7 @@ class AuthorActionsController extends Controller
         return redirect('/admin/actions');
     }
 
-    public function updateActions(Request $request, $id) {
+    public function updateActions(Request $request, $locale, $id) {
 
         Actions::findOrFail($id)->update($request->all());
         return redirect()->back();
@@ -97,8 +112,11 @@ class AuthorActionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
         $user = Auth::user();
         $notifications = Booking::where('user_id', $user->id)
             ->where('is_read', 1)
@@ -108,7 +126,7 @@ class AuthorActionsController extends Controller
         $actions = Actions::findOrFail($id);
         $restaurants = Restaurant::where('user_id', $user_id)->pluck('title', 'id')->all();
 
-        return view('silver.actions.edit', compact('notifications', 'actions', 'restaurants'));
+        return view('silver.actions.edit', compact('notifications', 'actions', 'restaurants', 'parametarExport'));
     }
 
     /**
@@ -132,10 +150,12 @@ class AuthorActionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
         $actions = Actions::findOrFail($id);
         $actions->delete();
-        return redirect('/admin/actions');
+        return redirect('/'.$parametarExport.'/admin/actions');
     }
 }
