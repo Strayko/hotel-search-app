@@ -12,6 +12,7 @@ use App\Pdf;
 use App\Photo;
 use App\Restaurant;
 use App\Social;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,19 +25,29 @@ class AdminRestaurantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
     	$restaurants = Restaurant::orderBy('id', 'asc')->paginate(5);
 	    $locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
 
-        return view('admin.restaurants.index', compact('restaurants', 'locations', 'foods'));
+        return view('admin.restaurants.index', compact('restaurants', 'locations', 'foods', 'parametarExport'));
     }
 
     function fetch_data(Request $request)
     {
         if($request->ajax())
         {
+            $referer = $_SERVER['HTTP_REFERER'];
+            if(strpos($referer, 'en')) {
+                $referer = 'en';
+            } else {
+                $referer = 'de';
+            }
+            $setCarbon = Carbon::setLocale($referer);
 
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
@@ -56,14 +67,16 @@ class AdminRestaurantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
 
 	    $locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
 	    $distance = Distance::pluck('distance', 'id')->all();
 
-        return view('admin.restaurants.create', compact('locations', 'foods', 'distance'));
+        return view('admin.restaurants.create', compact('locations', 'foods', 'distance', 'parametarExport'));
     }
 
     /**
@@ -74,6 +87,9 @@ class AdminRestaurantsController extends Controller
      */
     public function store(RestaurantCreateRequest $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
 	    $input = $request->all();
 	    $user = Auth::user();
 
@@ -110,7 +126,7 @@ class AdminRestaurantsController extends Controller
         }
 
 	    $user->restaurants()->create($input);
-	    return redirect('/admin2/restaurants');
+	    return redirect('/'.$parametarExport.'/admin2/restaurants');
 
     }
 
@@ -131,12 +147,15 @@ class AdminRestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
 	    $restaurants = Restaurant::findOrFail($id);
 		$locations = Location::pluck('name', 'id')->all();
 	    $foods = Food::pluck('name', 'id')->all();
-        return view('admin.restaurants.edit', compact('restaurants', 'locations', 'foods'));
+        return view('admin.restaurants.edit', compact('restaurants', 'locations', 'foods', 'parametarExport'));
     }
 
     /**
@@ -146,8 +165,11 @@ class AdminRestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
     	$restaurant = Restaurant::findOrFail($id);
         $input = $request->all();
 
@@ -184,7 +206,7 @@ class AdminRestaurantsController extends Controller
         }
 
         $restaurant->whereId($id)->first()->update($input);
-        return redirect('/admin2/restaurants');
+        return redirect('/'.$parametarExport.'/admin2/restaurants');
     }
 
     /**
@@ -193,8 +215,11 @@ class AdminRestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
+
 	    $restaurant = Restaurant::findOrFail($id);
 	    if(!$restaurant->pdf_id == null) {
             unlink(public_path() . '/documents/' . $restaurant->documents->document);
@@ -204,13 +229,13 @@ class AdminRestaurantsController extends Controller
 	    if($restaurant->photo_id == 2) {
 		    $restaurant->delete();
 		    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
-		    return redirect('/admin2/restaurants');
+		    return redirect('/'.$parametarExport.'/admin2/restaurants');
 	    } else {
 		    unlink(public_path() . $restaurant->photo->file);
             DB::delete('delete from photos where id = ?',[$restaurant->documents->id]);
 		    $restaurant->delete();
 		    Session::flash('deleted_restaurant', 'The Restaurant has been deleted');
-		    return redirect('/admin2/restaurants');
+		    return redirect('/'.$parametarExport.'/admin2/restaurants');
 	    }
     }
 

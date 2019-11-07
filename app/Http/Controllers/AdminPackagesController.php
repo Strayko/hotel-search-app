@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminPackageRequest;
 use App\Package;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -14,17 +15,26 @@ class AdminPackagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
     	$packages = Package::orderBy('id', 'asc')->paginate(5);
-
-        return view('admin.package.index', compact('packages'));
+        return view('admin.package.index', compact('packages', 'parametarExport'));
     }
 
     function fetch_data(Request $request)
     {
         if($request->ajax())
         {
+            $referer = $_SERVER['HTTP_REFERER'];
+            if(strpos($referer, 'en')) {
+                $referer = 'en';
+            } else {
+                $referer = 'de';
+            }
+            $setCarbon = Carbon::setLocale($referer);
+
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
@@ -42,9 +52,11 @@ class AdminPackagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.package.create');
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+        return view('admin.package.create', compact('parametarExport'));
     }
 
     /**
@@ -55,8 +67,10 @@ class AdminPackagesController extends Controller
      */
     public function store(AdminPackageRequest $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
         Package::create($request->all());
-        return redirect('/admin2/packages');
+        return redirect(''.$parametarExport.'/admin2/packages');
     }
 
     /**
@@ -76,10 +90,12 @@ class AdminPackagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar, 1,2);
         $package = Package::findOrFail($id);
-        return view('admin.package.edit', compact('package'));
+        return view('admin.package.edit', compact('package', 'parametarExport'));
     }
 
     /**
@@ -89,11 +105,13 @@ class AdminPackagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminPackageRequest $request, $id)
+    public function update(AdminPackageRequest $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
         $package = Package::findOrFail($id);
         $package->update($request->all());
-        return redirect('/admin2/packages');
+        return redirect('/'.$parametarExport.'/admin2/packages');
     }
 
     /**
@@ -102,11 +120,13 @@ class AdminPackagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
         $package = Package::findOrFail($id);
         $package->delete();
         Session::flash('deleted_package', 'The Package has ben deleted');
-        return redirect('/admin2/packages');
+        return redirect('/'.$parametarExport.'/admin2/packages');
     }
 }

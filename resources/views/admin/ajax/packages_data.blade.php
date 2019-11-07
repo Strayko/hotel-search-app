@@ -7,10 +7,10 @@
             <td>{{$package->updated_at->diffForHumans()}}</td>
 
             <td class="center-buttons">
-                <a href="{{route('packages.edit', $package->id)}}" class="blue">
+                <a href="{{route('packages.edit', [app()->getLocale(), $package->id])}}" class="blue">
                     Edit
                 </a>
-                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPackagesController@destroy', $package->id], 'class'=>'form-inline']) !!}
+                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPackagesController@destroy', app()->getLocale(), $package->id], 'class'=>'form-inline']) !!}
                 <input type="submit" class="red-input" value="Delete">
                 {!! Form::close() !!}
             </td>

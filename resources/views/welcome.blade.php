@@ -541,15 +541,26 @@
                 <li><a class="mobile-font" href="{{route('contact.contact', app()->getLocale())}}">Contact</a></li>
                 <li class="menu-buttons-block">
 
+
+
                     @if (Route::has('login'))
                         {{--<div class="top-right links">--}}
                         @auth
 
-                        @if($parametarExport == 'en')
-                            <li class="menu-collapse"><a href="/en/admin" class="sign-in">Admin</a></li>
+                        @if(auth()->user()->isAdmin())
+                            @if($parametarExport == 'en')
+                                <li class="menu-collapse"><a href="/en/admin2" class="sign-in">Admin</a></li>
+                            @else
+                                <li class="menu-collapse"><a href="/de/admin2" class="sign-in">Admin</a></li>
+                            @endif
                         @else
-                            <li class="menu-collapse"><a href="/de/admin" class="sign-in">Admin</a></li>
+                            @if($parametarExport == 'en')
+                                <li class="menu-collapse"><a href="/en/admin" class="sign-in">Admin</a></li>
+                            @else
+                                <li class="menu-collapse"><a href="/de/admin" class="sign-in">Admin</a></li>
+                            @endif
                         @endif
+
 
                             <li class="menu-collapse"><a href="{{route('logout', app()->getLocale())}}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="register">{{ __('Logout') }}</a></li>

@@ -100,6 +100,43 @@ Route::group(['prefix' => '{locale}',
 
 
 
+    /*--------------------------
+  ---> MIDDLEWARE ADMIN <---
+---------------------------*/
+    Route::group(['middleware'=>'admin'], function() {
+        Route::get('/admin2', function(Request $request) {
+            $parametar = $request->getRequestUri();
+            $parametarExport = substr($parametar, 1,2);
+            $users = User::all();
+            $restaurants = Restaurant::orderBy('id', 'desc')->paginate(7);
+            $restaurantsall = Restaurant::all();
+            $packages = Package::pluck('name', 'id')->all();
+            $package = Package::all();
+            $roles = Role::pluck('name', 'id')->all();
+            $locations = Location::pluck('name', 'id')->all();
+            $foods = Food::pluck('name', 'id')->all();
+            return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package', 'locations', 'foods', 'restaurantsall', 'parametarExport'));
+        })->name('admin2.index');
+
+
+
+        Route::resource('admin2/users', 'AdminUsersController');
+        Route::resource('admin2/restaurants', 'AdminRestaurantsController');
+        Route::resource('admin2/packages', 'AdminPackagesController');
+        Route::resource('admin2/media', 'AdminMediaController');
+        Route::resource('admin2/comments', 'RestaurantCommentController');
+        Route::resource('admin2/comment/replies', 'CommentRepliesController');
+        Route::resource('admin2/locations', 'AdminLocationsController');
+        Route::resource('admin2/foods', 'AdminFoodController');
+        Route::resource('admin2/distance', 'AdminRadiusController');
+        Route::resource('admin2/blog', 'AdminBlogController');
+
+        Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
+
+    });
+
+
+
     Route::get('/', function (Request $request) {
 
         $parametar = $request->getRequestUri();
@@ -292,39 +329,7 @@ Route::get('/admin2/blog/v88D4TpNWbL3yGQf', 'AdminBlogController@fetch_data');
 
 
 
-/*--------------------------
-  ---> MIDDLEWARE ADMIN <---
----------------------------*/
-Route::group(['middleware'=>'admin'], function() {
-    Route::get('/admin2', function() {
 
-        $users = User::all();
-        $restaurants = Restaurant::orderBy('id', 'desc')->paginate(7);
-        $restaurantsall = Restaurant::all();
-        $packages = Package::pluck('name', 'id')->all();
-        $package = Package::all();
-        $roles = Role::pluck('name', 'id')->all();
-        $locations = Location::pluck('name', 'id')->all();
-        $foods = Food::pluck('name', 'id')->all();
-        return view('admin.index', compact('users', 'roles', 'packages', 'restaurants', 'package', 'locations', 'foods', 'restaurantsall'));
-    });
-    Route::get('/home', 'HomeController@index')->name('home');
-
-
-    Route::resource('admin2/users', 'AdminUsersController');
-    Route::resource('admin2/restaurants', 'AdminRestaurantsController');
-    Route::resource('admin2/packages', 'AdminPackagesController');
-    Route::resource('admin2/media', 'AdminMediaController');
-    Route::resource('admin2/comments', 'RestaurantCommentController');
-    Route::resource('admin2/comment/replies', 'CommentRepliesController');
-    Route::resource('admin2/locations', 'AdminLocationsController');
-    Route::resource('admin2/foods', 'AdminFoodController');
-    Route::resource('admin2/distance', 'AdminRadiusController');
-    Route::resource('admin2/blog', 'AdminBlogController');
-
-    Route::delete('admin2/delete/media', 'AdminMediaController@deleteMedia');
-
-});
 
 
 

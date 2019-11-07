@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+//use http\Client\Curl\User;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +36,6 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request) {
 
-
-
         $parametar = $request->getRequestUri();
         $parametarExport = substr($parametar, 1,2);
 
@@ -44,16 +44,22 @@ class LoginController extends Controller
             'password' => Input::get('password')
         );
 
+        $email = $credentials['email'];
+        $password = $credentials['password'];
+
+
         $remember = false;
         if(isset($request->remember)) {
             $remember = true;
         }
 
-        if(Auth::attempt($credentials, $remember)) {
-            return redirect($parametarExport.'/admin');
+        if(Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 2], $remember)) {
+            return redirect('/'.$parametarExport.'/admin');
+        } else if(Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 1], $remember)) {
+            return redirect('/'.$parametarExport.'/admin2');
         } else {
             Session::flash('loginFailed', 'Credentials failed');
-            return redirect($parametarExport.'/login');
+            return redirect('/'.$parametarExport.'/login');
         }
 
     }

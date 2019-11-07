@@ -23,7 +23,7 @@ class AdminUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
 //        $date = Carbon::now();
@@ -40,20 +40,24 @@ class AdminUsersController extends Controller
 //              ->delete();
 //        }
 
-
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
 
         $users = User::orderBy('id', 'asc')->paginate(5);
 	    $roles = Role::pluck('name', 'id')->all();
 	    $packages = Package::pluck('name', 'id')->all();
 
 
-        return view('admin.users.index', compact('users', 'roles', 'packages'));
+        return view('admin.users.index', compact('users', 'roles', 'packages', 'parametarExport'));
     }
 
     function fetch_data(Request $request)
     {
         if($request->ajax())
         {
+
+
+
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
@@ -63,6 +67,7 @@ class AdminUsersController extends Controller
                 ->orWhere('email', 'like', '%'.$query.'%')
                 ->orderBy($sort_by, $sort_type)
                 ->paginate(5);
+
             return view('admin.ajax.users_data', compact('users'))->render();
         }
     }
@@ -72,12 +77,14 @@ class AdminUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
 
         $roles = Role::pluck('name', 'id')->all();
         $packages = Package::pluck('name', 'id')->all();
-        return view('admin.users.create', compact('roles', 'packages'));
+        return view('admin.users.create', compact('roles', 'packages', 'parametarExport'));
     }
 
     /**
@@ -88,7 +95,8 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
 
 	    if(trim($request->password) == '') {
 		    $input = $request->except('password');
@@ -107,7 +115,7 @@ class AdminUsersController extends Controller
 
     	User::create($input);
 
-    	return redirect('/admin2/users');
+    	return redirect('/'.$parametarExport.'/admin2/users');
 
         //return $request->all();
     }
@@ -129,13 +137,15 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
     	$user = User::findOrFail($id);
 	    $roles = Role::pluck('name', 'id')->all();
 	    $packages = Package::pluck('name', 'id')->all();
 	    $user_status = User::pluck('is_active', 'id')->all();
-        return view('admin.users.edit', compact('roles', 'user', 'packages', 'user_status'));
+        return view('admin.users.edit', compact('roles', 'user', 'packages', 'user_status', 'parametarExport'));
     }
 
     /**
@@ -145,8 +155,11 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminEditRequest $request, $id)
+    public function update(AdminEditRequest $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
         $user = User::findOrFail($id);
 	    if(trim($request->password) == '') {
 		    $input = $request->except('password');
@@ -162,7 +175,7 @@ class AdminUsersController extends Controller
         	$input['photo_id'] = $photo->id;
         }
         $user->update($input);
-        return redirect('/admin2/users');
+        return redirect('/'.$parametarExport.'/admin2/users');
     }
 
     /**
@@ -171,19 +184,22 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $locale, $id)
     {
+        $parametar = $request->getRequestUri();
+        $parametarExport = substr($parametar,1,2);
+
 		$user = User::findOrFail($id);
 		if($user->photo_id == 1) {
 			$user->delete();
 			Session::flash('deleted_user', 'The User has been deleted');
-			return redirect('/admin2/users');
+			return redirect('/'.$parametarExport.'/admin2/users');
 		} else {
 			unlink( public_path() . $user->photo->file );
             DB::delete('delete from photos where id = ?',[$user->photo->id]);
 			$user->delete();
 			Session::flash('deleted_user', 'The User has been deleted');
-			return redirect('/admin2/users');
+			return redirect('/'.$parametarExport.'/admin2/users');
 		}
 
     }

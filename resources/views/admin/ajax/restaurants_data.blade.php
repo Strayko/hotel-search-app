@@ -7,15 +7,15 @@
             <td>{{$restaurant->user->package ? $restaurant->user->package->name : 'Uncategorized'}}</td>
             <td>{{Str::limit($restaurant->title, 16)}}</td>
             <td>{{Str::limit($restaurant->body, 10)}}</td>
-            <td><a class="hidden-background-a" href="{{route('single_restaurant.restaurant', $restaurant->slug)}}">Restaurant</a></td>
-            <td><a class="hidden-background-a" href="{{route('comments.show', $restaurant->id)}}">View</a></td>
+            <td><a class="hidden-background-a" href="{{route('single_restaurant.restaurant', [app()->getLocale(), $restaurant->slug])}}">Restaurant</a></td>
+            <td><a class="hidden-background-a" href="{{route('comments.show', [app()->getLocale(), $restaurant->id])}}">View</a></td>
             <td>{{$restaurant->created_at->diffForHumans()}}</td>
             <td class="center-buttons">
-                <a href="{{route('restaurants.edit', $restaurant->id)}}" class="blue">
+                <a href="{{route('restaurants.edit', [app()->getLocale(), $restaurant->id])}}" class="blue">
                     Edit
                 </a>
 
-                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRestaurantsController@destroy', $restaurant->id], 'class'=>'form-inline']) !!}
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminRestaurantsController@destroy', app()->getLocale(), $restaurant->id], 'class'=>'form-inline']) !!}
                     <input type="submit" class="red-input" id="red-input-booking" value="Delete">
                     {!! Form::close() !!}
 

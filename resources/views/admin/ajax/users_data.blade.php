@@ -1,3 +1,6 @@
+<?php
+app()->setLocale('en');
+?>
 @foreach($users as $user)
     <tr>
         <td>{{$user->id}}</td>
@@ -10,11 +13,11 @@
         <td>{{$user->created_at->diffForHumans()}}</td>
 
         <td class="center-buttons">
-            <a href="{{route('users.edit', $user->id)}}" class="blue">
+            <a href="{{route('users.edit', [app()->getLocale(), $user->id])}}" class="blue">
                  Edit
             </a>
 
-                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id], 'class'=>'form-inline']) !!}
+                {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', app()->getLocale(), $user->id], 'class'=>'form-inline']) !!}
                 <input type="submit" class="red-input" value="Delete">
                 {{--{!! Form::submit('Delete User', ['class'=>'btn btn-secondary']) !!}--}}
                 {!! Form::close() !!}
