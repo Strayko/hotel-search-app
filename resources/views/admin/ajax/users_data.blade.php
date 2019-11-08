@@ -1,6 +1,14 @@
 <?php
-app()->setLocale('en');
+//$referer = $_SERVER['HTTP_REFERER'];
+//if(strpos($referer, 'en')) {
+//    $referer = 'en';
+//} else {
+//    $referer = 'de';
+//}
+//app()->setLocale($referer);
 ?>
+
+{{--{{dd($_SERVER['REDIRECT_URL'])}}--}}
 @foreach($users as $user)
     <tr>
         <td>{{$user->id}}</td>

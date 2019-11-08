@@ -449,11 +449,19 @@
                 $('#id_icon').html('');
                 $('#post_title_icon').html('');
             }
+            var parametarSet;
+            var parametar = window.location.href;
+            var parametarExport = parametar.match(/en/);
+            if (parametarExport == 'en') {
+                parametarSet = 'en';
+            } else {
+                parametarSet = 'de'
+            }
 
             function fetch_data(page, sort_type, sort_by, query)
             {
                 $.ajax({
-                    url:"/admin2/users/Cd3XZEkaB3dFS2jc?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    url:"/"+parametarSet+"/admin2/users/Cd3XZEkaB3dFS2jc?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
                     success:function(data)
                     {
                         $('tbody').html('');

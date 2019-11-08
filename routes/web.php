@@ -29,10 +29,13 @@ use Cornford\Googlmapper\Facades\MapperFacade;
 --------------------------*/
 Route::post('/contact', ['as'=>'contact.contact', 'uses'=>'SubscriberPlanController@contactSend']);
 Route::post('/restaurant', ['as'=>'single_restaurant.store', 'uses'=>'AuthorRestaurantController@store']);
-Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fetch_data');
-Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
-Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
-Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_data');
+
+
+
+
+
+
+
 
 
 Route::group(['prefix' => '{locale}',
@@ -55,6 +58,7 @@ Route::group(['prefix' => '{locale}',
 
 
 
+    Route::get('/admin/restaurant/DSLvuwum9LmE2hPg', 'SilverRestaurantController@fetch_data');
     /*---------------------------
       ---> MIDDLEWARE AUTHOR <---
     ----------------------------*/
@@ -68,6 +72,7 @@ Route::group(['prefix' => '{locale}',
 
 
 
+    Route::get('/admin/event/tvy5kTYJeWYBY4CX', 'AuthorEventController@fetch_data');
     /*---------------------------------------------
     ---> MIDDLEWARE PREMIUM AND GOLD PACKAGE <---
     ----------------------------------------------*/
@@ -80,7 +85,7 @@ Route::group(['prefix' => '{locale}',
     });
 
 
-
+    Route::get('/admin/booking/8NAkT49naKfcwhwQ', 'OnlineBookingController@fetch_data');
     Route::group(['middleware'=>'silvergoldandplatinium'], function() {
         Route::post('admin/booking', 'OnlineBookingController@update')->name('booking');
         Route::get('admin/booking', 'OnlineBookingController@index')->name('booking');
@@ -90,6 +95,7 @@ Route::group(['prefix' => '{locale}',
 
 
 
+    Route::get('/admin/actions/spy5k2YgeWYBY46X', 'AuthorActionsController@fetch_data');
     /*---------------------------------------------
      ---> MIDDLEWARE PREMIUM PACKAGE <---
     ----------------------------------------------*/
@@ -101,8 +107,8 @@ Route::group(['prefix' => '{locale}',
 
 
     /*--------------------------
-  ---> MIDDLEWARE ADMIN <---
----------------------------*/
+    ---> MIDDLEWARE ADMIN <---
+    ---------------------------*/
     Route::group(['middleware'=>'admin'], function() {
         Route::get('/admin2', function(Request $request) {
             $parametar = $request->getRequestUri();
@@ -119,6 +125,9 @@ Route::group(['prefix' => '{locale}',
         })->name('admin2.index');
 
 
+        Route::get('/admin2/users/Cd3XZEkaB3dFS2jc', 'AdminUsersController@fetch_data');
+        Route::get('/admin2/packages/46x2bvCw8JfSHT24', 'AdminPackagesController@fetch_data');
+        Route::get('/admin2/restaurants/Nh7vbS3VDh6S5fQh', 'AdminRestaurantsController@fetch_data');
 
         Route::resource('admin2/users', 'AdminUsersController');
         Route::resource('admin2/restaurants', 'AdminRestaurantsController');
@@ -316,9 +325,9 @@ Route::get('/', function () {
 /*---------------------------------------------
   ---> AJAX FETCHING DATA MAIN ADMIN PANEL <---
 ---------------------------------------------*/
-Route::get('/admin2/users/Cd3XZEkaB3dFS2jc', 'AdminUsersController@fetch_data');
-Route::get('/admin2/restaurants/Nh7vbS3VDh6S5fQh', 'AdminRestaurantsController@fetch_data');
-Route::get('/admin2/packages/46x2bvCw8JfSHT24', 'AdminPackagesController@fetch_data');
+
+
+
 Route::get('/admin2/media/APm573uRgxAnSFHE', 'AdminMediaController@fetch_data');
 Route::get('/admin2/comments/BCNZj3nE2fsD6SaN', 'RestaurantCommentController@fetch_data');
 Route::get('/admin2/locations/mz8y9arxaj6qPBMP', 'AdminLocationsController@fetch_data');

@@ -40,6 +40,8 @@ class AdminUsersController extends Controller
 //              ->delete();
 //        }
 
+
+
         $parametar = $request->getRequestUri();
         $parametarExport = substr($parametar,1,2);
 
@@ -48,7 +50,7 @@ class AdminUsersController extends Controller
 	    $packages = Package::pluck('name', 'id')->all();
 
 
-        return view('admin.users.index', compact('users', 'roles', 'packages', 'parametarExport'));
+        return view('admin.users.index', compact('users', 'roles', 'packages', 'parametarExport', 'test'));
     }
 
     function fetch_data(Request $request)
@@ -56,7 +58,7 @@ class AdminUsersController extends Controller
         if($request->ajax())
         {
 
-
+//            dd($request->getPathInfo());
 
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
@@ -68,7 +70,7 @@ class AdminUsersController extends Controller
                 ->orderBy($sort_by, $sort_type)
                 ->paginate(5);
 
-            return view('admin.ajax.users_data', compact('users'))->render();
+            return view('admin.ajax.users_data', compact('users', 'test'))->render();
         }
     }
 

@@ -446,10 +446,19 @@
                 $('#post_title_icon').html('');
             }
 
+            var parametarSet;
+            var parametar = window.location.href;
+            var parametarExport = parametar.match(/en/);
+            if (parametarExport == 'en') {
+                parametarSet = 'en';
+            } else {
+                parametarSet = 'de'
+            }
+
             function fetch_data(page, sort_type, sort_by, query)
             {
                 $.ajax({
-                    url:"/admin/restaurant/DSLvuwum9LmE2hPg?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
+                    url:"/"+parametarSet+"/admin/restaurant/DSLvuwum9LmE2hPg?page="+page+"&sortby="+sort_by+"&sorttype="+sort_type+"&query="+query,
                     success:function(data)
                     {
                         $('tbody').html('');
